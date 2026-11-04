@@ -68,20 +68,22 @@ A reader who relies on the table would expect the pads to be driven low after re
 ## Re-run this case
 
 ```sh
-./tools/fetch_opentitan.sh cases/001-pinmux-mio-outsel-reset/case.json opentitan
+./tools/fetch_opentitan.sh opentitan cases/001-pinmux-mio-outsel-reset/case.json
 python3 tools/check_case.py cases/001-pinmux-mio-outsel-reset/case.json --opentitan opentitan
 ```
 
 Expected output at the recorded revision ends with:
 
 ```
-Written requirements vs design:
-  R1: states 2, design 2 -> agrees
-  R2: states 0, design 2 -> DISAGREES
-  R3: states 2, design 2 -> agrees
+Claims:
+  C1 MIO_OUTSEL_<k>.OUT after reset: stated 2, design 2 (D1, D2, D3) -> agrees
+  C2 MIO_OUTSEL_<k>.OUT after reset: stated 0, design 2 (D1, D2, D3) -> disagrees
+  C3 MIO_OUTSEL_<k>.OUT after reset: stated 2, design 2 (D1, D2, D3) -> agrees
 
-RESULT: documentation and design disagree (R2)
+RESULT: 2 agree, 1 disagree, 0 unresolved; all outcomes match the recorded labels
 ```
+
+Claims C1 to C3 correspond to statements R1 to R3. Their labels are recorded in [`case.json`](case.json).
 
 ## Status
 

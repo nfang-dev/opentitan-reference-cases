@@ -1,0 +1,168 @@
+{
+  "schema": 2,
+  "id": "002",
+  "title": "csrng: internal-state read, write and halt enables after reset",
+  "module": "csrng",
+  "opentitan_repository": "https://github.com/lowRISC/opentitan",
+  "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+  "conditions": [
+    "Immediately after the csrng register reset, before software writes the enable registers.",
+    "\"All instances\" means all NumApps = 3 CSRNG instances (NumHwApps = 2 hardware application interfaces in csrng_core.sv, plus the software application interface), so an enable register with all instances enabled reads 0x7."
+  ],
+  "requirements": [
+    {
+      "id": "R1",
+      "file": "hw/ip/csrng/doc/programmers_guide.md",
+      "line": 149,
+      "text": "Reading requires [`CTRL.READ_INT_STATE`](registers.md#ctrl) to be set to `kMultiBitBool4True` and the selected instance's bit in [`INT_STATE_READ_ENABLE`](registers.md#int_state_read_enable) to be set."
+    },
+    {
+      "id": "R2",
+      "file": "hw/ip/csrng/doc/programmers_guide.md",
+      "line": 150,
+      "text": "Writing requires [`CTRL.WRITE_INT_STATE`](registers.md#ctrl) to be set to `kMultiBitBool4True` and the selected instance's bit in [`INT_STATE_WRITE_ENABLE`](registers.md#int_state_write_enable) to be set."
+    },
+    {
+      "id": "R3",
+      "file": "hw/ip/csrng/doc/programmers_guide.md",
+      "line": 153,
+      "text": "Halting requires the selected instance's bit in [`INT_STATE_HALT_ENABLE`](registers.md#int_state_halt_enable) to be set."
+    },
+    {
+      "id": "R4",
+      "file": "hw/ip/csrng/doc/programmers_guide.md",
+      "line": 155,
+      "text": "After reset, reading, writing and halting are enabled for all instances."
+    }
+  ],
+  "design": [
+    {
+      "id": "D1",
+      "kind": "line",
+      "file": "hw/ip/csrng/data/csrng.hjson",
+      "after": "name:    \"NumApps\",",
+      "line": 58,
+      "text": "default: \"3\",",
+      "note": "Number of CSRNG instances. Sets the width of the per-instance enable registers."
+    },
+    {
+      "id": "D2",
+      "kind": "line",
+      "file": "hw/ip/csrng/data/csrng.hjson",
+      "after": "desc: \"Internal state read enable register\",",
+      "line": 508,
+      "text": "resval: 0x7",
+      "value": 7,
+      "note": "Reset value of INT_STATE_READ_ENABLE (bits 2:0, one per instance)."
+    },
+    {
+      "id": "D3",
+      "kind": "all_instances",
+      "file": "hw/ip/csrng/rtl/csrng_reg_top.sv",
+      "pattern": "\\.RESVAL\\s*\\(\\d+'h([0-9a-fA-F]+)\\),\\s*\\.Mubi\\s*\\([^)]*\\)\\s*\\)\\s*u_int_state_read_enable\\s*\\(",
+      "expected_count": 1,
+      "value": 7,
+      "note": "Reset value of the INT_STATE_READ_ENABLE register flop."
+    },
+    {
+      "id": "D4",
+      "kind": "line",
+      "file": "hw/ip/csrng/rtl/csrng_state_db.sv",
+      "line": 138,
+      "text": "if (reg_rd_en_i && (reg_rd_id_q < NumApps ? reg_rd_regfile_en_i[reg_rd_id_q] : 1'b0) &&",
+      "note": "INT_STATE_VAL returns state only if the selected instance's read-enable bit is set (connected to INT_STATE_READ_ENABLE at csrng_core.sv line 966)."
+    },
+    {
+      "id": "D5",
+      "kind": "line",
+      "file": "hw/ip/csrng/data/csrng.hjson",
+      "after": "desc: \"Internal state halt enable register\",",
+      "line": 940,
+      "text": "resval: 0x7",
+      "value": 7,
+      "note": "Reset value of INT_STATE_HALT_ENABLE (bits 2:0, one per instance)."
+    },
+    {
+      "id": "D6",
+      "kind": "all_instances",
+      "file": "hw/ip/csrng/rtl/csrng_reg_top.sv",
+      "pattern": "\\.RESVAL\\s*\\(\\d+'h([0-9a-fA-F]+)\\),\\s*\\.Mubi\\s*\\([^)]*\\)\\s*\\)\\s*u_int_state_halt_enable\\s*\\(",
+      "expected_count": 1,
+      "value": 7,
+      "note": "Reset value of the INT_STATE_HALT_ENABLE register flop."
+    },
+    {
+      "id": "D7",
+      "kind": "line",
+      "file": "hw/ip/csrng/rtl/csrng_core.sv",
+      "line": 567,
+      "text": "reg2hw.int_state_halt_enable.q[ai];",
+      "note": "An instance is halted only if its halt-enable bit is set (lines 564 to 567)."
+    },
+    {
+      "id": "D8",
+      "kind": "absent",
+      "file": "hw/ip/csrng/data/csrng.hjson",
+      "pattern": "name:\\s*\"INT_STATE_WRITE_ENABLE",
+      "description": "no register named INT_STATE_WRITE_ENABLE (or INT_STATE_WRITE_ENABLE_REGWEN)"
+    },
+    {
+      "id": "D9",
+      "kind": "absent",
+      "file": "hw/ip/csrng/data/csrng.hjson",
+      "pattern": "name:\\s*\"WRITE_INT_STATE\"",
+      "description": "no CTRL field named WRITE_INT_STATE"
+    },
+    {
+      "id": "D10",
+      "kind": "line",
+      "file": "hw/ip/csrng/data/csrng.hjson",
+      "after": "desc: \"Internal state read access register\",",
+      "within": 4,
+      "line": 539,
+      "text": "swaccess: \"ro\",",
+      "note": "INT_STATE_VAL is read-only for software, so there is no register path for writing (restoring) an instance's internal state."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "setting": "INT_STATE_READ_ENABLE after reset",
+      "requirements": ["R4", "R1"],
+      "stated": 7,
+      "radix": 16,
+      "design": ["D2", "D3"],
+      "label": "agrees"
+    },
+    {
+      "id": "C2",
+      "setting": "INT_STATE_HALT_ENABLE after reset",
+      "requirements": ["R4", "R3"],
+      "stated": 7,
+      "radix": 16,
+      "design": ["D5", "D6"],
+      "label": "agrees"
+    },
+    {
+      "id": "C3",
+      "setting": "per-instance write enable after reset",
+      "requirements": ["R4", "R2"],
+      "stated_text": "enabled for all instances (INT_STATE_WRITE_ENABLE)",
+      "design": ["D8", "D9", "D10"],
+      "label": "unresolved"
+    }
+  ],
+  "generated_from_same_input": "The register flops in csrng_reg_top.sv (D3, D6) and the reset values in csrng's registers.md are generated by reggen from csrng.hjson (D2, D5), so their agreement is not independent evidence. The programmers' guide (R1 to R4) is written by hand and is the independent requirement.",
+  "finding": "For reading and halting, the statement that they are enabled for all instances after reset agrees with the design: both enable registers reset to 0x7. For writing, the guide names a control field (CTRL.WRITE_INT_STATE) and an enable register (INT_STATE_WRITE_ENABLE) that do not exist at this revision, and INT_STATE_VAL is read-only, so the claim cannot be checked against the design.",
+  "missing_information": [
+    "Whether writing (restoring) internal state is a planned feature whose design is not yet merged, or a feature that was dropped. The save-and-restore section of the guide was added on 2026-10-26 (lowRISC/opentitan commit ace688c), and csrng's register definition was changed by four commits between 2026-10-28 and 2026-11-03; at this revision it still has no write path. The repository alone does not say which is intended."
+  ],
+  "ambiguities": [
+    "\"Reading ... enabled\" refers to the per-instance enable bits. Reading also requires CTRL.READ_INT_STATE, which resets to kMultiBitBool4False, so internal state is not readable immediately after reset even though the enable bits are set."
+  ],
+  "out_of_scope": [
+    "The register-write enables (INT_STATE_READ_ENABLE_REGWEN, INT_STATE_HALT_ENABLE_REGWEN), which reset to 1 and are not part of the statement checked here.",
+    "A simulation of reads from INT_STATE_VAL and of halting after reset."
+  ],
+  "upstream": "No change proposed: the documentation may describe work in progress by the block's maintainers."
+}
