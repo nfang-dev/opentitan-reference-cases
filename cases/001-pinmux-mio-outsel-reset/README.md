@@ -85,4 +85,4 @@ RESULT: documentation and design disagree (R2)
 
 ## Status
 
-A documentation fix has been proposed upstream (pull request link to be added).
+A documentation fix has been proposed upstream: [lowRISC/opentitan#32161](https://github.com/lowRISC/opentitan/pull/32161).
