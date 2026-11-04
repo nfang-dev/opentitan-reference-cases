@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m unittest discover -s tests -v
+
+  recheck-cases:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch OpenTitan at the revision recorded in case 001
+        run: ./tools/fetch_opentitan.sh cases/001-pinmux-mio-outsel-reset/case.json opentitan
+      - name: Re-check case 001
+        run: python tools/check_case.py cases/001-pinmux-mio-outsel-reset/case.json --opentitan opentitan
+      - name: Real-checkout test
+        run: OPENTITAN_DIR=opentitan python -m unittest discover -s tests -v

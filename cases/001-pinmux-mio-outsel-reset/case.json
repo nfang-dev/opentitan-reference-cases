@@ -1,0 +1,99 @@
+{
+  "id": "001",
+  "title": "pinmux: MIO output select value after reset",
+  "module": "pinmux",
+  "opentitan_repository": "https://github.com/lowRISC/opentitan",
+  "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+  "setting": "MIO_OUTSEL_<k>.OUT (one register per muxed I/O pad)",
+  "expected_after_reset": {
+    "value": 2,
+    "meaning": "High-Z: the pad output is disabled, output enable 0"
+  },
+  "conditions": [
+    "Immediately after the pinmux register reset, before software writes MIO_OUTSEL.",
+    "MIO_PAD_SLEEP_STATUS_<k> is 0 (its reset value), so the pad output comes from the MIO_OUTSEL selection rather than the sleep retention registers."
+  ],
+  "requirements": [
+    {
+      "id": "R1",
+      "kind": "prose",
+      "file": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+      "line": 34,
+      "text": "Upon POR, the `pinmux` state is such that all MIO outputs are high-Z",
+      "states_value": 2
+    },
+    {
+      "id": "R2",
+      "kind": "table",
+      "file": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+      "line": 48,
+      "text": "0                     | Constant zero (default)",
+      "context": "Row of the `mio_outsel` value table (heading at line 46).",
+      "states_value": 0
+    },
+    {
+      "id": "R3",
+      "kind": "prose",
+      "file": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+      "line": 53,
+      "text": "The global default at reset is `2`",
+      "states_value": 2
+    }
+  ],
+  "design": [
+    {
+      "id": "D1",
+      "kind": "line",
+      "file": "hw/ip_templates/pinmux/data/pinmux.hjson.tpl",
+      "line": 542,
+      "text": "resval: 2,",
+      "value": 2,
+      "note": "Reset value of the OUT field in the MIO_OUTSEL multireg (starts at line 526). Source for every top."
+    },
+    {
+      "id": "D2",
+      "kind": "all_instances",
+      "file": "hw/top_earlgrey/ip_autogen/pinmux/rtl/pinmux_reg_top.sv",
+      "pattern": "\\.RESVAL\\s*\\(\\d+'h([0-9a-fA-F]+)\\),\\s*\\.Mubi\\s*\\([^)]*\\)\\s*\\)\\s*u_mio_outsel_\\d+\\s*\\(",
+      "expected_count": 47,
+      "value": 2,
+      "note": "Reset value of every MIO_OUTSEL register flop in Earl Grey."
+    },
+    {
+      "id": "D3",
+      "kind": "all_instances",
+      "file": "hw/top_darjeeling/ip_autogen/pinmux/rtl/pinmux_reg_top.sv",
+      "pattern": "\\.RESVAL\\s*\\(\\d+'h([0-9a-fA-F]+)\\),\\s*\\.Mubi\\s*\\([^)]*\\)\\s*\\)\\s*u_mio_outsel_\\d+\\s*\\(",
+      "expected_count": 12,
+      "value": 2,
+      "note": "Reset value of every MIO_OUTSEL register flop in Darjeeling."
+    },
+    {
+      "id": "D4",
+      "kind": "line",
+      "file": "hw/top_earlgrey/ip_autogen/pinmux/rtl/pinmux.sv",
+      "line": 491,
+      "text": "assign periph_oe_mux    = $bits(periph_oe_mux)'({periph_to_mio_oe_i,  1'b0, 1'b1, 1'b1});",
+      "note": "Output-enable mux. Index 0 and 1 drive the pad; index 2 selects output enable 0 (high-Z). The selection happens at line 501."
+    }
+  ],
+  "generated_from_same_input": [
+    {
+      "source": "hw/top_<top>/ip_autogen/pinmux/data/pinmux.hjson (rendered from D1's template)",
+      "outputs": [
+        "hw/top_<top>/ip_autogen/pinmux/rtl/pinmux_reg_top.sv (D2, D3)",
+        "hw/top_<top>/ip_autogen/pinmux/doc/registers.md (\"Reset default: `0x2`\")"
+      ],
+      "consequence": "The register reset value in the RTL and in registers.md agree by construction, so their agreement is not independent evidence. The programmers' guide (R1 to R3) is written by hand and is the independent requirement."
+    }
+  ],
+  "finding": "R1 and R3 state that MIO outputs are high-Z after reset, which matches the design (D1 to D4). R2 marks value 0 (constant zero, output driven low) as the default, which contradicts both the design and the surrounding text.",
+  "ambiguities": [
+    "R1 to R3 do not say whether 'POR' also covers other resets that reset the pinmux registers; the design applies the reset value whenever the register reset is asserted.",
+    "R3 says individual defaults can be overridden at design time. No top at this revision overrides MIO_OUTSEL (D2, D3 and English Breakfast all reset to 2)."
+  ],
+  "out_of_scope": [
+    "Pads that pinmux_strap_sampling can route to a JTAG TAP depending on life-cycle state and straps; their final pad output is not decided by MIO_OUTSEL alone.",
+    "A simulation of the pad outputs after reset (planned as the behavioral check for this case)."
+  ]
+}
