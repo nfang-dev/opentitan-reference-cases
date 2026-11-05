@@ -66,6 +66,10 @@ CI runs both on every push.
 - Case 001: documentation fix proposed in [lowRISC/opentitan#32161](https://github.com/lowRISC/opentitan/pull/32161).
 - Case 002: no change proposed; the documentation may describe work in progress.
 
+## Retrieval comparison
+
+[`retrieval/`](retrieval/README.md) compares a keyword method (BM25) with a locally run text-embedding model on finding the passage in OpenTitan's documentation that answers a question about a setting, using the statements from these cases and further questions.
+
 ## License
 
 Apache-2.0. Copyright 2026 Nan Fang.

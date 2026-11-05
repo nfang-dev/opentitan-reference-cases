@@ -3,6 +3,7 @@ name: CI
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   unit-tests:
@@ -27,3 +28,21 @@ jobs:
         run: python tools/check_case.py cases/*/case.json --opentitan opentitan
       - name: Real-checkout test
         run: OPENTITAN_DIR=opentitan python -m unittest discover -s tests -v
+
+  retrieval-bm25:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch OpenTitan documentation at the revision recorded in the queries
+        run: ./retrieval/fetch_docs.sh otdocs
+      - name: Check every target passage
+        run: python retrieval/check_queries.py --opentitan otdocs
+      - name: Re-run BM25 and compare with the committed results
+        run: |
+          python retrieval/rank.py --method bm25 --opentitan otdocs --out bm25-rerun.json
+          diff -u retrieval/results/bm25.json bm25-rerun.json
+      - name: Score all committed results
+        run: python retrieval/evaluate.py retrieval/results/*.json --strict

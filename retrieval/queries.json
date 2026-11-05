@@ -1,0 +1,292 @@
+{
+  "schema": 1,
+  "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+  "description": "Questions a reviewer might ask about a setting in the design, each with the passages in OpenTitan's hand-written documentation that answer it.",
+  "groups": {
+    "case": "Taken from the statements in reference cases 001 to 003.",
+    "renamed": "The question uses the register or field name defined in the design; the passage that answers it uses an older or different name.",
+    "general": "Questions about reset values, defaults and configuration in other modules."
+  },
+  "queries": [
+    {
+      "id": "Q01",
+      "group": "case",
+      "source": "case 001",
+      "question": "In pinmux, what does an MIO pad output after reset if software has not programmed its MIO_OUTSEL register?",
+      "targets": [
+        {"path": "hw/ip_templates/pinmux/doc/programmers_guide.md", "lines": [34, 34], "quote": "all MIO outputs are high-Z"},
+        {"path": "hw/ip_templates/pinmux/doc/programmers_guide.md", "lines": [46, 53], "quote": "The global default at reset is `2`"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q02",
+      "group": "case",
+      "source": "case 003",
+      "question": "What sleep behavior does a pinmux pad have after reset when its MIO_PAD_SLEEP_EN bit is not set?",
+      "targets": [
+        {"path": "hw/ip_templates/pinmux/doc/programmers_guide.md", "lines": [64, 73], "quote": "Drive (default)"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q03",
+      "group": "case",
+      "source": "case 002",
+      "question": "After reset, is reading and halting the csrng internal state enabled for every application instance, as set by INT_STATE_READ_ENABLE and INT_STATE_HALT_ENABLE?",
+      "targets": [
+        {"path": "hw/ip/csrng/doc/programmers_guide.md", "lines": [149, 156], "quote": "After reset, reading, writing and halting are enabled for all instances."}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q04",
+      "group": "case",
+      "source": "case 002",
+      "question": "What must be true before csrng accepts a write to INT_STATE_VAL that restores a saved instance state?",
+      "targets": [
+        {"path": "hw/ip/csrng/doc/programmers_guide.md", "lines": [145, 145], "quote": "Restoring a state by writing"},
+        {"path": "hw/ip/csrng/doc/programmers_guide.md", "lines": [150, 151], "quote": "Writing requires"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q05",
+      "group": "renamed",
+      "source": "documentation names IO_MEASURE_CTRL; the design defines IO_MEAS_CTRL_EN and IO_MEAS_CTRL_SHADOWED",
+      "question": "What does setting IO_MEAS_CTRL_EN in clkmgr turn on?",
+      "targets": [
+        {"path": "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md", "lines": [265, 271], "quote": "measurement control registers such as"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q06",
+      "group": "renamed",
+      "source": "documentation names HW_CFG_DIGEST_0; the design defines HW_CFG0_DIGEST_0 and HW_CFG1_DIGEST_0",
+      "question": "When does the otp_ctrl HW_CFG0_DIGEST_0 register show the digest after software locks the HW_CFG0 partition?",
+      "targets": [
+        {"path": "hw/ip_templates/otp_ctrl/doc/programmers_guide.md", "lines": [252, 261], "quote": "Perform a full-system reset and verify"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q07",
+      "group": "renamed",
+      "source": "documentation names PERIPH_INSEL_0; the design defines MIO_PERIPH_INSEL_0",
+      "question": "Which input does a peripheral see after reset if MIO_PERIPH_INSEL has not been programmed?",
+      "targets": [
+        {"path": "hw/ip_templates/pinmux/doc/programmers_guide.md", "lines": [34, 44], "quote": "all MIO peripheral inputs are tied off to 0"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q08",
+      "group": "general",
+      "source": "spi_device; the README names the register FILTER, the theory of operation uses the design's name CMD_FILTER",
+      "question": "In spi_device passthrough mode, what happens to a command whose opcode bit is set in CMD_FILTER?",
+      "targets": [
+        {"path": "hw/ip/spi_device/README.md", "lines": [59, 61], "quote": "filter prohibited commands"},
+        {"path": "hw/ip/spi_device/doc/theory_of_operation.md", "lines": [288, 289], "quote": "filters a command by de-asserting CSb"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q09",
+      "group": "renamed",
+      "source": "documentation names COM_DET_SEL_CTL_0; the design defines COM_PRE_DET_CTL_0",
+      "question": "What does sysrst_ctrl COM_PRE_DET_CTL configure for a key combo?",
+      "targets": [
+        {"path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md", "lines": [37, 42], "quote": "The key-pressed time for the pre-condition"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q10",
+      "group": "renamed",
+      "source": "documentation names TARG_QUEUE_THLD_CTRL.TX_DESC_THLD; the design defines TARG_QUEUE_THLD_CTRL.RX_DESC_THLD",
+      "question": "In the i3c target transaction interface, what interrupt does TARG_QUEUE_THLD_CTRL.RX_DESC_THLD control?",
+      "targets": [
+        {"path": "hw/ip/i3c/doc/tti.md", "lines": [365, 365], "quote": "threshold-driven interrupt for the number of descriptors in the Rx Queue"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q11",
+      "group": "general",
+      "source": "aes",
+      "question": "After the AES block comes out of reset, do the key, IV and data registers still hold their reset values?",
+      "targets": [
+        {"path": "hw/ip/aes/doc/programmers_guide.md", "lines": [6, 11], "quote": "can no longer be expected to match the reset values"},
+        {"path": "hw/ip/aes/doc/theory_of_operation.md", "lines": [440, 446], "quote": "cleared with pseudo-random data upon reset"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q12",
+      "group": "general",
+      "source": "spi_host",
+      "question": "Which SPI_HOST interrupts are enabled after reset if software leaves ERROR_ENABLE and EVENT_ENABLE unchanged?",
+      "targets": [
+        {"path": "hw/ip/spi_host/doc/programmers_guide.md", "lines": [36, 40], "quote": "At reset all fields in `ERROR_ENABLE` are set"},
+        {"path": "hw/ip/spi_host/doc/theory_of_operation.md", "lines": [572, 573], "quote": "By default none of these SPI events trigger an interrupt."},
+        {"path": "hw/ip/spi_host/doc/theory_of_operation.md", "lines": [601, 602], "quote": "By default all error events will trigger an `error` interrupt."}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q13",
+      "group": "general",
+      "source": "spi_host",
+      "question": "What is the default minimum time chip select stays high between SPI_HOST transactions, and which CONFIGOPTS field extends it?",
+      "targets": [
+        {"path": "hw/ip/spi_host/doc/theory_of_operation.md", "lines": [254, 255], "quote": "CONFIGOPTS.CSNIDLE"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q14",
+      "group": "general",
+      "source": "entropy_src",
+      "question": "Which mode does entropy_src start in after reset, and how large is the health-test window in that mode?",
+      "targets": [
+        {"path": "hw/ip/entropy_src/doc/theory_of_operation.md", "lines": [19, 23], "quote": "start up in boot-time / bypass mode by default"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q15",
+      "group": "general",
+      "source": "edn",
+      "question": "Which EDN request mode is active after reset before software configures the block?",
+      "targets": [
+        {"path": "hw/ip/edn/doc/theory_of_operation.md", "lines": [28, 30], "quote": "boot-time request mode is the default mode"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q16",
+      "group": "general",
+      "source": "edn",
+      "question": "What happens in EDN auto request mode if MAX_NUM_REQS_BETWEEN_RESEEDS is left at its reset value?",
+      "targets": [
+        {"path": "hw/ip/edn/doc/theory_of_operation.md", "lines": [85, 86], "quote": "The reset value is `0`, which means no `generate` commands are issued."}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q17",
+      "group": "general",
+      "source": "otbn",
+      "question": "Can software start an OTBN operation immediately after reset, and what does the STATUS register show at that time?",
+      "targets": [
+        {"path": "hw/ip/otbn/doc/theory_of_operation.md", "lines": [237, 237], "quote": "After reset (*init*), OTBN performs a secure wipe"},
+        {"path": "hw/ip/otbn/doc/theory_of_operation.md", "lines": [244, 244], "quote": "BUSY_SEC_WIPE_INT"},
+        {"path": "hw/ip/otbn/doc/theory_of_operation.md", "lines": [646, 646], "quote": "The secure wipe after reset must succeed before OTBN can be used."}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q18",
+      "group": "general",
+      "source": "sram_ctrl",
+      "question": "Is the SRAM scrambling key random right after reset, and what should boot software do about it?",
+      "targets": [
+        {"path": "hw/ip/sram_ctrl/doc/programmers_guide.md", "lines": [5, 9], "quote": "the scrambling key defaults to a predefined value"},
+        {"path": "hw/ip/sram_ctrl/doc/theory_of_operation.md", "lines": [19, 19], "quote": "predefined scrambling key and nonce"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q19",
+      "group": "general",
+      "source": "sysrst_ctrl",
+      "question": "What level does the sysrst_ctrl flash write-protect output have after reset, and how does software release it?",
+      "targets": [
+        {"path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md", "lines": [20, 21], "quote": "This output is always asserted when the `sysrst_ctrl` block is reset"},
+        {"path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md", "lines": [159, 164], "quote": "Upon reset, the `flash_wp_l_o` signal will be asserted active low."}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q20",
+      "group": "general",
+      "source": "alert_handler",
+      "question": "Can the alert handler escalate on an alert during power-up, before firmware has configured it?",
+      "targets": [
+        {"path": "hw/ip_templates/alert_handler/doc/programmers_guide.md", "lines": [4, 7], "quote": "the alerts are disabled by default"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q21",
+      "group": "general",
+      "source": "rv_plic",
+      "question": "Does the PLIC forward a pending interrupt to the CPU right after reset if software has not configured it?",
+      "targets": [
+        {"path": "hw/ip_templates/rv_plic/doc/programmers_guide.md", "lines": [3, 7], "quote": "all priorities and thresholds are 0 by default"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q22",
+      "group": "general",
+      "source": "lc_ctrl",
+      "question": "Which life cycle state does lc_ctrl assume at power-up, before the OTP life cycle partition has been read?",
+      "targets": [
+        {"path": "hw/ip/lc_ctrl/doc/theory_of_operation.md", "lines": [6, 9], "quote": "default to \"RAW\" state"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q23",
+      "group": "general",
+      "source": "rram_ctrl",
+      "question": "Can the CPU execute code from RRAM after reset, and how does software enable it?",
+      "targets": [
+        {"path": "hw/ip/rram_ctrl/doc/programmers_guide.md", "lines": [37, 41], "quote": "Instruction fetches via the host TL-UL port are disabled by default."}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q24",
+      "group": "general",
+      "source": "pwm",
+      "question": "What level does a PWM output have when its channel is disabled, and can the polarity be changed?",
+      "targets": [
+        {"path": "hw/ip_templates/pwm/doc/theory_of_operation.md", "lines": [107, 108], "quote": "the output is low if a PWM channel is disabled"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q25",
+      "group": "general",
+      "source": "hmac",
+      "question": "What byte order does HMAC use for the key registers by default, and how is it changed?",
+      "targets": [
+        {"path": "hw/ip/hmac/doc/theory_of_operation.md", "lines": [123, 123], "quote": "big-endian by default"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q26",
+      "group": "general",
+      "source": "pattgen",
+      "question": "By default, what level do the pattgen pcl and pda outputs have while a channel is disabled?",
+      "targets": [
+        {"path": "hw/ip/pattgen/doc/programmers_guide.md", "lines": [42, 45], "quote": "outputs are zero when pattgen is inactive"}
+      ],
+      "verified": false
+    },
+    {
+      "id": "Q27",
+      "group": "general",
+      "source": "rstmgr",
+      "question": "Which rstmgr register tells software why the chip was last reset?",
+      "targets": [
+        {"path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md", "lines": [91, 93], "quote": "indicates why the system was reset"}
+      ],
+      "verified": false
+    }
+  ]
+}
