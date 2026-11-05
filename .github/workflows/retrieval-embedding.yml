@@ -8,6 +8,11 @@ on:
       - ".github/workflows/retrieval-embedding.yml"
   workflow_dispatch:
 
+# Runs for the same commit on two branches would otherwise publish to the results branch at once.
+concurrency:
+  group: retrieval-embedding
+  cancel-in-progress: false
+
 jobs:
   embedding:
     runs-on: ubuntu-latest
@@ -43,5 +48,13 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add embedding.json RUN.md
           git commit -q -m "Embedding results from run ${{ github.run_id }} (${{ github.sha }})"
-          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" \
-            retrieval-ci-results
+          # GitHub occasionally rejects a ref update with a transient server error; try three times.
+          for attempt in 1 2 3; do
+            if git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" \
+                 retrieval-ci-results; then
+              exit 0
+            fi
+            echo "push attempt $attempt failed; retrying"
+            sleep $((attempt * 10))
+          done
+          exit 1
