@@ -3,7 +3,8 @@
 
 For every target passage of every query, confirm that the file is part of the corpus
 (see corpus.py) and that the recorded quote appears within the recorded line range.
-Also report how many queries have been verified by a person.
+Also report for how many queries the target passages have been checked
+(see "review" in queries.json).
 
 Exit status: 0 if every target is confirmed, 2 otherwise.
 """
@@ -58,8 +59,8 @@ def main(argv: list[str] | None = None) -> int:
         print("PROBLEM", p)
     n = len(queries["queries"])
     targets = sum(len(q["targets"]) for q in queries["queries"])
-    verified = sum(1 for q in queries["queries"] if q.get("verified"))
-    print(f"{n} queries, {targets} target passages; {verified} of {n} queries verified by a person")
+    checked = sum(1 for q in queries["queries"] if q.get("checked"))
+    print(f"{n} queries, {targets} target passages; targets checked for {checked} of {n} queries")
     if problems:
         print(f"{len(problems)} problem(s)")
         return 2

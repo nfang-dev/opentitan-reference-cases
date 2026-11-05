@@ -87,7 +87,7 @@ def _fmt(m: dict) -> str:
 
 def report(queries: dict, results: list[dict], scores: list[dict]) -> str:
     n = len(queries["queries"])
-    verified = sum(1 for q in queries["queries"] if q.get("verified"))
+    checked = sum(1 for q in queries["queries"] if q.get("checked"))
     revisions = {r["opentitan_revision"] for r in results}
     hashes = {r["corpus"]["sha256"] for r in results}
     lines = ["# Retrieval comparison", ""]
@@ -96,9 +96,15 @@ def report(queries: dict, results: list[dict], scores: list[dict]) -> str:
                  f"{results[0]['corpus']['files']} files.")
     lines.append("All methods used the same corpus." if len(hashes) == 1
                  else "WARNING: the methods did not use the same corpus.")
-    lines.append(f"Queries: {n}. Target passages verified by a person: {verified} of {n}.")
-    if verified < n:
-        lines.append("These results are provisional until every target passage has been verified.")
+    n_targets = sum(len(q["targets"]) for q in queries["queries"])
+    lines.append(f"Queries: {n}, with {n_targets} target passages. "
+                 f"Target passages checked: {checked} of {n} queries.")
+    if checked < n:
+        lines.append("These results are provisional until the target passages of every query "
+                     "have been checked.")
+    review = queries.get("review")
+    if review:
+        lines.append(f"How the targets were checked ({review['date']}): {review['method']}")
     lines += ["", "## Methods", ""]
     for r in results:
         p = r["parameters"]

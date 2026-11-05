@@ -8,10 +8,17 @@ This directory compares two methods on the same questions, the same documents an
 
 The results are in [`results/report.md`](results/report.md).
 
-## Status
+## Results
 
-The target passages for each question have not yet been verified by a person (`"verified": false` in `queries.json`).
-Until they are, the results are provisional.
+At OpenTitan revision `0ea5236fe749`, on 27 questions:
+
+| Method | Recall@1 | Recall@5 | MRR@10 |
+|---|---|---|---|
+| BM25 | 20/27 | 25/27 | 0.829 |
+| Embedding model | 21/27 | 26/27 | 0.855 |
+
+With 27 questions, a difference of one question is not evidence that either method is better.
+Per-group and per-question results, and the questions each method missed, are in the report.
 
 ## Corpus
 
@@ -33,15 +40,19 @@ At the recorded revision the corpus has 2979 passages from 198 files.
 | Group | Questions | What they test |
 |---|---|---|
 | case | 4 | The statements checked in reference cases 001 to 003. |
-| renamed | 5 | The question uses the register or field name the design defines; the passage that answers it uses an older or different name (for example `IO_MEAS_CTRL_EN` in the design, `IO_MEASURE_CTRL` in the documentation). |
-| general | 18 | Reset values, defaults and configuration in other modules. |
+| renamed | 4 | The question uses the register or field name the design defines; the passage that answers it uses an older or different name (for example `IO_MEAS_CTRL_EN` in the design, `IO_MEASURE_CTRL` in the documentation). |
+| general | 19 | Reset values, defaults and configuration in other modules. |
 
-Each question lists one or more target passages (file, line range and a short quote that must appear in that range), 40 in total.
+Each question lists one or more target passages (file, line range and a short quote that must appear in that range), 44 in total.
 `check_queries.py` confirms every target against a checkout.
 
-The targets were first chosen by reading the documentation.
-They were then extended by pooling: every passage that either method ranked in its first three for a question, but that was not a target, was read, and the ones that also answer the question were added (three passages, for Q01, Q15 and Q27).
-Q08 was moved from the renamed group to the general group at this stage, because a passage that uses the design's name also answers it.
+The targets were first chosen by reading the documentation, and then checked (2026-11-05, recorded under `review` in `queries.json`):
+
+- every target passage was read against the source text at the recorded revision and confirmed to answer its question;
+- every passage that either method ranked in its first three for a question, but that was not a target, was read (pooling), and the ones that state at least part of the answer were added as targets: seven passages, for Q01, Q05, Q13, Q15, Q24 and Q27 (two).
+
+A passage counts as answering if it states at least part of the answer; for example, for a question with two parts, a passage that answers one part.
+Q05 and Q08 were moved from the renamed group to the general group, because a passage that uses the design's name also answers each of them.
 
 ## Scoring
 
@@ -77,6 +88,7 @@ With `--strict`, `evaluate.py` refuses to compare results produced from differen
 
 CI re-checks every target passage, re-runs BM25 and compares it with the committed results on every push.
 The embedding method runs in a separate workflow when files in this directory change.
+A second run with the pinned model revision ([run 41979669877](https://github.com/nfang-dev/opentitan-reference-cases/actions/runs/41979669877)) returned the same ten passages in the same order for every question as the committed results, with scores differing by at most 0.000001.
 
 ## Limitations
 

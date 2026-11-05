@@ -2,8 +2,8 @@
 
 OpenTitan revision: `0ea5236fe749e70ba18f56ba19c4be982ef46da7`. Corpus: 2979 passages from 198 files.
 All methods used the same corpus.
-Queries: 27. Target passages verified by a person: 0 of 27.
-These results are provisional until every target passage has been verified.
+Queries: 27, with 44 target passages. Target passages checked: 27 of 27 queries.
+How the targets were checked (2026-11-05): Every target passage was read against the source text at the recorded revision and confirmed to answer its question. Every passage that either method ranked in its first three for a question, but that was not a target, was read; the ones that state at least part of the answer were added as targets.
 
 ## Methods
 
@@ -14,14 +14,14 @@ These results are provisional until every target passage has been verified.
 
 | Method | Queries | Recall@1 | Recall@5 | MRR@10 |
 |---|---|---|---|---|
-| bm25 | all | 19/27 | 24/27 | 0.792 |
+| bm25 | all | 20/27 | 25/27 | 0.829 |
 | bm25 | case | 3/4 | 4/4 | 0.875 |
-| bm25 | renamed | 3/5 | 4/5 | 0.650 |
-| bm25 | general | 13/18 | 16/18 | 0.812 |
-| embedding | all | 20/27 | 26/27 | 0.836 |
+| bm25 | renamed | 3/4 | 4/4 | 0.812 |
+| bm25 | general | 14/19 | 17/19 | 0.822 |
+| embedding | all | 21/27 | 26/27 | 0.855 |
 | embedding | case | 3/4 | 4/4 | 0.812 |
-| embedding | renamed | 4/5 | 4/5 | 0.800 |
-| embedding | general | 13/18 | 18/18 | 0.852 |
+| embedding | renamed | 4/4 | 4/4 | 1.000 |
+| embedding | general | 14/19 | 18/19 | 0.833 |
 
 Group meanings:
 
@@ -39,7 +39,7 @@ Rank of the first correct passage in the top 10 ("-" if none).
 | Q02 | case | 1 | 1 |
 | Q03 | case | 1 | 4 |
 | Q04 | case | 1 | 1 |
-| Q05 | renamed | - | - |
+| Q05 | general | 1 | - |
 | Q06 | renamed | 4 | 1 |
 | Q07 | renamed | 1 | 1 |
 | Q08 | general | 1 | 1 |
@@ -61,14 +61,13 @@ Rank of the first correct passage in the top 10 ("-" if none).
 | Q24 | general | 1 | 1 |
 | Q25 | general | 1 | 1 |
 | Q26 | general | 2 | 1 |
-| Q27 | general | 2 | 2 |
+| Q27 | general | 2 | 1 |
 
 ## Queries without a correct passage in the top 5
 
-**Q05** (renamed): What does setting IO_MEAS_CTRL_EN in clkmgr turn on?
+**Q05** (general): What does setting IO_MEAS_CTRL_EN in clkmgr turn on?
 
-- expected: `hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:265-271`
-- bm25: first correct at none in top 10; returned first `hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:293-301`
+- expected: `hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:265-271`; `hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:300-300`
 - embedding: first correct at none in top 10; returned first `hw/ip_templates/clkmgr/doc/programmers_guide.md:13-13`
 
 **Q15** (general): Which EDN request mode is active after reset before software configures the block?

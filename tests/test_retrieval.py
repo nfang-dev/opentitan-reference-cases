@@ -170,7 +170,7 @@ class QuerySetTest(unittest.TestCase):
         for q in queries["queries"]:
             self.assertIn(q["group"], queries["groups"])
             self.assertTrue(q["targets"])
-            self.assertIsInstance(q["verified"], bool)
+            self.assertIsInstance(q["checked"], bool)
             for t in q["targets"]:
                 self.assertLessEqual(t["lines"][0], t["lines"][1])
                 self.assertTrue(t["quote"])
