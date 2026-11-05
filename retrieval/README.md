@@ -4,7 +4,7 @@ Given a question a reviewer might ask about a setting in the design, can a searc
 This directory compares two methods on the same questions, the same documents and the same scoring:
 
 - **BM25**, a standard keyword ranking (implemented in `rank.py` with the Python standard library);
-- a **text-embedding model** run locally on CPU (`BAAI/bge-small-en-v1.5` through `sentence-transformers`), ranking passages by cosine similarity.
+- a **text-embedding model** run locally on CPU (`BAAI/bge-small-en-v1.5` at model revision `5c38ec7c`, through `sentence-transformers`), ranking passages by cosine similarity.
 
 The results are in [`results/report.md`](results/report.md).
 
@@ -36,8 +36,12 @@ At the recorded revision the corpus has 2979 passages from 198 files.
 | renamed | 5 | The question uses the register or field name the design defines; the passage that answers it uses an older or different name (for example `IO_MEAS_CTRL_EN` in the design, `IO_MEASURE_CTRL` in the documentation). |
 | general | 18 | Reset values, defaults and configuration in other modules. |
 
-Each question lists one or more target passages (file, line range and a short quote that must appear in that range).
+Each question lists one or more target passages (file, line range and a short quote that must appear in that range), 40 in total.
 `check_queries.py` confirms every target against a checkout.
+
+The targets were first chosen by reading the documentation.
+They were then extended by pooling: every passage that either method ranked in its first three for a question, but that was not a target, was read, and the ones that also answer the question were added (three passages, for Q01, Q15 and Q27).
+Q08 was moved from the renamed group to the general group at this stage, because a passage that uses the design's name also answers it.
 
 ## Scoring
 
@@ -80,4 +84,4 @@ The embedding method runs in a separate workflow when files in this directory ch
 - The questions were written after reading the documentation, which may make their wording closer to the target passages than a real reviewer's would be.
 - All passages come from one revision, so the comparison does not yet test whether a method returns an outdated version of a passage.
 - One embedding model and one keyword method are compared; no reranking or language model is used.
-- A passage that answers a question but is not listed as a target counts as wrong. The target lists are being checked against the top results of both methods.
+- A passage that answers a question but is not listed as a target counts as wrong. Pooling covers the first three results of these two methods only; another method could surface further answering passages.

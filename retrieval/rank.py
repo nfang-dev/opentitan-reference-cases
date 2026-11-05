@@ -154,8 +154,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--queries", type=Path, default=Path(__file__).parent / "queries.json")
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--model", default="BAAI/bge-small-en-v1.5")
-    parser.add_argument("--model-revision", default="main",
-                        help="model revision; the resolved commit is recorded in the output")
+    parser.add_argument("--model-revision", default="5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+                        help="model revision (a commit of the model repository); the resolved commit "
+                        "is recorded in the output")
     parser.add_argument("--query-prefix",
                         default="Represent this sentence for searching relevant passages: ",
                         help="instruction prepended to each question (as recommended for BGE)")

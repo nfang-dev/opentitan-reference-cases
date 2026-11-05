@@ -15,7 +15,8 @@
       "question": "In pinmux, what does an MIO pad output after reset if software has not programmed its MIO_OUTSEL register?",
       "targets": [
         {"path": "hw/ip_templates/pinmux/doc/programmers_guide.md", "lines": [34, 34], "quote": "all MIO outputs are high-Z"},
-        {"path": "hw/ip_templates/pinmux/doc/programmers_guide.md", "lines": [46, 53], "quote": "The global default at reset is `2`"}
+        {"path": "hw/ip_templates/pinmux/doc/programmers_guide.md", "lines": [46, 53], "quote": "The global default at reset is `2`"},
+        {"path": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md", "lines": [73, 73], "quote": "high-Z state (default)"}
       ],
       "verified": false
     },
@@ -160,7 +161,8 @@
       "source": "edn",
       "question": "Which EDN request mode is active after reset before software configures the block?",
       "targets": [
-        {"path": "hw/ip/edn/doc/theory_of_operation.md", "lines": [28, 30], "quote": "boot-time request mode is the default mode"}
+        {"path": "hw/ip/edn/doc/theory_of_operation.md", "lines": [28, 30], "quote": "boot-time request mode is the default mode"},
+        {"path": "hw/ip/edn/doc/theory_of_operation.md", "lines": [137, 138], "quote": "After power-up, the EDN block is disabled."}
       ],
       "verified": false
     },
@@ -284,7 +286,8 @@
       "source": "rstmgr",
       "question": "Which rstmgr register tells software why the chip was last reset?",
       "targets": [
-        {"path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md", "lines": [91, 93], "quote": "indicates why the system was reset"}
+        {"path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md", "lines": [91, 93], "quote": "indicates why the system was reset"},
+        {"path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md", "lines": [242, 255], "quote": "The reset information register is a reflection of the reset state"}
       ],
       "verified": false
     }
