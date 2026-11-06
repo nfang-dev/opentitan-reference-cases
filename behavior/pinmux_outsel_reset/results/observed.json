@@ -1,0 +1,239 @@
+{
+  "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+  "design": "unchanged",
+  "tools": {
+    "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
+    "cocotb": "1.9.2"
+  },
+  "conditions": {
+    "top": "Earl Grey; pad configuration PinmuxTargetCfg from hw/top_earlgrey/rtl/autogen/chip_earlgrey_asic.sv, with the scan roles of the open-source placeholder hw/top_earlgrey/rtl/scan_role_pkg.sv",
+    "resets": "rst_ni (also rst_sys_ni) and rst_aon_ni asserted together on a falling clk_i edge, held for 10 clk_i cycles, released together on a falling edge",
+    "clocks": "clk_i 10 ns, clk_aon_i 40 ns",
+    "sampling": "pad outputs read on falling clk_i edges, 1, 10 and 100 cycles after release",
+    "life_cycle": "lc_hw_debug_en, lc_dft_en, lc_hw_debug_clr, lc_check_byp_en and lc_escalate_en Off; strap_en_i 0, so the TAP straps are not sampled",
+    "sleep": "sleep_en_i 0; MIO_PAD_SLEEP_STATUS keeps its reset value",
+    "peripherals": "every muxed peripheral output drives 1 with output enable 1",
+    "initial_state": "Verilator two-state simulation; state that reset does not set starts from random values (--x-initial unique, +verilator+rand+reset+2)"
+  },
+  "seeds": {
+    "1": {
+      "tests": {
+        "reset_then_sample": "pass",
+        "outsel_zero_drives_low": "pass",
+        "reset_restores": "pass"
+      },
+      "observed": {
+        "reset_then_sample": {
+          "before_reset": {
+            "driven_pad_count": 26
+          },
+          "end_of_reset": {
+            "driven_pads": [],
+            "driven_high_pads": [],
+            "alert": 0
+          },
+          "after_reset_release": {
+            "1": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            },
+            "10": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            },
+            "100": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            }
+          },
+          "mio_outsel_read": {
+            "values": [
+              2
+            ],
+            "count": 47,
+            "bus_errors": []
+          }
+        },
+        "outsel_zero_drives_low": {
+          "mio_outsel_read": {
+            "values": [
+              0
+            ],
+            "count": 47,
+            "bus_errors": []
+          },
+          "after_write": {
+            "driven_pad_count": 47,
+            "driven_high_pads": [],
+            "alert": 0
+          }
+        },
+        "reset_restores": {
+          "after_reset_release": {
+            "10": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            }
+          },
+          "mio_outsel_read": {
+            "values": [
+              2
+            ],
+            "count": 47,
+            "bus_errors": []
+          }
+        }
+      }
+    },
+    "2": {
+      "tests": {
+        "reset_then_sample": "pass",
+        "outsel_zero_drives_low": "pass",
+        "reset_restores": "pass"
+      },
+      "observed": {
+        "reset_then_sample": {
+          "before_reset": {
+            "driven_pad_count": 34
+          },
+          "end_of_reset": {
+            "driven_pads": [],
+            "driven_high_pads": [],
+            "alert": 0
+          },
+          "after_reset_release": {
+            "1": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            },
+            "10": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            },
+            "100": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            }
+          },
+          "mio_outsel_read": {
+            "values": [
+              2
+            ],
+            "count": 47,
+            "bus_errors": []
+          }
+        },
+        "outsel_zero_drives_low": {
+          "mio_outsel_read": {
+            "values": [
+              0
+            ],
+            "count": 47,
+            "bus_errors": []
+          },
+          "after_write": {
+            "driven_pad_count": 47,
+            "driven_high_pads": [],
+            "alert": 0
+          }
+        },
+        "reset_restores": {
+          "after_reset_release": {
+            "10": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            }
+          },
+          "mio_outsel_read": {
+            "values": [
+              2
+            ],
+            "count": 47,
+            "bus_errors": []
+          }
+        }
+      }
+    },
+    "3": {
+      "tests": {
+        "reset_then_sample": "pass",
+        "outsel_zero_drives_low": "pass",
+        "reset_restores": "pass"
+      },
+      "observed": {
+        "reset_then_sample": {
+          "before_reset": {
+            "driven_pad_count": 29
+          },
+          "end_of_reset": {
+            "driven_pads": [],
+            "driven_high_pads": [],
+            "alert": 0
+          },
+          "after_reset_release": {
+            "1": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            },
+            "10": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            },
+            "100": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            }
+          },
+          "mio_outsel_read": {
+            "values": [
+              2
+            ],
+            "count": 47,
+            "bus_errors": []
+          }
+        },
+        "outsel_zero_drives_low": {
+          "mio_outsel_read": {
+            "values": [
+              0
+            ],
+            "count": 47,
+            "bus_errors": []
+          },
+          "after_write": {
+            "driven_pad_count": 47,
+            "driven_high_pads": [],
+            "alert": 0
+          }
+        },
+        "reset_restores": {
+          "after_reset_release": {
+            "10": {
+              "driven_pads": [],
+              "driven_high_pads": [],
+              "alert": 0
+            }
+          },
+          "mio_outsel_read": {
+            "values": [
+              2
+            ],
+            "count": 47,
+            "bus_errors": []
+          }
+        }
+      }
+    }
+  }
+}

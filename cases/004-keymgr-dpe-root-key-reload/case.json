@@ -81,47 +81,25 @@
     {
       "id": "C1",
       "setting": "creator root key can be loaded again before the next reset (1 yes, 0 no)",
-      "requirements": [
-        "R1"
-      ],
+      "requirements": ["R1"],
       "stated": 0,
-      "design": [
-        "D1",
-        "D2",
-        "D3",
-        "D4"
-      ],
+      "design": ["D1", "D2", "D3", "D4"],
       "label": "disagrees"
     },
     {
       "id": "C2",
       "setting": "creator root key can be loaded again before the next reset (1 yes, 0 no)",
-      "requirements": [
-        "R2"
-      ],
+      "requirements": ["R2"],
       "stated": 1,
-      "design": [
-        "D1",
-        "D2",
-        "D3",
-        "D4"
-      ],
+      "design": ["D1", "D2", "D3", "D4"],
       "label": "agrees"
     },
     {
       "id": "C3",
       "setting": "creator root key can be loaded again before the next reset (1 yes, 0 no)",
-      "requirements": [
-        "R3",
-        "R4"
-      ],
+      "requirements": ["R3", "R4"],
       "stated": 1,
-      "design": [
-        "D1",
-        "D2",
-        "D3",
-        "D4"
-      ],
+      "design": ["D1", "D2", "D3", "D4"],
       "label": "agrees"
     }
   ],

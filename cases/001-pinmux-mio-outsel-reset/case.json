@@ -101,8 +101,8 @@
     "R3 says individual defaults can be overridden at design time. No top at this revision overrides MIO_OUTSEL (D2, D3 and English Breakfast all reset to 2)."
   ],
   "out_of_scope": [
-    "Pads that pinmux_strap_sampling can route to a JTAG TAP depending on life-cycle state and straps; their final pad output is not decided by MIO_OUTSEL alone.",
-    "A simulation of the pad outputs after reset (planned as the behavioral check for this case)."
+    "Pads that pinmux_strap_sampling can route to a JTAG TAP depending on life-cycle state and straps; their final pad output is not decided by MIO_OUTSEL alone."
   ],
+  "behavior_check": "behavior/README.md: a Verilator and cocotb simulation of the Earl Grey pinmux observes that no muxed pad is driven after reset (life-cycle debug and DFT off), and that writing 0 drives every pad low.",
   "upstream": "https://github.com/lowRISC/opentitan/pull/32161"
 }

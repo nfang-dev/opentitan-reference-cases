@@ -68,6 +68,10 @@ CI runs both on every push.
 - Case 002: no change proposed; the documentation may describe work in progress.
 - Case 004: no change proposed yet.
 
+## Behavior check
+
+[`behavior/`](behavior/README.md) simulates the Earl Grey pinmux with Verilator and cocotb to observe the pad outputs after reset that case 001 is about, and shows that the check fails on a copy of the design with the reset value changed.
+
 ## Retrieval comparison
 
 [`retrieval/`](retrieval/README.md) compares a keyword method (BM25) with a locally run text-embedding model on finding the passage in OpenTitan's documentation that answers a question about a setting, using the statements from these cases and further questions.

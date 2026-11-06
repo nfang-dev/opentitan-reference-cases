@@ -63,7 +63,13 @@ A reader who relies on the table would expect the pads to be driven low after re
 ## Out of scope
 
 - Pads that `pinmux_strap_sampling` can route to a JTAG TAP, depending on the life-cycle state and straps. For those pads, the final pad output is not decided by `MIO_OUTSEL` alone.
-- A simulation of the pad outputs after reset. This is the planned behavioral check for this case.
+
+## Behavior check
+
+A simulation of the Earl Grey pinmux with Verilator and cocotb ([`behavior/`](../../behavior/README.md)) observes the pad outputs directly.
+With life-cycle debug and DFT off, none of the 47 muxed pads is driven 1, 10 or 100 cycles after reset, in each of three runs that start from random state, and all 47 `MIO_OUTSEL` registers read 2.
+Writing 0, the table's default, drives all 47 pads low.
+A copy of the design with the reset value changed to 0 makes the check fail, as intended.
 
 ## Re-run this case
 
