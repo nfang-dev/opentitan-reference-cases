@@ -5,6 +5,10 @@
   "groups": {
     "heldout": "Written after the methods were fixed, about modules not used in the earlier questions."
   },
+  "review": {
+    "date": "2026-11-05",
+    "method": "Every target passage was read against the source text at the recorded revision and confirmed to answer its question. Every passage that either method ranked in its first three for a question, but that was not a target, was read; the ones that state at least part of the answer were added as targets."
+  },
   "queries": [
     {
       "id": "H01",
@@ -21,7 +25,7 @@
           "quote": "pushed into a 64-byte RX FIFO"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H02",
@@ -44,9 +48,17 @@
             24
           ],
           "quote": "The `NCO` is calculated using the following equation"
+        },
+        {
+          "path": "hw/ip/uart/doc/programmers_guide.md",
+          "lines": [
+            29,
+            37
+          ],
+          "quote": "uint64_t nco = ((uint64_t)baud << 20) / CLK_FIXED_FREQ_HZ;"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H03",
@@ -71,7 +83,7 @@
           "quote": "within +/- 2.5% of the ideal baud rate"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H04",
@@ -88,7 +100,7 @@
           "quote": "CTRL.ENABLEHOST"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H05",
@@ -121,7 +133,7 @@
           "quote": "When the FSM first halts due to an unexpected NACK"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H06",
@@ -138,7 +150,7 @@
           "quote": "a full RX FIFO does not stop command processing"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H07",
@@ -163,7 +175,7 @@
           "quote": "This 16-cycle filter"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H08",
@@ -180,7 +192,7 @@
           "quote": "bits to modify are given as a mask in the upper"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H09",
@@ -205,7 +217,7 @@
           "quote": "name: \"prescale\""
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H10",
@@ -222,7 +234,7 @@
           "quote": "No smaller than old value."
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H11",
@@ -239,7 +251,7 @@
           "quote": "one more than the 12-bit"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H12",
@@ -264,7 +276,7 @@
           "quote": "the timer pauses when `sleep_mode_i` is asserted"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H13",
@@ -297,7 +309,7 @@
           "quote": "clear the wakeup request by writing 0 to"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H14",
@@ -322,7 +334,7 @@
           "quote": "SW must not change the configuration of or send commands"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H15",
@@ -339,7 +351,7 @@
           "quote": "0xEFBEADDE"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H16",
@@ -364,7 +376,7 @@
           "quote": "`ErrSwSaveRestoreSideload`"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H17",
@@ -381,7 +393,7 @@
           "quote": "by default, hardware assumes that scrambling and ECC is enabled"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H18",
@@ -398,7 +410,7 @@
           "quote": "STATUS.INIT_WIP"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H19",
@@ -423,7 +435,7 @@
           "quote": "operate on full Flash words (64 bits)"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H20",
@@ -438,9 +450,25 @@
             35
           ],
           "quote": "top 8 words of the ROM"
+        },
+        {
+          "path": "hw/ip/rom_ctrl/doc/theory_of_operation.md",
+          "lines": [
+            68,
+            69
+          ],
+          "quote": "The top eight words in ROM (by logical address) are interpreted as a 256-bit expected hash."
+        },
+        {
+          "path": "hw/ip/rom_ctrl/doc/theory_of_operation.md",
+          "lines": [
+            72,
+            72
+          ],
+          "quote": "compared with the hash that was read from the top eight words of ROM"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H21",
@@ -465,7 +493,7 @@
           "quote": "Generate a checksum of the ROM contents and feed its value to"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H22",
@@ -496,9 +524,25 @@
             60
           ],
           "quote": "the ADC power-up delay is controlled by"
+        },
+        {
+          "path": "hw/ip/adc_ctrl/doc/programmers_guide.md",
+          "lines": [
+            64,
+            64
+          ],
+          "quote": "The ADC power up delay must be set in"
+        },
+        {
+          "path": "hw/ip/adc_ctrl/doc/theory_of_operation.md",
+          "lines": [
+            120,
+            121
+          ],
+          "quote": "waits for the ADC to fully power up, as determined by"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H23",
@@ -523,7 +567,7 @@
           "quote": "is configured and low power mode enabled by setting"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H24",
@@ -538,9 +582,17 @@
             24
           ],
           "quote": "Support for 8 filters"
+        },
+        {
+          "path": "hw/ip/adc_ctrl/doc/theory_of_operation.md",
+          "lines": [
+            78,
+            79
+          ],
+          "quote": "eight pairs of filters"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H25",
@@ -557,7 +609,7 @@
           "quote": "must be set to trigger low power entry when the CPU sleeps"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H26",
@@ -580,9 +632,17 @@
             37
           ],
           "quote": "will not trigger even an attempt to go to low power"
+        },
+        {
+          "path": "hw/ip_templates/pwrmgr/doc/programmers_guide.md",
+          "lines": [
+            46,
+            46
+          ],
+          "quote": "where low power entry was not attempted"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H27",
@@ -607,7 +667,7 @@
           "quote": "where low power entry was not attempted"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H28",
@@ -632,7 +692,7 @@
           "quote": "the mode is fixed until `rv_core_ibex` is reset"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H29",
@@ -649,7 +709,7 @@
           "quote": "is invalid"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H30",
@@ -682,7 +742,7 @@
           "quote": "Ibex will not resume execution"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H31",
@@ -697,9 +757,17 @@
             58
           ],
           "quote": "only usable during TEST_UNLOCKED*, DEV and RMA life cycle states"
+        },
+        {
+          "path": "hw/ip/rv_dm/doc/interfaces.md",
+          "lines": [
+            69,
+            69
+          ],
+          "quote": "Debug system functionality is controlled by the"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H32",
@@ -724,7 +792,7 @@
           "quote": "LATE_DEBUG_ENABLE (CSR)"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H33",
@@ -749,7 +817,7 @@
           "quote": "If the access is denied because no range matches"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H34",
@@ -772,9 +840,17 @@
             28
           ],
           "quote": "No matching permissions"
+        },
+        {
+          "path": "hw/ip_templates/ac_range_check/README.md",
+          "lines": [
+            56,
+            59
+          ],
+          "quote": "matches a range but the configured permission denied the requested operation"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H35",
@@ -791,7 +867,7 @@
           "quote": "Interrupts are disabled by default"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H36",
@@ -816,7 +892,7 @@
           "quote": "configuration range registers to map OT internal memory as DMA enabled memory"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H37",
@@ -833,7 +909,7 @@
           "quote": "compatible with the following OpenTitan peripherals"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H38",
@@ -856,9 +932,17 @@
             104
           ],
           "quote": "Data Object Exchange mechanism"
+        },
+        {
+          "path": "hw/ip/mbx/doc/theory_of_operation.md",
+          "lines": [
+            212,
+            212
+          ],
+          "quote": "DOE mailbox is used to perform various security protocols"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H39",
@@ -891,7 +975,7 @@
           "quote": "bottom 128 bits of the output"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H40",
@@ -908,7 +992,7 @@
           "quote": "No debug authorization is required on such parts."
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H41",
@@ -933,7 +1017,7 @@
           "quote": "usb_tx_use_d_se0_o"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H42",
@@ -958,7 +1042,7 @@
           "quote": "asserted whenever the interface is enabled and VBUS is present"
         }
       ],
-      "checked": false
+      "checked": true
     },
     {
       "id": "H43",
@@ -975,7 +1059,7 @@
           "quote": "carries the command integrity of the transaction"
         }
       ],
-      "checked": false
+      "checked": true
     }
   ]
 }

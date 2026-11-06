@@ -6,7 +6,7 @@ This directory compares two methods on the same questions, the same documents an
 - **BM25**, a standard keyword ranking (implemented in `rank.py` with the Python standard library);
 - a **text-embedding model** run locally on CPU (`BAAI/bge-small-en-v1.5` at model revision `5c38ec7c`, through `sentence-transformers`), ranking passages by cosine similarity.
 
-The results are in [`results/report.md`](results/report.md).
+The results are in [`results/report.md`](results/report.md), [`results/extended/report.md`](results/extended/report.md) and [`results/two_revisions/report.md`](results/two_revisions/report.md).
 
 ## Results
 
@@ -19,6 +19,25 @@ At OpenTitan revision `0ea5236fe749`, on 27 questions:
 
 With 27 questions, a difference of one question is not evidence that either method is better.
 Per-group and per-question results, and the questions each method missed, are in the report.
+
+## Held-out questions
+
+The 27 questions were written while the methods were being set up.
+[`queries_heldout.json`](queries_heldout.json) adds 43 questions written after the methods and their parameters were fixed, 20 modules that the earlier questions do not use: uart, i2c, gpio, rv_timer, aon_timer, kmac, flash_ctrl, rom_ctrl, adc_ctrl, pwrmgr, rv_core_ibex, rv_dm, ac_range_check, racl_ctrl, dma, mbx, ascon, soc_dbg_ctrl, usbdev and tlul.
+Neither method was changed afterwards.
+Their targets were checked in the same way: every target read against the source, and every passage either method ranked in its first three read, with the ones that state part of an answer added (83 targets in total).
+
+On all 70 questions at the current revision ([`results/extended/report.md`](results/extended/report.md)):
+
+| Method | Questions | Recall@1 | Recall@5 | MRR@10 |
+|---|---|---|---|---|
+| BM25 | 43 held-out | 33/43 | 40/43 | 0.834 |
+| Embedding model | 43 held-out | 33/43 | 41/43 | 0.852 |
+| BM25 | all 70 | 53/70 | 65/70 | 0.832 |
+| Embedding model | all 70 | 54/70 | 67/70 | 0.853 |
+
+On the held-out questions the two methods put a correct passage first equally often, and the embedding model has one more within the first five.
+Both methods do about as well on the held-out questions as on the first 27 (a correct passage first for 77% of held-out questions with each method, against 74% for BM25 and 78% for the embedding model on the first 27). With these numbers, neither method is shown to be better.
 
 ## Two revisions: outdated passages
 
@@ -36,10 +55,23 @@ The second experiment asks whether a method returns the earlier answer when an e
 
 Both methods ranked the earlier answer first for V05 (spi_device dummy cycles) and V08 (whether spi_host keeps a separate `CONFIGOPTS` per chip select).
 Neither method uses the revision a passage comes from, so when outdated documentation is indexed, ranking by text alone can return it first.
+
+### Using the revision
+
+With `--earlier-last`, `rank.py` ranks every passage of the current revision above every passage of the earlier revision, and within each by score (methods `bm25+revision` and `embedding+revision`):
+
+| Method | Recall@1 | Recall@5 | MRR@10 | Earlier answer ranked above the current one (of 8) | First result from the earlier revision (of 35) |
+|---|---|---|---|---|---|
+| BM25 + revision | 26/35 | 33/35 | 0.835 | 0 | 0 |
+| Embedding model + revision | 28/35 | 34/35 | 0.869 | 0 | 0 |
+
+No outdated passage is ranked first any more, and Recall@1 rises by 2 (BM25) and 3 (embedding model) questions.
+This needs two pieces of information that a real search index may not have: which revision each passage comes from, and which revision applies to the design under review.
+Here both are given; how to obtain them is not tested.
 The full results are in [`results/two_revisions/report.md`](results/two_revisions/report.md).
 
 While checking V01, a conflict inside the current revision turned up: `hw/ip/keymgr_dpe/doc/theory_of_operation.md` line 85 says "The latching of the root key can only happen once until the keymgr_DPE is reset.", while line 145 says the latching can be repeated with the load root key operation unless locked, and the design defines that operation and `LOAD_ROOT_KEY_LOCK` (`keymgr_dpe.hjson`).
-Line 85 counts neither as a target nor as an outdated passage; it has not been reported upstream.
+Line 85 counts neither as a target nor as an outdated passage. It is recorded as [case 004](../cases/004-keymgr-dpe-root-key-reload/README.md).
 
 ## Corpus
 
@@ -111,8 +143,21 @@ python3 retrieval/rank.py --method bm25 $Q --opentitan otdocs --earlier otdocs-e
   --out retrieval/results/two_revisions/bm25.json
 python3 retrieval/rank.py --method embedding $Q --opentitan otdocs --earlier otdocs-earlier \
   --out retrieval/results/two_revisions/embedding.json
+python3 retrieval/rank.py --method bm25 $Q --opentitan otdocs --earlier otdocs-earlier \
+  --earlier-last --out retrieval/results/two_revisions/bm25_revision.json
+python3 retrieval/rank.py --method embedding $Q --opentitan otdocs --earlier otdocs-earlier \
+  --earlier-last --out retrieval/results/two_revisions/embedding_revision.json
 python3 retrieval/evaluate.py retrieval/results/two_revisions/*.json $Q --strict \
   --report retrieval/results/two_revisions/report.md
+
+# Original and held-out questions together.
+H="--queries retrieval/queries.json --queries retrieval/queries_heldout.json"
+python3 retrieval/check_queries.py --queries retrieval/queries_heldout.json --opentitan otdocs
+python3 retrieval/rank.py --method bm25 $H --opentitan otdocs --out retrieval/results/extended/bm25.json
+python3 retrieval/rank.py --method embedding $H --opentitan otdocs \
+  --out retrieval/results/extended/embedding.json
+python3 retrieval/evaluate.py retrieval/results/extended/*.json $H --strict \
+  --report retrieval/results/extended/report.md
 ```
 
 Each result file records the method and its parameters (for the embedding model, the resolved model revision and library versions), the OpenTitan revision, a hash of the corpus and a hash of the questions.
@@ -124,8 +169,8 @@ A second run with the pinned model revision ([run 41979669877](https://github.co
 
 ## Limitations
 
-- The set is small (27 questions), so differences of one or two questions between methods are not meaningful.
-- The questions were written after reading the documentation, which may make their wording closer to the target passages than a real reviewer's would be.
+- The set is small (70 questions in all), so differences of one or two questions between methods are not meaningful.
+- The questions were written after reading the documentation, which may make their wording closer to the target passages than a real reviewer's would be. This applies to the held-out questions too; what they hold out is the methods, not the documents.
 - The two-revision experiment uses one earlier revision and 8 questions whose answer changed, so it shows that outdated passages can be ranked first, not how often this happens in general.
 - One embedding model and one keyword method are compared; no reranking or language model is used.
 - A passage that answers a question but is not listed as a target counts as wrong. Pooling covers the first three results of these two methods only; another method could surface further answering passages.

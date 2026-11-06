@@ -11,6 +11,8 @@ How the targets in `queries_changed.json` were checked (2026-11-05): Each questi
 
 - **bm25**: k1 = 1.2, b = 0.75; tokens: lowercase, split on non-alphanumeric, drop function words.
 - **embedding**: `BAAI/bge-small-en-v1.5` at revision `5c38ec7c405ec4b44b94cc5a9bb96e735b38267a`, cosine similarity, query prefix "Represent this sentence for searching relevant passages:".
+- **bm25+revision**: k1 = 1.2, b = 0.75; tokens: lowercase, split on non-alphanumeric, drop function words; every passage of the earlier revision is ranked below every passage of the current revision.
+- **embedding+revision**: `BAAI/bge-small-en-v1.5` at revision `5c38ec7c405ec4b44b94cc5a9bb96e735b38267a`, cosine similarity, query prefix "Represent this sentence for searching relevant passages:"; every passage of the earlier revision is ranked below every passage of the current revision.
 
 ## Results
 
@@ -26,6 +28,16 @@ How the targets in `queries_changed.json` were checked (2026-11-05): Each questi
 | embedding | renamed | 4/4 | 4/4 | 1.000 |
 | embedding | general | 13/19 | 18/19 | 0.807 |
 | embedding | changed | 5/8 | 8/8 | 0.771 |
+| bm25+revision | all | 26/35 | 33/35 | 0.835 |
+| bm25+revision | case | 3/4 | 4/4 | 0.875 |
+| bm25+revision | renamed | 3/4 | 4/4 | 0.812 |
+| bm25+revision | general | 14/19 | 17/19 | 0.823 |
+| bm25+revision | changed | 6/8 | 8/8 | 0.854 |
+| embedding+revision | all | 28/35 | 34/35 | 0.869 |
+| embedding+revision | case | 3/4 | 4/4 | 0.812 |
+| embedding+revision | renamed | 4/4 | 4/4 | 1.000 |
+| embedding+revision | general | 14/19 | 18/19 | 0.833 |
+| embedding+revision | changed | 7/8 | 8/8 | 0.917 |
 
 Group meanings:
 
@@ -40,48 +52,50 @@ Group meanings:
 |---|---|---|
 | bm25 | 3/8 (V01, V05, V08) | 3/35 (V01, V05, V08) |
 | embedding | 2/8 (V05, V08) | 3/35 (Q08, V05, V08) |
+| bm25+revision | 0/8 (none) | 0/35 (none) |
+| embedding+revision | 0/8 (none) | 0/35 (none) |
 
 ## Per query
 
 Rank of the first correct passage in the top 10 ("-" if none); for questions whose answer changed, the rank of the first passage giving the earlier answer follows in brackets.
 
-| Query | Group | bm25 | embedding |
-|---|---|---|---|
-| Q01 | case | 2 | 1 |
-| Q02 | case | 1 | 1 |
-| Q03 | case | 1 | 4 |
-| Q04 | case | 1 | 1 |
-| Q05 | general | 1 | - |
-| Q06 | renamed | 5 | 1 |
-| Q07 | renamed | 1 | 1 |
-| Q08 | general | 1 | 2 |
-| Q09 | renamed | 1 | 1 |
-| Q10 | renamed | 1 | 1 |
-| Q11 | general | 1 | 1 |
-| Q12 | general | 1 | 1 |
-| Q13 | general | 1 | 2 |
-| Q14 | general | 1 | 1 |
-| Q15 | general | 6 | 1 |
-| Q16 | general | 1 | 1 |
-| Q17 | general | 1 | 1 |
-| Q18 | general | 1 | 2 |
-| Q19 | general | 1 | 1 |
-| Q20 | general | 1 | 2 |
-| Q21 | general | 7 | 3 |
-| Q22 | general | 1 | 1 |
-| Q23 | general | 3 | 1 |
-| Q24 | general | 1 | 1 |
-| Q25 | general | 1 | 1 |
-| Q26 | general | 2 | 1 |
-| Q27 | general | 2 | 1 |
-| V01 | changed | 3 (1) | 1 (4) |
-| V02 | changed | 1 (3) | 1 (2) |
-| V03 | changed | 1 (2) | 1 (2) |
-| V04 | changed | 2 (-) | 3 (-) |
-| V05 | changed | 2 (1) | 2 (1) |
-| V06 | changed | 1 (2) | 1 (2) |
-| V07 | changed | 1 (2) | 1 (4) |
-| V08 | changed | 5 (1) | 3 (1) |
+| Query | Group | bm25 | embedding | bm25+revision | embedding+revision |
+|---|---|---|---|---|---|
+| Q01 | case | 2 | 1 | 2 | 1 |
+| Q02 | case | 1 | 1 | 1 | 1 |
+| Q03 | case | 1 | 4 | 1 | 4 |
+| Q04 | case | 1 | 1 | 1 | 1 |
+| Q05 | general | 1 | - | 1 | - |
+| Q06 | renamed | 5 | 1 | 4 | 1 |
+| Q07 | renamed | 1 | 1 | 1 | 1 |
+| Q08 | general | 1 | 2 | 1 | 1 |
+| Q09 | renamed | 1 | 1 | 1 | 1 |
+| Q10 | renamed | 1 | 1 | 1 | 1 |
+| Q11 | general | 1 | 1 | 1 | 1 |
+| Q12 | general | 1 | 1 | 1 | 1 |
+| Q13 | general | 1 | 2 | 1 | 2 |
+| Q14 | general | 1 | 1 | 1 | 1 |
+| Q15 | general | 6 | 1 | 6 | 1 |
+| Q16 | general | 1 | 1 | 1 | 1 |
+| Q17 | general | 1 | 1 | 1 | 1 |
+| Q18 | general | 1 | 2 | 1 | 2 |
+| Q19 | general | 1 | 1 | 1 | 1 |
+| Q20 | general | 1 | 2 | 1 | 2 |
+| Q21 | general | 7 | 3 | 7 | 3 |
+| Q22 | general | 1 | 1 | 1 | 1 |
+| Q23 | general | 3 | 1 | 3 | 1 |
+| Q24 | general | 1 | 1 | 1 | 1 |
+| Q25 | general | 1 | 1 | 1 | 1 |
+| Q26 | general | 2 | 1 | 2 | 1 |
+| Q27 | general | 2 | 1 | 2 | 1 |
+| V01 | changed | 3 (1) | 1 (4) | 1 (-) | 1 (-) |
+| V02 | changed | 1 (3) | 1 (2) | 1 (-) | 1 (-) |
+| V03 | changed | 1 (2) | 1 (2) | 1 (-) | 1 (-) |
+| V04 | changed | 2 (-) | 3 (-) | 2 (-) | 3 (-) |
+| V05 | changed | 2 (1) | 2 (1) | 1 (-) | 1 (-) |
+| V06 | changed | 1 (2) | 1 (2) | 1 (-) | 1 (-) |
+| V07 | changed | 1 (2) | 1 (4) | 1 (-) | 1 (-) |
+| V08 | changed | 5 (1) | 3 (1) | 3 (-) | 1 (-) |
 
 ## Queries without a correct passage in the top 5
 
@@ -89,13 +103,16 @@ Rank of the first correct passage in the top 10 ("-" if none); for questions who
 
 - expected: `hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:265-271`; `hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:300-300`
 - embedding: first correct at none in top 10; returned first `hw/ip_templates/clkmgr/doc/programmers_guide.md:13-13`
+- embedding+revision: first correct at none in top 10; returned first `hw/ip_templates/clkmgr/doc/programmers_guide.md:13-13`
 
 **Q15** (general): Which EDN request mode is active after reset before software configures the block?
 
 - expected: `hw/ip/edn/doc/theory_of_operation.md:28-30`; `hw/ip/edn/doc/theory_of_operation.md:137-138`
 - bm25: first correct at 6; returned first `hw/ip/edn/doc/theory_of_operation.md:75-77`
+- bm25+revision: first correct at 6; returned first `hw/ip/edn/doc/theory_of_operation.md:75-77`
 
 **Q21** (general): Does the PLIC forward a pending interrupt to the CPU right after reset if software has not configured it?
 
 - expected: `hw/ip_templates/rv_plic/doc/programmers_guide.md:3-7`
 - bm25: first correct at 7; returned first `hw/ip_templates/rv_plic/doc/programmers_guide.md:36-53`
+- bm25+revision: first correct at 7; returned first `hw/ip_templates/rv_plic/doc/programmers_guide.md:36-53`
