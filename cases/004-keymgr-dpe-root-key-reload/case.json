@@ -1,0 +1,140 @@
+{
+  "schema": 2,
+  "id": "004",
+  "title": "keymgr_dpe: loading the creator root key again before the next reset",
+  "module": "keymgr_dpe",
+  "opentitan_repository": "https://github.com/lowRISC/opentitan",
+  "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+  "conditions": [
+    "After the first advance call has latched the creator root key (UDS) and keymgr_dpe is in the Available state, before the next reset.",
+    "The setting is encoded as 1 if software can place the creator root key into a key slot again in this period (subject to the conditions the design checks, such as LOAD_ROOT_KEY_LOCK), and 0 if it cannot."
+  ],
+  "requirements": [
+    {
+      "id": "R1",
+      "file": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+      "line": 85,
+      "text": "The latching of the root key can only happen once until the keymgr_DPE is reset.",
+      "note": "Section \"Reset\" (heading at line 82), describing the transition from Reset to Available."
+    },
+    {
+      "id": "R2",
+      "file": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+      "line": 145,
+      "text": "This initial latching can be repeated with the [_Load Root Key_](#load-root-key-and-load-secondary-root-key) operation unless locked with the `LOAD_ROOT_KEY_LOCK` register.",
+      "note": "Section \"Advance\", about the first advance call."
+    },
+    {
+      "id": "R3",
+      "file": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+      "line": 241,
+      "text": "* The creator root key, which is latched by the [first advance call](#advance) and can be loaded by an explicit software request.",
+      "note": "Section \"Load Root Key and Load Secondary Root Key\"."
+    },
+    {
+      "id": "R4",
+      "file": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+      "line": 270,
+      "text": "Software is expected to set them once the respective root key is no longer needed in the current boot, so that later boot stages cannot reload it.",
+      "note": "Follows line 269, which says the lock registers remain set until the next reset. Reloading within a boot is what the lock prevents."
+    }
+  ],
+  "design": [
+    {
+      "id": "D1",
+      "kind": "line",
+      "file": "hw/ip/keymgr_dpe/data/keymgr_dpe.hjson",
+      "line": 588,
+      "text": "name: \"Load root key\",",
+      "value": 1,
+      "note": "Value 5 of CONTROL_SHADOWED.OPERATION: \"Loads the root key into the key manager. Can be disabled by LOAD_ROOT_KEY_LOCK if needed.\""
+    },
+    {
+      "id": "D2",
+      "kind": "line",
+      "file": "hw/ip/keymgr_dpe/data/keymgr_dpe.hjson",
+      "line": 1406,
+      "text": "Write 1 to disable the `load root key` operation until the next reset.",
+      "value": 1,
+      "note": "LOAD_ROOT_KEY_LOCK.LOCK (rw1s, reset value 0): the operation stays available until software sets the lock."
+    },
+    {
+      "id": "D3",
+      "kind": "line",
+      "file": "hw/ip/keymgr_dpe/rtl/keymgr_dpe_ctrl.sv",
+      "line": 174,
+      "text": "assign load_req           = op_req & (op_i == OpDpeLoadRootKey);",
+      "value": 1,
+      "note": "Hand-written control logic decodes the load root key operation (OpDpeLoadRootKey = 5 in keymgr_dpe_pkg.sv line 51)."
+    },
+    {
+      "id": "D4",
+      "kind": "line",
+      "file": "hw/ip/keymgr_dpe/rtl/keymgr_dpe_ctrl.sv",
+      "line": 750,
+      "text": "assign invalid_load = load_req & (~root_key_i.valid      |",
+      "value": 1,
+      "note": "A load is rejected only if the root key is not valid, the destination slot is already valid, LOAD_ROOT_KEY_LOCK is set or the destination slot is out of range (lines 750 to 753). None of these conditions depends on whether the root key was latched before."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "setting": "creator root key can be loaded again before the next reset (1 yes, 0 no)",
+      "requirements": [
+        "R1"
+      ],
+      "stated": 0,
+      "design": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "label": "disagrees"
+    },
+    {
+      "id": "C2",
+      "setting": "creator root key can be loaded again before the next reset (1 yes, 0 no)",
+      "requirements": [
+        "R2"
+      ],
+      "stated": 1,
+      "design": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "label": "agrees"
+    },
+    {
+      "id": "C3",
+      "setting": "creator root key can be loaded again before the next reset (1 yes, 0 no)",
+      "requirements": [
+        "R3",
+        "R4"
+      ],
+      "stated": 1,
+      "design": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "label": "agrees"
+    }
+  ],
+  "generated_from_same_input": "D1 and D2 are register descriptions in keymgr_dpe.hjson, from which reggen generates the register RTL and registers.md, so those generated files are not counted as further evidence. D3 and D4 are hand-written control logic and do not derive from the documentation. R1 to R4 are hand-written. R1 was already present at the May 1, 2026 revision (63c8a5025a0b, line 75). R2 replaced a sentence that said the initial latching could be done only once until the next power cycle; R2 and the heading of the section that holds R3 and R4 come from upstream change ec3f9a694 (2026-10-06, \"Document load (secondary) root key operations\").",
+  "finding": "R1 says the root key can be latched only once until reset. R2 says the same latching can be repeated with the Load Root Key operation unless LOAD_ROOT_KEY_LOCK is set, and R3 and R4 describe that operation and its lock. The design provides the operation (D1, D3) and its lock (D2), and rejects a load for reasons that do not include an earlier latch (D4). R1 disagrees with the design and with R2 to R4 in the same document. When the neighbouring sentence was rewritten as R2, R1 was left unchanged.",
+  "missing_information": "This comparison reads the operation's decoding and rejection conditions; it does not simulate a load after the first advance.",
+  "ambiguities": [
+    "R1 could be read narrowly as describing only the latch performed during the transition from Reset to Available, which can happen once per reset because the state machine leaves Reset only once. The document itself does not draw that distinction: R2 calls the Load Root Key operation a repetition of the same latching.",
+    "A load is rejected while the destination slot is valid (D4). Software must erase the slot or choose another empty slot first; the documents do not say this for the creator root key specifically."
+  ],
+  "out_of_scope": [
+    "The secondary root key and LOAD_SECONDARY_ROOT_KEY_LOCK, which the documents describe consistently.",
+    "Whether a top-level design ties LOAD_ROOT_KEY_LOCK or restricts the operation; keymgr_dpe is instantiated in Darjeeling, whose software usage is not examined here."
+  ],
+  "upstream": null
+}

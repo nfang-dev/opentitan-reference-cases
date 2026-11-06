@@ -22,10 +22,21 @@ What carried over unchanged: quoting requirements by file and line from hand-wri
 
 Case 003 reused the method without further changes. It was chosen because the statement agrees with the design: a set of reference cases needs agreeing statements as well as disagreeing ones, so that a later check can be measured for false alarms as well as for findings.
 
+## Case 004 (keymgr_dpe, a module not used while developing the method)
+
+Cases 001 to 003 were written while the method was being developed. Case 004 applies it to keymgr_dpe, which was not used before, to see what has to change for a different kind of statement.
+
+| Area | Cases 001 to 003 | What case 004 needed | Change made |
+|---|---|---|---|
+| Kind of statement | A register's value after reset. | Whether an operation can repeat something before the next reset. | The setting is encoded as 1 (it can) or 0 (it cannot), and the encoding is written into the case's conditions. The case format and the checker did not change. |
+| Meaning of a design value | The value is read from the design file (a reset value). | The design shows an operation and its rejection conditions, not a number. | The value 1 attached to each design line is the case's reading of that line, recorded in its note. The checker confirms that the lines are present at the revision; it does not derive the 1 itself. This is weaker than reading a reset value, and the case says so. |
+| Independent evidence | Generated register flops, plus the logic that gives a value its meaning. | The deciding evidence is hand-written control logic (`keymgr_dpe_ctrl.sv`), independent of the documentation. | Recorded which evidence is generated (the register description) and which is hand-written. |
+| Conflicting statements | The guide disagreed with the design in one place. | One document makes four statements about the same behavior, and one disagrees with the other three. | Compared the document with an earlier revision to find which statement was updated and which was left behind, and recorded the narrow reading under which the outdated statement could still be read as true. |
+
 ## Current set
 
 | Outcome | Claims |
 |---|---|
-| agrees | 001-C1, 001-C3, 002-C1, 002-C2, 003-C1, 003-C2 |
-| disagrees | 001-C2 |
+| agrees | 001-C1, 001-C3, 002-C1, 002-C2, 003-C1, 003-C2, 004-C2, 004-C3 |
+| disagrees | 001-C2, 004-C1 |
 | unresolved | 002-C3 |

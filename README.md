@@ -1,6 +1,6 @@
 # OpenTitan reference cases
 
-Hand-checked reference cases that link a written requirement in [OpenTitan](https://github.com/lowRISC/opentitan)'s documentation to the design code that implements it.
+Reference cases that link a written requirement in [OpenTitan](https://github.com/lowRISC/opentitan)'s documentation to the design code that implements it.
 
 Each case records, for one statement in a hand-written document:
 
@@ -20,12 +20,13 @@ The cases are meant to serve as labeled examples for evaluating later automated 
 | [001](cases/001-pinmux-mio-outsel-reset/README.md) | pinmux | MIO output select value after reset | 2 agree, 1 disagrees |
 | [002](cases/002-csrng-int-state-enables-reset/README.md) | csrng | Internal-state read, write and halt enables after reset | 2 agree, 1 unresolved |
 | [003](cases/003-pinmux-pad-sleep-enable-reset/README.md) | pinmux | Pad sleep behavior enable after reset | 2 agree (control case) |
+| [004](cases/004-keymgr-dpe-root-key-reload/README.md) | keymgr_dpe | Loading the creator root key again before the next reset | 2 agree, 1 disagrees |
 
 All cases use OpenTitan revision [`0ea5236fe749`](https://github.com/lowRISC/opentitan/tree/0ea5236fe749e70ba18f56ba19c4be982ef46da7) (2026-11-03).
 
 ## Method
 
-1. **Choose a statement** in a hand-written (not generated) document about a setting's value after reset.
+1. **Choose a statement** in a hand-written (not generated) document about a setting's value after reset, or about what the design allows until the next reset.
 2. **Freeze the revision** of OpenTitan used for the case.
 3. **Identify the settings** the statement covers and translate the statement into a value for each, recording any parameter the translation depends on.
 4. **Locate the design evidence**: the register definition, every generated register flop, and the logic that gives the value its meaning. If a setting the statement names does not exist, record that as evidence too.
@@ -33,7 +34,7 @@ All cases use OpenTitan revision [`0ea5236fe749`](https://github.com/lowRISC/ope
 6. **Label each claim** as agrees, disagrees or unresolved, and record the conditions, ambiguities, missing information and what is out of scope. Check the history of the documents before labeling a mismatch, since documentation can describe work that is not merged yet.
 7. **Write `case.json`** and confirm it with `tools/check_case.py`.
 
-[`docs/method-notes.md`](docs/method-notes.md) records what had to change in the method when it was applied to a second module.
+[`docs/method-notes.md`](docs/method-notes.md) records what had to change in the method when it was applied to a second and a third module.
 
 ## Re-running the cases
 
@@ -65,6 +66,7 @@ CI runs both on every push.
 
 - Case 001: documentation fix proposed in [lowRISC/opentitan#32161](https://github.com/lowRISC/opentitan/pull/32161).
 - Case 002: no change proposed; the documentation may describe work in progress.
+- Case 004: no change proposed yet.
 
 ## Retrieval comparison
 
