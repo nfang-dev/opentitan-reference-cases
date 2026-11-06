@@ -114,5 +114,5 @@
     "The secondary root key and LOAD_SECONDARY_ROOT_KEY_LOCK, which the documents describe consistently.",
     "Whether a top-level design ties LOAD_ROOT_KEY_LOCK or restricts the operation; keymgr_dpe is instantiated in Darjeeling, whose software usage is not examined here."
   ],
-  "upstream": null
+  "upstream": "https://github.com/lowRISC/opentitan/pull/32203"
 }

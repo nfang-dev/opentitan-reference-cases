@@ -88,4 +88,4 @@ RESULT: 2 agree, 1 disagree, 0 unresolved; all outcomes match the recorded label
 
 ## Status
 
-No upstream change proposed yet.
+A documentation fix has been proposed upstream: [lowRISC/opentitan#32203](https://github.com/lowRISC/opentitan/pull/32203).

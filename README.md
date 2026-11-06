@@ -66,7 +66,7 @@ CI runs both on every push.
 
 - Case 001: documentation fix proposed in [lowRISC/opentitan#32161](https://github.com/lowRISC/opentitan/pull/32161).
 - Case 002: no change proposed; the documentation may describe work in progress.
-- Case 004: no change proposed yet.
+- Case 004: documentation fix proposed in [lowRISC/opentitan#32203](https://github.com/lowRISC/opentitan/pull/32203).
 
 ## Behavior check
 
