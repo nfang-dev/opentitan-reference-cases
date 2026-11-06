@@ -10,6 +10,8 @@ filesets:
       - lowrisc:earlgrey_ip:pinmux:0.1
       - lowrisc:ip:tlul
       - lowrisc:systems:top_earlgrey_pkg
+      # Open-source placeholder for the scan roles named in PinmuxTargetCfg.
+      - lowrisc:earlgrey_systems:scan_role_pkg:0.1
     files:
       - tb_top.sv
     file_type: systemVerilogSource

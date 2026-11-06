@@ -37,7 +37,8 @@ FAULTY_EXPECTED = {"reset_then_sample": "fail", "outsel_zero_drives_low": "pass"
                    "reset_restores": "fail"}
 
 CONDITIONS = {
-    "top": "Earl Grey; pad configuration PinmuxTargetCfg from " + CHIP,
+    "top": "Earl Grey; pad configuration PinmuxTargetCfg from " + CHIP + ", with the scan "
+           "roles of the open-source placeholder hw/top_earlgrey/rtl/scan_role_pkg.sv",
     "resets": "rst_ni (also rst_sys_ni) and rst_aon_ni asserted together on a falling clk_i "
               "edge, held for 10 clk_i cycles, released together on a falling edge",
     "clocks": "clk_i 10 ns, clk_aon_i 40 ns",
