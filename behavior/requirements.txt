@@ -1,0 +1,2 @@
+cocotb==1.9.2
+fusesoc==2.4.5

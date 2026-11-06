@@ -2,3 +2,5 @@ __pycache__/
 /opentitan/
 /otdocs/
 /otdocs-earlier/
+/build/
+/opentitan-hw/

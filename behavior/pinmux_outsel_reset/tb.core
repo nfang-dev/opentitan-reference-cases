@@ -1,0 +1,24 @@
+CAPI=2:
+# Copyright 2026 Nan Fang
+# SPDX-License-Identifier: Apache-2.0
+name: "nfang:check:pinmux_outsel_reset_tb:0.1"
+description: "Harness for the case 001 behavior check (Earl Grey pinmux)"
+
+filesets:
+  files_tb:
+    depend:
+      - lowrisc:earlgrey_ip:pinmux:0.1
+      - lowrisc:ip:tlul
+      - lowrisc:systems:top_earlgrey_pkg
+    files:
+      - tb_top.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_tb
+    toplevel: tb_top
+    tools:
+      verilator:
+        mode: lint-only

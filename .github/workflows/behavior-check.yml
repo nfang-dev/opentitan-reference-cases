@@ -1,0 +1,72 @@
+name: Behavior check (case 001)
+
+# Installs Verilator and builds part of OpenTitan, so it runs only when its own files change,
+# or on request.
+on:
+  push:
+    paths:
+      - "behavior/**"
+      - "cases/001-pinmux-mio-outsel-reset/**"
+      - ".github/workflows/behavior-check.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: behavior-check
+  cancel-in-progress: false
+
+jobs:
+  pinmux-outsel-reset:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Verilator, cocotb and FuseSoC
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q verilator
+          verilator --version
+          pip install -r behavior/requirements.txt
+      - name: Fetch OpenTitan hardware sources at the case's revision
+        run: ./behavior/fetch_hw.sh opentitan-hw
+      - name: Run the check on the unchanged design
+        run: |
+          expect=behavior/pinmux_outsel_reset/results/observed.json
+          python behavior/pinmux_outsel_reset/run.py --opentitan opentitan-hw \
+            --out out/observed.json $( [ -f "$expect" ] && echo --expect "$expect" )
+      - name: Run the check on a copy with the reset value changed to 0
+        if: always()
+        run: |
+          expect=behavior/pinmux_outsel_reset/results/observed_faulty.json
+          python behavior/pinmux_outsel_reset/run.py --opentitan opentitan-hw --faulty --seed 1 \
+            --out out/observed_faulty.json $( [ -f "$expect" ] && echo --expect "$expect" )
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: behavior-results
+          path: |
+            out/*.json
+            build/behavior/**/results.xml
+      - name: Publish the results to the behavior-ci-results branch
+        run: |
+          cd out
+          printf 'Produced by %s/%s/actions/runs/%s\nfrom commit %s on %s.\n' \
+            "${{ github.server_url }}" "${{ github.repository }}" "${{ github.run_id }}" \
+            "${{ github.sha }}" "${{ github.ref_name }}" > RUN.md
+          git init -q -b behavior-ci-results
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add observed.json observed_faulty.json RUN.md
+          git commit -q -m "Behavior check results from run ${{ github.run_id }} (${{ github.sha }})"
+          for attempt in 1 2 3; do
+            if git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" \
+                 behavior-ci-results; then
+              exit 0
+            fi
+            echo "push attempt $attempt failed; retrying"
+            sleep $((attempt * 10))
+          done
+          exit 1
