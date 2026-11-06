@@ -9,7 +9,8 @@ Methods:
 
 Both methods index the same passage text (see corpus.py) and return the top K passages
 for each query. With --earlier, passages of an earlier revision whose text differs from
-the current revision are added to the corpus (see corpus.build_earlier).
+the current revision are added to the corpus (see corpus.build_earlier); with
+--earlier-last as well, every current passage is ranked above every earlier passage.
 The output records the method, its parameters, the OpenTitan revision of the checkout
 and a hash of the corpus, so that results from different methods can be checked to use
 the same input.
@@ -75,8 +76,13 @@ class BM25:
         return out
 
 
-def top_k(passages: list[dict], scores: list[float], k: int = TOP_K) -> list[dict]:
-    order = sorted(range(len(passages)), key=lambda i: (-scores[i], passages[i]["id"]))
+def top_k(passages: list[dict], scores: list[float], k: int = TOP_K,
+          earlier_last: bool = False) -> list[dict]:
+    """The k best passages. With earlier_last, every passage of the current revision ranks
+    above every passage of an earlier revision; within each, by score."""
+    def key(i):
+        return (earlier_last and "revision" in passages[i], -scores[i], passages[i]["id"])
+    order = sorted(range(len(passages)), key=key)
     out = []
     for i in order[:k]:
         item = {"id": passages[i]["id"], "path": passages[i]["path"],
@@ -111,15 +117,18 @@ def load_queries(paths: list[Path]) -> dict:
     return merged
 
 
-def rank_bm25(passages: list[dict], questions: dict[str, str]) -> tuple[dict, dict]:
+def rank_bm25(passages: list[dict], questions: dict[str, str],
+              earlier_last: bool = False) -> tuple[dict, dict]:
     index = BM25([tokenize(p["text"]) for p in passages])
-    rankings = {qid: top_k(passages, index.scores(tokenize(q))) for qid, q in questions.items()}
+    rankings = {qid: top_k(passages, index.scores(tokenize(q)), earlier_last=earlier_last)
+                for qid, q in questions.items()}
     return {"k1": index.k1, "b": index.b, "tokenizer": "lowercase, split on non-alphanumeric, "
             "drop function words"}, rankings
 
 
 def rank_embedding(passages: list[dict], questions: dict[str, str], model_name: str,
-                   revision: str, query_prefix: str) -> tuple[dict, dict]:
+                   revision: str, query_prefix: str,
+                   earlier_last: bool = False) -> tuple[dict, dict]:
     import numpy as np
     import sentence_transformers
     import torch
@@ -136,7 +145,8 @@ def rank_embedding(passages: list[dict], questions: dict[str, str], model_name: 
     q_vecs = model.encode([query_prefix + questions[i] for i in ids],
                           normalize_embeddings=True, show_progress_bar=False)
     sims = np.asarray(q_vecs) @ np.asarray(doc_vecs).T
-    rankings = {qid: top_k(passages, sims[n].tolist()) for n, qid in enumerate(ids)}
+    rankings = {qid: top_k(passages, sims[n].tolist(), earlier_last=earlier_last)
+                for n, qid in enumerate(ids)}
     params = {
         "model": model_name,
         "model_revision": resolved,
@@ -183,6 +193,9 @@ def main(argv: list[str] | None = None) -> int:
                         help="query file (repeat for several; default: queries.json)")
     parser.add_argument("--earlier", type=Path,
                         help="checkout of the earlier revision named in the query files")
+    parser.add_argument("--earlier-last", action="store_true",
+                        help="with --earlier, rank every passage of the current revision above "
+                        "every passage of the earlier revision (uses the passages' revision)")
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--model", default="BAAI/bge-small-en-v1.5")
     parser.add_argument("--model-revision", default="5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
@@ -208,16 +221,20 @@ def main(argv: list[str] | None = None) -> int:
             parser.error(f"earlier checkout is at {earlier_revision}, "
                          f"queries record {queries['earlier_revision']}")
         passages = passages + corpus.build_earlier(args.earlier, earlier_revision, passages)
+    if args.earlier_last and not args.earlier:
+        parser.error("--earlier-last needs --earlier")
     questions = {q["id"]: q["question"] for q in queries["queries"]}
 
     if args.method == "bm25":
-        params, rankings = rank_bm25(passages, questions)
+        params, rankings = rank_bm25(passages, questions, args.earlier_last)
     else:
         params, rankings = rank_embedding(passages, questions, args.model, args.model_revision,
-                                          args.query_prefix)
+                                          args.query_prefix, args.earlier_last)
+    if args.earlier_last:
+        params["earlier_revision_ranked_last"] = True
 
     result = {
-        "method": args.method,
+        "method": args.method + ("+revision" if args.earlier_last else ""),
         "parameters": params,
         "opentitan_revision": revision,
         **({"earlier_revision": earlier_revision,

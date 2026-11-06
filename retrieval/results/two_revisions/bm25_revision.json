@@ -1,0 +1,2542 @@
+{
+ "method": "bm25+revision",
+ "parameters": {
+  "k1": 1.2,
+  "b": 0.75,
+  "tokenizer": "lowercase, split on non-alphanumeric, drop function words",
+  "earlier_revision_ranked_last": true
+ },
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "earlier_revision": "63c8a5025a0b02f50c3502e8ae0653cfd4a36ff9",
+ "earlier_passages": 371,
+ "corpus": {
+  "passages": 3350,
+  "files": 204,
+  "sha256": "bed88002f9f504b6c7216e3175b4aa7bb50d800799dc0df2ab50792ac1cde451",
+  "max_chars": 1200
+ },
+ "questions_sha256": "965c6b1458ac1519e8cd3a9acb277626f6c3816fa99def26416bf457e2aaffac",
+ "top_k": 10,
+ "rankings": {
+  "Q01": [
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:55-57",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 55,
+    "end_line": 57,
+    "score": 44.890105
+   },
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:34-53",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 34,
+    "end_line": 53,
+    "score": 39.312192
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md:65-74",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md",
+    "start_line": 65,
+    "end_line": 74,
+    "score": 34.917656
+   },
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:5-13",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 5,
+    "end_line": 13,
+    "score": 34.734056
+   },
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:72-78",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 72,
+    "end_line": 78,
+    "score": 32.936158
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/interfaces.md:91-97",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/interfaces.md",
+    "start_line": 91,
+    "end_line": 97,
+    "score": 32.44917
+   },
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:61-70",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 61,
+    "end_line": 70,
+    "score": 30.913632
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md:217-217",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md",
+    "start_line": 217,
+    "end_line": 217,
+    "score": 27.728107
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/interfaces.md:84-90",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/interfaces.md",
+    "start_line": 84,
+    "end_line": 90,
+    "score": 26.56609
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md:15-22",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md",
+    "start_line": 15,
+    "end_line": 22,
+    "score": 24.728296
+   }
+  ],
+  "Q02": [
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:72-78",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 72,
+    "end_line": 78,
+    "score": 59.874612
+   },
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:61-70",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 61,
+    "end_line": 70,
+    "score": 55.78763
+   },
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:80-82",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 80,
+    "end_line": 82,
+    "score": 50.533715
+   },
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:55-57",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 55,
+    "end_line": 57,
+    "score": 38.97644
+   },
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:5-13",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 5,
+    "end_line": 13,
+    "score": 36.337426
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md:217-217",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md",
+    "start_line": 217,
+    "end_line": 217,
+    "score": 34.071941
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/README.md:8-13",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/README.md",
+    "start_line": 8,
+    "end_line": 13,
+    "score": 30.27995
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/README.md:17-31",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/README.md",
+    "start_line": 17,
+    "end_line": 31,
+    "score": 29.999203
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/interfaces.md:91-97",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/interfaces.md",
+    "start_line": 91,
+    "end_line": 97,
+    "score": 27.666671
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md:33-42",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md",
+    "start_line": 33,
+    "end_line": 42,
+    "score": 27.135635
+   }
+  ],
+  "Q03": [
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:149-155",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 149,
+    "end_line": 155,
+    "score": 74.656632
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:132-142",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 132,
+    "end_line": 142,
+    "score": 51.306199
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:156-156",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 156,
+    "end_line": 156,
+    "score": 49.591565
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:144-147",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 144,
+    "end_line": 147,
+    "score": 48.322728
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:130-130",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 130,
+    "end_line": 130,
+    "score": 47.53905
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:158-166",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 158,
+    "end_line": 166,
+    "score": 40.515339
+   },
+   {
+    "id": "hw/ip/pattgen/doc/theory_of_operation.md:18-34",
+    "path": "hw/ip/pattgen/doc/theory_of_operation.md",
+    "start_line": 18,
+    "end_line": 34,
+    "score": 31.910231
+   },
+   {
+    "id": "hw/ip/pattgen/doc/theory_of_operation.md:36-47",
+    "path": "hw/ip/pattgen/doc/theory_of_operation.md",
+    "start_line": 36,
+    "end_line": 47,
+    "score": 27.874231
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:68-107",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 68,
+    "end_line": 107,
+    "score": 27.652991
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:39-46",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 39,
+    "end_line": 46,
+    "score": 26.784449
+   }
+  ],
+  "Q04": [
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:144-147",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 144,
+    "end_line": 147,
+    "score": 36.630913
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:149-155",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 149,
+    "end_line": 155,
+    "score": 29.721567
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:130-130",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 130,
+    "end_line": 130,
+    "score": 28.872698
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:132-142",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 132,
+    "end_line": 142,
+    "score": 28.356526
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:158-166",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 158,
+    "end_line": 166,
+    "score": 24.32081
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:156-156",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 156,
+    "end_line": 156,
+    "score": 20.493237
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:68-107",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 68,
+    "end_line": 107,
+    "score": 19.729256
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:168-171",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 168,
+    "end_line": 171,
+    "score": 19.267481
+   },
+   {
+    "id": "hw/ip/kmac/doc/programmers_guide.md:253-260",
+    "path": "hw/ip/kmac/doc/programmers_guide.md",
+    "start_line": 253,
+    "end_line": 260,
+    "score": 19.02183
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:39-46",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 39,
+    "end_line": 46,
+    "score": 18.889385
+   }
+  ],
+  "Q05": [
+   {
+    "id": "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:293-301",
+    "path": "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md",
+    "start_line": 293,
+    "end_line": 301,
+    "score": 17.661885
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_mmap.md:60-65",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_mmap.md",
+    "start_line": 60,
+    "end_line": 65,
+    "score": 13.130195
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:207-214",
+    "path": "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md",
+    "start_line": 207,
+    "end_line": 214,
+    "score": 13.123181
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md:59-59",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md",
+    "start_line": 59,
+    "end_line": 59,
+    "score": 12.473121
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:63-72",
+    "path": "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md",
+    "start_line": 63,
+    "end_line": 72,
+    "score": 11.032415
+   },
+   {
+    "id": "hw/ip/i3c/doc/integration_notes.md:96-100",
+    "path": "hw/ip/i3c/doc/integration_notes.md",
+    "start_line": 96,
+    "end_line": 100,
+    "score": 10.20075
+   },
+   {
+    "id": "hw/ip_templates/alert_handler/doc/programmers_guide.md:46-55",
+    "path": "hw/ip_templates/alert_handler/doc/programmers_guide.md",
+    "start_line": 46,
+    "end_line": 55,
+    "score": 10.108655
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:169-178",
+    "path": "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md",
+    "start_line": 169,
+    "end_line": 178,
+    "score": 10.012168
+   },
+   {
+    "id": "hw/ip_templates/pwm/doc/programmers_guide.md:3-18",
+    "path": "hw/ip_templates/pwm/doc/programmers_guide.md",
+    "start_line": 3,
+    "end_line": 18,
+    "score": 9.437867
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:182-189",
+    "path": "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md",
+    "start_line": 182,
+    "end_line": 189,
+    "score": 9.417044
+   }
+  ],
+  "Q06": [
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_digests.md:6-14",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_digests.md",
+    "start_line": 6,
+    "end_line": 14,
+    "score": 46.219397
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_partitions.md:13-13",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_partitions.md",
+    "start_line": 13,
+    "end_line": 13,
+    "score": 44.170215
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_mmap.md:102-107",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_mmap.md",
+    "start_line": 102,
+    "end_line": 107,
+    "score": 40.043047
+   },
+   {
+    "id": "hw/ip_templates/otp_ctrl/doc/programmers_guide.md:252-261",
+    "path": "hw/ip_templates/otp_ctrl/doc/programmers_guide.md",
+    "start_line": 252,
+    "end_line": 261,
+    "score": 30.798874
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md:99-99",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md",
+    "start_line": 99,
+    "end_line": 99,
+    "score": 29.289187
+   },
+   {
+    "id": "hw/ip/lc_ctrl/doc/interfaces.md:119-125",
+    "path": "hw/ip/lc_ctrl/doc/interfaces.md",
+    "start_line": 119,
+    "end_line": 125,
+    "score": 28.250145
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_partitions.md:14-14",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_partitions.md",
+    "start_line": 14,
+    "end_line": 14,
+    "score": 25.433942
+   },
+   {
+    "id": "hw/ip_templates/otp_ctrl/doc/programmers_guide.md:122-130",
+    "path": "hw/ip_templates/otp_ctrl/doc/programmers_guide.md",
+    "start_line": 122,
+    "end_line": 130,
+    "score": 24.497229
+   },
+   {
+    "id": "hw/ip_templates/otp_ctrl/doc/theory_of_operation.md:354-362",
+    "path": "hw/ip_templates/otp_ctrl/doc/theory_of_operation.md",
+    "start_line": 354,
+    "end_line": 362,
+    "score": 24.325811
+   },
+   {
+    "id": "hw/ip_templates/otp_ctrl/doc/theory_of_operation.md:170-178",
+    "path": "hw/ip_templates/otp_ctrl/doc/theory_of_operation.md",
+    "start_line": 170,
+    "end_line": 178,
+    "score": 23.871761
+   }
+  ],
+  "Q07": [
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:34-53",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 34,
+    "end_line": 53,
+    "score": 34.904409
+   },
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:55-57",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 55,
+    "end_line": 57,
+    "score": 30.260852
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md:65-74",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md",
+    "start_line": 65,
+    "end_line": 74,
+    "score": 29.818722
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/interfaces.md:84-90",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/interfaces.md",
+    "start_line": 84,
+    "end_line": 90,
+    "score": 28.348373
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md:24-29",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md",
+    "start_line": 24,
+    "end_line": 29,
+    "score": 19.113387
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/interfaces.md:91-97",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/interfaces.md",
+    "start_line": 91,
+    "end_line": 97,
+    "score": 16.157339
+   },
+   {
+    "id": "hw/ip_templates/pinmux/doc/programmers_guide.md:72-78",
+    "path": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+    "start_line": 72,
+    "end_line": 78,
+    "score": 16.055633
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md:15-22",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md",
+    "start_line": 15,
+    "end_line": 22,
+    "score": 13.43835
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:144-148",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 144,
+    "end_line": 148,
+    "score": 12.599115
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md:88-101",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md",
+    "start_line": 88,
+    "end_line": 101,
+    "score": 12.162076
+   }
+  ],
+  "Q08": [
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:263-289",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 263,
+    "end_line": 289,
+    "score": 34.560947
+   },
+   {
+    "id": "hw/ip/spi_device/README.md:59-69",
+    "path": "hw/ip/spi_device/README.md",
+    "start_line": 59,
+    "end_line": 69,
+    "score": 32.557355
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:57-68",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 57,
+    "end_line": 68,
+    "score": 30.027615
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:99-104",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 99,
+    "end_line": 104,
+    "score": 28.991879
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:335-342",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 335,
+    "end_line": 342,
+    "score": 26.642153
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:47-53",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 47,
+    "end_line": 53,
+    "score": 26.379619
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:228-242",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 228,
+    "end_line": 242,
+    "score": 25.830226
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:308-311",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 308,
+    "end_line": 311,
+    "score": 25.082819
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:79-86",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 79,
+    "end_line": 86,
+    "score": 24.874254
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:346-355",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 346,
+    "end_line": 355,
+    "score": 24.787319
+   }
+  ],
+  "Q09": [
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:37-45",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 37,
+    "end_line": 45,
+    "score": 50.20948
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:25-35",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 25,
+    "end_line": 35,
+    "score": 26.465029
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:57-68",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 57,
+    "end_line": 68,
+    "score": 26.233725
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:76-84",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 76,
+    "end_line": 84,
+    "score": 24.532639
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:47-53",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 47,
+    "end_line": 53,
+    "score": 23.047208
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:72-72",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 72,
+    "end_line": 72,
+    "score": 22.330093
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:144-148",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 144,
+    "end_line": 148,
+    "score": 21.971817
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:103-116",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 103,
+    "end_line": 116,
+    "score": 21.882747
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:137-142",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 137,
+    "end_line": 142,
+    "score": 18.791595
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:88-91",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 88,
+    "end_line": 91,
+    "score": 18.533384
+   }
+  ],
+  "Q10": [
+   {
+    "id": "hw/ip/i3c/doc/tti.md:365-368",
+    "path": "hw/ip/i3c/doc/tti.md",
+    "start_line": 365,
+    "end_line": 368,
+    "score": 68.149622
+   },
+   {
+    "id": "hw/ip/i3c/doc/tti.md:358-363",
+    "path": "hw/ip/i3c/doc/tti.md",
+    "start_line": 358,
+    "end_line": 363,
+    "score": 44.714065
+   },
+   {
+    "id": "hw/ip/i3c/doc/tti.md:351-356",
+    "path": "hw/ip/i3c/doc/tti.md",
+    "start_line": 351,
+    "end_line": 356,
+    "score": 37.155165
+   },
+   {
+    "id": "hw/ip/i3c/doc/tti.md:281-288",
+    "path": "hw/ip/i3c/doc/tti.md",
+    "start_line": 281,
+    "end_line": 288,
+    "score": 30.013642
+   },
+   {
+    "id": "hw/ip/i3c/doc/programmers_guide.md:15-27",
+    "path": "hw/ip/i3c/doc/programmers_guide.md",
+    "start_line": 15,
+    "end_line": 27,
+    "score": 28.825512
+   },
+   {
+    "id": "hw/ip/i3c/doc/tti.md:192-202",
+    "path": "hw/ip/i3c/doc/tti.md",
+    "start_line": 192,
+    "end_line": 202,
+    "score": 26.416969
+   },
+   {
+    "id": "hw/ip/i3c/doc/tti.md:108-108",
+    "path": "hw/ip/i3c/doc/tti.md",
+    "start_line": 108,
+    "end_line": 108,
+    "score": 25.819973
+   },
+   {
+    "id": "hw/ip/i3c/doc/tti.md:404-410",
+    "path": "hw/ip/i3c/doc/tti.md",
+    "start_line": 404,
+    "end_line": 410,
+    "score": 25.341814
+   },
+   {
+    "id": "hw/ip/i3c/doc/tti.md:167-175",
+    "path": "hw/ip/i3c/doc/tti.md",
+    "start_line": 167,
+    "end_line": 175,
+    "score": 24.447685
+   },
+   {
+    "id": "hw/ip/i3c/doc/tti.md:186-188",
+    "path": "hw/ip/i3c/doc/tti.md",
+    "start_line": 186,
+    "end_line": 188,
+    "score": 24.273545
+   }
+  ],
+  "Q11": [
+   {
+    "id": "hw/ip/aes/doc/programmers_guide.md:8-11",
+    "path": "hw/ip/aes/doc/programmers_guide.md",
+    "start_line": 8,
+    "end_line": 11,
+    "score": 33.909604
+   },
+   {
+    "id": "hw/ip/aes/doc/programmers_guide.md:267-276",
+    "path": "hw/ip/aes/doc/programmers_guide.md",
+    "start_line": 267,
+    "end_line": 276,
+    "score": 28.907113
+   },
+   {
+    "id": "hw/ip/aes/doc/programmers_guide.md:34-40",
+    "path": "hw/ip/aes/doc/programmers_guide.md",
+    "start_line": 34,
+    "end_line": 40,
+    "score": 25.413848
+   },
+   {
+    "id": "hw/ip/aes/doc/theory_of_operation.md:432-441",
+    "path": "hw/ip/aes/doc/theory_of_operation.md",
+    "start_line": 432,
+    "end_line": 441,
+    "score": 24.467666
+   },
+   {
+    "id": "hw/ip/aes/doc/programmers_guide.md:214-223",
+    "path": "hw/ip/aes/doc/programmers_guide.md",
+    "start_line": 214,
+    "end_line": 223,
+    "score": 23.058399
+   },
+   {
+    "id": "hw/ip/aes/doc/programmers_guide.md:227-237",
+    "path": "hw/ip/aes/doc/programmers_guide.md",
+    "start_line": 227,
+    "end_line": 237,
+    "score": 22.049599
+   },
+   {
+    "id": "hw/ip/aes/doc/programmers_guide.md:153-163",
+    "path": "hw/ip/aes/doc/programmers_guide.md",
+    "start_line": 153,
+    "end_line": 163,
+    "score": 21.96594
+   },
+   {
+    "id": "hw/ip/aes/doc/theory_of_operation.md:126-134",
+    "path": "hw/ip/aes/doc/theory_of_operation.md",
+    "start_line": 126,
+    "end_line": 134,
+    "score": 21.8643
+   },
+   {
+    "id": "hw/ip/aes/doc/theory_of_operation.md:108-121",
+    "path": "hw/ip/aes/doc/theory_of_operation.md",
+    "start_line": 108,
+    "end_line": 121,
+    "score": 21.775474
+   },
+   {
+    "id": "hw/ip/aes/doc/programmers_guide.md:74-105",
+    "path": "hw/ip/aes/doc/programmers_guide.md",
+    "start_line": 74,
+    "end_line": 105,
+    "score": 20.812497
+   }
+  ],
+  "Q12": [
+   {
+    "id": "hw/ip/spi_host/doc/programmers_guide.md:39-44",
+    "path": "hw/ip/spi_host/doc/programmers_guide.md",
+    "start_line": 39,
+    "end_line": 44,
+    "score": 31.564607
+   },
+   {
+    "id": "hw/ip/spi_host/doc/programmers_guide.md:33-37",
+    "path": "hw/ip/spi_host/doc/programmers_guide.md",
+    "start_line": 33,
+    "end_line": 37,
+    "score": 30.823849
+   },
+   {
+    "id": "hw/ip/spi_host/doc/programmers_guide.md:149-153",
+    "path": "hw/ip/spi_host/doc/programmers_guide.md",
+    "start_line": 149,
+    "end_line": 153,
+    "score": 28.341253
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:629-634",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 629,
+    "end_line": 634,
+    "score": 25.661518
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:570-577",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 570,
+    "end_line": 577,
+    "score": 25.288263
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:597-606",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 597,
+    "end_line": 606,
+    "score": 24.236283
+   },
+   {
+    "id": "hw/ip/spi_host/doc/programmers_guide.md:137-145",
+    "path": "hw/ip/spi_host/doc/programmers_guide.md",
+    "start_line": 137,
+    "end_line": 145,
+    "score": 22.193113
+   },
+   {
+    "id": "hw/ip/aon_timer/doc/programmers_guide.md:86-93",
+    "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+    "start_line": 86,
+    "end_line": 93,
+    "score": 21.800768
+   },
+   {
+    "id": "hw/ip/spi_host/doc/programmers_guide.md:131-133",
+    "path": "hw/ip/spi_host/doc/programmers_guide.md",
+    "start_line": 131,
+    "end_line": 133,
+    "score": 21.650654
+   },
+   {
+    "id": "hw/ip_templates/racl_ctrl/doc/programmers_guide.md:13-14",
+    "path": "hw/ip_templates/racl_ctrl/doc/programmers_guide.md",
+    "start_line": 13,
+    "end_line": 14,
+    "score": 19.610171
+   }
+  ],
+  "Q13": [
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:251-258",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 251,
+    "end_line": 258,
+    "score": 33.945927
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:259-259",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 259,
+    "end_line": 259,
+    "score": 29.238804
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:373-379",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 373,
+    "end_line": 379,
+    "score": 24.602064
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:323-329",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 323,
+    "end_line": 329,
+    "score": 24.509625
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:261-281",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 261,
+    "end_line": 281,
+    "score": 22.610958
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:212-218",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 212,
+    "end_line": 218,
+    "score": 19.898733
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:921-932",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 921,
+    "end_line": 932,
+    "score": 19.876971
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:241-248",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 241,
+    "end_line": 248,
+    "score": 19.695346
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:12-15",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 12,
+    "end_line": 15,
+    "score": 18.871103
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:331-332",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 331,
+    "end_line": 332,
+    "score": 18.233639
+   }
+  ],
+  "Q14": [
+   {
+    "id": "hw/ip/entropy_src/doc/theory_of_operation.md:21-23",
+    "path": "hw/ip/entropy_src/doc/theory_of_operation.md",
+    "start_line": 21,
+    "end_line": 23,
+    "score": 34.768842
+   },
+   {
+    "id": "hw/ip/entropy_src/doc/theory_of_operation.md:101-106",
+    "path": "hw/ip/entropy_src/doc/theory_of_operation.md",
+    "start_line": 101,
+    "end_line": 106,
+    "score": 32.507158
+   },
+   {
+    "id": "hw/ip/entropy_src/doc/theory_of_operation.md:27-33",
+    "path": "hw/ip/entropy_src/doc/theory_of_operation.md",
+    "start_line": 27,
+    "end_line": 33,
+    "score": 32.147502
+   },
+   {
+    "id": "hw/ip/entropy_src/doc/theory_of_operation.md:43-47",
+    "path": "hw/ip/entropy_src/doc/theory_of_operation.md",
+    "start_line": 43,
+    "end_line": 47,
+    "score": 31.560615
+   },
+   {
+    "id": "hw/ip/entropy_src/doc/theory_of_operation.md:360-372",
+    "path": "hw/ip/entropy_src/doc/theory_of_operation.md",
+    "start_line": 360,
+    "end_line": 372,
+    "score": 29.843338
+   },
+   {
+    "id": "hw/ip/entropy_src/doc/programmers_guide.md:97-103",
+    "path": "hw/ip/entropy_src/doc/programmers_guide.md",
+    "start_line": 97,
+    "end_line": 103,
+    "score": 29.348167
+   },
+   {
+    "id": "hw/ip/entropy_src/README.md:75-82",
+    "path": "hw/ip/entropy_src/README.md",
+    "start_line": 75,
+    "end_line": 82,
+    "score": 28.198061
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:56-62",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 56,
+    "end_line": 62,
+    "score": 27.447153
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:75-77",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 75,
+    "end_line": 77,
+    "score": 27.361317
+   },
+   {
+    "id": "hw/ip/entropy_src/doc/theory_of_operation.md:140-145",
+    "path": "hw/ip/entropy_src/doc/theory_of_operation.md",
+    "start_line": 140,
+    "end_line": 145,
+    "score": 27.221494
+   }
+  ],
+  "Q15": [
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:75-77",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 75,
+    "end_line": 77,
+    "score": 21.453273
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:56-62",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 56,
+    "end_line": 62,
+    "score": 19.796263
+   },
+   {
+    "id": "hw/ip/edn/README.md:19-29",
+    "path": "hw/ip/edn/README.md",
+    "start_line": 19,
+    "end_line": 29,
+    "score": 19.784416
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:81-89",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 81,
+    "end_line": 89,
+    "score": 17.237823
+   },
+   {
+    "id": "hw/ip/edn/README.md:68-75",
+    "path": "hw/ip/edn/README.md",
+    "start_line": 68,
+    "end_line": 75,
+    "score": 17.092077
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:30-37",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 30,
+    "end_line": 37,
+    "score": 16.90718
+   },
+   {
+    "id": "hw/ip/edn/doc/programmers_guide.md:29-36",
+    "path": "hw/ip/edn/doc/programmers_guide.md",
+    "start_line": 29,
+    "end_line": 36,
+    "score": 16.859728
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:92-98",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 92,
+    "end_line": 98,
+    "score": 16.760629
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:137-143",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 137,
+    "end_line": 143,
+    "score": 16.589311
+   },
+   {
+    "id": "hw/ip/edn/README.md:55-64",
+    "path": "hw/ip/edn/README.md",
+    "start_line": 55,
+    "end_line": 64,
+    "score": 16.548863
+   }
+  ],
+  "Q16": [
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:81-89",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 81,
+    "end_line": 89,
+    "score": 53.437941
+   },
+   {
+    "id": "hw/ip/edn/README.md:55-64",
+    "path": "hw/ip/edn/README.md",
+    "start_line": 55,
+    "end_line": 64,
+    "score": 49.806045
+   },
+   {
+    "id": "hw/ip/csrng/doc/programmers_guide.md:168-171",
+    "path": "hw/ip/csrng/doc/programmers_guide.md",
+    "start_line": 168,
+    "end_line": 171,
+    "score": 36.727927
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:92-98",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 92,
+    "end_line": 98,
+    "score": 22.74493
+   },
+   {
+    "id": "hw/ip/edn/doc/programmers_guide.md:62-64",
+    "path": "hw/ip/edn/doc/programmers_guide.md",
+    "start_line": 62,
+    "end_line": 64,
+    "score": 21.205672
+   },
+   {
+    "id": "hw/ip/kmac/doc/programmers_guide.md:116-138",
+    "path": "hw/ip/kmac/doc/programmers_guide.md",
+    "start_line": 116,
+    "end_line": 138,
+    "score": 20.746207
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:90-90",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 90,
+    "end_line": 90,
+    "score": 20.529069
+   },
+   {
+    "id": "hw/ip/edn/doc/programmers_guide.md:29-36",
+    "path": "hw/ip/edn/doc/programmers_guide.md",
+    "start_line": 29,
+    "end_line": 36,
+    "score": 19.725895
+   },
+   {
+    "id": "hw/ip/kmac/doc/programmers_guide.md:90-92",
+    "path": "hw/ip/kmac/doc/programmers_guide.md",
+    "start_line": 90,
+    "end_line": 92,
+    "score": 19.507682
+   },
+   {
+    "id": "hw/ip/edn/doc/programmers_guide.md:58-58",
+    "path": "hw/ip/edn/doc/programmers_guide.md",
+    "start_line": 58,
+    "end_line": 58,
+    "score": 19.290472
+   }
+  ],
+  "Q17": [
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:642-646",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 642,
+    "end_line": 646,
+    "score": 18.291793
+   },
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:243-254",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 243,
+    "end_line": 254,
+    "score": 17.865298
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:137-143",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 137,
+    "end_line": 143,
+    "score": 16.713017
+   },
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:312-325",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 312,
+    "end_line": 325,
+    "score": 16.611912
+   },
+   {
+    "id": "hw/ip/edn/doc/theory_of_operation.md:75-77",
+    "path": "hw/ip/edn/doc/theory_of_operation.md",
+    "start_line": 75,
+    "end_line": 77,
+    "score": 15.517229
+   },
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:145-169",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 145,
+    "end_line": 169,
+    "score": 15.252621
+   },
+   {
+    "id": "hw/ip/dma/doc/programmers_guide.md:43-45",
+    "path": "hw/ip/dma/doc/programmers_guide.md",
+    "start_line": 43,
+    "end_line": 45,
+    "score": 15.110127
+   },
+   {
+    "id": "hw/ip/uart/doc/theory_of_operation.md:209-215",
+    "path": "hw/ip/uart/doc/theory_of_operation.md",
+    "start_line": 209,
+    "end_line": 215,
+    "score": 14.548735
+   },
+   {
+    "id": "hw/ip/otbn/doc/developers_guide.md:27-38",
+    "path": "hw/ip/otbn/doc/developers_guide.md",
+    "start_line": 27,
+    "end_line": 38,
+    "score": 14.437028
+   },
+   {
+    "id": "hw/ip/cheriot_mem_sys/doc/theory_of_operation.md:175-186",
+    "path": "hw/ip/cheriot_mem_sys/doc/theory_of_operation.md",
+    "start_line": 175,
+    "end_line": 186,
+    "score": 13.721969
+   }
+  ],
+  "Q18": [
+   {
+    "id": "hw/ip/sram_ctrl/doc/programmers_guide.md:5-14",
+    "path": "hw/ip/sram_ctrl/doc/programmers_guide.md",
+    "start_line": 5,
+    "end_line": 14,
+    "score": 25.4279
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md:40-40",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md",
+    "start_line": 40,
+    "end_line": 40,
+    "score": 21.69929
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/theory_of_operation.md:47-56",
+    "path": "hw/ip/sram_ctrl/doc/theory_of_operation.md",
+    "start_line": 47,
+    "end_line": 56,
+    "score": 17.67915
+   },
+   {
+    "id": "hw/ip_templates/otp_ctrl/doc/theory_of_operation.md:427-437",
+    "path": "hw/ip_templates/otp_ctrl/doc/theory_of_operation.md",
+    "start_line": 427,
+    "end_line": 437,
+    "score": 17.384917
+   },
+   {
+    "id": "hw/ip_templates/rv_core_ibex/doc/boot-rom-patching.md:164-168",
+    "path": "hw/ip_templates/rv_core_ibex/doc/boot-rom-patching.md",
+    "start_line": 164,
+    "end_line": 168,
+    "score": 16.338406
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/interfaces.md:15-19",
+    "path": "hw/ip/sram_ctrl/doc/interfaces.md",
+    "start_line": 15,
+    "end_line": 19,
+    "score": 16.053233
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/theory_of_operation.md:19-28",
+    "path": "hw/ip/sram_ctrl/doc/theory_of_operation.md",
+    "start_line": 19,
+    "end_line": 28,
+    "score": 15.658982
+   },
+   {
+    "id": "hw/ip/rram_ctrl/doc/theory_of_operation.md:692-698",
+    "path": "hw/ip/rram_ctrl/doc/theory_of_operation.md",
+    "start_line": 692,
+    "end_line": 698,
+    "score": 15.504979
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/theory_of_operation.md:65-70",
+    "path": "hw/ip/sram_ctrl/doc/theory_of_operation.md",
+    "start_line": 65,
+    "end_line": 70,
+    "score": 15.141031
+   },
+   {
+    "id": "hw/ip/aes/doc/programmers_guide.md:8-11",
+    "path": "hw/ip/aes/doc/programmers_guide.md",
+    "start_line": 8,
+    "end_line": 11,
+    "score": 15.001042
+   }
+  ],
+  "Q19": [
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:17-21",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 17,
+    "end_line": 21,
+    "score": 30.095895
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:161-166",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 161,
+    "end_line": 166,
+    "score": 28.481427
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:144-148",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 144,
+    "end_line": 148,
+    "score": 22.726747
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:152-157",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 152,
+    "end_line": 157,
+    "score": 20.104775
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/README.md:13-16",
+    "path": "hw/ip/sysrst_ctrl/README.md",
+    "start_line": 13,
+    "end_line": 16,
+    "score": 17.718048
+   },
+   {
+    "id": "hw/top_englishbreakfast/ip_autogen/flash_ctrl/doc/interfaces.md:129-141",
+    "path": "hw/top_englishbreakfast/ip_autogen/flash_ctrl/doc/interfaces.md",
+    "start_line": 129,
+    "end_line": 141,
+    "score": 15.909338
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:11-15",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 11,
+    "end_line": 15,
+    "score": 14.703709
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:76-84",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 76,
+    "end_line": 84,
+    "score": 14.256088
+   },
+   {
+    "id": "hw/ip/README.md:32-39",
+    "path": "hw/ip/README.md",
+    "start_line": 32,
+    "end_line": 39,
+    "score": 14.170515
+   },
+   {
+    "id": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:88-91",
+    "path": "hw/ip/sysrst_ctrl/doc/theory_of_operation.md",
+    "start_line": 88,
+    "end_line": 91,
+    "score": 14.07106
+   }
+  ],
+  "Q20": [
+   {
+    "id": "hw/ip_templates/alert_handler/doc/programmers_guide.md:6-13",
+    "path": "hw/ip_templates/alert_handler/doc/programmers_guide.md",
+    "start_line": 6,
+    "end_line": 13,
+    "score": 25.909879
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md:688-692",
+    "path": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md",
+    "start_line": 688,
+    "end_line": 692,
+    "score": 25.329712
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md:48-48",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md",
+    "start_line": 48,
+    "end_line": 48,
+    "score": 23.933124
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md:702-712",
+    "path": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md",
+    "start_line": 702,
+    "end_line": 712,
+    "score": 22.735601
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md:108-111",
+    "path": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md",
+    "start_line": 108,
+    "end_line": 111,
+    "score": 21.78786
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md:696-698",
+    "path": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md",
+    "start_line": 696,
+    "end_line": 698,
+    "score": 21.632438
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md:665-680",
+    "path": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md",
+    "start_line": 665,
+    "end_line": 680,
+    "score": 20.422707
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md:714-722",
+    "path": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md",
+    "start_line": 714,
+    "end_line": 722,
+    "score": 19.665062
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md:658-661",
+    "path": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md",
+    "start_line": 658,
+    "end_line": 661,
+    "score": 19.445061
+   },
+   {
+    "id": "hw/ip/lc_ctrl/doc/theory_of_operation.md:80-89",
+    "path": "hw/ip/lc_ctrl/doc/theory_of_operation.md",
+    "start_line": 80,
+    "end_line": 89,
+    "score": 19.320129
+   }
+  ],
+  "Q21": [
+   {
+    "id": "hw/ip_templates/rv_plic/doc/programmers_guide.md:36-53",
+    "path": "hw/ip_templates/rv_plic/doc/programmers_guide.md",
+    "start_line": 36,
+    "end_line": 53,
+    "score": 24.543046
+   },
+   {
+    "id": "hw/ip_templates/rv_plic/doc/theory_of_operation.md:39-53",
+    "path": "hw/ip_templates/rv_plic/doc/theory_of_operation.md",
+    "start_line": 39,
+    "end_line": 53,
+    "score": 20.943856
+   },
+   {
+    "id": "hw/ip_templates/rv_plic/doc/programmers_guide.md:84-100",
+    "path": "hw/ip_templates/rv_plic/doc/programmers_guide.md",
+    "start_line": 84,
+    "end_line": 100,
+    "score": 20.530327
+   },
+   {
+    "id": "hw/ip_templates/rv_plic/doc/theory_of_operation.md:71-80",
+    "path": "hw/ip_templates/rv_plic/doc/theory_of_operation.md",
+    "start_line": 71,
+    "end_line": 80,
+    "score": 18.024515
+   },
+   {
+    "id": "hw/ip_templates/pwrmgr/doc/programmers_guide.md:10-20",
+    "path": "hw/ip_templates/pwrmgr/doc/programmers_guide.md",
+    "start_line": 10,
+    "end_line": 20,
+    "score": 15.952024
+   },
+   {
+    "id": "hw/ip_templates/rv_plic/doc/theory_of_operation.md:84-92",
+    "path": "hw/ip_templates/rv_plic/doc/theory_of_operation.md",
+    "start_line": 84,
+    "end_line": 92,
+    "score": 15.792088
+   },
+   {
+    "id": "hw/ip_templates/rv_plic/doc/programmers_guide.md:5-32",
+    "path": "hw/ip_templates/rv_plic/doc/programmers_guide.md",
+    "start_line": 5,
+    "end_line": 32,
+    "score": 15.303483
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md:285-290",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md",
+    "start_line": 285,
+    "end_line": 290,
+    "score": 15.123022
+   },
+   {
+    "id": "hw/ip/uart/doc/theory_of_operation.md:209-215",
+    "path": "hw/ip/uart/doc/theory_of_operation.md",
+    "start_line": 209,
+    "end_line": 215,
+    "score": 14.799177
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rv_plic/README.md:15-18",
+    "path": "hw/top_earlgrey/ip_autogen/rv_plic/README.md",
+    "start_line": 15,
+    "end_line": 18,
+    "score": 14.384867
+   }
+  ],
+  "Q22": [
+   {
+    "id": "hw/ip/lc_ctrl/doc/theory_of_operation.md:8-13",
+    "path": "hw/ip/lc_ctrl/doc/theory_of_operation.md",
+    "start_line": 8,
+    "end_line": 13,
+    "score": 38.088782
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/interfaces.md:153-155",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/interfaces.md",
+    "start_line": 153,
+    "end_line": 155,
+    "score": 34.19717
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_partitions.md:18-18",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_partitions.md",
+    "start_line": 18,
+    "end_line": 18,
+    "score": 34.030129
+   },
+   {
+    "id": "hw/ip/lc_ctrl/doc/interfaces.md:112-118",
+    "path": "hw/ip/lc_ctrl/doc/interfaces.md",
+    "start_line": 112,
+    "end_line": 118,
+    "score": 33.295848
+   },
+   {
+    "id": "hw/ip/lc_ctrl/doc/theory_of_operation.md:398-402",
+    "path": "hw/ip/lc_ctrl/doc/theory_of_operation.md",
+    "start_line": 398,
+    "end_line": 402,
+    "score": 32.243594
+   },
+   {
+    "id": "hw/ip/lc_ctrl/doc/theory_of_operation.md:417-423",
+    "path": "hw/ip/lc_ctrl/doc/theory_of_operation.md",
+    "start_line": 417,
+    "end_line": 423,
+    "score": 31.153285
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/interfaces.md:147-149",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/interfaces.md",
+    "start_line": 147,
+    "end_line": 149,
+    "score": 30.897166
+   },
+   {
+    "id": "hw/ip_templates/otp_ctrl/doc/theory_of_operation.md:220-225",
+    "path": "hw/ip_templates/otp_ctrl/doc/theory_of_operation.md",
+    "start_line": 220,
+    "end_line": 225,
+    "score": 30.820706
+   },
+   {
+    "id": "hw/ip/lc_ctrl/doc/theory_of_operation.md:3-4",
+    "path": "hw/ip/lc_ctrl/doc/theory_of_operation.md",
+    "start_line": 3,
+    "end_line": 4,
+    "score": 30.046787
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/interfaces.md:182-184",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/interfaces.md",
+    "start_line": 182,
+    "end_line": 184,
+    "score": 29.460155
+   }
+  ],
+  "Q23": [
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md:285-290",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md",
+    "start_line": 285,
+    "end_line": 290,
+    "score": 18.106175
+   },
+   {
+    "id": "hw/ip/lc_ctrl/doc/theory_of_operation.md:173-177",
+    "path": "hw/ip/lc_ctrl/doc/theory_of_operation.md",
+    "start_line": 173,
+    "end_line": 177,
+    "score": 14.985301
+   },
+   {
+    "id": "hw/ip/rram_ctrl/doc/programmers_guide.md:39-45",
+    "path": "hw/ip/rram_ctrl/doc/programmers_guide.md",
+    "start_line": 39,
+    "end_line": 45,
+    "score": 14.638355
+   },
+   {
+    "id": "hw/ip/rram_ctrl/README.md:108-113",
+    "path": "hw/ip/rram_ctrl/README.md",
+    "start_line": 108,
+    "end_line": 113,
+    "score": 14.582039
+   },
+   {
+    "id": "hw/ip_templates/pwrmgr/doc/programmers_guide.md:10-20",
+    "path": "hw/ip_templates/pwrmgr/doc/programmers_guide.md",
+    "start_line": 10,
+    "end_line": 20,
+    "score": 13.214934
+   },
+   {
+    "id": "hw/ip/rram_ctrl/doc/theory_of_operation.md:547-555",
+    "path": "hw/ip/rram_ctrl/doc/theory_of_operation.md",
+    "start_line": 547,
+    "end_line": 555,
+    "score": 12.775019
+   },
+   {
+    "id": "hw/ip/rram_ctrl/doc/theory_of_operation.md:195-206",
+    "path": "hw/ip/rram_ctrl/doc/theory_of_operation.md",
+    "start_line": 195,
+    "end_line": 206,
+    "score": 12.564344
+   },
+   {
+    "id": "hw/ip/rram_ctrl/doc/programmers_guide.md:10-13",
+    "path": "hw/ip/rram_ctrl/doc/programmers_guide.md",
+    "start_line": 10,
+    "end_line": 13,
+    "score": 12.508402
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/README.md:20-33",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/README.md",
+    "start_line": 20,
+    "end_line": 33,
+    "score": 12.086172
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md:304-310",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md",
+    "start_line": 304,
+    "end_line": 310,
+    "score": 12.016923
+   }
+  ],
+  "Q24": [
+   {
+    "id": "hw/ip_templates/pwm/doc/theory_of_operation.md:100-108",
+    "path": "hw/ip_templates/pwm/doc/theory_of_operation.md",
+    "start_line": 100,
+    "end_line": 108,
+    "score": 22.738528
+   },
+   {
+    "id": "hw/ip_templates/pwm/doc/programmers_guide.md:3-18",
+    "path": "hw/ip_templates/pwm/doc/programmers_guide.md",
+    "start_line": 3,
+    "end_line": 18,
+    "score": 20.417834
+   },
+   {
+    "id": "hw/ip_templates/pwm/doc/theory_of_operation.md:135-141",
+    "path": "hw/ip_templates/pwm/doc/theory_of_operation.md",
+    "start_line": 135,
+    "end_line": 141,
+    "score": 18.04481
+   },
+   {
+    "id": "hw/ip/pattgen/doc/theory_of_operation.md:3-10",
+    "path": "hw/ip/pattgen/doc/theory_of_operation.md",
+    "start_line": 3,
+    "end_line": 10,
+    "score": 15.830992
+   },
+   {
+    "id": "hw/ip/pattgen/README.md:94-98",
+    "path": "hw/ip/pattgen/README.md",
+    "start_line": 94,
+    "end_line": 98,
+    "score": 15.749154
+   },
+   {
+    "id": "hw/ip/pattgen/doc/programmers_guide.md:44-59",
+    "path": "hw/ip/pattgen/doc/programmers_guide.md",
+    "start_line": 44,
+    "end_line": 59,
+    "score": 15.726784
+   },
+   {
+    "id": "hw/ip_templates/pwm/doc/theory_of_operation.md:87-98",
+    "path": "hw/ip_templates/pwm/doc/theory_of_operation.md",
+    "start_line": 87,
+    "end_line": 98,
+    "score": 15.150063
+   },
+   {
+    "id": "hw/ip_templates/pwm/doc/theory_of_operation.md:110-111",
+    "path": "hw/ip_templates/pwm/doc/theory_of_operation.md",
+    "start_line": 110,
+    "end_line": 111,
+    "score": 15.134234
+   },
+   {
+    "id": "hw/ip/pattgen/doc/programmers_guide.md:8-24",
+    "path": "hw/ip/pattgen/doc/programmers_guide.md",
+    "start_line": 8,
+    "end_line": 24,
+    "score": 13.576405
+   },
+   {
+    "id": "hw/ip/pattgen/README.md:60-63",
+    "path": "hw/ip/pattgen/README.md",
+    "start_line": 60,
+    "end_line": 63,
+    "score": 13.451237
+   }
+  ],
+  "Q25": [
+   {
+    "id": "hw/ip/hmac/doc/theory_of_operation.md:122-129",
+    "path": "hw/ip/hmac/doc/theory_of_operation.md",
+    "start_line": 122,
+    "end_line": 129,
+    "score": 18.795212
+   },
+   {
+    "id": "hw/ip/hmac/doc/theory_of_operation.md:133-143",
+    "path": "hw/ip/hmac/doc/theory_of_operation.md",
+    "start_line": 133,
+    "end_line": 143,
+    "score": 18.172923
+   },
+   {
+    "id": "hw/ip/hmac/doc/programmers_guide.md:11-36",
+    "path": "hw/ip/hmac/doc/programmers_guide.md",
+    "start_line": 11,
+    "end_line": 36,
+    "score": 17.882428
+   },
+   {
+    "id": "hw/ip/hmac/README.md:39-43",
+    "path": "hw/ip/hmac/README.md",
+    "start_line": 39,
+    "end_line": 43,
+    "score": 14.884746
+   },
+   {
+    "id": "hw/ip/hmac/doc/programmers_guide.md:76-82",
+    "path": "hw/ip/hmac/doc/programmers_guide.md",
+    "start_line": 76,
+    "end_line": 82,
+    "score": 14.789872
+   },
+   {
+    "id": "hw/ip/hmac/doc/programmers_guide.md:152-162",
+    "path": "hw/ip/hmac/doc/programmers_guide.md",
+    "start_line": 152,
+    "end_line": 162,
+    "score": 14.700013
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:201-209",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 201,
+    "end_line": 209,
+    "score": 14.45066
+   },
+   {
+    "id": "hw/ip/hmac/doc/theory_of_operation.md:32-48",
+    "path": "hw/ip/hmac/doc/theory_of_operation.md",
+    "start_line": 32,
+    "end_line": 48,
+    "score": 14.118829
+   },
+   {
+    "id": "hw/ip/hmac/README.md:45-57",
+    "path": "hw/ip/hmac/README.md",
+    "start_line": 45,
+    "end_line": 57,
+    "score": 14.106515
+   },
+   {
+    "id": "hw/ip/hmac/doc/programmers_guide.md:132-136",
+    "path": "hw/ip/hmac/doc/programmers_guide.md",
+    "start_line": 132,
+    "end_line": 136,
+    "score": 12.593976
+   }
+  ],
+  "Q26": [
+   {
+    "id": "hw/ip/pattgen/README.md:94-98",
+    "path": "hw/ip/pattgen/README.md",
+    "start_line": 94,
+    "end_line": 98,
+    "score": 40.641598
+   },
+   {
+    "id": "hw/ip/pattgen/doc/programmers_guide.md:44-59",
+    "path": "hw/ip/pattgen/doc/programmers_guide.md",
+    "start_line": 44,
+    "end_line": 59,
+    "score": 40.618322
+   },
+   {
+    "id": "hw/ip/pattgen/doc/theory_of_operation.md:18-34",
+    "path": "hw/ip/pattgen/doc/theory_of_operation.md",
+    "start_line": 18,
+    "end_line": 34,
+    "score": 32.282587
+   },
+   {
+    "id": "hw/ip/pattgen/README.md:60-63",
+    "path": "hw/ip/pattgen/README.md",
+    "start_line": 60,
+    "end_line": 63,
+    "score": 29.593519
+   },
+   {
+    "id": "hw/ip/pattgen/doc/theory_of_operation.md:49-54",
+    "path": "hw/ip/pattgen/doc/theory_of_operation.md",
+    "start_line": 49,
+    "end_line": 54,
+    "score": 25.287244
+   },
+   {
+    "id": "hw/ip/pattgen/doc/programmers_guide.md:8-24",
+    "path": "hw/ip/pattgen/doc/programmers_guide.md",
+    "start_line": 8,
+    "end_line": 24,
+    "score": 25.252888
+   },
+   {
+    "id": "hw/ip/pattgen/README.md:32-34",
+    "path": "hw/ip/pattgen/README.md",
+    "start_line": 32,
+    "end_line": 34,
+    "score": 23.954484
+   },
+   {
+    "id": "hw/ip/pattgen/README.md:19-28",
+    "path": "hw/ip/pattgen/README.md",
+    "start_line": 19,
+    "end_line": 28,
+    "score": 22.979158
+   },
+   {
+    "id": "hw/ip/pattgen/doc/theory_of_operation.md:36-47",
+    "path": "hw/ip/pattgen/doc/theory_of_operation.md",
+    "start_line": 36,
+    "end_line": 47,
+    "score": 19.283131
+   },
+   {
+    "id": "hw/ip/pattgen/README.md:67-86",
+    "path": "hw/ip/pattgen/README.md",
+    "start_line": 67,
+    "end_line": 86,
+    "score": 18.827821
+   }
+  ],
+  "Q27": [
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md:285-290",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md",
+    "start_line": 285,
+    "end_line": 290,
+    "score": 23.4385
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md:91-105",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md",
+    "start_line": 91,
+    "end_line": 105,
+    "score": 15.102818
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md:242-255",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md",
+    "start_line": 242,
+    "end_line": 255,
+    "score": 14.953825
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rv_core_ibex/doc/theory_of_operation.md:53-69",
+    "path": "hw/top_earlgrey/ip_autogen/rv_core_ibex/doc/theory_of_operation.md",
+    "start_line": 53,
+    "end_line": 69,
+    "score": 13.414384
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/README.md:20-33",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/README.md",
+    "start_line": 20,
+    "end_line": 33,
+    "score": 12.814828
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md:258-269",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md",
+    "start_line": 258,
+    "end_line": 269,
+    "score": 12.317856
+   },
+   {
+    "id": "hw/ip/lc_ctrl/README.md:38-42",
+    "path": "hw/ip/lc_ctrl/README.md",
+    "start_line": 38,
+    "end_line": 42,
+    "score": 12.236352
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md:304-310",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md",
+    "start_line": 304,
+    "end_line": 310,
+    "score": 11.657365
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md:210-223",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/doc/theory_of_operation.md",
+    "start_line": 210,
+    "end_line": 223,
+    "score": 11.573312
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/rstmgr/README.md:11-12",
+    "path": "hw/top_earlgrey/ip_autogen/rstmgr/README.md",
+    "start_line": 11,
+    "end_line": 12,
+    "score": 11.216737
+   }
+  ],
+  "V01": [
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:143-146",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 143,
+    "end_line": 146,
+    "score": 32.221157
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:283-288",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 283,
+    "end_line": 288,
+    "score": 31.536703
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:184-195",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 184,
+    "end_line": 195,
+    "score": 30.631004
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:90-93",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 90,
+    "end_line": 93,
+    "score": 29.220562
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:136-141",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 136,
+    "end_line": 141,
+    "score": 28.783683
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/programmers_guide.md:15-27",
+    "path": "hw/ip/keymgr_dpe/doc/programmers_guide.md",
+    "start_line": 15,
+    "end_line": 27,
+    "score": 27.822168
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:75-80",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 75,
+    "end_line": 80,
+    "score": 27.350918
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:253-267",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 253,
+    "end_line": 267,
+    "score": 26.578864
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:83-86",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 83,
+    "end_line": 86,
+    "score": 25.11102
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:269-273",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 269,
+    "end_line": 273,
+    "score": 23.313941
+   }
+  ],
+  "V02": [
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:136-141",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 136,
+    "end_line": 141,
+    "score": 60.500413
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/programmers_guide.md:15-27",
+    "path": "hw/ip/keymgr_dpe/doc/programmers_guide.md",
+    "start_line": 15,
+    "end_line": 27,
+    "score": 59.11303
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:75-80",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 75,
+    "end_line": 80,
+    "score": 40.118562
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:184-195",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 184,
+    "end_line": 195,
+    "score": 39.773769
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/programmers_guide.md:34-45",
+    "path": "hw/ip/keymgr_dpe/doc/programmers_guide.md",
+    "start_line": 34,
+    "end_line": 45,
+    "score": 39.452097
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/programmers_guide.md:99-111",
+    "path": "hw/ip/keymgr_dpe/doc/programmers_guide.md",
+    "start_line": 99,
+    "end_line": 111,
+    "score": 35.154143
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:143-146",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 143,
+    "end_line": 146,
+    "score": 34.516518
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:90-93",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 90,
+    "end_line": 93,
+    "score": 32.661859
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:51-53",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 51,
+    "end_line": 53,
+    "score": 32.532844
+   },
+   {
+    "id": "hw/ip/keymgr_dpe/doc/theory_of_operation.md:253-267",
+    "path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md",
+    "start_line": 253,
+    "end_line": 267,
+    "score": 31.938873
+   }
+  ],
+  "V03": [
+   {
+    "id": "hw/ip/otbn/README.md:803-811",
+    "path": "hw/ip/otbn/README.md",
+    "start_line": 803,
+    "end_line": 811,
+    "score": 35.421064
+   },
+   {
+    "id": "hw/ip/otbn/README.md:122-129",
+    "path": "hw/ip/otbn/README.md",
+    "start_line": 122,
+    "end_line": 129,
+    "score": 22.988031
+   },
+   {
+    "id": "hw/ip/otbn/doc/isa.md:30-51",
+    "path": "hw/ip/otbn/doc/isa.md",
+    "start_line": 30,
+    "end_line": 51,
+    "score": 21.531284
+   },
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:1069-1078",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 1069,
+    "end_line": 1078,
+    "score": 18.542151
+   },
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:959-962",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 959,
+    "end_line": 962,
+    "score": 16.813208
+   },
+   {
+    "id": "hw/ip/otbn/README.md:1118-1123",
+    "path": "hw/ip/otbn/README.md",
+    "start_line": 1118,
+    "end_line": 1123,
+    "score": 16.586303
+   },
+   {
+    "id": "hw/ip/otbn/README.md:76-98",
+    "path": "hw/ip/otbn/README.md",
+    "start_line": 76,
+    "end_line": 98,
+    "score": 16.469257
+   },
+   {
+    "id": "hw/ip/otbn/README.md:786-799",
+    "path": "hw/ip/otbn/README.md",
+    "start_line": 786,
+    "end_line": 799,
+    "score": 16.457621
+   },
+   {
+    "id": "hw/ip/otbn/README.md:1044-1061",
+    "path": "hw/ip/otbn/README.md",
+    "start_line": 1044,
+    "end_line": 1061,
+    "score": 15.669677
+   },
+   {
+    "id": "hw/ip/otbn/doc/otbn_intro.md:57-58",
+    "path": "hw/ip/otbn/doc/otbn_intro.md",
+    "start_line": 57,
+    "end_line": 58,
+    "score": 15.657232
+   }
+  ],
+  "V04": [
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:1051-1065",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 1051,
+    "end_line": 1065,
+    "score": 39.205939
+   },
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:1003-1015",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 1003,
+    "end_line": 1015,
+    "score": 37.610487
+   },
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:959-962",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 959,
+    "end_line": 962,
+    "score": 36.6145
+   },
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:1017-1025",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 1017,
+    "end_line": 1025,
+    "score": 34.041655
+   },
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:943-957",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 943,
+    "end_line": 957,
+    "score": 33.955223
+   },
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:1027-1039",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 1027,
+    "end_line": 1039,
+    "score": 33.611808
+   },
+   {
+    "id": "hw/ip/otbn/pre_syn/README_MAI.md:12-18",
+    "path": "hw/ip/otbn/pre_syn/README_MAI.md",
+    "start_line": 12,
+    "end_line": 18,
+    "score": 31.884065
+   },
+   {
+    "id": "hw/ip/otbn/doc/theory_of_operation.md:978-994",
+    "path": "hw/ip/otbn/doc/theory_of_operation.md",
+    "start_line": 978,
+    "end_line": 994,
+    "score": 31.289376
+   },
+   {
+    "id": "hw/ip/otbn/pre_syn/README_MAI.md:3-4",
+    "path": "hw/ip/otbn/pre_syn/README_MAI.md",
+    "start_line": 3,
+    "end_line": 4,
+    "score": 30.480803
+   },
+   {
+    "id": "hw/ip/otbn/doc/developers_guide.md:608-609",
+    "path": "hw/ip/otbn/doc/developers_guide.md",
+    "start_line": 608,
+    "end_line": 609,
+    "score": 30.159054
+   }
+  ],
+  "V05": [
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:153-153",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 153,
+    "end_line": 153,
+    "score": 31.814925
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:157-162",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 157,
+    "end_line": 162,
+    "score": 30.214361
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:168-174",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 168,
+    "end_line": 174,
+    "score": 26.422686
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:164-172",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 164,
+    "end_line": 172,
+    "score": 23.06887
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:174-177",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 174,
+    "end_line": 177,
+    "score": 21.619702
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:100-105",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 100,
+    "end_line": 105,
+    "score": 17.62702
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:207-216",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 207,
+    "end_line": 216,
+    "score": 17.51993
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:315-324",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 315,
+    "end_line": 324,
+    "score": 17.199069
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:56-68",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 56,
+    "end_line": 68,
+    "score": 17.167063
+   },
+   {
+    "id": "hw/ip/spi_device/doc/theory_of_operation.md:99-104",
+    "path": "hw/ip/spi_device/doc/theory_of_operation.md",
+    "start_line": 99,
+    "end_line": 104,
+    "score": 17.127885
+   }
+  ],
+  "V06": [
+   {
+    "id": "hw/ip/sram_ctrl/doc/interfaces.md:7-14",
+    "path": "hw/ip/sram_ctrl/doc/interfaces.md",
+    "start_line": 7,
+    "end_line": 14,
+    "score": 20.408253
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/programmers_guide.md:30-31",
+    "path": "hw/ip/sram_ctrl/doc/programmers_guide.md",
+    "start_line": 30,
+    "end_line": 31,
+    "score": 16.316228
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/theory_of_operation.md:89-92",
+    "path": "hw/ip/sram_ctrl/doc/theory_of_operation.md",
+    "start_line": 89,
+    "end_line": 92,
+    "score": 11.390638
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/theory_of_operation.md:65-70",
+    "path": "hw/ip/sram_ctrl/doc/theory_of_operation.md",
+    "start_line": 65,
+    "end_line": 70,
+    "score": 10.169288
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md:182-194",
+    "path": "hw/top_earlgrey/ip_autogen/pinmux/doc/theory_of_operation.md",
+    "start_line": 182,
+    "end_line": 194,
+    "score": 9.030147
+   },
+   {
+    "id": "hw/ip/prim/doc/prim_ram_1p_scr.md:33-41",
+    "path": "hw/ip/prim/doc/prim_ram_1p_scr.md",
+    "start_line": 33,
+    "end_line": 41,
+    "score": 8.961928
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/theory_of_operation.md:47-56",
+    "path": "hw/ip/sram_ctrl/doc/theory_of_operation.md",
+    "start_line": 47,
+    "end_line": 56,
+    "score": 8.700485
+   },
+   {
+    "id": "hw/ip/i3c/doc/design_parameters.md:40-43",
+    "path": "hw/ip/i3c/doc/design_parameters.md",
+    "start_line": 40,
+    "end_line": 43,
+    "score": 8.32921
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/theory_of_operation.md:120-128",
+    "path": "hw/ip/sram_ctrl/doc/theory_of_operation.md",
+    "start_line": 120,
+    "end_line": 128,
+    "score": 8.206617
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md:101-101",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md",
+    "start_line": 101,
+    "end_line": 101,
+    "score": 8.171497
+   }
+  ],
+  "V07": [
+   {
+    "id": "hw/ip/sram_ctrl/doc/theory_of_operation.md:47-56",
+    "path": "hw/ip/sram_ctrl/doc/theory_of_operation.md",
+    "start_line": 47,
+    "end_line": 56,
+    "score": 29.068412
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/theory_of_operation.md:65-70",
+    "path": "hw/ip/sram_ctrl/doc/theory_of_operation.md",
+    "start_line": 65,
+    "end_line": 70,
+    "score": 18.287711
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/interfaces.md:15-19",
+    "path": "hw/ip/sram_ctrl/doc/interfaces.md",
+    "start_line": 15,
+    "end_line": 19,
+    "score": 17.986819
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/theory_of_operation.md:19-28",
+    "path": "hw/ip/sram_ctrl/doc/theory_of_operation.md",
+    "start_line": 19,
+    "end_line": 28,
+    "score": 17.219697
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/programmers_guide.md:5-14",
+    "path": "hw/ip/sram_ctrl/doc/programmers_guide.md",
+    "start_line": 5,
+    "end_line": 14,
+    "score": 15.834345
+   },
+   {
+    "id": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md:17-17",
+    "path": "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/otp_ctrl_field_descriptions.md",
+    "start_line": 17,
+    "end_line": 17,
+    "score": 14.567823
+   },
+   {
+    "id": "hw/ip/sram_ctrl/doc/theory_of_operation.md:120-128",
+    "path": "hw/ip/sram_ctrl/doc/theory_of_operation.md",
+    "start_line": 120,
+    "end_line": 128,
+    "score": 14.232988
+   },
+   {
+    "id": "hw/top_englishbreakfast/ip_autogen/flash_ctrl/README.md:87-105",
+    "path": "hw/top_englishbreakfast/ip_autogen/flash_ctrl/README.md",
+    "start_line": 87,
+    "end_line": 105,
+    "score": 12.437813
+   },
+   {
+    "id": "hw/ip/sram_ctrl/README.md:14-18",
+    "path": "hw/ip/sram_ctrl/README.md",
+    "start_line": 14,
+    "end_line": 18,
+    "score": 12.373902
+   },
+   {
+    "id": "hw/ip/rram_ctrl/doc/theory_of_operation.md:457-468",
+    "path": "hw/ip/rram_ctrl/doc/theory_of_operation.md",
+    "start_line": 457,
+    "end_line": 468,
+    "score": 12.369893
+   }
+  ],
+  "V08": [
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:373-379",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 373,
+    "end_line": 379,
+    "score": 38.089179
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:259-259",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 259,
+    "end_line": 259,
+    "score": 35.712517
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:212-218",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 212,
+    "end_line": 218,
+    "score": 32.869044
+   },
+   {
+    "id": "hw/ip/spi_host/doc/programmers_guide.md:28-29",
+    "path": "hw/ip/spi_host/doc/programmers_guide.md",
+    "start_line": 28,
+    "end_line": 29,
+    "score": 30.286818
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:251-258",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 251,
+    "end_line": 258,
+    "score": 30.111527
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:222-232",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 222,
+    "end_line": 232,
+    "score": 28.420976
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:12-15",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 12,
+    "end_line": 15,
+    "score": 27.03179
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:201-208",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 201,
+    "end_line": 208,
+    "score": 25.127785
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:323-329",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 323,
+    "end_line": 329,
+    "score": 25.108102
+   },
+   {
+    "id": "hw/ip/spi_host/doc/theory_of_operation.md:364-369",
+    "path": "hw/ip/spi_host/doc/theory_of_operation.md",
+    "start_line": 364,
+    "end_line": 369,
+    "score": 24.995484
+   }
+  ]
+ }
+}

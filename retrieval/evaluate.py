@@ -142,11 +142,13 @@ def report(queries: dict, results: list[dict], scores: list[dict]) -> str:
     lines += ["", "## Methods", ""]
     for r in results:
         p = r["parameters"]
-        if r["method"] == "embedding":
+        if r["method"].startswith("embedding"):
             desc = (f"`{p['model']}` at revision `{p['model_revision']}`, cosine similarity, "
                     f"query prefix \"{p['query_prefix'].strip()}\"")
         else:
             desc = f"k1 = {p['k1']}, b = {p['b']}; tokens: {p['tokenizer']}"
+        if p.get("earlier_revision_ranked_last"):
+            desc += "; every passage of the earlier revision is ranked below every passage of the current revision"
         lines.append(f"- **{r['method']}**: {desc}.")
     lines += ["", "## Results", "",
               "| Method | Queries | Recall@1 | Recall@5 | MRR@10 |", "|---|---|---|---|---|"]

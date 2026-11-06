@@ -207,6 +207,15 @@ class TwoRevisionTest(unittest.TestCase):
         self.assertEqual(s["outdated_above"], ["V1"])
         self.assertEqual(s["earlier_first"], ["V1"])
 
+    def test_earlier_last(self):
+        passages = [{"id": "a", "path": "a.md", "start_line": 1, "end_line": 1},
+                    {"id": "r:a", "path": "a.md", "start_line": 1, "end_line": 1, "revision": "r"},
+                    {"id": "b", "path": "b.md", "start_line": 1, "end_line": 1}]
+        scores = [0.5, 0.9, 0.1]
+        self.assertEqual([p["id"] for p in rank.top_k(passages, scores)], ["r:a", "a", "b"])
+        self.assertEqual([p["id"] for p in rank.top_k(passages, scores, earlier_last=True)],
+                         ["a", "b", "r:a"])
+
     def test_load_queries_merges_and_checks(self):
         with tempfile.TemporaryDirectory() as d:
             a, b, c = Path(d, "a.json"), Path(d, "b.json"), Path(d, "c.json")
@@ -227,7 +236,8 @@ class TwoRevisionTest(unittest.TestCase):
 
 class QuerySetTest(unittest.TestCase):
     def test_query_files_are_well_formed(self):
-        files = [ROOT / "retrieval" / "queries.json", ROOT / "retrieval" / "queries_changed.json"]
+        files = [ROOT / "retrieval" / "queries.json", ROOT / "retrieval" / "queries_changed.json",
+                 ROOT / "retrieval" / "queries_heldout.json"]
         merged = rank.load_queries(files)
         for q in merged["queries"]:
             self.assertIn(q["group"], merged["groups"])

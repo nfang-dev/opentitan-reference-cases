@@ -1,0 +1,981 @@
+{
+  "schema": 1,
+  "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+  "description": "Questions written after the retrieval methods and their parameters were fixed, about modules that the earlier questions do not use. Neither method was changed after these questions were written.",
+  "groups": {
+    "heldout": "Written after the methods were fixed, about modules not used in the earlier questions."
+  },
+  "queries": [
+    {
+      "id": "H01",
+      "group": "heldout",
+      "source": "uart",
+      "question": "How deep is the UART receive FIFO?",
+      "targets": [
+        {
+          "path": "hw/ip/uart/doc/theory_of_operation.md",
+          "lines": [
+            63,
+            63
+          ],
+          "quote": "pushed into a 64-byte RX FIFO"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H02",
+      "group": "heldout",
+      "source": "uart",
+      "question": "How should software compute the value of the UART CTRL.NCO field for a desired baud rate?",
+      "targets": [
+        {
+          "path": "hw/ip/uart/doc/theory_of_operation.md",
+          "lines": [
+            97,
+            100
+          ],
+          "quote": "The baud rate is set by writing to the"
+        },
+        {
+          "path": "hw/ip/uart/doc/programmers_guide.md",
+          "lines": [
+            13,
+            24
+          ],
+          "quote": "The `NCO` is calculated using the following equation"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H03",
+      "group": "heldout",
+      "source": "uart",
+      "question": "How far can the UART baud rate on each side differ from the ideal rate and still be received correctly?",
+      "targets": [
+        {
+          "path": "hw/ip/uart/doc/theory_of_operation.md",
+          "lines": [
+            92,
+            93
+          ],
+          "quote": "within +/- 2.5% of the ideal baud rate"
+        },
+        {
+          "path": "hw/ip/uart/doc/theory_of_operation.md",
+          "lines": [
+            110,
+            111
+          ],
+          "quote": "within +/- 2.5% of the ideal baud rate"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H04",
+      "group": "heldout",
+      "source": "i2c",
+      "question": "Which register fields enable the I2C controller (host) function and the target function?",
+      "targets": [
+        {
+          "path": "hw/ip/i2c/doc/theory_of_operation.md",
+          "lines": [
+            10,
+            10
+          ],
+          "quote": "CTRL.ENABLEHOST"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H05",
+      "group": "heldout",
+      "source": "i2c",
+      "question": "What does the I2C controller do when it receives an unexpected NACK, and can this end the transaction automatically?",
+      "targets": [
+        {
+          "path": "hw/ip/i2c/doc/theory_of_operation.md",
+          "lines": [
+            81,
+            82
+          ],
+          "quote": "the module halts"
+        },
+        {
+          "path": "hw/ip/i2c/doc/theory_of_operation.md",
+          "lines": [
+            101,
+            102
+          ],
+          "quote": "timeout mechanism that can automatically end the transaction"
+        },
+        {
+          "path": "hw/ip/i2c/doc/theory_of_operation.md",
+          "lines": [
+            107,
+            110
+          ],
+          "quote": "When the FSM first halts due to an unexpected NACK"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H06",
+      "group": "heldout",
+      "source": "i2c",
+      "question": "Does a full I2C RX FIFO stop the controller from processing commands?",
+      "targets": [
+        {
+          "path": "hw/ip/i2c/doc/theory_of_operation.md",
+          "lines": [
+            85,
+            86
+          ],
+          "quote": "a full RX FIFO does not stop command processing"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H07",
+      "group": "heldout",
+      "source": "gpio",
+      "question": "For how many module clock cycles must a GPIO input be stable when its noise filter is enabled?",
+      "targets": [
+        {
+          "path": "hw/top_earlgrey/ip_autogen/gpio/README.md",
+          "lines": [
+            51,
+            54
+          ],
+          "quote": "stable for 16 cycles"
+        },
+        {
+          "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+          "lines": [
+            77,
+            77
+          ],
+          "quote": "This 16-cycle filter"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H08",
+      "group": "heldout",
+      "source": "gpio",
+      "question": "When software writes MASKED_OUT_LOWER, which bits select the GPIO outputs to change and which bits carry the new values?",
+      "targets": [
+        {
+          "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+          "lines": [
+            24,
+            28
+          ],
+          "quote": "bits to modify are given as a mask in the upper"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H09",
+      "group": "heldout",
+      "source": "rv_timer",
+      "question": "How wide are the rv_timer prescaler and step fields?",
+      "targets": [
+        {
+          "path": "hw/ip/rv_timer/README.md",
+          "lines": [
+            22,
+            22
+          ],
+          "quote": "12-bit prescaler and 8-bit step register"
+        },
+        {
+          "path": "hw/ip/rv_timer/doc/theory_of_operation.md",
+          "lines": [
+            105,
+            106
+          ],
+          "quote": "name: \"prescale\""
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H10",
+      "group": "heldout",
+      "source": "rv_timer",
+      "question": "In what order should software write the two halves of a 64-bit rv_timer compare value to avoid a spurious interrupt?",
+      "targets": [
+        {
+          "path": "hw/ip/rv_timer/doc/programmers_guide.md",
+          "lines": [
+            36,
+            47
+          ],
+          "quote": "No smaller than old value."
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H11",
+      "group": "heldout",
+      "source": "aon_timer",
+      "question": "How many AON clock cycles make one tick of the aon_timer wakeup timer for a given WKUP_CTRL.prescaler value?",
+      "targets": [
+        {
+          "path": "hw/ip/aon_timer/README.md",
+          "lines": [
+            31,
+            32
+          ],
+          "quote": "one more than the 12-bit"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H12",
+      "group": "heldout",
+      "source": "aon_timer",
+      "question": "Does the aon_timer watchdog keep counting while the device is in sleep mode?",
+      "targets": [
+        {
+          "path": "hw/ip/aon_timer/README.md",
+          "lines": [
+            23,
+            23
+          ],
+          "quote": "pauses on assertion of the (asynchronous) the `sleep_mode_i` port"
+        },
+        {
+          "path": "hw/ip/aon_timer/README.md",
+          "lines": [
+            60,
+            62
+          ],
+          "quote": "the timer pauses when `sleep_mode_i` is asserted"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H13",
+      "group": "heldout",
+      "source": "aon_timer",
+      "question": "How does software clear the aon_timer wakeup request?",
+      "targets": [
+        {
+          "path": "hw/ip/aon_timer/README.md",
+          "lines": [
+            41,
+            41
+          ],
+          "quote": "writing 0 to"
+        },
+        {
+          "path": "hw/ip/aon_timer/README.md",
+          "lines": [
+            75,
+            75
+          ],
+          "quote": "writing 0 to"
+        },
+        {
+          "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+          "lines": [
+            91,
+            91
+          ],
+          "quote": "clear the wakeup request by writing 0 to"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H14",
+      "group": "heldout",
+      "source": "kmac",
+      "question": "When can software change the KMAC configuration?",
+      "targets": [
+        {
+          "path": "hw/ip/kmac/doc/programmers_guide.md",
+          "lines": [
+            5,
+            5
+          ],
+          "quote": "only when the IP is in the idle state"
+        },
+        {
+          "path": "hw/ip/kmac/doc/programmers_guide.md",
+          "lines": [
+            194,
+            194
+          ],
+          "quote": "SW must not change the configuration of or send commands"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H15",
+      "group": "heldout",
+      "source": "kmac",
+      "question": "With the KMAC message endianness bit set to 1, what value enters the message FIFO when software writes 0xDEADBEEF?",
+      "targets": [
+        {
+          "path": "hw/ip/kmac/doc/programmers_guide.md",
+          "lines": [
+            55,
+            57
+          ],
+          "quote": "0xEFBEADDE"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H16",
+      "group": "heldout",
+      "source": "kmac",
+      "question": "Can KMAC save and restore a hashing context while a sideloaded key is selected?",
+      "targets": [
+        {
+          "path": "hw/ip/kmac/doc/programmers_guide.md",
+          "lines": [
+            279,
+            279
+          ],
+          "quote": "Context switching is not available when a sideloaded key is used."
+        },
+        {
+          "path": "hw/ip/kmac/doc/programmers_guide.md",
+          "lines": [
+            293,
+            293
+          ],
+          "quote": "`ErrSwSaveRestoreSideload`"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H17",
+      "group": "heldout",
+      "source": "flash_ctrl",
+      "question": "Does the flash controller assume by default that scrambling and ECC are enabled on the info pages holding the creator and owner seeds?",
+      "targets": [
+        {
+          "path": "hw/ip_templates/flash_ctrl/doc/programmers_guide.md",
+          "lines": [
+            49,
+            51
+          ],
+          "quote": "by default, hardware assumes that scrambling and ECC is enabled"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H18",
+      "group": "heldout",
+      "source": "flash_ctrl",
+      "question": "How can software tell that the flash controller has finished reading the seed material after initialization?",
+      "targets": [
+        {
+          "path": "hw/ip_templates/flash_ctrl/doc/theory_of_operation.md",
+          "lines": [
+            21,
+            22
+          ],
+          "quote": "STATUS.INIT_WIP"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H19",
+      "group": "heldout",
+      "source": "flash_ctrl",
+      "question": "At what granularity do flash scrambling and reliability ECC operate, and how should flash operations be aligned?",
+      "targets": [
+        {
+          "path": "hw/ip_templates/flash_ctrl/doc/programmers_guide.md",
+          "lines": [
+            70,
+            71
+          ],
+          "quote": "operate on full Flash words (64 bits)"
+        },
+        {
+          "path": "hw/ip_templates/flash_ctrl/doc/theory_of_operation.md",
+          "lines": [
+            290,
+            291
+          ],
+          "quote": "operate on full Flash words (64 bits)"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H20",
+      "group": "heldout",
+      "source": "rom_ctrl",
+      "question": "Where does rom_ctrl expect the expected hash that it compares with the computed ROM checksum?",
+      "targets": [
+        {
+          "path": "hw/ip/rom_ctrl/README.md",
+          "lines": [
+            34,
+            35
+          ],
+          "quote": "top 8 words of the ROM"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H21",
+      "group": "heldout",
+      "source": "rom_ctrl",
+      "question": "When does rom_ctrl read the ROM contents to compute the checksum, and where is the checksum sent?",
+      "targets": [
+        {
+          "path": "hw/ip/rom_ctrl/README.md",
+          "lines": [
+            28,
+            31
+          ],
+          "quote": "read immediately after coming out of reset"
+        },
+        {
+          "path": "hw/ip/rom_ctrl/README.md",
+          "lines": [
+            17,
+            18
+          ],
+          "quote": "Generate a checksum of the ROM contents and feed its value to"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H22",
+      "group": "heldout",
+      "source": "adc_ctrl",
+      "question": "Which register field sets the power-up delay of the ADC in adc_ctrl?",
+      "targets": [
+        {
+          "path": "hw/ip/adc_ctrl/doc/programmers_guide.md",
+          "lines": [
+            6,
+            6
+          ],
+          "quote": "adc_pd_ctl.pwrup_time"
+        },
+        {
+          "path": "hw/ip/adc_ctrl/doc/theory_of_operation.md",
+          "lines": [
+            27,
+            27
+          ],
+          "quote": "which should be set to match the ADC power up delay"
+        },
+        {
+          "path": "hw/ip/adc_ctrl/doc/theory_of_operation.md",
+          "lines": [
+            60,
+            60
+          ],
+          "quote": "the ADC power-up delay is controlled by"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H23",
+      "group": "heldout",
+      "source": "adc_ctrl",
+      "question": "What must software program before setting adc_pd_ctl.lp_mode?",
+      "targets": [
+        {
+          "path": "hw/ip/adc_ctrl/doc/programmers_guide.md",
+          "lines": [
+            22,
+            23
+          ],
+          "quote": "must be programmed prior to setting this bit"
+        },
+        {
+          "path": "hw/ip/adc_ctrl/doc/programmers_guide.md",
+          "lines": [
+            30,
+            30
+          ],
+          "quote": "is configured and low power mode enabled by setting"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H24",
+      "group": "heldout",
+      "source": "adc_ctrl",
+      "question": "How many filters does adc_ctrl provide for the ADC channel values?",
+      "targets": [
+        {
+          "path": "hw/ip/adc_ctrl/README.md",
+          "lines": [
+            24,
+            24
+          ],
+          "quote": "Support for 8 filters"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H25",
+      "group": "heldout",
+      "source": "pwrmgr",
+      "question": "Which pwrmgr CONTROL field must be set for the chip to enter low power when the CPU sleeps?",
+      "targets": [
+        {
+          "path": "hw/ip_templates/pwrmgr/doc/programmers_guide.md",
+          "lines": [
+            17,
+            18
+          ],
+          "quote": "must be set to trigger low power entry when the CPU sleeps"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H26",
+      "group": "heldout",
+      "source": "pwrmgr",
+      "question": "Does executing a wait-for-interrupt instruction guarantee that pwrmgr enters low power?",
+      "targets": [
+        {
+          "path": "hw/ip_templates/pwrmgr/doc/programmers_guide.md",
+          "lines": [
+            22,
+            23
+          ],
+          "quote": "does not guarantee entry into low power"
+        },
+        {
+          "path": "hw/ip_templates/pwrmgr/doc/programmers_guide.md",
+          "lines": [
+            36,
+            37
+          ],
+          "quote": "will not trigger even an attempt to go to low power"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H27",
+      "group": "heldout",
+      "source": "pwrmgr",
+      "question": "After a fall-through exit or an aborted low power entry, has pwrmgr actually entered low power?",
+      "targets": [
+        {
+          "path": "hw/ip_templates/pwrmgr/doc/programmers_guide.md",
+          "lines": [
+            33,
+            34
+          ],
+          "quote": "the power manager does not actually enter low power"
+        },
+        {
+          "path": "hw/ip_templates/pwrmgr/doc/programmers_guide.md",
+          "lines": [
+            46,
+            46
+          ],
+          "quote": "where low power entry was not attempted"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H28",
+      "group": "heldout",
+      "source": "rv_core_ibex",
+      "question": "After reset, does rv_core_ibex run in ePMP or CHERIoT mode, and how long does a selected mode stay fixed?",
+      "targets": [
+        {
+          "path": "hw/top_earlgrey/ip_autogen/rv_core_ibex/doc/theory_of_operation.md",
+          "lines": [
+            111,
+            112
+          ],
+          "quote": "It resets unlocked in ePMP mode."
+        },
+        {
+          "path": "hw/top_earlgrey/ip_autogen/rv_core_ibex/doc/theory_of_operation.md",
+          "lines": [
+            125,
+            125
+          ],
+          "quote": "the mode is fixed until `rv_core_ibex` is reset"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H29",
+      "group": "heldout",
+      "source": "rv_core_ibex",
+      "question": "Is the rv_core_ibex RND_DATA register valid immediately after reset?",
+      "targets": [
+        {
+          "path": "hw/top_earlgrey/ip_autogen/rv_core_ibex/doc/theory_of_operation.md",
+          "lines": [
+            45,
+            46
+          ],
+          "quote": "is invalid"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H30",
+      "group": "heldout",
+      "source": "rv_core_ibex",
+      "question": "After rv_core_ibex raises the fatal_hw_err alert, when can Ibex fetch instructions again?",
+      "targets": [
+        {
+          "path": "hw/top_earlgrey/ip_autogen/rv_core_ibex/doc/theory_of_operation.md",
+          "lines": [
+            105,
+            105
+          ],
+          "quote": "remain disabled until ``rv_core_ibex`` is reset"
+        },
+        {
+          "path": "hw/top_earlgrey/ip_autogen/rv_core_ibex/doc/theory_of_operation.md",
+          "lines": [
+            98,
+            101
+          ],
+          "quote": "hasn't been raised"
+        },
+        {
+          "path": "hw/top_earlgrey/ip_autogen/rv_core_ibex/doc/theory_of_operation.md",
+          "lines": [
+            137,
+            138
+          ],
+          "quote": "Ibex will not resume execution"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H31",
+      "group": "heldout",
+      "source": "rv_dm",
+      "question": "In which life cycle states can the RISC-V debug module be used?",
+      "targets": [
+        {
+          "path": "hw/ip/rv_dm/doc/theory_of_operation.md",
+          "lines": [
+            58,
+            58
+          ],
+          "quote": "only usable during TEST_UNLOCKED*, DEV and RMA life cycle states"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H32",
+      "group": "heldout",
+      "source": "rv_dm",
+      "question": "In the DEV life cycle state, what decides whether the RISC-V debug module is fully ungated?",
+      "targets": [
+        {
+          "path": "hw/ip/rv_dm/doc/theory_of_operation.md",
+          "lines": [
+            59,
+            59
+          ],
+          "quote": "late enablement"
+        },
+        {
+          "path": "hw/ip/rv_dm/doc/theory_of_operation.md",
+          "lines": [
+            63,
+            69
+          ],
+          "quote": "LATE_DEBUG_ENABLE (CSR)"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H33",
+      "group": "heldout",
+      "source": "ac_range_check",
+      "question": "What does ac_range_check do with a request that matches no enabled range?",
+      "targets": [
+        {
+          "path": "hw/ip_templates/ac_range_check/README.md",
+          "lines": [
+            54,
+            57
+          ],
+          "quote": "If the request does not match any range"
+        },
+        {
+          "path": "hw/ip_templates/ac_range_check/README.md",
+          "lines": [
+            93,
+            93
+          ],
+          "quote": "If the access is denied because no range matches"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H34",
+      "group": "heldout",
+      "source": "ac_range_check",
+      "question": "What happens to accesses in an ac_range_check range whose READ, WRITE and EXECUTE permissions are all cleared?",
+      "targets": [
+        {
+          "path": "hw/ip_templates/ac_range_check/README.md",
+          "lines": [
+            38,
+            38
+          ],
+          "quote": "any access to that range shall be denied"
+        },
+        {
+          "path": "hw/ip_templates/ac_range_check/doc/theory_of_operation.md",
+          "lines": [
+            27,
+            28
+          ],
+          "quote": "No matching permissions"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H35",
+      "group": "heldout",
+      "source": "racl_ctrl",
+      "question": "Are racl_ctrl interrupts enabled by default?",
+      "targets": [
+        {
+          "path": "hw/ip_templates/racl_ctrl/doc/programmers_guide.md",
+          "lines": [
+            14,
+            14
+          ],
+          "quote": "Interrupts are disabled by default"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H36",
+      "group": "heldout",
+      "source": "dma",
+      "question": "What must software configure before using the DMA to access OpenTitan internal memory?",
+      "targets": [
+        {
+          "path": "hw/ip/dma/doc/programmers_guide.md",
+          "lines": [
+            7,
+            11
+          ],
+          "quote": "must define the accessible memory range"
+        },
+        {
+          "path": "hw/ip/dma/doc/theory_of_operation.md",
+          "lines": [
+            16,
+            16
+          ],
+          "quote": "configuration range registers to map OT internal memory as DMA enabled memory"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H37",
+      "group": "heldout",
+      "source": "dma",
+      "question": "Which peripherals can use the DMA hardware-handshake mode?",
+      "targets": [
+        {
+          "path": "hw/ip/dma/README.md",
+          "lines": [
+            63,
+            70
+          ],
+          "quote": "compatible with the following OpenTitan peripherals"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H38",
+      "group": "heldout",
+      "source": "mbx",
+      "question": "Which protocol does the mailbox (mbx) implement?",
+      "targets": [
+        {
+          "path": "hw/ip/mbx/README.md",
+          "lines": [
+            37,
+            37
+          ],
+          "quote": "Data Object Exchange (DOE)"
+        },
+        {
+          "path": "hw/ip/mbx/doc/theory_of_operation.md",
+          "lines": [
+            103,
+            104
+          ],
+          "quote": "Data Object Exchange mechanism"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H39",
+      "group": "heldout",
+      "source": "ascon",
+      "question": "What key and tag sizes does the Ascon accelerator use?",
+      "targets": [
+        {
+          "path": "hw/ip/ascon/README.md",
+          "lines": [
+            12,
+            12
+          ],
+          "quote": "with a key and tag size of 128 bit"
+        },
+        {
+          "path": "hw/ip/ascon/README.md",
+          "lines": [
+            35,
+            35
+          ],
+          "quote": "a 128-bit tag T"
+        },
+        {
+          "path": "hw/ip/ascon/doc/background.md",
+          "lines": [
+            49,
+            49
+          ],
+          "quote": "bottom 128 bits of the output"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H40",
+      "group": "heldout",
+      "source": "soc_dbg_ctrl",
+      "question": "Does Category 4 debugging on an unfused or pre-production part require debug authorization?",
+      "targets": [
+        {
+          "path": "hw/ip/soc_dbg_ctrl/README.md",
+          "lines": [
+            21,
+            21
+          ],
+          "quote": "No debug authorization is required on such parts."
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H41",
+      "group": "heldout",
+      "source": "usbdev",
+      "question": "Which transmit encoding does usbdev use by default, and which setting selects the alternative?",
+      "targets": [
+        {
+          "path": "hw/ip/usbdev/doc/theory_of_operation.md",
+          "lines": [
+            56,
+            58
+          ],
+          "quote": "0 (default, using dp/dn)"
+        },
+        {
+          "path": "hw/ip/usbdev/doc/theory_of_operation.md",
+          "lines": [
+            67,
+            67
+          ],
+          "quote": "usb_tx_use_d_se0_o"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H42",
+      "group": "heldout",
+      "source": "usbdev",
+      "question": "What happens on the USB D+ line when software sets the enable bit in usbctrl?",
+      "targets": [
+        {
+          "path": "hw/ip/usbdev/doc/programmers_guide.md",
+          "lines": [
+            6,
+            7
+          ],
+          "quote": "assert the pullup on the D+ line"
+        },
+        {
+          "path": "hw/ip/usbdev/doc/theory_of_operation.md",
+          "lines": [
+            104,
+            106
+          ],
+          "quote": "asserted whenever the interface is enabled and VBUS is present"
+        }
+      ],
+      "checked": false
+    },
+    {
+      "id": "H43",
+      "group": "heldout",
+      "source": "tlul",
+      "question": "Which fields of the TL-UL a_user bus carry integrity information?",
+      "targets": [
+        {
+          "path": "hw/ip/tlul/README.md",
+          "lines": [
+            102,
+            105
+          ],
+          "quote": "carries the command integrity of the transaction"
+        }
+      ],
+      "checked": false
+    }
+  ]
+}

@@ -43,6 +43,7 @@ jobs:
       - name: Check every target and outdated passage
         run: |
           python retrieval/check_queries.py --opentitan otdocs
+          python retrieval/check_queries.py --queries retrieval/queries_heldout.json --opentitan otdocs
           python retrieval/check_queries.py --queries retrieval/queries.json \
             --queries retrieval/queries_changed.json --opentitan otdocs --earlier otdocs-earlier
       - name: Re-run BM25 and compare with the committed results
@@ -53,8 +54,17 @@ jobs:
             --queries retrieval/queries_changed.json --opentitan otdocs --earlier otdocs-earlier \
             --out bm25-two-rerun.json
           diff -u retrieval/results/two_revisions/bm25.json bm25-two-rerun.json
+          python retrieval/rank.py --method bm25 --queries retrieval/queries.json \
+            --queries retrieval/queries_changed.json --opentitan otdocs --earlier otdocs-earlier \
+            --earlier-last --out bm25-revision-rerun.json
+          diff -u retrieval/results/two_revisions/bm25_revision.json bm25-revision-rerun.json
+          python retrieval/rank.py --method bm25 --queries retrieval/queries.json \
+            --queries retrieval/queries_heldout.json --opentitan otdocs --out bm25-extended-rerun.json
+          diff -u retrieval/results/extended/bm25.json bm25-extended-rerun.json
       - name: Score all committed results
         run: |
           python retrieval/evaluate.py retrieval/results/*.json --strict
           python retrieval/evaluate.py retrieval/results/two_revisions/*.json --strict \
             --queries retrieval/queries.json --queries retrieval/queries_changed.json
+          python retrieval/evaluate.py retrieval/results/extended/*.json --strict \
+            --queries retrieval/queries.json --queries retrieval/queries_heldout.json
