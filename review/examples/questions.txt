@@ -1,0 +1,5 @@
+01-pinmux-mio-outsel	In pinmux, what does an MIO pad output after reset if software has not programmed its MIO_OUTSEL register?
+02-pinmux-sleep-enable	What sleep behavior does a pinmux pad have after reset when its MIO_PAD_SLEEP_EN bit is not set?
+03-csrng-int-state-enables	After reset, is reading and halting the csrng internal state enabled for every application instance, as set by INT_STATE_READ_ENABLE and INT_STATE_HALT_ENABLE?
+04-alert-handler-escalation-enable	Is escalation signal 0 of alert class A enabled by default (CLASSA_CTRL_SHADOWED.E0_EN)?
+05-spi-host-interrupt-enables	After reset, which SPI_HOST error and event interrupts are enabled by ERROR_ENABLE and EVENT_ENABLE?

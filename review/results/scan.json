@@ -1,0 +1,221 @@
+{
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "statements": [
+  {
+   "file": "hw/ip/edn/doc/theory_of_operation.md",
+   "line": 86,
+   "text": "The reset value is `0`, which means no `generate` commands are issued.",
+   "kind": "prose",
+   "name": "MAX_NUM_REQS_BETWEEN_RESEEDS",
+   "attribution": "named on line 85 above",
+   "stated": 0,
+   "stated_words": null,
+   "outcome": "agrees",
+   "design": {
+    "value": 0,
+    "instances": 1,
+    "file": "hw/ip/edn/rtl/edn_reg_top.sv",
+    "line": 961
+   }
+  },
+  {
+   "file": "hw/ip/spi_host/doc/programmers_guide.md",
+   "line": 37,
+   "text": "At reset all fields in `ERROR_ENABLE` are set, indicating that all error classes will trigger an interrupt.",
+   "kind": "prose",
+   "name": "ERROR_ENABLE",
+   "attribution": "named in the sentence",
+   "stated": null,
+   "stated_words": "all set",
+   "outcome": "agrees",
+   "design": {
+    "value": "every field all ones",
+    "instances": 1,
+    "file": "hw/ip/spi_host/rtl/spi_host_reg_top.sv",
+    "line": 1332
+   }
+  },
+  {
+   "file": "hw/ip/spi_host/doc/programmers_guide.md",
+   "line": 40,
+   "text": "At reset all fields in this register are cleared, meaning all event interrupts are disabled, and thus all transactions must be managed by polling the status register.",
+   "kind": "prose",
+   "name": "EVENT_ENABLE",
+   "attribution": "named on line 39 above",
+   "stated": 0,
+   "stated_words": "cleared",
+   "outcome": "agrees",
+   "design": {
+    "value": 0,
+    "instances": 1,
+    "file": "hw/ip/spi_host/rtl/spi_host_reg_top.sv",
+    "line": 1644
+   }
+  },
+  {
+   "file": "hw/ip_templates/alert_handler/doc/programmers_guide.md",
+   "line": 53,
+   "text": "- Determine whether to enable the escalation signal, and set the `CLASSA_CTRL_SHADOWED.E0_EN` bit accordingly (default is enabled).",
+   "kind": "prose",
+   "name": "CLASSA_CTRL_SHADOWED.E0_EN",
+   "attribution": "named in the sentence",
+   "stated": null,
+   "stated_words": "enabled",
+   "outcome": "name not in design",
+   "near": [
+    "classa_ctrl_shadowed.en_e0"
+   ],
+   "near_design": {
+    "value": 1,
+    "instances": 1,
+    "file": "hw/top_earlgrey/ip_autogen/alert_handler/rtl/alert_handler_reg_top.sv",
+    "line": 13258
+   },
+   "near_outcome": "agrees"
+  },
+  {
+   "file": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+   "line": 40,
+   "text": "0                     | Constant zero (default)",
+   "kind": "table row",
+   "name": "periph_insel",
+   "attribution": "table header, line 38",
+   "stated": 0,
+   "stated_words": null,
+   "outcome": "name not in design",
+   "near": [
+    "mio_periph_insel"
+   ],
+   "near_design": {
+    "value": 0,
+    "instances": 97,
+    "file": "hw/top_earlgrey/ip_autogen/pinmux/rtl/pinmux_reg_top.sv",
+    "line": 7401
+   },
+   "near_outcome": "agrees"
+  },
+  {
+   "file": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+   "line": 44,
+   "text": "The global default at reset is `0`, but the default of individual signals can be overridden at design time, if needed.",
+   "kind": "prose",
+   "name": "periph_insel",
+   "attribution": "named on line 38 above",
+   "stated": 0,
+   "stated_words": null,
+   "outcome": "name not in design",
+   "near": [
+    "mio_periph_insel"
+   ],
+   "near_design": {
+    "value": 0,
+    "instances": 97,
+    "file": "hw/top_earlgrey/ip_autogen/pinmux/rtl/pinmux_reg_top.sv",
+    "line": 7401
+   },
+   "near_outcome": "agrees"
+  },
+  {
+   "file": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+   "line": 48,
+   "text": "0                     | Constant zero (default)",
+   "kind": "table row",
+   "name": "mio_outsel",
+   "attribution": "table header, line 46",
+   "stated": 0,
+   "stated_words": null,
+   "outcome": "disagrees",
+   "design": {
+    "value": 2,
+    "instances": 47,
+    "file": "hw/top_earlgrey/ip_autogen/pinmux/rtl/pinmux_reg_top.sv",
+    "line": 12012
+   }
+  },
+  {
+   "file": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+   "line": 53,
+   "text": "The global default at reset is `2`, but the default of individual signals can be overridden at design time, if needed.",
+   "kind": "prose",
+   "name": "mio_outsel",
+   "attribution": "named on line 46 above",
+   "stated": 2,
+   "stated_words": null,
+   "outcome": "agrees",
+   "design": {
+    "value": 2,
+    "instances": 47,
+    "file": "hw/top_earlgrey/ip_autogen/pinmux/rtl/pinmux_reg_top.sv",
+    "line": 12012
+   }
+  },
+  {
+   "file": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+   "line": 66,
+   "text": "0                             | -                              | Drive (default)",
+   "kind": "table row",
+   "name": "dio_pad_sleep_en",
+   "attribution": "table header, line 64",
+   "stated": 0,
+   "stated_words": null,
+   "outcome": "agrees",
+   "design": {
+    "value": 0,
+    "instances": 16,
+    "file": "hw/top_earlgrey/ip_autogen/pinmux/rtl/pinmux_reg_top.sv",
+    "line": 32865
+   }
+  },
+  {
+   "file": "hw/ip_templates/pinmux/doc/programmers_guide.md",
+   "line": 66,
+   "text": "0                             | -                              | Drive (default)",
+   "kind": "table row",
+   "name": "mio_pad_sleep_en",
+   "attribution": "table header, line 64",
+   "stated": 0,
+   "stated_words": null,
+   "outcome": "agrees",
+   "design": {
+    "value": 0,
+    "instances": 47,
+    "file": "hw/top_earlgrey/ip_autogen/pinmux/rtl/pinmux_reg_top.sv",
+    "line": 28832
+   }
+  },
+  {
+   "file": "hw/ip_templates/racl_ctrl/doc/programmers_guide.md",
+   "line": 14,
+   "text": "Interrupts are disabled by default but can be enabled via the `INTR_ENABLE` register.",
+   "kind": "prose",
+   "name": "INTR_ENABLE",
+   "attribution": "named in the sentence",
+   "stated": 0,
+   "stated_words": "disabled",
+   "outcome": "agrees",
+   "design": {
+    "value": 0,
+    "instances": 1,
+    "file": "hw/top_darjeeling/ip_autogen/racl_ctrl/rtl/racl_ctrl_reg_top.sv",
+    "line": 442
+   }
+  },
+  {
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md",
+   "line": 389,
+   "text": "The interrupt timeout is disabled if this is set to 0 (default).",
+   "kind": "prose",
+   "name": "CLASSA_TIMEOUT_CYC_SHADOWED",
+   "attribution": "named on line 388 above",
+   "stated": 0,
+   "stated_words": null,
+   "outcome": "agrees",
+   "design": {
+    "value": 0,
+    "instances": 1,
+    "file": "hw/top_earlgrey/ip_autogen/alert_handler/rtl/alert_handler_reg_top.sv",
+    "line": 13687
+   }
+  }
+ ]
+}

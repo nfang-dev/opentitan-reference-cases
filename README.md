@@ -72,6 +72,11 @@ CI runs both on every push.
 
 [`behavior/`](behavior/README.md) simulates the Earl Grey pinmux with Verilator and cocotb to observe the pad outputs after reset that case 001 is about, and shows that the check fails on a copy of the design with the reset value changed.
 
+## Reset-value review
+
+[`review/`](review/README.md) puts the steps together for one kind of question, a register's value after reset: it finds the passages that answer the question, picks out the statements that give a value, looks up the register's reset value in the design, compares them, and writes a report with every source.
+It is evaluated against the labeled cases and on every statement in the documentation.
+
 ## Retrieval comparison
 
 [`retrieval/`](retrieval/README.md) compares a keyword method (BM25) with a locally run text-embedding model on finding the passage in OpenTitan's documentation that answers a question about a setting, using the statements from these cases and further questions.

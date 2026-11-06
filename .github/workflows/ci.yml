@@ -68,3 +68,26 @@ jobs:
             --queries retrieval/queries.json --queries retrieval/queries_changed.json
           python retrieval/evaluate.py retrieval/results/extended/*.json --strict \
             --queries retrieval/queries.json --queries retrieval/queries_heldout.json
+
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch OpenTitan hw/ and the earlier revision's documentation
+        run: |
+          ./behavior/fetch_hw.sh opentitan-hw
+          ./retrieval/fetch_docs.sh otdocs-earlier earlier
+      - name: Re-run the scan and the comparison with the cases, and compare with the committed results
+        run: |
+          python review/review.py scan --opentitan opentitan-hw --out scan.md --json scan.json
+          diff -u review/results/scan.md scan.md
+          diff -u review/results/scan.json scan.json
+          python review/review.py cases --scan scan.json --out cases.md
+          diff -u review/results/cases.md cases.md
+      - name: Re-run the example questions and compare with the committed reports
+        run: |
+          ./review/run_examples.sh opentitan-hw otdocs-earlier examples-rerun
+          for f in review/examples/*.md; do diff -u "$f" "examples-rerun/$(basename "$f")"; done
