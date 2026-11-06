@@ -15,6 +15,7 @@
       "id": "V01",
       "group": "changed",
       "source": "keymgr_dpe",
+      "note": "The current revision also says, at theory_of_operation.md line 85, that the root key can only be latched once until keymgr_dpe is reset. That sentence disagrees with line 145 and with the design's load root key operation (keymgr_dpe.hjson, LOAD_ROOT_KEY_LOCK), so it counts neither as a target nor as an outdated passage.",
       "question": "Can keymgr_dpe latch the OTP creator root key (UDS) again before the next power cycle?",
       "targets": [
         {"path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md", "lines": [145, 145], "quote": "This initial latching can be repeated with the"}
@@ -30,7 +31,8 @@
       "source": "keymgr_dpe",
       "question": "Is MAX_KEY_VER_SHADOWED used during the first keymgr_dpe advance call, the one that latches the UDS?",
       "targets": [
-        {"path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md", "lines": [140, 141], "quote": "The fields `MAX_KEY_VER_SHADOWED` and `SLOT_POLICY` are not consumed"}
+        {"path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md", "lines": [140, 141], "quote": "The fields `MAX_KEY_VER_SHADOWED` and `SLOT_POLICY` are not consumed"},
+        {"path": "hw/ip/keymgr_dpe/doc/programmers_guide.md", "lines": [27, 27], "quote": "ignoring `SLOT_POLICY` and `MAX_KEY_VER_SHADOWED`"}
       ],
       "outdated": [
         {"path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md", "lines": [126, 126], "quote": "`CONTROL_SHADOWED.OPERATION`, `MAX_KEY_VER_SHADOWED`, `CONTROL_SHADOWED.SLOT_DST_SEL` and `START`"}
@@ -116,7 +118,8 @@
       ],
       "outdated": [
         {"path": "hw/ip/spi_host/doc/programmers_guide.md", "lines": [28, 29], "quote": "multi-register must be programmed to reflect the requirements of the attached target devices"},
-        {"path": "hw/ip/spi_host/doc/theory_of_operation.md", "lines": [216, 220], "quote": "multi-register contains separate configuration entries for each chip select"}
+        {"path": "hw/ip/spi_host/doc/theory_of_operation.md", "lines": [216, 220], "quote": "multi-register contains separate configuration entries for each chip select"},
+        {"path": "hw/ip/spi_host/doc/theory_of_operation.md", "lines": [381, 381], "quote": "the `CONFIGOPTS` multi-register corresponding to"}
       ],
       "checked": true
     }

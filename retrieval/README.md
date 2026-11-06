@@ -20,6 +20,27 @@ At OpenTitan revision `0ea5236fe749`, on 27 questions:
 With 27 questions, a difference of one question is not evidence that either method is better.
 Per-group and per-question results, and the questions each method missed, are in the report.
 
+## Two revisions: outdated passages
+
+A reviewer may have older documentation at hand, and a search index may hold several versions.
+The second experiment asks whether a method returns the earlier answer when an earlier revision's documentation is also searchable.
+
+- Earlier revision: `63c8a5025a0b` (2026-05-01). Its passages whose text differs from the current revision are added to the corpus: 371 passages, for 3,350 in total. Passages with identical text are not added, since they give the same answer.
+- [`queries_changed.json`](queries_changed.json) holds 8 questions whose documented answer changed between the two revisions (keymgr_dpe, otbn, spi_device, sram_ctrl, spi_host). Each lists target passages at the current revision and the outdated passages at the earlier revision that give the earlier answer. They were chosen from a line-by-line comparison of the two revisions' documentation, limited to statements about settings whose meaning changed. Every passage either method ranked in its first three was read; three target passages and two outdated passages were added this way.
+- All 35 questions (the 27 above and these 8) are run on this corpus. Only passages of the current revision count as correct.
+
+| Method | Recall@1 | Recall@5 | MRR@10 | Earlier answer ranked above the current one (of 8) | First result from the earlier revision (of 35) |
+|---|---|---|---|---|---|
+| BM25 | 24/35 | 33/35 | 0.796 | 3 (V01, V05, V08) | 3 |
+| Embedding model | 25/35 | 34/35 | 0.821 | 2 (V05, V08) | 3 |
+
+Both methods ranked the earlier answer first for V05 (spi_device dummy cycles) and V08 (whether spi_host keeps a separate `CONFIGOPTS` per chip select).
+Neither method uses the revision a passage comes from, so when outdated documentation is indexed, ranking by text alone can return it first.
+The full results are in [`results/two_revisions/report.md`](results/two_revisions/report.md).
+
+While checking V01, a conflict inside the current revision turned up: `hw/ip/keymgr_dpe/doc/theory_of_operation.md` line 85 says "The latching of the root key can only happen once until the keymgr_DPE is reset.", while line 145 says the latching can be repeated with the load root key operation unless locked, and the design defines that operation and `LOAD_ROOT_KEY_LOCK` (`keymgr_dpe.hjson`).
+Line 85 counts neither as a target nor as an outdated passage; it has not been reported upstream.
+
 ## Corpus
 
 `corpus.py` builds the passages from an OpenTitan checkout at the revision recorded in `queries.json` (`0ea5236fe749`, 2026-11-03):
@@ -81,6 +102,17 @@ python3 retrieval/rank.py --method embedding --opentitan otdocs --out retrieval/
 
 python3 retrieval/evaluate.py retrieval/results/bm25.json retrieval/results/embedding.json \
   --strict --report retrieval/results/report.md
+
+# Two revisions: also fetch the earlier documentation and pass both query files.
+./retrieval/fetch_docs.sh otdocs-earlier earlier
+Q="--queries retrieval/queries.json --queries retrieval/queries_changed.json"
+python3 retrieval/check_queries.py $Q --opentitan otdocs --earlier otdocs-earlier
+python3 retrieval/rank.py --method bm25 $Q --opentitan otdocs --earlier otdocs-earlier \
+  --out retrieval/results/two_revisions/bm25.json
+python3 retrieval/rank.py --method embedding $Q --opentitan otdocs --earlier otdocs-earlier \
+  --out retrieval/results/two_revisions/embedding.json
+python3 retrieval/evaluate.py retrieval/results/two_revisions/*.json $Q --strict \
+  --report retrieval/results/two_revisions/report.md
 ```
 
 Each result file records the method and its parameters (for the embedding model, the resolved model revision and library versions), the OpenTitan revision, a hash of the corpus and a hash of the questions.
@@ -94,6 +126,6 @@ A second run with the pinned model revision ([run 41979669877](https://github.co
 
 - The set is small (27 questions), so differences of one or two questions between methods are not meaningful.
 - The questions were written after reading the documentation, which may make their wording closer to the target passages than a real reviewer's would be.
-- All passages come from one revision, so the comparison does not yet test whether a method returns an outdated version of a passage.
+- The two-revision experiment uses one earlier revision and 8 questions whose answer changed, so it shows that outdated passages can be ranked first, not how often this happens in general.
 - One embedding model and one keyword method are compared; no reranking or language model is used.
 - A passage that answers a question but is not listed as a target counts as wrong. Pooling covers the first three results of these two methods only; another method could surface further answering passages.
