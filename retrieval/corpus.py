@@ -186,6 +186,23 @@ def build(root: Path) -> list[dict]:
     return corpus
 
 
+def build_earlier(root: Path, revision: str, current: list[dict]) -> list[dict]:
+    """Passages of an earlier revision whose text does not occur in the current corpus.
+
+    A passage whose indexed text is identical to a current passage gives the same answer,
+    so only passages that differ are added. Each is marked with the earlier revision
+    (first 12 characters), and its id is prefixed with it.
+    """
+    current_texts = {p["text"] for p in current}
+    tag = revision[:12]
+    out = []
+    for p in build(root):
+        if p["text"] in current_texts:
+            continue
+        out.append(dict(p, id=f"{tag}:{p['id']}", revision=tag))
+    return out
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--opentitan", required=True, type=Path, help="OpenTitan checkout")

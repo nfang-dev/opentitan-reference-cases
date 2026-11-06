@@ -8,9 +8,11 @@ Methods:
   (needs the packages in requirements-embed.txt; the model is downloaded once).
 
 Both methods index the same passage text (see corpus.py) and return the top K passages
-for each query. The output records the method, its parameters, the OpenTitan revision
-of the checkout and a hash of the corpus, so that results from different methods can be
-checked to use the same input.
+for each query. With --earlier, passages of an earlier revision whose text differs from
+the current revision are added to the corpus (see corpus.build_earlier).
+The output records the method, its parameters, the OpenTitan revision of the checkout
+and a hash of the corpus, so that results from different methods can be checked to use
+the same input.
 """
 
 from __future__ import annotations
@@ -75,12 +77,38 @@ class BM25:
 
 def top_k(passages: list[dict], scores: list[float], k: int = TOP_K) -> list[dict]:
     order = sorted(range(len(passages)), key=lambda i: (-scores[i], passages[i]["id"]))
-    return [
-        {"id": passages[i]["id"], "path": passages[i]["path"],
-         "start_line": passages[i]["start_line"], "end_line": passages[i]["end_line"],
-         "score": round(float(scores[i]), 6)}
-        for i in order[:k]
-    ]
+    out = []
+    for i in order[:k]:
+        item = {"id": passages[i]["id"], "path": passages[i]["path"],
+                "start_line": passages[i]["start_line"], "end_line": passages[i]["end_line"],
+                "score": round(float(scores[i]), 6)}
+        if "revision" in passages[i]:
+            item["revision"] = passages[i]["revision"]
+        out.append(item)
+    return out
+
+
+def load_queries(paths: list[Path]) -> dict:
+    """Merge query files that share one OpenTitan revision into a single query set."""
+    merged = {"opentitan_revision": None, "earlier_revision": None, "groups": {}, "queries": [],
+              "reviews": []}
+    for path in paths:
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        if merged["opentitan_revision"] not in (None, data["opentitan_revision"]):
+            raise ValueError(f"{path}: OpenTitan revision differs from the other query files")
+        merged["opentitan_revision"] = data["opentitan_revision"]
+        if "earlier_revision" in data:
+            if merged["earlier_revision"] not in (None, data["earlier_revision"]):
+                raise ValueError(f"{path}: earlier revision differs from the other query files")
+            merged["earlier_revision"] = data["earlier_revision"]
+        merged["groups"].update(data["groups"])
+        merged["queries"].extend(data["queries"])
+        if data.get("review"):
+            merged["reviews"].append(dict(data["review"], file=Path(path).name))
+    ids = [q["id"] for q in merged["queries"]]
+    if len(ids) != len(set(ids)):
+        raise ValueError("query ids repeat across the query files")
+    return merged
 
 
 def rank_bm25(passages: list[dict], questions: dict[str, str]) -> tuple[dict, dict]:
@@ -151,7 +179,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--method", required=True, choices=["bm25", "embedding"])
     parser.add_argument("--opentitan", required=True, type=Path)
-    parser.add_argument("--queries", type=Path, default=Path(__file__).parent / "queries.json")
+    parser.add_argument("--queries", type=Path, action="append",
+                        help="query file (repeat for several; default: queries.json)")
+    parser.add_argument("--earlier", type=Path,
+                        help="checkout of the earlier revision named in the query files")
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--model", default="BAAI/bge-small-en-v1.5")
     parser.add_argument("--model-revision", default="5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
@@ -162,12 +193,21 @@ def main(argv: list[str] | None = None) -> int:
                         help="instruction prepended to each question (as recommended for BGE)")
     args = parser.parse_args(argv)
 
-    queries = json.loads(args.queries.read_text(encoding="utf-8"))
+    queries = load_queries(args.queries or [Path(__file__).parent / "queries.json"])
     revision = checkout_revision(args.opentitan)
     if revision and revision != queries["opentitan_revision"]:
         print(f"warning: checkout is at {revision}, queries record {queries['opentitan_revision']}",
               file=sys.stderr)
     passages = corpus.build(args.opentitan)
+    earlier_revision = None
+    if args.earlier:
+        if not queries["earlier_revision"]:
+            parser.error("--earlier needs a query file that records an earlier_revision")
+        earlier_revision = checkout_revision(args.earlier) or queries["earlier_revision"]
+        if earlier_revision != queries["earlier_revision"]:
+            parser.error(f"earlier checkout is at {earlier_revision}, "
+                         f"queries record {queries['earlier_revision']}")
+        passages = passages + corpus.build_earlier(args.earlier, earlier_revision, passages)
     questions = {q["id"]: q["question"] for q in queries["queries"]}
 
     if args.method == "bm25":
@@ -180,6 +220,8 @@ def main(argv: list[str] | None = None) -> int:
         "method": args.method,
         "parameters": params,
         "opentitan_revision": revision,
+        **({"earlier_revision": earlier_revision,
+            "earlier_passages": sum(1 for p in passages if "revision" in p)} if earlier_revision else {}),
         "corpus": {"passages": len(passages), "files": len({p["path"] for p in passages}),
                    "sha256": corpus_hash(passages), "max_chars": corpus.MAX_CHARS},
         "questions_sha256": questions_hash(questions),

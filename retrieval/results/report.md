@@ -3,7 +3,7 @@
 OpenTitan revision: `0ea5236fe749e70ba18f56ba19c4be982ef46da7`. Corpus: 2979 passages from 198 files.
 All methods used the same corpus.
 Queries: 27, with 44 target passages. Target passages checked: 27 of 27 queries.
-How the targets were checked (2026-11-05): Every target passage was read against the source text at the recorded revision and confirmed to answer its question. Every passage that either method ranked in its first three for a question, but that was not a target, was read; the ones that state at least part of the answer were added as targets.
+How the targets in `queries.json` were checked (2026-11-05): Every target passage was read against the source text at the recorded revision and confirmed to answer its question. Every passage that either method ranked in its first three for a question, but that was not a target, was read; the ones that state at least part of the answer were added as targets.
 
 ## Methods
 

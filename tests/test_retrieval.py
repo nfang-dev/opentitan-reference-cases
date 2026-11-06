@@ -162,18 +162,83 @@ class CheckQueriesTest(FakeCheckout):
                       check_queries.check(self.queries(path="hw/ip/foo/doc/registers.md"), self.root)[0])
 
 
+class TwoRevisionTest(unittest.TestCase):
+    def test_earlier_passages_keep_only_changed_text(self):
+        with tempfile.TemporaryDirectory() as old_dir, tempfile.TemporaryDirectory() as new_dir:
+            old, new = Path(old_dir), Path(new_dir)
+            write(old, "hw/ip/foo/README.md", "# Foo\n\nSame text.\n\n## Reset\n\nOld default is 0.\n")
+            write(new, "hw/ip/foo/README.md", "# Foo\n\nSame text.\n\n## Reset\n\nNew default is 2.\n")
+            current = corpus.build(new)
+            earlier = corpus.build_earlier(old, "0123456789abcdef", current)
+            self.assertEqual(len(earlier), 1)
+            self.assertIn("Old default", earlier[0]["text"])
+            self.assertEqual(earlier[0]["revision"], "0123456789ab")
+            self.assertTrue(earlier[0]["id"].startswith("0123456789ab:hw/ip/foo/README.md:"))
+
+    def test_only_current_passages_are_correct(self):
+        targets = [{"path": "a.md", "lines": [3, 3]}]
+        current = {"path": "a.md", "start_line": 1, "end_line": 5}
+        old = dict(current, revision="0123456789ab")
+        self.assertTrue(evaluate.is_hit(current, targets))
+        self.assertFalse(evaluate.is_hit(old, targets))
+        self.assertTrue(evaluate.is_outdated_hit(old, targets))
+        self.assertFalse(evaluate.is_outdated_hit(current, targets))
+
+    def test_outdated_counts(self):
+        queries = {"groups": {"changed": ""}, "queries": [
+            {"id": "V1", "group": "changed", "targets": [{"path": "a.md", "lines": [1, 1]}],
+             "outdated": [{"path": "a.md", "lines": [1, 1]}]},
+            {"id": "V2", "group": "changed", "targets": [{"path": "b.md", "lines": [1, 1]}],
+             "outdated": [{"path": "b.md", "lines": [1, 1]}]},
+        ]}
+
+        def item(path, revision=None):
+            d = {"id": path, "path": path, "start_line": 1, "end_line": 1}
+            if revision:
+                d["revision"] = revision
+            return d
+        result = {"method": "m", "rankings": {
+            "V1": [item("a.md", "r"), item("a.md")],
+            "V2": [item("b.md"), item("b.md", "r")],
+        }}
+        s = evaluate.score(queries, result)
+        self.assertEqual(s["ranks"], {"V1": 2, "V2": 1})
+        self.assertEqual(s["outdated_ranks"], {"V1": 1, "V2": 2})
+        self.assertEqual(s["outdated_above"], ["V1"])
+        self.assertEqual(s["earlier_first"], ["V1"])
+
+    def test_load_queries_merges_and_checks(self):
+        with tempfile.TemporaryDirectory() as d:
+            a, b, c = Path(d, "a.json"), Path(d, "b.json"), Path(d, "c.json")
+            a.write_text(json.dumps({"opentitan_revision": "r1", "groups": {"x": ""},
+                                     "queries": [{"id": "Q1"}]}))
+            b.write_text(json.dumps({"opentitan_revision": "r1", "earlier_revision": "r0",
+                                     "groups": {"y": ""}, "queries": [{"id": "V1"}]}))
+            c.write_text(json.dumps({"opentitan_revision": "r2", "groups": {}, "queries": [{"id": "Q1"}]}))
+            merged = rank.load_queries([a, b])
+            self.assertEqual([q["id"] for q in merged["queries"]], ["Q1", "V1"])
+            self.assertEqual(merged["earlier_revision"], "r0")
+            self.assertEqual(set(merged["groups"]), {"x", "y"})
+            with self.assertRaises(ValueError):
+                rank.load_queries([a, c])
+            with self.assertRaises(ValueError):
+                rank.load_queries([a, a])
+
+
 class QuerySetTest(unittest.TestCase):
-    def test_query_file_is_well_formed(self):
-        queries = json.loads((ROOT / "retrieval" / "queries.json").read_text(encoding="utf-8"))
-        ids = [q["id"] for q in queries["queries"]]
-        self.assertEqual(len(ids), len(set(ids)))
-        for q in queries["queries"]:
-            self.assertIn(q["group"], queries["groups"])
+    def test_query_files_are_well_formed(self):
+        files = [ROOT / "retrieval" / "queries.json", ROOT / "retrieval" / "queries_changed.json"]
+        merged = rank.load_queries(files)
+        for q in merged["queries"]:
+            self.assertIn(q["group"], merged["groups"])
             self.assertTrue(q["targets"])
             self.assertIsInstance(q["checked"], bool)
-            for t in q["targets"]:
+            for t in q["targets"] + q.get("outdated", []):
                 self.assertLessEqual(t["lines"][0], t["lines"][1])
                 self.assertTrue(t["quote"])
+        changed = json.loads(files[1].read_text(encoding="utf-8"))
+        self.assertTrue(changed["earlier_revision"])
+        self.assertTrue(all(q["outdated"] for q in changed["queries"]))
 
 
 if __name__ == "__main__":

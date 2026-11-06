@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+  "earlier_revision": "63c8a5025a0b02f50c3502e8ae0653cfd4a36ff9",
+  "description": "Questions whose answer in OpenTitan's documentation changed between the earlier revision (2026-05-01) and the current one (2026-11-03). Targets are passages at the current revision; outdated passages give the earlier answer.",
+  "groups": {
+    "changed": "The documentation's answer changed between the earlier and the current revision."
+  },
+  "review": {
+    "date": "2026-11-05",
+    "method": "Each question was chosen from a line-by-line comparison of the two revisions' documentation, limited to statements about settings whose meaning changed. Every target and outdated passage was read against the source text of its revision."
+  },
+  "queries": [
+    {
+      "id": "V01",
+      "group": "changed",
+      "source": "keymgr_dpe",
+      "question": "Can keymgr_dpe latch the OTP creator root key (UDS) again before the next power cycle?",
+      "targets": [
+        {"path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md", "lines": [145, 145], "quote": "This initial latching can be repeated with the"}
+      ],
+      "outdated": [
+        {"path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md", "lines": [130, 130], "quote": "This initial latching can only be done once until the next power cycle."}
+      ],
+      "checked": true
+    },
+    {
+      "id": "V02",
+      "group": "changed",
+      "source": "keymgr_dpe",
+      "question": "Is MAX_KEY_VER_SHADOWED used during the first keymgr_dpe advance call, the one that latches the UDS?",
+      "targets": [
+        {"path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md", "lines": [140, 141], "quote": "The fields `MAX_KEY_VER_SHADOWED` and `SLOT_POLICY` are not consumed"}
+      ],
+      "outdated": [
+        {"path": "hw/ip/keymgr_dpe/doc/theory_of_operation.md", "lines": [126, 126], "quote": "`CONTROL_SHADOWED.OPERATION`, `MAX_KEY_VER_SHADOWED`, `CONTROL_SHADOWED.SLOT_DST_SEL` and `START`"}
+      ],
+      "checked": true
+    },
+    {
+      "id": "V03",
+      "group": "changed",
+      "source": "otbn",
+      "question": "Which OTBN wide special registers (WSRs) are set to zero when an operation starts?",
+      "targets": [
+        {"path": "hw/ip/otbn/README.md", "lines": [807, 808], "quote": "The `MOD` and `ACC` WSRs are set to 0 when OTBN starts an operation"}
+      ],
+      "outdated": [
+        {"path": "hw/ip/otbn/README.md", "lines": [768, 768], "quote": "All read-write (RW) WSRs are set to 0 when OTBN starts an operation"}
+      ],
+      "checked": true
+    },
+    {
+      "id": "V04",
+      "group": "changed",
+      "source": "otbn",
+      "question": "Which bit in the OTBN MAI_CTRL CSR starts a new MAI operation, and which bit shows that an MAI operation is in progress?",
+      "targets": [
+        {"path": "hw/ip/otbn/README.md", "lines": [760, 760], "quote": "BUSY: This bit is set to 1 when an MAI operation is in progress."},
+        {"path": "hw/ip/otbn/doc/theory_of_operation.md", "lines": [1004, 1008], "quote": "Issue the `MAI_CTRL.START` command by writing a 1 to it."}
+      ],
+      "outdated": [
+        {"path": "hw/ip/otbn/README.md", "lines": [721, 721], "quote": "MAI_BUSY: This bit is set to 1 when an MAI operation is in progress."}
+      ],
+      "checked": true
+    },
+    {
+      "id": "V05",
+      "group": "changed",
+      "source": "spi_device",
+      "question": "How many dummy cycles can software configure for a spi_device read command, and what does the configured value mean?",
+      "targets": [
+        {"path": "hw/ip/spi_device/doc/theory_of_operation.md", "lines": [153, 153], "quote": "from 0 to 8 cycles"}
+      ],
+      "outdated": [
+        {"path": "hw/ip/spi_device/doc/theory_of_operation.md", "lines": [156, 159], "quote": "The default dummy cycle for those commands are 7 (0-based)."}
+      ],
+      "checked": true
+    },
+    {
+      "id": "V06",
+      "group": "changed",
+      "source": "sram_ctrl",
+      "question": "In what unit is the sram_ctrl MemSizeRam parameter given?",
+      "targets": [
+        {"path": "hw/ip/sram_ctrl/doc/interfaces.md", "lines": [11, 11], "quote": "Number of bytes in the SRAM"}
+      ],
+      "outdated": [
+        {"path": "hw/ip/sram_ctrl/doc/interfaces.md", "lines": [11, 11], "quote": "Number of 32bit words in the SRAM"}
+      ],
+      "checked": true
+    },
+    {
+      "id": "V07",
+      "group": "changed",
+      "source": "sram_ctrl",
+      "question": "Can sram_ctrl initialize the memory with zeros instead of pseudorandom data?",
+      "targets": [
+        {"path": "hw/ip/sram_ctrl/doc/theory_of_operation.md", "lines": [50, 51], "quote": "The `SecZeroInit` parameter described in"},
+        {"path": "hw/ip/sram_ctrl/doc/theory_of_operation.md", "lines": [63, 66], "quote": "the `SecZeroInit` parameter can be set to 1"},
+        {"path": "hw/ip/sram_ctrl/doc/interfaces.md", "lines": [15, 15], "quote": "Initializes the memory with zeros instead of pseudo-random data."}
+      ],
+      "outdated": [
+        {"path": "hw/ip/sram_ctrl/doc/theory_of_operation.md", "lines": [43, 45], "quote": "it is undesirable from a security perspective to initialize the memory with all zeros"}
+      ],
+      "checked": true
+    },
+    {
+      "id": "V08",
+      "group": "changed",
+      "source": "spi_host",
+      "question": "Does SPI_HOST keep a separate CONFIGOPTS setting for each chip select, or is CONFIGOPTS programmed for the next command?",
+      "targets": [
+        {"path": "hw/ip/spi_host/doc/programmers_guide.md", "lines": [28, 28], "quote": "requirements of the target device of the next command selected with"},
+        {"path": "hw/ip/spi_host/doc/theory_of_operation.md", "lines": [213, 214], "quote": "share a single set of configuration parameters stored in"}
+      ],
+      "outdated": [
+        {"path": "hw/ip/spi_host/doc/programmers_guide.md", "lines": [28, 29], "quote": "multi-register must be programmed to reflect the requirements of the attached target devices"},
+        {"path": "hw/ip/spi_host/doc/theory_of_operation.md", "lines": [216, 220], "quote": "multi-register contains separate configuration entries for each chip select"}
+      ],
+      "checked": true
+    }
+  ]
+}

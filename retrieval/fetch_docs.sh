@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
-# Fetch only the OpenTitan documentation files that the retrieval corpus is built from,
-# at the revision recorded in retrieval/queries.json.
+# Fetch only the OpenTitan documentation files that the retrieval corpus is built from.
 #
-# Usage: retrieval/fetch_docs.sh <destination-directory>
+# Usage: retrieval/fetch_docs.sh <destination-directory> [current|earlier]
+#   current (default): the revision recorded in retrieval/queries.json
+#   earlier: the earlier revision recorded in retrieval/queries_changed.json
 set -euo pipefail
 
 dest="$1"
+which="${2:-current}"
 here="$(cd "$(dirname "$0")" && pwd)"
-revision="$(python3 -c 'import json, sys; print(json.load(open(sys.argv[1]))["opentitan_revision"])' \
-  "$here/queries.json")"
+case "$which" in
+  current) file="$here/queries.json"; key=opentitan_revision ;;
+  earlier) file="$here/queries_changed.json"; key=earlier_revision ;;
+  *) echo "unknown revision choice: $which (use current or earlier)" >&2; exit 2 ;;
+esac
+revision="$(python3 -c 'import json, sys; print(json.load(open(sys.argv[1]))[sys.argv[2]])' "$file" "$key")"
 
 git init -q "$dest"
 git -C "$dest" remote add origin https://github.com/lowRISC/opentitan.git

@@ -27,16 +27,27 @@ jobs:
         run: |
           pip install --index-url https://download.pytorch.org/whl/cpu torch==2.3.1
           pip install -r retrieval/requirements-embed.txt
-      - name: Fetch OpenTitan documentation at the revision recorded in the queries
-        run: ./retrieval/fetch_docs.sh otdocs
-      - name: Rank with the embedding model
+      - name: Fetch OpenTitan documentation at the current and the earlier revision
+        run: |
+          ./retrieval/fetch_docs.sh otdocs
+          ./retrieval/fetch_docs.sh otdocs-earlier earlier
+      - name: Rank with the embedding model (current revision)
         run: python retrieval/rank.py --method embedding --opentitan otdocs --out out/embedding.json
+      - name: Rank with the embedding model (two revisions)
+        run: |
+          python retrieval/rank.py --method embedding --queries retrieval/queries.json \
+            --queries retrieval/queries_changed.json --opentitan otdocs --earlier otdocs-earlier \
+            --out out/two_revisions_embedding.json
       - name: Score next to the committed BM25 results
-        run: python retrieval/evaluate.py retrieval/results/bm25.json out/embedding.json --strict
+        run: |
+          python retrieval/evaluate.py retrieval/results/bm25.json out/embedding.json --strict
+          python retrieval/evaluate.py retrieval/results/two_revisions/bm25.json \
+            out/two_revisions_embedding.json --strict \
+            --queries retrieval/queries.json --queries retrieval/queries_changed.json
       - uses: actions/upload-artifact@v4
         with:
           name: embedding-results
-          path: out/embedding.json
+          path: out/*.json
       - name: Publish the results to the retrieval-ci-results branch
         run: |
           cd out
@@ -46,7 +57,7 @@ jobs:
           git init -q -b retrieval-ci-results
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add embedding.json RUN.md
+          git add embedding.json two_revisions_embedding.json RUN.md
           git commit -q -m "Embedding results from run ${{ github.run_id }} (${{ github.sha }})"
           # GitHub occasionally rejects a ref update with a transient server error; try three times.
           for attempt in 1 2 3; do
