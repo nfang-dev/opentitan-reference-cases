@@ -1,7 +1,7 @@
 # Retrieval comparison across two revisions
 
 OpenTitan revision: `0ea5236fe749e70ba18f56ba19c4be982ef46da7`. Corpus: 3350 passages from 204 files.
-The corpus also holds 371 passages of the earlier revision `63c8a5025a0b02f50c3502e8ae0653cfd4a36ff9` whose text differs from the current revision. Only passages of the current revision count as correct.
+Of these, 371 are passages of the earlier revision `63c8a5025a0b02f50c3502e8ae0653cfd4a36ff9` whose text differs from the current revision. Only passages of the current revision count as correct.
 All methods used the same corpus.
 Queries: 35, with 57 target passages. Target passages checked: 35 of 35 queries.
 How the targets in `queries.json` were checked (2026-11-05): Every target passage was read against the source text at the recorded revision and confirmed to answer its question. Every passage that either method ranked in its first three for a question, but that was not a target, was read; the ones that state at least part of the answer were added as targets.

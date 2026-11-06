@@ -125,7 +125,7 @@ def report(queries: dict, results: list[dict], scores: list[dict]) -> str:
                  f"Corpus: {results[0]['corpus']['passages']} passages from "
                  f"{results[0]['corpus']['files']} files.")
     if earlier:
-        lines.append(f"The corpus also holds {results[0].get('earlier_passages')} passages of the earlier "
+        lines.append(f"Of these, {results[0].get('earlier_passages')} are passages of the earlier "
                      f"revision `{earlier}` whose text differs from the current revision. "
                      "Only passages of the current revision count as correct.")
     lines.append("All methods used the same corpus." if len(hashes) == 1
