@@ -72,6 +72,10 @@ CI runs both on every push.
 
 [`behavior/`](behavior/README.md) simulates the Earl Grey pinmux with Verilator and cocotb to observe the pad outputs after reset that case 001 is about, and shows that the check fails on a copy of the design with the reset value changed.
 
+## Register tests on complete IPs
+
+[`csr/`](csr/README.md) simulates complete OpenTitan IPs with Verilator and cocotb and checks that their registers behave as the register description says: reset values, access types, lock registers and the alert test register. Expected behavior comes from OpenTitan's own register tool, and each run also checks that deliberately inserted faults are detected. It starts with uart.
+
 ## Reset-value review
 
 [`review/`](review/README.md) puts the steps together for one kind of question, a register's value after reset: it finds the passages that answer the question, picks out the statements that give a value, looks up the register's reset value in the design, compares them, and writes a report with every source.
