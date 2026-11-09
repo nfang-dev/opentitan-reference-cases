@@ -1,0 +1,65 @@
+name: Register tests (complete IPs)
+
+on:
+  push:
+    paths:
+      - "csr/**"
+      - ".github/workflows/csr-check.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: csr-check
+  cancel-in-progress: false
+
+jobs:
+  csr:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Verilator, cocotb, FuseSoC and reggen's dependencies
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q verilator
+          verilator --version
+          pip install -r csr/requirements.txt
+      - name: Fetch OpenTitan hw/ and util/ at the recorded revision
+        run: ./csr/fetch_opentitan.sh opentitan
+      - name: Run the register tests on the unchanged IPs
+        run: python csr/run.py --opentitan opentitan --out out --expect csr/results
+      - name: Run them on copies with one deliberate change each
+        if: always()
+        run: |
+          for kind in resval access regwen; do
+            python csr/run.py --opentitan opentitan --out out --seed 1 --mutate $kind \
+              --expect csr/results
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: csr-results
+          path: out/*.json
+      - name: Publish the results to the csr-ci-results branch
+        run: |
+          cd out
+          printf 'Produced by %s/%s/actions/runs/%s\nfrom commit %s on %s.\n' \
+            "${{ github.server_url }}" "${{ github.repository }}" "${{ github.run_id }}" \
+            "${{ github.sha }}" "${{ github.ref_name }}" > RUN.md
+          git init -q -b csr-ci-results
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add *.json RUN.md
+          git commit -q -m "Register test results from run ${{ github.run_id }} (${{ github.sha }})"
+          for attempt in 1 2 3; do
+            if git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" \
+                 csr-ci-results; then
+              exit 0
+            fi
+            echo "push attempt $attempt failed; retrying"
+            sleep $((attempt * 10))
+          done
+          exit 1

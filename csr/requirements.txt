@@ -1,0 +1,5 @@
+cocotb==1.9.2
+fusesoc==2.4.5
+hjson==3.1.0
+mako==1.3.10
+semantic_version==2.10.0

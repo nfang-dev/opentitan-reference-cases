@@ -1,0 +1,8 @@
+{
+  "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+  "ips": [
+    {"ip": "uart", "top": "hw/ip/uart/rtl/uart.sv", "hjson": "hw/ip/uart/data/uart.hjson",
+     "core": "hw/ip/uart/uart.core", "tie": {"cio_rx_i": "1'b1"},
+     "note": "The receive line idles high."}
+  ]
+}
