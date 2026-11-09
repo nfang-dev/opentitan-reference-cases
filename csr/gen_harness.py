@@ -183,7 +183,8 @@ def harness(module: str, text: str, package_texts: dict[str, str]) -> tuple[str,
                  f"    for (int i = 0; i < $size({p.name}_w); i++) alert_any_{p.name} |= {p.name}_w[i].alert_p;",
                  "  end"]
         alert_terms.append(f"alert_any_{p.name}")
-    body.append(f"  assign alert_o = {' | '.join(alert_terms) or "1'b0"};")
+    alert_expr = " | ".join(alert_terms) or "1'b0"
+    body.append(f"  assign alert_o = {alert_expr};")
     body += ["", f"  {module} u_dut (", ",\n".join(conns), "  );", "", "endmodule", ""]
     return "\n".join(lines + [""] + body), clocks + resets
 
