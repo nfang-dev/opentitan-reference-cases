@@ -28,8 +28,6 @@ import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-import yaml
-
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
 sys.path.insert(0, str(HERE))
@@ -154,6 +152,7 @@ def run_ip(ot: Path, cfg: dict, build: Path, seeds: list[int]) -> dict:
                     "--work-root", str(work_root),
                     "--mapping", "lowrisc:prim_generic:all:0.1",
                     f"nfang:csr:tb_{ip}:0.1"], check=True)
+    import yaml
     eda = yaml.safe_load(next(work_root.glob("*.eda.yml")).read_text(encoding="utf-8"))
     sources, includes = file_lists(eda, work_root)
 

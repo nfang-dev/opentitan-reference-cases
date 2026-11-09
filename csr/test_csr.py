@@ -222,6 +222,9 @@ async def rw(dut):
 @cocotb.test()
 async def regwen_lock(dut):
     """Once its lock register is cleared, a protected register ignores writes."""
+    if not lock_registers():
+        record("regwen_lock", {"result": "not applicable: no register has a lock register"})
+        return
     start_clocks(dut)
     await reset(dut)
     regs = {r["name"]: r for r in MODEL["registers"]}
