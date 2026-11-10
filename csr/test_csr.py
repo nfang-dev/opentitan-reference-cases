@@ -144,9 +144,8 @@ def check_mask(reg, test):
     return m
 
 
-def write_data(reg, old, rand, test):
-    """Random data, with fields excluded from writes kept at their current value."""
-    data = rand.getrandbits(32)
+def write_data(reg, old, data, test):
+    """The data to write, with fields excluded from writes kept at their current value."""
     for f in reg["fields"]:
         if regmodel.excluded(f["tags"], test, regmodel.WRITE):
             data = (data & ~mask_of(f)) | (old & mask_of(f))
@@ -194,10 +193,12 @@ async def hw_reset(dut):
 
 @cocotb.test()
 async def rw(dut):
-    """Writes take effect as each field's software access type says (two rounds)."""
+    """Writes take effect as each field's software access type says. Round 1 writes random
+    data; round 2 writes its inverse, so every bit is written both as 0 and as 1."""
     start_clocks(dut)
     await reset(dut)
     rand = random.Random(int(os.environ.get("RANDOM_SEED", "1")))
+    first = {}
     rows, failures = [], []
     for round_ in (1, 2):
         for reg in MODEL["registers"]:
@@ -206,7 +207,11 @@ async def rw(dut):
                     rows.append({"register": reg["name"], "result": "not tested"})
                 continue
             old, _ = await access(dut, reg["offset"])
-            data = write_data(reg, old, rand, "CsrRwTest")
+            if round_ == 1:
+                first[reg["name"]] = raw = rand.getrandbits(32)
+            else:
+                raw = ~first[reg["name"]] & 0xFFFFFFFF
+            data = write_data(reg, old, raw, "CsrRwTest")
             werr = await write(dut, reg, data)
             new, rerr = await access(dut, reg["offset"])
             mask = check_mask(reg, "CsrRwTest")
