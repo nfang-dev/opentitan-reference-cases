@@ -1,0 +1,262 @@
+{
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "design": "reset value of INTR_ENABLE.tx_watermark changed from 0 to 1",
+ "ip": "uart",
+ "registers": 13,
+ "harness_ties": [
+  " alert_rx_i: {uart_reg_pkg::NumAlerts{prim_alert_pkg::ALERT_RX_DEFAULT}}",
+  " racl_policies_i: '0",
+  " cio_rx_i: 1'b1"
+ ],
+ "seeds": {
+  "1": {
+   "tests": {
+    "hw_reset": "fail",
+    "rw": "pass",
+    "regwen_lock": "pass",
+    "alert_test_lock": "pass"
+   },
+   "observed": {
+    "hw_reset": {
+     "registers": [
+      {
+       "register": "INTR_STATE",
+       "result": "excluded by OpenTitan"
+      },
+      {
+       "register": "INTR_ENABLE",
+       "read": "0x1",
+       "expected": "0x0",
+       "mask": "0x1ff",
+       "bus_error": 0,
+       "result": "fail"
+      },
+      {
+       "register": "INTR_TEST",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1ff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "ALERT_TEST",
+       "read": "0x80000000",
+       "expected": "0x80000000",
+       "mask": "0x80000001",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "CTRL",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffff03f7",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "STATUS",
+       "read": "0x3c",
+       "expected": "0x3c",
+       "mask": "0x3c",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "RDATA",
+       "result": "excluded by OpenTitan"
+      },
+      {
+       "register": "WDATA",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "FIFO_CTRL",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "FIFO_STATUS",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "OVRD",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x3",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "VAL",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "TIMEOUT_CTRL",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x80ffffff",
+       "bus_error": 0,
+       "result": "pass"
+      }
+     ],
+     "failures": [
+      "INTR_ENABLE"
+     ]
+    },
+    "rw": {
+     "registers": [
+      {
+       "register": "INTR_STATE",
+       "result": "not tested"
+      },
+      {
+       "register": "INTR_ENABLE",
+       "round": 1,
+       "wrote": "0x2265b1f5",
+       "read": "0x1f5",
+       "expected": "0x1f5",
+       "mask": "0x1ff",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_TEST",
+       "result": "not tested"
+      },
+      {
+       "register": "ALERT_TEST",
+       "result": "not tested"
+      },
+      {
+       "register": "CTRL",
+       "round": 1,
+       "wrote": "0x91b75848",
+       "read": "0x91b70040",
+       "expected": "0x91b70040",
+       "mask": "0xffff03f7",
+       "result": "pass"
+      },
+      {
+       "register": "STATUS",
+       "result": "not tested"
+      },
+      {
+       "register": "RDATA",
+       "result": "not tested"
+      },
+      {
+       "register": "WDATA",
+       "result": "not tested"
+      },
+      {
+       "register": "FIFO_CTRL",
+       "round": 1,
+       "wrote": "0xd8f16adf",
+       "read": "0xdc",
+       "expected": "0xdc",
+       "mask": "0x3",
+       "result": "pass"
+      },
+      {
+       "register": "FIFO_STATUS",
+       "result": "not tested"
+      },
+      {
+       "register": "OVRD",
+       "round": 1,
+       "wrote": "0xcd613e30",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x3",
+       "result": "pass"
+      },
+      {
+       "register": "VAL",
+       "result": "not tested"
+      },
+      {
+       "register": "TIMEOUT_CTRL",
+       "round": 1,
+       "wrote": "0xc386bbc4",
+       "read": "0x8086bbc4",
+       "expected": "0x8086bbc4",
+       "mask": "0x80ffffff",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_ENABLE",
+       "round": 2,
+       "wrote": "0xdd9a4e0a",
+       "read": "0xa",
+       "expected": "0xa",
+       "mask": "0x1ff",
+       "result": "pass"
+      },
+      {
+       "register": "CTRL",
+       "round": 2,
+       "wrote": "0x6e48a7b5",
+       "read": "0x6e4803b5",
+       "expected": "0x6e4803b5",
+       "mask": "0xffff03f7",
+       "result": "pass"
+      },
+      {
+       "register": "FIFO_CTRL",
+       "round": 2,
+       "wrote": "0x270e9520",
+       "read": "0x20",
+       "expected": "0x20",
+       "mask": "0x3",
+       "result": "pass"
+      },
+      {
+       "register": "OVRD",
+       "round": 2,
+       "wrote": "0x329ec1ce",
+       "read": "0x2",
+       "expected": "0x2",
+       "mask": "0x3",
+       "result": "pass"
+      },
+      {
+       "register": "TIMEOUT_CTRL",
+       "round": 2,
+       "wrote": "0x3c79443b",
+       "read": "0x79443b",
+       "expected": "0x79443b",
+       "mask": "0x80ffffff",
+       "result": "pass"
+      }
+     ],
+     "failures": []
+    },
+    "regwen_lock": {
+     "result": "not applicable: no register has a lock register"
+    },
+    "alert_test_lock": {
+     "alert_before_write": 0,
+     "alert_after_write_unlocked": 1,
+     "alert_after_write_locked": 0,
+     "result": "pass"
+    }
+   }
+  }
+ }
+}

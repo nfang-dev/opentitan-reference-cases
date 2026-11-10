@@ -16,8 +16,8 @@ This part checks that the **complete IP**, not just its generated register block
 
 | Test | Checks |
 |---|---|
-| `hw_reset` | After reset, every register reads its specified reset value. |
-| `rw` | Writing random data, twice, gives the read-back each field's access type predicts (read-write fields take the data, read-only fields keep their value, write-1-to-clear fields clear the bits written as 1, ...). |
+| `hw_reset` | After reset, every register reads its specified reset value. Registers whose description specifies no reset value (often ones driven directly by hardware) are reported as such, not as passes. |
+| `rw` | Writing data gives the read-back each field's access type predicts (read-write fields take the data, read-only fields keep their value, write-1-to-clear fields clear the bits written as 1, ...). Round 1 writes random data and round 2 its inverse, so every bit is written both as 0 and as 1. |
 | `regwen_lock` | Once a lock register is cleared, the registers it protects ignore writes. |
 | `alert_test_lock` | Writing `ALERT_TEST` raises an alert on the IP's alert output; after its `regwen` field is cleared, the same write does not. |
 
@@ -46,11 +46,17 @@ What `rw` does not try to predict, and therefore does not check, is reported per
 
 These are deliberately inserted faults, reported separately from results on the unchanged design.
 
+The check found a weakness in the first version of `rw`, which wrote random data in both rounds: on rv_timer, a 1-bit field made read-only was not detected, because both random values happened to write 0 to it, the field's reset value. Writing the inverse in round 2 fixed it.
+
 ## Results
 
 | IP | Registers | `hw_reset` | `rw` | `regwen_lock` | `alert_test_lock` | Changes detected |
 |---|---|---|---|---|---|---|
-| uart | 13 | pass (11 checked, 2 excluded by OpenTitan) | pass (5 registers, 2 rounds; 8 not tested) | no lock registers | pass | 3 of 3 |
+| uart | 13 | pass: 9 checked; 2 with no specified value; 2 excluded by OpenTitan | pass: 5 registers; 8 not tested | no lock registers | pass | 3 of 3 |
+| gpio | 114 | pass: 3 checked; 108 with no specified value; 3 excluded | pass: 2 registers; 112 not tested | no lock registers | pass | 3 of 3 |
+| rv_timer | 10 | pass: 9 checked; 1 with no specified value | pass: 8 registers; 2 not tested | no lock registers | pass | 3 of 3 |
+
+Coverage differs a lot between IPs. Most gpio registers are implemented outside the register block, have no reset value in the description, and are excluded by OpenTitan from write tests, so this flow checks little of gpio beyond its alert test.
 
 Two random seeds per IP; each seed also randomizes every state that reset does not set.
 The results are in [`results/`](results), produced by CI and compared with the committed files on every run.
