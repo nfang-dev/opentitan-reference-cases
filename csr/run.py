@@ -14,6 +14,8 @@ restores the file. The run then succeeds only if the tests detect the change:
   resval  the reset value of one field          -> hw_reset must fail
   access  one read-write field made read-only   -> rw must fail
   regwen  ALERT_TEST's write no longer gated    -> alert_test_lock must fail
+  lock    one register no longer gated by its lock register -> regwen_lock must fail
+          (only for IPs that have lock registers)
 --expect compares the new observations with committed ones.
 """
 
@@ -36,7 +38,12 @@ import gen_harness  # noqa: E402
 import regmodel  # noqa: E402
 
 TESTS = ["hw_reset", "rw", "regwen_lock", "alert_test_lock"]
-MUTATION_DETECTED_BY = {"resval": "hw_reset", "access": "rw", "regwen": "alert_test_lock"}
+MUTATION_DETECTED_BY = {"resval": "hw_reset", "access": "rw", "regwen": "alert_test_lock",
+                        "lock": "regwen_lock"}
+
+
+class NotApplicable(ValueError):
+    """The IP has nothing this mutation can change (for example, no lock registers)."""
 
 
 def config() -> dict:
@@ -62,6 +69,27 @@ def _instance_params(text: str, inst: str) -> tuple[int, int]:
 
 def mutate(text: str, model: dict, kind: str) -> tuple[str, str]:
     """Apply one deliberate change; returns the new text and a description."""
+    if kind == "lock":
+        for reg in model["registers"]:
+            if not reg["regwen"] or reg["hwext"]:
+                continue
+            p, lock = reg["name"].lower(), reg["regwen"].lower()
+            for old, new in (
+                    (f"assign {p}_gated_we = {p}_we & {lock}_qs;", f"assign {p}_gated_we = {p}_we;"),
+                    (f"assign {p}_gated_we = {p}_we && {lock}_qs;", f"assign {p}_gated_we = {p}_we;")):
+                if old in text:
+                    return text.replace(old, new), f"{reg['name']} writes no longer gated by {reg['regwen']}"
+            inst = f") u_{p}_cdc ("
+            if inst in text:
+                start = text.index(inst)
+                end = text.index(");", start)
+                block = text[start:end]
+                old = f".src_regwen_i ({lock}_qs)"
+                if old in block:
+                    block = block.replace(old, ".src_regwen_i (1'b1)")
+                    return text[:start] + block + text[end:], \
+                        f"{reg['name']} writes no longer gated by {reg['regwen']}"
+        raise NotApplicable("no register protected by a lock register")
     if kind == "regwen":
         old = "assign alert_test_gated_we = alert_test_we && alert_test_regwen_qs;"
         if old not in text:
@@ -205,7 +233,11 @@ def main() -> int:
         original = rt.read_text(encoding="utf-8")
         change = "unchanged"
         if args.mutate:
-            text, change = mutate(original, regmodel.load(ot, cfg["hjson"]), args.mutate)
+            try:
+                text, change = mutate(original, regmodel.load(ot, cfg["hjson"]), args.mutate)
+            except NotApplicable as e:
+                print(f"{ip}: mutation {args.mutate} not applicable: {e}")
+                continue
             rt.write_text(text, encoding="utf-8")
         try:
             result = run_ip(ot, cfg, build, seeds)

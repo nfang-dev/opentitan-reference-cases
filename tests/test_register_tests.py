@@ -105,6 +105,21 @@ class MutationTest(unittest.TestCase):
         text, _ = run.mutate(REG_TOP, MODEL, "regwen")
         self.assertIn("assign alert_test_gated_we = alert_test_we;", text)
 
+    def test_lock_mutation(self):
+        import run
+        locked = {"registers": [dict(MODEL["registers"][0], name="WDOG_CTRL", regwen="WDOG_REGWEN")]}
+        plain = "  assign wdog_ctrl_gated_we = wdog_ctrl_we & wdog_regwen_qs;\n"
+        text, desc = run.mutate(plain, locked, "lock")
+        self.assertIn("assign wdog_ctrl_gated_we = wdog_ctrl_we;", text)
+        self.assertIn("WDOG_REGWEN", desc)
+        cdc = ("  ) u_wdog_ctrl_cdc (\n    .src_regwen_i (wdog_regwen_qs),\n    .src_we_i (x)\n  );\n"
+               "  ) u_other_cdc (\n    .src_regwen_i (wdog_regwen_qs),\n  );\n")
+        text, _ = run.mutate(cdc, locked, "lock")
+        self.assertEqual(text.count(".src_regwen_i (1'b1)"), 1)
+        self.assertIn("u_other_cdc (\n    .src_regwen_i (wdog_regwen_qs)", text)
+        with self.assertRaises(run.NotApplicable):
+            run.mutate(plain, MODEL, "lock")
+
 
 if __name__ == "__main__":
     unittest.main()

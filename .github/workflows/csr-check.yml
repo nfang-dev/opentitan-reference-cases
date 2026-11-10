@@ -35,7 +35,7 @@ jobs:
         if: always()
         run: |
           status=0
-          for kind in resval access regwen; do
+          for kind in resval access regwen lock; do
             python csr/run.py --opentitan opentitan --out out --seed 1 --mutate $kind \
               --expect csr/results || status=1
           done

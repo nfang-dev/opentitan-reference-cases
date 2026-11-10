@@ -26,6 +26,25 @@
       "core": "hw/ip/rv_timer/rv_timer.core",
       "tie": {},
       "note": ""
+    },
+    {
+      "ip": "aon_timer",
+      "top": "hw/ip/aon_timer/rtl/aon_timer.sv",
+      "hjson": "hw/ip/aon_timer/data/aon_timer.hjson",
+      "core": "hw/ip/aon_timer/aon_timer.core",
+      "tie": {},
+      "note": "Two clock domains; the watchdog registers are protected by WDOG_REGWEN."
+    },
+    {
+      "ip": "i2c",
+      "top": "hw/ip/i2c/rtl/i2c.sv",
+      "hjson": "hw/ip/i2c/data/i2c.hjson",
+      "core": "hw/ip/i2c/i2c.core",
+      "tie": {
+        "cio_scl_i": "1'b1",
+        "cio_sda_i": "1'b1"
+      },
+      "note": "SCL and SDA idle high."
     }
   ]
 }
