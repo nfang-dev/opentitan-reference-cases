@@ -181,9 +181,11 @@ async def hw_reset(dut):
             expected |= f["resval"] << f["lsb"]
         value, err = await access(dut, reg["offset"])
         ok = not err and (value & mask) == (expected & mask)
+        result = "pass" if ok else "fail"
+        if ok and mask == 0:
+            result = "no reset value specified"
         rows.append({"register": reg["name"], "read": hex(value), "expected": hex(expected),
-                     "mask": hex(mask), "bus_error": err,
-                     "result": "pass" if ok else "fail"})
+                     "mask": hex(mask), "bus_error": err, "result": result})
         if not ok:
             failures.append(reg["name"])
     record("hw_reset", {"registers": rows, "failures": failures})
