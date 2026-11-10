@@ -74,7 +74,7 @@ CI runs both on every push.
 
 ## Register tests on complete IPs
 
-[`csr/`](csr/README.md) simulates complete OpenTitan IPs with Verilator and cocotb and checks that their registers behave as the register description says: reset values, access types, lock registers and the alert test register. Expected behavior comes from OpenTitan's own register tool, and each run also checks that deliberately inserted faults are detected. It covers uart, gpio and rv_timer so far.
+[`csr/`](csr/README.md) simulates complete OpenTitan IPs with Verilator and cocotb and checks that their registers behave as the register description says: reset values, access types, lock registers and the alert test register. Expected behavior comes from OpenTitan's own register tool, and each run also checks that deliberately inserted faults are detected. It covers uart, gpio, rv_timer, aon_timer and i2c so far.
 
 ## Reset-value review
 
