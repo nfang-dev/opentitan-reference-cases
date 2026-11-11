@@ -106,9 +106,7 @@ jobs:
       - name: Re-select the sentences and compare with the latest committed run
         run: |
           python claims/sentences.py --opentitan opentitan --out sentences.json
-          if [ -f claims/results/prompt3/sentences.json ]; then
-            diff -u claims/results/prompt3/sentences.json sentences.json
-          fi
+          diff -u claims/results/prompt3/sentences.json sentences.json
       - name: Re-check every committed run's answers and compare with its committed report
         run: |
           for d in claims/results/*/; do

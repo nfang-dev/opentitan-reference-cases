@@ -76,6 +76,10 @@ CI runs both on every push.
 
 [`csr/`](csr/README.md) simulates complete OpenTitan IPs with Verilator and cocotb and checks that their registers behave as the register description says: reset values, access types, lock registers and the alert test register. Expected behavior comes from OpenTitan's own register tool, and each run also checks that deliberately inserted faults are detected. It covers uart, gpio, rv_timer, aon_timer and i2c so far.
 
+## Documentation claims, read by an AI model and checked by programs
+
+[`claims/`](claims/README.md) lets an open-weights language model, run on a CPU in CI, read the hand-written documentation of the same five IPs and state which register facts each sentence gives (reset value, access type, width, lock). Programs then check every claim against the register description, and every claim is reviewed against its sentence, so the report says how often the model reads correctly. The model found all 17 facts the documents state, all of which agree with the description, but most of its other claims were wrong: the checks rejected most of them, and every disagreement it raised was a misreading. Name checks that need no model found six fields and links in the documentation that do not exist in the description.
+
 ## Reset-value review
 
 [`review/`](review/README.md) puts the steps together for one kind of question, a register's value after reset: it finds the passages that answer the question, picks out the statements that give a value, looks up the register's reset value in the design, compares them, and writes a report with every source.
