@@ -109,6 +109,8 @@ python claims/check.py --opentitan opentitan --sentences out/sentences.json --an
 
 The [workflow](../.github/workflows/claims.yml) runs all of this whenever these files change, and compares the model's answers with the committed ones (`compare.py`). CI re-checks the committed answers of every prompt on every push and compares the reports, so the checking step is reproduced exactly. Each results folder records the model files' checksums, the llama.cpp binding version and a checksum of the prompt.
 
+A second run of prompt 3 on a fresh runner ([run 42943981338](https://github.com/nfang-dev/opentitan-reference-cases/actions/runs/42943981338)) gave the same answers for all 202 sentences, byte for byte.
+
 ## Limitations
 
 - Five IPs and 17 explicit facts: enough to see how the model and the checks behave, not to measure them precisely.
