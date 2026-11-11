@@ -1,0 +1,2264 @@
+{
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "model": "Qwen/Qwen2.5-7B-Instruct-GGUF (qwen2.5-7b-instruct-q4_k_m)",
+ "model_files": {
+  "qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf": "dfce12e3862a5283ccfb88221b48480e58745165de856439950d0f22590580db",
+  "qwen2.5-7b-instruct-q4_k_m-00002-of-00002.gguf": "539cf93f78e887edea1c04e2d7d8cdaca9d01dae9c9025bcb8accbe29df3d72a"
+ },
+ "llama_cpp_python": "0.3.16",
+ "prompt_version": 2,
+ "prompt_sha256": "2593980b4b5e79abd7e4bc39c32327df10e41792b28f91964088a4bf5cd939c3",
+ "temperature": 0,
+ "answers": [
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:48",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:64",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:97",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:134",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:136",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:154",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:159",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:160",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:161",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:209",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:219",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:8",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "",
+     "property": "reset_value",
+     "value": "0x0",
+     "quote": "writing `0x0` to the `CTRL` register"
+    },
+    {
+     "register": "FIFO_CTRL",
+     "field": "RXRST",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "writing `0x1` to `FIFO_CTRL.RXRST`"
+    },
+    {
+     "register": "FIFO_CTRL",
+     "field": "TXRST",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "writing `0x1` to `FIFO_CTRL.TXRST`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0x0\", \"quote\": \"writing `0x0` to the `CTRL` register\"}, {\"register\": \"FIFO_CTRL\", \"field\": \"RXRST\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"writing `0x1` to `FIFO_CTRL.RXRST`\"}, {\"register\": \"FIFO_CTRL\", \"field\": \"TXRST\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"writing `0x1` to `FIFO_CTRL.TXRST`\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:9",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "OVRD",
+     "field": "",
+     "property": "reset_value",
+     "value": "0x0",
+     "quote": "write `0x0` to the `OVRD`"
+    },
+    {
+     "register": "TIMEOUT_CTRL",
+     "field": "",
+     "property": "reset_value",
+     "value": "0x0",
+     "quote": "write `0x0` to the `TIMEOUT_CTRL`"
+    },
+    {
+     "register": "INTR_ENABLE",
+     "field": "",
+     "property": "reset_value",
+     "value": "0x0",
+     "quote": "write `0x0` to the `INTR_ENABLE`"
+    },
+    {
+     "register": "INTR_STATE",
+     "field": "",
+     "property": "reset_value",
+     "value": "0xffff_ffff",
+     "quote": "clear any existing interrupts by writing `0xffff_ffff` to `INTR_STATE`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"OVRD\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0x0\", \"quote\": \"write `0x0` to the `OVRD`\"}, {\"register\": \"TIMEOUT_CTRL\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0x0\", \"quote\": \"write `0x0` to the `TIMEOUT_CTRL`\"}, {\"register\": \"INTR_ENABLE\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0x0\", \"quote\": \"write `0x0` to the `INTR_ENABLE`\"}, {\"register\": \"INTR_STATE\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0xffff_ffff\", \"quote\": \"clear any existing interrupts by writing `0xffff_ffff` to `INTR_STATE`\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:13",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:22",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "NCO",
+     "property": "width_bits",
+     "value": "16",
+     "quote": "The `CTRL.NCO` field is 16 bits"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"NCO\", \"property\": \"width_bits\", \"value\": \"16\", \"quote\": \"The `CTRL.NCO` field is 16 bits\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:26",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "NCO",
+     "property": "width_bits",
+     "value": "integer",
+     "quote": "the `CTRL.NCO` field only accepts integer values"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"NCO\", \"property\": \"width_bits\", \"value\": \"integer\", \"quote\": \"the `CTRL.NCO` field only accepts integer values\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:48",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "NCO",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Write the `CTRL` register with the calculated `CTRL.NCO` value, also writing `0x1` to `CTRL.TX` and `CTRL.RX` fields"
+    },
+    {
+     "register": "CTRL",
+     "field": "TX",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Write the `CTRL` register with the calculated `CTRL.NCO` value, also writing `0x1` to `CTRL.TX` and `CTRL.RX` fields"
+    },
+    {
+     "register": "CTRL",
+     "field": "RX",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Write the `CTRL` register with the calculated `CTRL.NCO` value, also writing `0x1` to `CTRL.TX` and `CTRL.RX` fields"
+    },
+    {
+     "register": "CTRL",
+     "field": "TX",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "Write the `CTRL` register with the calculated `CTRL.NCO` value, also writing `0x1` to `CTRL.TX` and `CTRL.RX` fields"
+    },
+    {
+     "register": "CTRL",
+     "field": "RX",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "Write the `CTRL` register with the calculated `CTRL.NCO` value, also writing `0x1` to `CTRL.TX` and `CTRL.RX` fields"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"NCO\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Write the `CTRL` register with the calculated `CTRL.NCO` value, also writing `0x1` to `CTRL.TX` and `CTRL.RX` fields\"}, {\"register\": \"CTRL\", \"field\": \"TX\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Write the `CTRL` register with the calculated `CTRL.NCO` value, also writing `0x1` to `CTRL.TX` and `CTRL.RX` fields\"}, {\"register\": \"CTRL\", \"field\": \"RX\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Write the `CTRL` register with the calculated `CTRL.NCO` value, also writing `0x1` to `CTRL.TX` and `CTRL.RX` fields\"}, {\"register\": \"CTRL\", \"field\": \"TX\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"Write the `CTRL` register with the calculated `CTRL.NCO` value, also writing `0x1` to `CTRL.TX` and `CTRL.RX` fields\"}, {\"register\": \"CTRL\", \"field\": \"RX\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"Write the `CTRL` register with the calculated `CTRL.NCO` value, also writing `0x1` to `CTRL.TX` and `CTRL.RX` fields\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:49",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "PARITY_EN",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "writing `0x1` to the `CTRL.PARITY_EN` field"
+    },
+    {
+     "register": "CTRL",
+     "field": "PARITY_ODD",
+     "property": "reset_value",
+     "value": "0x0",
+     "quote": "writing `0x0` is even, `0x1` is odd"
+    },
+    {
+     "register": "CTRL",
+     "field": "PARITY_ODD",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "configures the type of parity"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"PARITY_EN\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"writing `0x1` to the `CTRL.PARITY_EN` field\"}, {\"register\": \"CTRL\", \"field\": \"PARITY_ODD\", \"property\": \"reset_value\", \"value\": \"0x0\", \"quote\": \"writing `0x0` is even, `0x1` is odd\"}, {\"register\": \"CTRL\", \"field\": \"PARITY_ODD\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"configures the type of parity\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:51",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:54",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "INTR_ENABLE",
+     "field": "tx_watermark",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Optionally write `0x1` to the fields of the `INTR_ENABLE` register"
+    },
+    {
+     "register": "INTR_ENABLE",
+     "field": "rx_watermark",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Optionally write `0x1` to the fields of the `INTR_ENABLE` register"
+    },
+    {
+     "register": "INTR_ENABLE",
+     "field": "tx_done",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Optionally write `0x1` to the fields of the `INTR_ENABLE` register"
+    },
+    {
+     "register": "INTR_ENABLE",
+     "field": "rx_overflow",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Optionally write `0x1` to the fields of the `INTR_ENABLE` register"
+    },
+    {
+     "register": "INTR_ENABLE",
+     "field": "rx_frame_err",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Optionally write `0x1` to the fields of the `INTR_ENABLE` register"
+    },
+    {
+     "register": "INTR_ENABLE",
+     "field": "rx_break_err",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Optionally write `0x1` to the fields of the `INTR_ENABLE` register"
+    },
+    {
+     "register": "INTR_ENABLE",
+     "field": "rx_timeout",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Optionally write `0x1` to the fields of the `INTR_ENABLE` register"
+    },
+    {
+     "register": "INTR_ENABLE",
+     "field": "rx_parity_err",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Optionally write `0x1` to the fields of the `INTR_ENABLE` register"
+    },
+    {
+     "register": "INTR_ENABLE",
+     "field": "tx_empty",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Optionally write `0x1` to the fields of the `INTR_ENABLE` register"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"INTR_ENABLE\", \"field\": \"tx_watermark\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Optionally write `0x1` to the fields of the `INTR_ENABLE` register\"}, {\"register\": \"INTR_ENABLE\", \"field\": \"rx_watermark\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Optionally write `0x1` to the fields of the `INTR_ENABLE` register\"}, {\"register\": \"INTR_ENABLE\", \"field\": \"tx_done\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Optionally write `0x1` to the fields of the `INTR_ENABLE` register\"}, {\"register\": \"INTR_ENABLE\", \"field\": \"rx_overflow\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Optionally write `0x1` to the fields of the `INTR_ENABLE` register\"}, {\"register\": \"INTR_ENABLE\", \"field\": \"rx_frame_err\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Optionally write `0x1` to the fields of the `INTR_ENABLE` register\"}, {\"register\": \"INTR_ENABLE\", \"field\": \"rx_break_err\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Optionally write `0x1` to the fields of the `INTR_ENABLE` register\"}, {\"register\": \"INTR_ENABLE\", \"field\": \"rx_timeout\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Optionally write `0x1` to the fields of the `INTR_ENABLE` register\"}, {\"register\": \"INTR_ENABLE\", \"field\": \"rx_parity_err\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Optionally write `0x1` to the fields of the `INTR_ENABLE` register\"}, {\"register\": \"INTR_ENABLE\", \"field\": \"tx_empty\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Optionally write `0x1` to the fields of the `INTR_ENABLE` register\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:135",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:140",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:19",
+   "ip": "gpio",
+   "claims": [
+    {
+     "register": "DIRECT_OUT",
+     "field": "",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "Direct write access uses `DIRECT_OUT`"
+    },
+    {
+     "register": "MASKED_OUT_UPPER",
+     "field": "",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "masked access uses `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER`"
+    },
+    {
+     "register": "MASKED_OUT_LOWER",
+     "field": "",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "masked access uses `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"DIRECT_OUT\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"Direct write access uses `DIRECT_OUT`\"}, {\"register\": \"MASKED_OUT_UPPER\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"masked access uses `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER`\"}, {\"register\": \"MASKED_OUT_LOWER\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"masked access uses `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER`\"}]}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:24",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:32",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:37",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:59",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:60",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:65",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:70",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:76",
+   "ip": "gpio",
+   "claims": [
+    {
+     "register": "CTRL_EN_INPUT_FILTER",
+     "field": "CTRL_EN_INPUT_FILTER",
+     "property": "width_bits",
+     "value": "one bit per input",
+     "quote": "one bit per input"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL_EN_INPUT_FILTER\", \"field\": \"CTRL_EN_INPUT_FILTER\", \"property\": \"width_bits\", \"value\": \"one bit per input\", \"quote\": \"one bit per input\"}]}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:77",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:78",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:80",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:82",
+   "ip": "gpio",
+   "claims": [
+    {
+     "register": "DATA_IN",
+     "field": "",
+     "property": "software_access",
+     "value": "read-only",
+     "quote": "are always readable"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"DATA_IN\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"read-only\", \"quote\": \"are always readable\"}]}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:83",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:89",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:99",
+   "ip": "gpio",
+   "claims": [
+    {
+     "register": "INTR_ENABLE",
+     "field": "",
+     "property": "width_bits",
+     "value": "32",
+     "quote": "the 32 bits of the `INTR_ENABLE` register"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"INTR_ENABLE\", \"field\": \"\", \"property\": \"width_bits\", \"value\": \"32\", \"quote\": \"the 32 bits of the `INTR_ENABLE` register\"}]}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:102",
+   "ip": "gpio",
+   "claims": [
+    {
+     "register": "INTR_STATE",
+     "field": "gpio",
+     "property": "software_access",
+     "value": "read-only",
+     "quote": "can be read in the `INTR_STATE` register"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"INTR_STATE\", \"field\": \"gpio\", \"property\": \"software_access\", \"value\": \"read-only\", \"quote\": \"can be read in the `INTR_STATE` register\"}]}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:104",
+   "ip": "gpio",
+   "claims": [
+    {
+     "register": "INTR_STATE",
+     "field": "gpio",
+     "property": "software_access",
+     "value": "write-1-to-clear",
+     "quote": "writing a `1` into the associated `INTR_STATE` bit field"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"INTR_STATE\", \"field\": \"gpio\", \"property\": \"software_access\", \"value\": \"write-1-to-clear\", \"quote\": \"writing a `1` into the associated `INTR_STATE` bit field\"}]}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:108",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:110",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:111",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/programmers_guide.md:127",
+   "ip": "gpio",
+   "claims": [
+    {
+     "register": "DATA_IN",
+     "field": "DATA_IN",
+     "property": "software_access",
+     "value": "read-only",
+     "quote": "the read-only `data_in` in bit 8"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"DATA_IN\", \"field\": \"DATA_IN\", \"property\": \"software_access\", \"value\": \"read-only\", \"quote\": \"the read-only `data_in` in bit 8\"}]}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/programmers_guide.md:135",
+   "ip": "gpio",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/theory_of_operation.md:8",
+   "ip": "rv_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/theory_of_operation.md:9",
+   "ip": "rv_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/theory_of_operation.md:20",
+   "ip": "rv_timer",
+   "claims": [
+    {
+     "register": "CFG0",
+     "field": "prescale",
+     "property": "width_bits",
+     "value": "the prescaler field",
+     "quote": "adjust the `CFG0.prescaler` value"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CFG0\", \"field\": \"prescale\", \"property\": \"width_bits\", \"value\": \"the prescaler field\", \"quote\": \"adjust the `CFG0.prescaler` value\"}]}"
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/theory_of_operation.md:26",
+   "ip": "rv_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/programmers_guide.md:97",
+   "ip": "rv_timer",
+   "claims": [
+    {
+     "register": "INTR_STATE0",
+     "field": "IS_0",
+     "property": "software_access",
+     "value": "write-1-to-clear",
+     "quote": "writing 1 into the Interrupt Status register `INTR_STATE0`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"INTR_STATE0\", \"field\": \"IS_0\", \"property\": \"software_access\", \"value\": \"write-1-to-clear\", \"quote\": \"writing 1 into the Interrupt Status register `INTR_STATE0`\"}]}"
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/programmers_guide.md:99",
+   "ip": "rv_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:30",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:32",
+   "ip": "aon_timer",
+   "claims": [
+    {
+     "register": "WKUP_CTRL",
+     "field": "prescaler",
+     "property": "width_bits",
+     "value": "12",
+     "quote": "12-bit `WKUP_CTRL.prescaler` field"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"WKUP_CTRL\", \"field\": \"prescaler\", \"property\": \"width_bits\", \"value\": \"12\", \"quote\": \"12-bit `WKUP_CTRL.prescaler` field\"}]}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:34",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:41",
+   "ip": "aon_timer",
+   "claims": [
+    {
+     "register": "WKUP_CAUSE",
+     "field": "cause",
+     "property": "software_access",
+     "value": "write-0-to-clear",
+     "quote": "software writing 0 to `WKUP_CAUSE`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"WKUP_CAUSE\", \"field\": \"cause\", \"property\": \"software_access\", \"value\": \"write-0-to-clear\", \"quote\": \"software writing 0 to `WKUP_CAUSE`\"}]}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:43",
+   "ip": "aon_timer",
+   "claims": [
+    {
+     "register": "INTR_STATE",
+     "field": "wkup_timer_expired",
+     "property": "software_access",
+     "value": "write-1-to-clear",
+     "quote": "write 1 to the field `INTR_STATE.wkup_timer_expired`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"INTR_STATE\", \"field\": \"wkup_timer_expired\", \"property\": \"software_access\", \"value\": \"write-1-to-clear\", \"quote\": \"write 1 to the field `INTR_STATE.wkup_timer_expired`\"}]}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:51",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:55",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:56",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:60",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:64",
+   "ip": "aon_timer",
+   "claims": [
+    {
+     "register": "WDOG_REGWEN",
+     "field": "regwen",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "Writes to watchdog configuration can be disabled by `WDOG_REGWEN`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"WDOG_REGWEN\", \"field\": \"regwen\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"Writes to watchdog configuration can be disabled by `WDOG_REGWEN`\"}]}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:75",
+   "ip": "aon_timer",
+   "claims": [
+    {
+     "register": "WKUP_CAUSE",
+     "field": "cause",
+     "property": "software_access",
+     "value": "write-0-to-clear",
+     "quote": "software writing 0 to `WKUP_CAUSE`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"WKUP_CAUSE\", \"field\": \"cause\", \"property\": \"software_access\", \"value\": \"write-0-to-clear\", \"quote\": \"software writing 0 to `WKUP_CAUSE`\"}]}"
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:77",
+   "ip": "aon_timer",
+   "claims": [
+    {
+     "register": "INTR_STATE",
+     "field": "wdog_timer_bark",
+     "property": "software_access",
+     "value": "write-1-to-clear",
+     "quote": "write 1 to the field `INTR_STATE.wdog_timer_bark`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"INTR_STATE\", \"field\": \"wdog_timer_bark\", \"property\": \"software_access\", \"value\": \"write-1-to-clear\", \"quote\": \"write 1 to the field `INTR_STATE.wdog_timer_bark`\"}]}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/theory_of_operation.md:4",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/theory_of_operation.md:31",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/theory_of_operation.md:32",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:5",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:6",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:7",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:8",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:9",
+   "ip": "aon_timer",
+   "claims": [
+    {
+     "register": "WDOG_REGWEN",
+     "field": "regwen",
+     "property": "locked_by",
+     "value": "WDOG_REGWEN",
+     "quote": "lock the watchdog configuration by writing 0 to the `regwen` bit in `WDOG_REGWEN`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"WDOG_REGWEN\", \"field\": \"regwen\", \"property\": \"locked_by\", \"value\": \"WDOG_REGWEN\", \"quote\": \"lock the watchdog configuration by writing 0 to the `regwen` bit in `WDOG_REGWEN`\"}]}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:13",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:24",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:25",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:27",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:28",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:50",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:52",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:53",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:56",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:60",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:64",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:87",
+   "ip": "aon_timer",
+   "claims": [
+    {
+     "register": "WKUP_CTRL",
+     "field": "enable",
+     "property": "software_access",
+     "value": "write-0-to-clear",
+     "quote": "clearing the enable bit"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"WKUP_CTRL\", \"field\": \"enable\", \"property\": \"software_access\", \"value\": \"write-0-to-clear\", \"quote\": \"clearing the enable bit\"}]}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:88",
+   "ip": "aon_timer",
+   "claims": [
+    {
+     "register": "WKUP_COUNT_HI",
+     "field": "",
+     "property": "reset_value",
+     "value": "0",
+     "quote": "Reset the timer if desired by clearing `WKUP_COUNT_HI` and `WKUP_COUNT_LO`"
+    },
+    {
+     "register": "WKUP_CTRL",
+     "field": "enable",
+     "property": "software_access",
+     "value": "write-1-to-set",
+     "quote": "renable by setting the enable bit in `WKUP_CTRL`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"WKUP_COUNT_HI\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0\", \"quote\": \"Reset the timer if desired by clearing `WKUP_COUNT_HI` and `WKUP_COUNT_LO`\"}, {\"register\": \"WKUP_CTRL\", \"field\": \"enable\", \"property\": \"software_access\", \"value\": \"write-1-to-set\", \"quote\": \"renable by setting the enable bit in `WKUP_CTRL`\"}]}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:89",
+   "ip": "aon_timer",
+   "claims": [
+    {
+     "register": "INTR_STATE",
+     "field": "",
+     "property": "software_access",
+     "value": "write-1-to-clear",
+     "quote": "Clear the interrupt by writing 1 into the Interrupt Status Register `INTR_STATE`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"INTR_STATE\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"write-1-to-clear\", \"quote\": \"Clear the interrupt by writing 1 into the Interrupt Status Register `INTR_STATE`\"}]}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:91",
+   "ip": "aon_timer",
+   "claims": [
+    {
+     "register": "WKUP_CAUSE",
+     "field": "cause",
+     "property": "software_access",
+     "value": "write-0-to-clear",
+     "quote": "clear the wakeup request by writing 0 to `WKUP_CAUSE`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"WKUP_CAUSE\", \"field\": \"cause\", \"property\": \"software_access\", \"value\": \"write-0-to-clear\", \"quote\": \"clear the wakeup request by writing 0 to `WKUP_CAUSE`\"}]}"
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:93",
+   "ip": "aon_timer",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:10",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "ENABLEHOST",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "enabled at runtime by setting the register fields `CTRL.ENABLEHOST` and `CTRL.ENABLETARGET`"
+    },
+    {
+     "register": "CTRL",
+     "field": "ENABLETARGET",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "enabled at runtime by setting the register fields `CTRL.ENABLEHOST` and `CTRL.ENABLETARGET`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"ENABLEHOST\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"enabled at runtime by setting the register fields `CTRL.ENABLEHOST` and `CTRL.ENABLETARGET`\"}, {\"register\": \"CTRL\", \"field\": \"ENABLETARGET\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"enabled at runtime by setting the register fields `CTRL.ENABLEHOST` and `CTRL.ENABLETARGET`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:11",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:20",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:31",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:35",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:38",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "HOST_TIMEOUT_CTRL",
+     "field": "",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "should be programmed"
+    },
+    {
+     "register": "CTRL",
+     "field": "MULTI_CONTROLLER_MONITOR_EN",
+     "property": "reset_value",
+     "value": "1",
+     "quote": "should be set either before or at the same time as enabling the Controller Module with `CTRL.ENABLEHOST`"
+    },
+    {
+     "register": "CTRL",
+     "field": "MULTI_CONTROLLER_MONITOR_EN",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "should be set either before or at the same time as enabling the Controller Module with `CTRL.ENABLEHOST`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"HOST_TIMEOUT_CTRL\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"should be programmed\"}, {\"register\": \"CTRL\", \"field\": \"MULTI_CONTROLLER_MONITOR_EN\", \"property\": \"reset_value\", \"value\": \"1\", \"quote\": \"should be set either before or at the same time as enabling the Controller Module with `CTRL.ENABLEHOST`\"}, {\"register\": \"CTRL\", \"field\": \"MULTI_CONTROLLER_MONITOR_EN\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"should be set either before or at the same time as enabling the Controller Module with `CTRL.ENABLEHOST`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:55",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "FDATA",
+     "field": "FBYTE",
+     "property": "width_bits",
+     "value": "1",
+     "quote": "one single format byte"
+    },
+    {
+     "register": "FDATA",
+     "field": "READB",
+     "property": "width_bits",
+     "value": "1",
+     "quote": "five 1-bit flags"
+    },
+    {
+     "register": "FDATA",
+     "field": "RCONT",
+     "property": "width_bits",
+     "value": "1",
+     "quote": "five 1-bit flags"
+    },
+    {
+     "register": "FDATA",
+     "field": "START",
+     "property": "width_bits",
+     "value": "1",
+     "quote": "five 1-bit flags"
+    },
+    {
+     "register": "FDATA",
+     "field": "STOP",
+     "property": "width_bits",
+     "value": "1",
+     "quote": "five 1-bit flags"
+    },
+    {
+     "register": "FDATA",
+     "field": "NAKOK",
+     "property": "width_bits",
+     "value": "1",
+     "quote": "five 1-bit flags"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"FDATA\", \"field\": \"FBYTE\", \"property\": \"width_bits\", \"value\": \"1\", \"quote\": \"one single format byte\"}, {\"register\": \"FDATA\", \"field\": \"READB\", \"property\": \"width_bits\", \"value\": \"1\", \"quote\": \"five 1-bit flags\"}, {\"register\": \"FDATA\", \"field\": \"RCONT\", \"property\": \"width_bits\", \"value\": \"1\", \"quote\": \"five 1-bit flags\"}, {\"register\": \"FDATA\", \"field\": \"START\", \"property\": \"width_bits\", \"value\": \"1\", \"quote\": \"five 1-bit flags\"}, {\"register\": \"FDATA\", \"field\": \"STOP\", \"property\": \"width_bits\", \"value\": \"1\", \"quote\": \"five 1-bit flags\"}, {\"register\": \"FDATA\", \"field\": \"NAKOK\", \"property\": \"width_bits\", \"value\": \"1\", \"quote\": \"five 1-bit flags\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:61",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:62",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:66",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:70",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:73",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:76",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:90",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:91",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:93",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "ENABLEHOST",
+     "property": "reset_value",
+     "value": "0",
+     "quote": "setting `CTRL.ENABLEHOST` to `1'b0`"
+    },
+    {
+     "register": "CTRL",
+     "field": "",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "clear the FIFOs to be ready to begin a new transaction"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"ENABLEHOST\", \"property\": \"reset_value\", \"value\": \"0\", \"quote\": \"setting `CTRL.ENABLEHOST` to `1'b0`\"}, {\"register\": \"CTRL\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"clear the FIFOs to be ready to begin a new transaction\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:94",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:95",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:97",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "CONTROLLER_EVENTS",
+     "field": "NACK",
+     "property": "software_access",
+     "value": "write-1-to-clear",
+     "quote": "Software should then clear the `CONTROLLER_EVENTS.NACK` to proceed with the next operation."
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CONTROLLER_EVENTS\", \"field\": \"NACK\", \"property\": \"software_access\", \"value\": \"write-1-to-clear\", \"quote\": \"Software should then clear the `CONTROLLER_EVENTS.NACK` to proceed with the next operation.\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:98",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "INTR_STATE",
+     "field": "controller_halt",
+     "property": "software_access",
+     "value": "write-1-to-clear",
+     "quote": "so it doesn't clear by writing to the `INTR_STATE.CONTROLLER_HALT` bit"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"INTR_STATE\", \"field\": \"controller_halt\", \"property\": \"software_access\", \"value\": \"write-1-to-clear\", \"quote\": \"so it doesn't clear by writing to the `INTR_STATE.CONTROLLER_HALT` bit\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:99",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "CONTROLLER_EVENTS",
+     "field": "",
+     "property": "locked_by",
+     "value": "UNHANDLED_NACK_TIMEOUT, BUS_TIMEOUT, ARBITRATION_LOST",
+     "quote": "all must be cleared for the interrupt to de-assert"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CONTROLLER_EVENTS\", \"field\": \"\", \"property\": \"locked_by\", \"value\": \"UNHANDLED_NACK_TIMEOUT, BUS_TIMEOUT, ARBITRATION_LOST\", \"quote\": \"all must be cleared for the interrupt to de-assert\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:102",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "HOST_NACK_HANDLER_TIMEOUT",
+     "field": "",
+     "property": "software_access",
+     "value": "read-write",
+     "quote": "which allows software to configure the delay"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"HOST_NACK_HANDLER_TIMEOUT\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"read-write\", \"quote\": \"which allows software to configure the delay\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:103",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:109",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:117",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:122",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "CONTROLLER_EVENTS",
+     "field": "",
+     "property": "locked_by",
+     "value": "BUS_ARBITRATION",
+     "quote": "All bits in `CONTROLLER_EVENTS` must be cleared for the Controller Module to release from the halted state"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CONTROLLER_EVENTS\", \"field\": \"\", \"property\": \"locked_by\", \"value\": \"BUS_ARBITRATION\", \"quote\": \"All bits in `CONTROLLER_EVENTS` must be cleared for the Controller Module to release from the halted state\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:147",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:152",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:173",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:176",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:179",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:190",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:210",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:220",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:232",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:241",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "ACK_CTRL_EN",
+     "property": "reset_value",
+     "value": "0",
+     "quote": "When ACK Control Mode is disabled in `CTRL.ACK_CTRL_EN`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"ACK_CTRL_EN\", \"property\": \"reset_value\", \"value\": \"0\", \"quote\": \"When ACK Control Mode is disabled in `CTRL.ACK_CTRL_EN`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:243",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:248",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:254",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TARGET_ACK_CTRL",
+     "field": "NACK",
+     "property": "software_access",
+     "value": "write-1-to-set",
+     "quote": "writing a 1 to `TARGET_ACK_CTRL.NACK`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TARGET_ACK_CTRL\", \"field\": \"NACK\", \"property\": \"software_access\", \"value\": \"write-1-to-set\", \"quote\": \"writing a 1 to `TARGET_ACK_CTRL.NACK`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:255",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TARGET_ACK_CTRL",
+     "field": "",
+     "property": "software_access",
+     "value": "write-ignored",
+     "quote": "writes to `TARGET_ACK_CTRL` are ignored"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TARGET_ACK_CTRL\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"write-ignored\", \"quote\": \"writes to `TARGET_ACK_CTRL` are ignored\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:258",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:273",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TIMING0",
+     "field": "TLOW",
+     "property": "reset_value",
+     "value": "",
+     "quote": "- t<sub>LOW</sub>: set in register `TIMING0.TLOW`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMING0\", \"field\": \"TLOW\", \"property\": \"reset_value\", \"value\": \"\", \"quote\": \"- t<sub>LOW</sub>: set in register `TIMING0.TLOW`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:274",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TIMING0",
+     "field": "THIGH",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "set in register `TIMING0.THIGH`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMING0\", \"field\": \"THIGH\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"set in register `TIMING0.THIGH`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:275",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TIMING1",
+     "field": "T_R",
+     "property": "reset_value",
+     "value": "",
+     "quote": "- t<sub>r</sub>: set in register `TIMING1.T_R`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMING1\", \"field\": \"T_R\", \"property\": \"reset_value\", \"value\": \"\", \"quote\": \"- t<sub>r</sub>: set in register `TIMING1.T_R`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:278",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TIMING1",
+     "field": "T_F",
+     "property": "reset_value",
+     "value": "",
+     "quote": "- t<sub>f</sub>: set in register `TIMING1.T_F`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMING1\", \"field\": \"T_F\", \"property\": \"reset_value\", \"value\": \"\", \"quote\": \"- t<sub>f</sub>: set in register `TIMING1.T_F`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:284",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:285",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:286",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TIMING3",
+     "field": "TSU_DAT",
+     "property": "reset_value",
+     "value": "",
+     "quote": ""
+    },
+    {
+     "register": "TIMING3",
+     "field": "TSU_DAT",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "- t<sub>SU,DAT</sub>: set in register `TIMING3.TSU_DAT`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMING3\", \"field\": \"TSU_DAT\", \"property\": \"reset_value\", \"value\": \"\", \"quote\": \"\"}, {\"register\": \"TIMING3\", \"field\": \"TSU_DAT\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"- t<sub>SU,DAT</sub>: set in register `TIMING3.TSU_DAT`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:288",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TIMING3",
+     "field": "THD_DAT",
+     "property": "reset_value",
+     "value": "",
+     "quote": ""
+    },
+    {
+     "register": "TIMING3",
+     "field": "THD_DAT",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "- t<sub>HD,DAT</sub>: set in register `TIMING3.THD_DAT`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMING3\", \"field\": \"THD_DAT\", \"property\": \"reset_value\", \"value\": \"\", \"quote\": \"\"}, {\"register\": \"TIMING3\", \"field\": \"THD_DAT\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"- t<sub>HD,DAT</sub>: set in register `TIMING3.THD_DAT`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:293",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TIMING4",
+     "field": "TSU_STO",
+     "property": "reset_value",
+     "value": "",
+     "quote": ""
+    },
+    {
+     "register": "TIMING4",
+     "field": "TSU_STO",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "- t<sub>SU,STO</sub>: set in register `TIMING4.TSU_STO`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMING4\", \"field\": \"TSU_STO\", \"property\": \"reset_value\", \"value\": \"\", \"quote\": \"\"}, {\"register\": \"TIMING4\", \"field\": \"TSU_STO\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"- t<sub>SU,STO</sub>: set in register `TIMING4.TSU_STO`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:294",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TIMING4",
+     "field": "T_BUF",
+     "property": "reset_value",
+     "value": "",
+     "quote": ""
+    },
+    {
+     "register": "TIMING4",
+     "field": "T_BUF",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "- t<sub>BUF</sub>: set in register `TIMING4.T_BUF`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMING4\", \"field\": \"T_BUF\", \"property\": \"reset_value\", \"value\": \"\", \"quote\": \"\"}, {\"register\": \"TIMING4\", \"field\": \"T_BUF\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"- t<sub>BUF</sub>: set in register `TIMING4.T_BUF`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:296",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:304",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:319",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:321",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TIMEOUT_CTRL",
+     "field": "EN",
+     "property": "reset_value",
+     "value": "0",
+     "quote": "Enabling a timeout at all requires setting `TIMEOUT_CTRL.EN` and configuring `TIMEOUT_CTRL.VAL` with the desired number of cycles to count before timing out"
+    },
+    {
+     "register": "TIMEOUT_CTRL",
+     "field": "EN",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "Enabling a timeout at all requires setting `TIMEOUT_CTRL.EN` and configuring `TIMEOUT_CTRL.VAL` with the desired number of cycles to count before timing out"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMEOUT_CTRL\", \"field\": \"EN\", \"property\": \"reset_value\", \"value\": \"0\", \"quote\": \"Enabling a timeout at all requires setting `TIMEOUT_CTRL.EN` and configuring `TIMEOUT_CTRL.VAL` with the desired number of cycles to count before timing out\"}, {\"register\": \"TIMEOUT_CTRL\", \"field\": \"EN\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"Enabling a timeout at all requires setting `TIMEOUT_CTRL.EN` and configuring `TIMEOUT_CTRL.VAL` with the desired number of cycles to count before timing out\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:322",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:324",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:329",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "CONTROLLER_EVENTS",
+     "field": "BUS_TIMEOUT",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "halting the Controller Module and requiring handling from software before the next command will process"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CONTROLLER_EVENTS\", \"field\": \"BUS_TIMEOUT\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"halting the Controller Module and requiring handling from software before the next command will process\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:332",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TARGET_EVENTS",
+     "field": "BUS_TIMEOUT",
+     "property": "software_access",
+     "value": "write-1-to-set",
+     "quote": "`TARGET_EVENTS.BUS_TIMEOUT` will be set, causing the Target Module to stretch the clock on read operations until software handles the event"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TARGET_EVENTS\", \"field\": \"BUS_TIMEOUT\", \"property\": \"software_access\", \"value\": \"write-1-to-set\", \"quote\": \"`TARGET_EVENTS.BUS_TIMEOUT` will be set, causing the Target Module to stretch the clock on read operations until software handles the event\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:339",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "HOST_TIMEOUT_CTRL",
+     "field": "",
+     "property": "reset_value",
+     "value": "0",
+     "quote": "determined by whether the register value is nonzero"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"HOST_TIMEOUT_CTRL\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0\", \"quote\": \"determined by whether the register value is nonzero\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:354",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TARGET_TIMEOUT_CTRL",
+     "field": "EN",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "If enabled with `TARGET_TIMEOUT_CTRL.EN`, ..."
+    },
+    {
+     "register": "TARGET_TIMEOUT_CTRL",
+     "field": "VAL",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "If enabled with `TARGET_TIMEOUT_CTRL.EN`, ..."
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TARGET_TIMEOUT_CTRL\", \"field\": \"EN\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"If enabled with `TARGET_TIMEOUT_CTRL.EN`, ...\"}, {\"register\": \"TARGET_TIMEOUT_CTRL\", \"field\": \"VAL\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"If enabled with `TARGET_TIMEOUT_CTRL.EN`, ...\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:362",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:365",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:369",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:399",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:400",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TIMEOUT_CTRL",
+     "field": "EN",
+     "property": "reset_value",
+     "value": "0",
+     "quote": "if `TIMEOUT_CTRL.EN` is deasserted low"
+    },
+    {
+     "register": "TIMEOUT_CTRL",
+     "field": "MODE",
+     "property": "reset_value",
+     "value": "0",
+     "quote": "if the bus timeout is selected for `TIMEOUT_CTRL.MODE`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMEOUT_CTRL\", \"field\": \"EN\", \"property\": \"reset_value\", \"value\": \"0\", \"quote\": \"if `TIMEOUT_CTRL.EN` is deasserted low\"}, {\"register\": \"TIMEOUT_CTRL\", \"field\": \"MODE\", \"property\": \"reset_value\", \"value\": \"0\", \"quote\": \"if the bus timeout is selected for `TIMEOUT_CTRL.MODE`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:429",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:430",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "FIFO_CTRL",
+     "field": "TXRST",
+     "property": "reset_value",
+     "value": "0",
+     "quote": "so it may have to be cleared out via `FIFO_CTRL.TXRST`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"FIFO_CTRL\", \"field\": \"TXRST\", \"property\": \"reset_value\", \"value\": \"0\", \"quote\": \"so it may have to be cleared out via `FIFO_CTRL.TXRST`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:439",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:442",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:446",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:452",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "HOST_TIMEOUT_CTRL",
+     "field": "",
+     "property": "software_access",
+     "value": "read-write",
+     "quote": "Firmware can configure the timeout value via the register `HOST_TIMEOUT_CTRL`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"HOST_TIMEOUT_CTRL\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"read-write\", \"quote\": \"Firmware can configure the timeout value via the register `HOST_TIMEOUT_CTRL`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:577",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:578",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "OVRD",
+     "field": "SCLVAL",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "controlled directly by the register fields `OVRD.SCLVAL` and `OVRD.SDAVAL`"
+    },
+    {
+     "register": "OVRD",
+     "field": "SDAVAL",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "controlled directly by the register fields `OVRD.SCLVAL` and `OVRD.SDAVAL`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"OVRD\", \"field\": \"SCLVAL\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"controlled directly by the register fields `OVRD.SCLVAL` and `OVRD.SDAVAL`\"}, {\"register\": \"OVRD\", \"field\": \"SDAVAL\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"controlled directly by the register fields `OVRD.SCLVAL` and `OVRD.SDAVAL`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:579",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:580",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "VAL",
+     "field": "SCL_RX",
+     "property": "software_access",
+     "value": "read-only",
+     "quote": "can be used to receive inputs"
+    },
+    {
+     "register": "VAL",
+     "field": "SDA_RX",
+     "property": "software_access",
+     "value": "read-only",
+     "quote": "can be used to receive inputs"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"VAL\", \"field\": \"SCL_RX\", \"property\": \"software_access\", \"value\": \"read-only\", \"quote\": \"can be used to receive inputs\"}, {\"register\": \"VAL\", \"field\": \"SDA_RX\", \"property\": \"software_access\", \"value\": \"read-only\", \"quote\": \"can be used to receive inputs\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:56",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:58",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:62",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:75",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "TIMING0",
+     "field": "TLOW",
+     "property": "reset_value",
+     "value": "TLOW_MIN",
+     "quote": "set TLOW to the minimum possible value: $$ \\textrm{TIMING0.TLOW}=\\textrm{TLOW_MIN} $$"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMING0\", \"field\": \"TLOW\", \"property\": \"reset_value\", \"value\": \"TLOW_MIN\", \"quote\": \"set TLOW to the minimum possible value: $$ \\\\textrm{TIMING0.TLOW}=\\\\textrm{TLOW_MIN} $$\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:77",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:91",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:92",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:93",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:94",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:96",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:97",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:98",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:99",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:100",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:101",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:103",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:105",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:109",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:110",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:111",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:112",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:118",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "FDATA",
+     "field": "START",
+     "property": "reset_value",
+     "value": "1",
+     "quote": "`FDATA.START` = 1"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"FDATA\", \"field\": \"START\", \"property\": \"reset_value\", \"value\": \"1\", \"quote\": \"`FDATA.START` = 1\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:119",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:120",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:122",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "FDATA",
+     "field": "STOP",
+     "property": "reset_value",
+     "value": "1",
+     "quote": "`FDATA.STOP` = 1"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"FDATA\", \"field\": \"STOP\", \"property\": \"reset_value\", \"value\": \"1\", \"quote\": \"`FDATA.STOP` = 1\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:123",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:125",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:126",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "CONTROLLER_EVENTS",
+     "field": "",
+     "property": "software_access",
+     "value": "read-only",
+     "quote": "Check `CONTROLLER_EVENTS` for the reason"
+    },
+    {
+     "register": "FIFO_CTRL",
+     "field": "FMTRST",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "reset the FMT FIFO with `FIFO_CTRL.FMTRST`"
+    },
+    {
+     "register": "CONTROLLER_EVENTS",
+     "field": "",
+     "property": "reset_value",
+     "value": "0",
+     "quote": "clear the latched events"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CONTROLLER_EVENTS\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"read-only\", \"quote\": \"Check `CONTROLLER_EVENTS` for the reason\"}, {\"register\": \"FIFO_CTRL\", \"field\": \"FMTRST\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"reset the FMT FIFO with `FIFO_CTRL.FMTRST`\"}, {\"register\": \"CONTROLLER_EVENTS\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0\", \"quote\": \"clear the latched events\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:127",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:131",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "FDATA",
+     "field": "START",
+     "property": "reset_value",
+     "value": "1",
+     "quote": "`FDATA.START` = 1"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"FDATA\", \"field\": \"START\", \"property\": \"reset_value\", \"value\": \"1\", \"quote\": \"`FDATA.START` = 1\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:132",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:134",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "FDATA",
+     "field": "READB",
+     "property": "reset_value",
+     "value": "1",
+     "quote": "`FDATA.READB` = 1"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"FDATA\", \"field\": \"READB\", \"property\": \"reset_value\", \"value\": \"1\", \"quote\": \"`FDATA.READB` = 1\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:135",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "FDATA",
+     "field": "STOP",
+     "property": "reset_value",
+     "value": "1",
+     "quote": "`FDATA.STOP` = 1"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"FDATA\", \"field\": \"STOP\", \"property\": \"reset_value\", \"value\": \"1\", \"quote\": \"`FDATA.STOP` = 1\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:136",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:138",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:139",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:140",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:141",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "FIFO_CTRL",
+     "field": "FMTRST",
+     "property": "reset_value",
+     "value": "0",
+     "quote": "set `FIFO_CTRL.FMTRST` to reset the FMT FIFO"
+    },
+    {
+     "register": "CONTROLLER_EVENTS",
+     "field": "",
+     "property": "reset_value",
+     "value": "0",
+     "quote": "clear latched events in `CONTROLLER_EVENTS`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"FIFO_CTRL\", \"field\": \"FMTRST\", \"property\": \"reset_value\", \"value\": \"0\", \"quote\": \"set `FIFO_CTRL.FMTRST` to reset the FMT FIFO\"}, {\"register\": \"CONTROLLER_EVENTS\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0\", \"quote\": \"clear latched events in `CONTROLLER_EVENTS`\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:142",
+   "ip": "i2c",
+   "claims": [
+    {
+     "register": "STATUS",
+     "field": "FMTEMPTY",
+     "property": "reset_value",
+     "value": "1",
+     "quote": "If `STATUS.FMTEMPTY` is 1, the read transfer has completed"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"STATUS\", \"field\": \"FMTEMPTY\", \"property\": \"reset_value\", \"value\": \"1\", \"quote\": \"If `STATUS.FMTEMPTY` is 1, the read transfer has completed\"}]}"
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:143",
+   "ip": "i2c",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  }
+ ]
+}

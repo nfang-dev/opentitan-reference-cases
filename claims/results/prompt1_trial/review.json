@@ -1,0 +1,125 @@
+{
+ "about": "Each claim from the first prompt's trial, compared with its sentence: does the sentence state this property with this value for this register or field?",
+ "claims": {
+  "hw/ip/uart/doc/theory_of_operation.md:48/1": {
+   "reading": "wrong",
+   "note": "mentions reading or writing the register; does not state its access type"
+  },
+  "hw/ip/uart/doc/theory_of_operation.md:64/1": {
+   "reading": "wrong",
+   "note": "mentions reading or writing the register; does not state its access type"
+  },
+  "hw/ip/uart/doc/theory_of_operation.md:97/1": {
+   "reading": "wrong",
+   "note": "mentions reading or writing the register; does not state its access type"
+  },
+  "hw/ip/uart/doc/theory_of_operation.md:160/1": {
+   "reading": "wrong",
+   "note": "the sentence says nothing about the access type"
+  },
+  "hw/ip/uart/doc/theory_of_operation.md:160/2": {
+   "reading": "wrong",
+   "note": "the sentence says nothing about the access type"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:8/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:8/2": {
+   "reading": "wrong",
+   "note": "mentions reading or writing the register; does not state its access type"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:8/3": {
+   "reading": "wrong",
+   "note": "mentions reading or writing the register; does not state its access type"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:9/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:9/2": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:9/3": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:9/4": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:22/1": {
+   "reading": "correct",
+   "note": "states the field's width"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:26/1": {
+   "reading": "wrong",
+   "note": "\"integer values\" is not a width"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:48/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:48/2": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:48/3": {
+   "reading": "wrong",
+   "note": "mentions reading or writing the register; does not state its access type"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:49/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:49/2": {
+   "reading": "wrong",
+   "note": "the sentence gives the meaning of 0 and 1, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:49/3": {
+   "reading": "wrong",
+   "note": "the sentence gives the meaning of 0 and 1, not an access type"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:54/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:140/1": {
+   "reading": "wrong",
+   "note": "mentions reading or writing the register; does not state its access type"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:19/1": {
+   "reading": "wrong",
+   "note": "mentions reading or writing the register; does not state its access type"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:19/2": {
+   "reading": "wrong",
+   "note": "mentions reading or writing the register; does not state its access type"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:19/3": {
+   "reading": "wrong",
+   "note": "mentions reading or writing the register; does not state its access type"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:24/1": {
+   "reading": "wrong",
+   "note": "the sentence gives no register width"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:24/2": {
+   "reading": "wrong",
+   "note": "16 bits is the width of a part of the write, not of the register"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:24/3": {
+   "reading": "wrong",
+   "note": "the sentence gives no register width"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:24/4": {
+   "reading": "wrong",
+   "note": "16 bits is the width of a part of the write, not of the register"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:32/1": {
+   "reading": "wrong",
+   "note": "mentions reading or writing the register; does not state its access type"
+  }
+ }
+}

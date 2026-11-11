@@ -91,3 +91,30 @@ jobs:
         run: |
           ./review/run_examples.sh opentitan-hw otdocs-earlier examples-rerun
           for f in review/examples/*.md; do diff -u "$f" "examples-rerun/$(basename "$f")"; done
+
+  claims:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install reggen's dependencies
+        run: pip install hjson==3.1.0 mako==1.3.10 semantic_version==2.10.0
+      - name: Fetch OpenTitan hw/ and util/ at the recorded revision
+        run: ./csr/fetch_opentitan.sh opentitan
+      - name: Re-select the sentences and compare with the latest committed run
+        run: |
+          python claims/sentences.py --opentitan opentitan --out sentences.json
+          if [ -f claims/results/prompt3/sentences.json ]; then
+            diff -u claims/results/prompt3/sentences.json sentences.json
+          fi
+      - name: Re-check every committed run's answers and compare with its committed report
+        run: |
+          for d in claims/results/*/; do
+            n=$(basename "$d")
+            python claims/check.py --opentitan opentitan --sentences "$d/sentences.json" \
+              --answers "$d/answers.json" --review "$d/review.json" --out "recheck/$n/check.md"
+            diff -u "$d/check.md" "recheck/$n/check.md"
+            diff -u "$d/check.json" "recheck/$n/check.json"
+          done

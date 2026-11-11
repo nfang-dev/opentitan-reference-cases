@@ -16,6 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  RESULTS: claims/results/prompt3
   MODEL_REPO: Qwen/Qwen2.5-7B-Instruct-GGUF
   MODEL_FILE: qwen2.5-7b-instruct-q4_k_m
   # llama.cpp is built for a common instruction set, so a cached build runs on any runner
@@ -55,7 +56,7 @@ jobs:
       - name: Select the sentences that name a register
         run: |
           python claims/sentences.py --opentitan opentitan --out out/sentences.json
-          if [ -f claims/results/sentences.json ]; then diff -u claims/results/sentences.json out/sentences.json; fi
+          if [ -f "$RESULTS/sentences.json" ]; then diff -u "$RESULTS/sentences.json" out/sentences.json; fi
       - name: Let the model read each sentence
         run: |
           python claims/extract.py --sentences out/sentences.json \
@@ -67,8 +68,8 @@ jobs:
       - name: Compare with the committed answers
         if: always()
         run: |
-          if [ -f claims/results/answers.json ]; then
-            python claims/compare.py claims/results/answers.json out/answers.json | tee out/compare.txt
+          if [ -f "$RESULTS/answers.json" ]; then
+            python claims/compare.py "$RESULTS/answers.json" out/answers.json | tee out/compare.txt
           fi
       - uses: actions/upload-artifact@v4
         if: always()

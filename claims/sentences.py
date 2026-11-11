@@ -35,7 +35,9 @@ import corpus  # noqa: E402
 import regmodel  # noqa: E402
 
 DOCS = ("README.md", "doc/theory_of_operation.md", "doc/programmers_guide.md")
-SENTENCE_RE = re.compile(r"(?<=[.;:!?])\s+(?=[A-Z`\[(])")
+# Not at a colon: in a list item such as "- `REG_i`: `field` in bit 8", the part after the
+# colon is about the register named before it.
+SENTENCE_RE = re.compile(r"(?<=[.;!?])\s+(?=[A-Z`\[(])")
 LIST_ITEM_RE = re.compile(r"^\s*(?:[-*+]|\d+[.)])\s+")
 TICK_RE = re.compile(r"`([^`]+)`")
 WORD_RE = re.compile(r"(?<![\w.])([A-Z][A-Z0-9_]*[A-Z0-9])(?:\.(\w+))?(?![\w])")

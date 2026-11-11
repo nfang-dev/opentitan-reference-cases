@@ -29,8 +29,9 @@ program cannot read, for example an access type outside the fixed list).
 A review file records, for each claim, whether the model read the sentence correctly and,
 for a disagreement, whether the documentation is wrong. The report counts both.
 
-Independently of the model, every field written as `REGISTER.FIELD` in the selected
-sentences is looked up in the description, and names that do not exist are listed.
+Independently of the model, two name checks run on the same documents: every field written
+as `REGISTER.FIELD` in the selected sentences is looked up in the description, and every
+link to a register's entry in registers.md is checked to go to the register its text names.
 
 Uses reggen (through csr/regmodel.py) and the Python standard library.
 """
@@ -45,8 +46,10 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / "csr"))
+sys.path.insert(0, str(HERE))
 
 import regmodel  # noqa: E402
+import sentences as sel  # noqa: E402
 
 ACCESS = {"read-write": "rw", "read-only": "ro", "write-only": "wo",
           "write-1-to-clear": "rw1c", "write-1-to-set": "rw1s", "write-0-to-clear": "rw0c",
@@ -233,6 +236,27 @@ def unknown_fields(sentences: dict, models: dict) -> list[dict]:
     return out
 
 
+LINK_RE = re.compile(r"\[`([A-Za-z][A-Za-z0-9_]*)(?:\.\w+)?`\]\([./]*registers\.md#(\w+)\)")
+
+
+def link_mismatches(root: Path, ips: list[dict], models: dict) -> list[dict]:
+    """Links whose text names one register of the IP and whose target is another."""
+    out = []
+    for ip in ips:
+        names = {r["name"].lower() for r in models[ip["ip"]]["registers"]}
+        for rel in sel.doc_files(ip["hjson"]):
+            path = root / rel
+            if not path.is_file():
+                continue
+            for no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+                for m in LINK_RE.finditer(line):
+                    text, target = m.group(1).lower(), m.group(2).lower()
+                    if text in names and target in names and text != target:
+                        out.append({"ip": ip["ip"], "path": rel, "line": no,
+                                    "text": m.group(1), "target": m.group(2)})
+    return out
+
+
 def load_models(root: Path, ips: list[dict]) -> dict:
     return {ip["ip"]: regmodel.load(root, ip["hjson"]) for ip in ips}
 
@@ -254,6 +278,7 @@ def check_all(sentences: dict, answers: dict, models: dict, ips: list[dict],
     return out
 
 
+ACCEPTED = ("agrees", "disagrees", "not checkable")
 OUTCOMES = ["agrees", "disagrees", "not checkable", "quote not in sentence",
             "quote does not state the property", "register not named in sentence",
             "not in description", "unknown value"]
@@ -267,16 +292,22 @@ def summary(rows: list[dict], answers: dict, review: dict) -> dict:
     by_prop: dict[str, int] = {}
     for r in rows:
         by_prop[r["property"]] = by_prop.get(r["property"], 0) + 1
-    reviewed = [review[r["claim"]] for r in rows if r["claim"] in review]
+    reviewed = [(r, review[r["claim"]]) for r in rows if r["claim"] in review]
+    accepted = [(r, v) for r, v in reviewed if r["outcome"] in ACCEPTED]
     return {"sentences": total, "sentences_with_claims": with_claims, "answer_errors": errors,
             "claims": len(rows), "by_property": by_prop, "by_outcome": by_outcome,
             "reviewed": len(reviewed),
-            "read_correctly": sum(1 for v in reviewed if v["reading"] == "correct"),
-            "documentation_differs": sum(1 for v in reviewed if v.get("documentation") == "differs")}
+            "read_correctly": sum(1 for _, v in reviewed if v["reading"] == "correct"),
+            "accepted_by_checks": len(accepted),
+            "accepted_and_read_correctly": sum(1 for _, v in accepted if v["reading"] == "correct"),
+            "rejected_but_read_correctly": sum(1 for r, v in reviewed if r["outcome"] not in ACCEPTED
+                                               and v["reading"] == "correct"),
+            "documentation_differs": sum(1 for _, v in reviewed
+                                         if v.get("documentation") == "differs")}
 
 
 def markdown(rows: list[dict], summ: dict, answers: dict, review: dict, rev: str,
-             unknown: list[dict]) -> str:
+             unknown: list[dict], links: list[dict]) -> str:
     lines = ["# Register facts read from the documentation, checked against the description", "",
              f"OpenTitan revision `{rev}`. Model: {answers['model']} "
              f"(llama-cpp-python {answers['llama_cpp_python']}, temperature 0).", "",
@@ -287,17 +318,28 @@ def markdown(rows: list[dict], summ: dict, answers: dict, review: dict, rev: str
              + ", ".join(f"{k} {v}" for k, v in sorted(summ["by_property"].items())) + ")",
              "- Outcomes: " + ", ".join(f"{k} {v}" for k, v in summ["by_outcome"].items() if v)]
     if summ["reviewed"]:
-        lines.append(f"- Reviewed: {summ['reviewed']} of {summ['claims']} claims; the model read "
-                     f"the sentence correctly in {summ['read_correctly']}; documentation that "
-                     f"differs from the description: {summ['documentation_differs']}")
-    lines += ["", "## Field names not in the description", "",
-              "Every `REGISTER.FIELD` written in the sentences, looked up without the model.", ""]
+        lines += [f"- Reviewed: {summ['reviewed']} of {summ['claims']} claims. The model read the "
+                  f"sentence correctly in {summ['read_correctly']}.",
+                  f"- Accepted by the checks (agrees, disagrees, not checkable): "
+                  f"{summ['accepted_by_checks']}, of which read correctly: "
+                  f"{summ['accepted_and_read_correctly']}. Rejected although read correctly: "
+                  f"{summ['rejected_but_read_correctly']}.",
+                  f"- Documentation that differs from the description: "
+                  f"{summ['documentation_differs']}"]
+    def where(u):
+        return f"[{u['ip']}/{Path(u['path']).name}:{u['line']}]({BLOB}/{rev}/{u['path']}#L{u['line']})"
+
+    lines += ["", "## Names checked without the model", "",
+              "Fields written as `REGISTER.FIELD` that the register does not have:", ""]
     if unknown:
         lines += ["| Where | Written | Fields the register has |", "|---|---|---|"]
-        for u in unknown:
-            lines.append(f"| [{u['ip']}/{Path(u['path']).name}:{u['line']}]"
-                         f"({BLOB}/{rev}/{u['path']}#L{u['line']}) | `{u['written']}` | "
-                         f"{', '.join(u['fields'])} |")
+        lines += [f"| {where(u)} | `{u['written']}` | {', '.join(u['fields'])} |" for u in unknown]
+    else:
+        lines.append("None.")
+    lines += ["", "Links whose text names one register and whose target is another:", ""]
+    if links:
+        lines += ["| Where | Link text | Link target |", "|---|---|---|"]
+        lines += [f"| {where(u)} | `{u['text']}` | `registers.md#{u['target']}` |" for u in links]
     else:
         lines.append("None.")
     lines += ["", "## Claims", "",
@@ -343,14 +385,17 @@ def main(argv: list[str] | None = None) -> int:
     models = load_models(args.opentitan, ips)
     rows = check_all(sentences, answers, models, ips, args.csr_results)
     unknown = unknown_fields(sentences, models)
+    links = link_mismatches(args.opentitan, ips, models)
     summ = summary(rows, answers, review)
     summ["unknown_field_names"] = len(unknown)
+    summ["link_mismatches"] = len(links)
     rev = sentences["opentitan_revision"]
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(markdown(rows, summ, answers, review, rev, unknown), encoding="utf-8")
+    args.out.write_text(markdown(rows, summ, answers, review, rev, unknown, links),
+                        encoding="utf-8")
     args.out.with_suffix(".json").write_text(
-        json.dumps({"summary": summ, "unknown_field_names": unknown, "claims": rows},
-                   indent=1) + "\n", encoding="utf-8")
+        json.dumps({"summary": summ, "unknown_field_names": unknown, "link_mismatches": links,
+                    "claims": rows}, indent=1) + "\n", encoding="utf-8")
     print(json.dumps(summ, indent=1))
     return 0
 

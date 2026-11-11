@@ -51,11 +51,11 @@ class SentenceTest(unittest.TestCase):
 
     def test_sentences_and_lines(self):
         text = "# Title\n\nFirst sentence names CTRL. Second one\ncontinues here.\n\n" \
-               "```\nCTRL code\n```\n- Item about `CAUSE`.\n"
+               "```\nCTRL code\n```\n- Item about `CAUSE`.\n- `EN_i`: `en` in bit 0.\n"
         got = list(sentences.sentences_of("x.md", text))
         self.assertEqual([(a, b, s) for a, b, _, s in got], [
             (3, 3, "First sentence names CTRL."), (3, 4, "Second one continues here."),
-            (9, 9, "- Item about `CAUSE`.")])
+            (9, 9, "- Item about `CAUSE`."), (10, 10, "- `EN_i`: `en` in bit 0.")])
 
 
 class ParseTest(unittest.TestCase):
@@ -155,6 +155,18 @@ class UnknownFieldTest(unittest.TestCase):
         got = check.unknown_fields(s, {"x": MODEL})
         self.assertEqual([(u["written"], u["fields"]) for u in got],
                          [("CTRL.speed", ["en", "prescaler"])])
+
+
+    def test_link_mismatches(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            doc = Path(d) / "hw/ip/x/README.md"
+            doc.parent.mkdir(parents=True)
+            doc.write_text("See [`CTRL`](doc/registers.md#ctrl), [`CTRL.en`](registers.md#ctrl),\n"
+                           "[`CAUSE`](registers.md#ctrl) and [`en`](registers.md#ctrl).\n")
+            got = check.link_mismatches(Path(d), [{"ip": "x", "hjson": "hw/ip/x/data/x.hjson"}],
+                                        {"x": MODEL})
+        self.assertEqual([(u["line"], u["text"], u["target"]) for u in got], [(2, "CAUSE", "ctrl")])
 
 
 class CompareTest(unittest.TestCase):

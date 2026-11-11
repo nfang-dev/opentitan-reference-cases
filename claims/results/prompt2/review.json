@@ -1,0 +1,441 @@
+{
+ "about": "Each claim from prompt 2, compared with its sentence: does the sentence state this property with this value for this register or field?",
+ "claims": {
+  "hw/ip/uart/doc/programmers_guide.md:8/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:8/2": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:8/3": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:9/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:9/2": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:9/3": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:9/4": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:22/1": {
+   "reading": "correct",
+   "note": "states the field's width"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:26/1": {
+   "reading": "wrong",
+   "note": "\"integer values\" is not a width"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:48/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:48/2": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:48/3": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:48/4": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:48/5": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:49/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:49/2": {
+   "reading": "wrong",
+   "note": "the sentence gives the meaning of 0 and 1, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:49/3": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:54/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:54/2": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:54/3": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:54/4": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:54/5": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:54/6": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:54/7": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:54/8": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/uart/doc/programmers_guide.md:54/9": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:19/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:19/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:19/3": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:76/1": {
+   "reading": "wrong",
+   "note": "\"one bit per input\" is not the width of the field"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:82/1": {
+   "reading": "wrong",
+   "note": "\"always readable\" does not say the register is read-only"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:99/1": {
+   "reading": "correct",
+   "note": "states the register's width"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:102/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:104/1": {
+   "reading": "correct",
+   "note": "\"clearing is done by writing a 1\": write-1-to-clear"
+  },
+  "hw/top_earlgrey/ip_autogen/gpio/doc/programmers_guide.md:127/1": {
+   "reading": "wrong",
+   "note": "the read-only data_in is bit 8 of PER_PIN_IO_i, not the DATA_IN register (the sentence was cut at a colon, so the register it belongs to was not in it)"
+  },
+  "hw/ip/rv_timer/doc/theory_of_operation.md:20/1": {
+   "reading": "wrong",
+   "note": "not a width"
+  },
+  "hw/ip/rv_timer/doc/programmers_guide.md:97/1": {
+   "reading": "correct",
+   "note": "\"clearing ... by writing 1\": write-1-to-clear"
+  },
+  "hw/ip/aon_timer/README.md:32/1": {
+   "reading": "correct",
+   "note": "states the field's width"
+  },
+  "hw/ip/aon_timer/README.md:41/1": {
+   "reading": "correct",
+   "note": "\"acknowledges it by software writing 0\": write-0-to-clear"
+  },
+  "hw/ip/aon_timer/README.md:43/1": {
+   "reading": "correct",
+   "note": "\"to clear ..., write 1\": write-1-to-clear"
+  },
+  "hw/ip/aon_timer/README.md:64/1": {
+   "reading": "wrong",
+   "note": "the sentence says WDOG_REGWEN disables writes to other registers, not its own access type"
+  },
+  "hw/ip/aon_timer/README.md:75/1": {
+   "reading": "correct",
+   "note": "\"acknowledges it by software writing 0\": write-0-to-clear"
+  },
+  "hw/ip/aon_timer/README.md:77/1": {
+   "reading": "correct",
+   "note": "\"to clear ..., write 1\": write-1-to-clear"
+  },
+  "hw/ip/aon_timer/doc/programmers_guide.md:9/1": {
+   "reading": "wrong",
+   "note": "WDOG_REGWEN locks the watchdog registers; the sentence does not say it locks itself"
+  },
+  "hw/ip/aon_timer/doc/programmers_guide.md:87/1": {
+   "reading": "wrong",
+   "note": "clearing a read-write bit as a step of a procedure; not an access type"
+  },
+  "hw/ip/aon_timer/doc/programmers_guide.md:88/1": {
+   "reading": "wrong",
+   "note": "clearing the counter as a step of a procedure, not a reset value"
+  },
+  "hw/ip/aon_timer/doc/programmers_guide.md:88/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/aon_timer/doc/programmers_guide.md:89/1": {
+   "reading": "correct",
+   "note": "\"clear the interrupt by writing 1\": write-1-to-clear"
+  },
+  "hw/ip/aon_timer/doc/programmers_guide.md:91/1": {
+   "reading": "correct",
+   "note": "\"clear the wakeup request by writing 0\": write-0-to-clear"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:10/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:10/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:38/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:38/2": {
+   "reading": "wrong",
+   "note": "a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:38/3": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:55/1": {
+   "reading": "wrong",
+   "note": "a format byte is 8 bits; the 1-bit flags are the other five fields"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:55/2": {
+   "reading": "correct",
+   "note": "\"five 1-bit flags\" names this field"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:55/3": {
+   "reading": "correct",
+   "note": "\"five 1-bit flags\" names this field"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:55/4": {
+   "reading": "correct",
+   "note": "\"five 1-bit flags\" names this field"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:55/5": {
+   "reading": "correct",
+   "note": "\"five 1-bit flags\" names this field"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:55/6": {
+   "reading": "correct",
+   "note": "\"five 1-bit flags\" names this field"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:93/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:93/2": {
+   "reading": "wrong",
+   "note": "clearing the FIFOs says nothing about the CTRL register's access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:97/1": {
+   "reading": "wrong",
+   "note": "says software clears the field, not how a write clears it"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:98/1": {
+   "reading": "wrong",
+   "note": "the sentence says the bit does not clear when written; the model read the opposite"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:99/1": {
+   "reading": "wrong",
+   "note": "the fields named are not lock registers"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:102/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:122/1": {
+   "reading": "wrong",
+   "note": "not a lock register"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:241/1": {
+   "reading": "wrong",
+   "note": "a condition, not a reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:254/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:255/1": {
+   "reading": "wrong",
+   "note": "writes are ignored only while the target is not stretching the clock; not an access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:273/1": {
+   "reading": "wrong",
+   "note": "the sentence gives no reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:274/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:275/1": {
+   "reading": "wrong",
+   "note": "the sentence gives no reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:278/1": {
+   "reading": "wrong",
+   "note": "the sentence gives no reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:286/1": {
+   "reading": "wrong",
+   "note": "the sentence gives no reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:286/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:288/1": {
+   "reading": "wrong",
+   "note": "the sentence gives no reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:288/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:293/1": {
+   "reading": "wrong",
+   "note": "the sentence gives no reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:293/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:294/1": {
+   "reading": "wrong",
+   "note": "the sentence gives no reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:294/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:321/1": {
+   "reading": "wrong",
+   "note": "a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:321/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:329/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:332/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:339/1": {
+   "reading": "wrong",
+   "note": "a condition, not a reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:354/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:354/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:400/1": {
+   "reading": "wrong",
+   "note": "a condition, not a reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:400/2": {
+   "reading": "wrong",
+   "note": "a condition, not a reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:430/1": {
+   "reading": "wrong",
+   "note": "the field is used to clear the FIFO; not a reset value"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:452/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:578/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:578/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:580/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/theory_of_operation.md:580/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:75/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:118/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:122/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:126/1": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:126/2": {
+   "reading": "wrong",
+   "note": "mentions reading, writing, setting or programming the register; does not state its access type"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:126/3": {
+   "reading": "wrong",
+   "note": "clearing events as a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:131/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:134/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:135/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:141/1": {
+   "reading": "wrong",
+   "note": "a value written as a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:141/2": {
+   "reading": "wrong",
+   "note": "clearing events as a step of a procedure, not a reset value"
+  },
+  "hw/ip/i2c/doc/programmers_guide.md:142/1": {
+   "reading": "wrong",
+   "note": "a condition, not a reset value"
+  }
+ }
+}

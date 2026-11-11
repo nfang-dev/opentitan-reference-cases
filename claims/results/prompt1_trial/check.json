@@ -19,10 +19,14 @@
    "not in description": 2,
    "unknown value": 0
   },
-  "reviewed": 0,
-  "read_correctly": 0,
+  "reviewed": 30,
+  "read_correctly": 1,
+  "accepted_by_checks": 5,
+  "accepted_and_read_correctly": 1,
+  "rejected_but_read_correctly": 0,
   "documentation_differs": 0,
-  "unknown_field_names": 11
+  "unknown_field_names": 11,
+  "link_mismatches": 1
  },
  "unknown_field_names": [
   {
@@ -162,6 +166,15 @@
     "RXRST",
     "TXRST"
    ]
+  }
+ ],
+ "link_mismatches": [
+  {
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/theory_of_operation.md",
+   "line": 32,
+   "text": "WKUP_THOLD_HI",
+   "target": "wkup_thold_lo"
   }
  ],
  "claims": [
