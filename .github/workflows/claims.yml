@@ -1,0 +1,97 @@
+name: Documentation claims (AI model)
+
+on:
+  push:
+    paths:
+      - "claims/**"
+      - ".github/workflows/claims.yml"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Read only the first N sentences (0: all)"
+        default: "0"
+
+concurrency:
+  group: claims
+  cancel-in-progress: false
+
+env:
+  MODEL_REPO: Qwen/Qwen2.5-7B-Instruct-GGUF
+  MODEL_FILE: qwen2.5-7b-instruct-q4_k_m
+  # llama.cpp is built for a common instruction set, so a cached build runs on any runner
+  # and every run computes the same way.
+  CMAKE_ARGS: "-DGGML_NATIVE=OFF -DGGML_AVX=ON -DGGML_AVX2=ON -DGGML_FMA=ON -DGGML_F16C=ON"
+
+jobs:
+  claims:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: claims/requirements.txt
+      - name: Install llama-cpp-python and reggen's dependencies
+        run: pip install -r claims/requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: models
+          key: ${{ env.MODEL_FILE }}-v1
+      - name: Download the model (Apache-2.0) as published by its developer
+        run: |
+          mkdir -p models
+          for part in 00001-of-00002 00002-of-00002; do
+            f="models/${MODEL_FILE}-${part}.gguf"
+            [ -s "$f" ] || curl -sSfL --retry 3 -o "$f" \
+              "https://huggingface.co/${MODEL_REPO}/resolve/main/${MODEL_FILE}-${part}.gguf"
+          done
+          ls -l models
+      - name: Fetch OpenTitan hw/ and util/ at the recorded revision
+        run: ./csr/fetch_opentitan.sh opentitan
+      - name: Select the sentences that name a register
+        run: |
+          python claims/sentences.py --opentitan opentitan --out out/sentences.json
+          if [ -f claims/results/sentences.json ]; then diff -u claims/results/sentences.json out/sentences.json; fi
+      - name: Let the model read each sentence
+        run: |
+          python claims/extract.py --sentences out/sentences.json \
+            --model "models/${MODEL_FILE}-00001-of-00002.gguf" \
+            --model-name "${MODEL_REPO} (${MODEL_FILE})" \
+            --limit "${{ inputs.limit || 25 }}" --out out/answers.json
+      - name: Check the claims against the register description and the register tests
+        run: python claims/check.py --opentitan opentitan --sentences out/sentences.json --answers out/answers.json --out out/check.md
+      - name: Compare with the committed answers
+        if: always()
+        run: |
+          if [ -f claims/results/answers.json ]; then
+            python claims/compare.py claims/results/answers.json out/answers.json | tee out/compare.txt
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: claims-results
+          path: out/
+      - name: Publish the results to the claims-ci-results branch
+        run: |
+          cd out
+          printf 'Produced by %s/%s/actions/runs/%s\nfrom commit %s on %s.\n' \
+            "${{ github.server_url }}" "${{ github.repository }}" "${{ github.run_id }}" \
+            "${{ github.sha }}" "${{ github.ref_name }}" > RUN.md
+          git init -q -b claims-ci-results
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A .
+          git commit -q -m "Documentation claims from run ${{ github.run_id }} (${{ github.sha }})"
+          for attempt in 1 2 3; do
+            if git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" \
+                 claims-ci-results; then
+              exit 0
+            fi
+            echo "push attempt $attempt failed; retrying"
+            sleep $((attempt * 10))
+          done
+          exit 1
