@@ -6,25 +6,31 @@ description, and against what the register tests observed in simulation.
 
 For each claim:
 
-1. The quote must occur in the sentence (otherwise the model did not read it there).
-2. The register and field must exist in the IP's register description (read with reggen).
+1. The quote must occur in the sentence (otherwise the model did not read it there), and
+   must contain a word that can state the property: a reset value needs "reset",
+   "default", "initial" or "power-on"; an access type needs "read-only", "clear",
+   "acknowledge", ...; a width needs "bit"; a lock needs "lock", "regwen", "protect", ...
+2. The register must be one the sentence names, and it and the field must exist in the
+   IP's register description (read with reggen).
 3. The stated value is compared with the description:
    reset_value      the field's reset value (a register: every field's, combined)
    software_access  the field's access type (a register: all fields must have one type)
    width_bits       the field's width (a register: only if it has a single field)
    locked_by        the register's lock register (regwen)
 4. Where the register tests (csr/) checked the same property in simulation and it passed,
-   the hardware is known to match the description, so the claim is also compared with the
-   hardware.
+   the hardware is known to match the description; the report says so.
 
-Outcomes: agrees, disagrees, not in description (register or field), not checkable (the
-description has no single value to compare with), quote not in sentence, register not named
-in sentence (the model attributed the fact to a register the sentence does not name), unknown
-value (a value the program cannot read, for example an access type outside the fixed list).
+Outcomes: agrees, disagrees, not checkable (the description has no single value to compare
+with), and the rejections: quote not in sentence, quote does not state the property,
+register not named in sentence (the model attributed the fact to a register the sentence
+does not name), not in description (no such register or field), unknown value (a value the
+program cannot read, for example an access type outside the fixed list).
 
-A review file can record, for each claim, whether the model read the sentence correctly
-and, for a disagreement, whether the documentation is wrong. The report then states how
-many claims were read correctly.
+A review file records, for each claim, whether the model read the sentence correctly and,
+for a disagreement, whether the documentation is wrong. The report counts both.
+
+Independently of the model, every field written as `REGISTER.FIELD` in the selected
+sentences is looked up in the description, and names that do not exist are listed.
 
 Uses reggen (through csr/regmodel.py) and the Python standard library.
 """
@@ -48,6 +54,16 @@ ACCESS = {"read-write": "rw", "read-only": "ro", "write-only": "wo",
 ACCESS_NAME = {v: k for k, v in ACCESS.items()}
 ACCESS_NAME["r0w1c"] = "read-zero, write-1-to-clear"
 BASE_RE = re.compile(r"_?\d+$")
+# Words without which a quote cannot state the property. A claim whose quote has none of
+# them is rejected: for example, "write 0x1 to CTRL.TX" does not state a reset value.
+STATES = {
+    "reset_value": re.compile(r"reset|default|initial|power[- ]?on|\bpor\b", re.I),
+    "software_access": re.compile(
+        r"read[- ]only|write[- ]only|read[-/ ]?write|\b(?:ro|wo|rw|w1c|w0c|w1s|rw1c|rw0c|rw1s|"
+        r"rc)\b|clear|acknowledg|ignored|self-clearing|sticky", re.I),
+    "width_bits": re.compile(r"\bbits?\b|-bit\b|\bwidth\b|\bwide\b", re.I),
+    "locked_by": re.compile(r"lock|regwen|write[- ]enable|protect|disabl", re.I),
+}
 BLOB = "https://github.com/lowRISC/opentitan/blob"
 
 
@@ -160,6 +176,8 @@ def check_claim(claim: dict, sentence: dict, model: dict, results: dict | None) 
            "stated": claim["value"], "quote": claim["quote"]}
     if norm_text(claim["quote"]) not in norm_text(sentence["text"]):
         return {**row, "outcome": "quote not in sentence"}
+    if not STATES[prop].search(claim["quote"]):
+        return {**row, "outcome": "quote does not state the property"}
     reg_name, field_name = claim["register"], claim["field"]
     if "." in reg_name and not field_name:
         reg_name, field_name = reg_name.split(".", 1)
@@ -198,12 +216,32 @@ def check_claim(claim: dict, sentence: dict, model: dict, results: dict | None) 
     return out
 
 
-def check_all(sentences: dict, answers: dict, root: Path, ips: list[dict],
+def unknown_fields(sentences: dict, models: dict) -> list[dict]:
+    """Fields written as REGISTER.FIELD that the register does not have."""
+    out = []
+    for s in sentences["sentences"]:
+        for written in s["written"]:
+            reg_name, _, field_name = written.partition(".")
+            if not field_name:
+                continue
+            regs = [r for r in find_registers(models[s["ip"]], reg_name)
+                    if r["name"] in s["registers"]]
+            if regs and not any(find_field(r, field_name) for r in regs):
+                out.append({"ip": s["ip"], "path": s["path"], "line": s["line"],
+                            "written": written,
+                            "fields": sorted({f["name"] for r in regs for f in r["fields"]})})
+    return out
+
+
+def load_models(root: Path, ips: list[dict]) -> dict:
+    return {ip["ip"]: regmodel.load(root, ip["hjson"]) for ip in ips}
+
+
+def check_all(sentences: dict, answers: dict, models: dict, ips: list[dict],
               csr_results: Path | None) -> list[dict]:
     by_id = {s["id"]: s for s in sentences["sentences"]}
-    models, results = {}, {}
+    results = {}
     for ip in ips:
-        models[ip["ip"]] = regmodel.load(root, ip["hjson"])
         p = csr_results / f"{ip['ip']}.json" if csr_results else None
         results[ip["ip"]] = json.loads(p.read_text(encoding="utf-8")) if p and p.exists() else None
     out = []
@@ -216,8 +254,9 @@ def check_all(sentences: dict, answers: dict, root: Path, ips: list[dict],
     return out
 
 
-OUTCOMES = ["agrees", "disagrees", "not in description", "not checkable", "unknown value",
-            "quote not in sentence", "register not named in sentence"]
+OUTCOMES = ["agrees", "disagrees", "not checkable", "quote not in sentence",
+            "quote does not state the property", "register not named in sentence",
+            "not in description", "unknown value"]
 
 
 def summary(rows: list[dict], answers: dict, review: dict) -> dict:
@@ -236,7 +275,8 @@ def summary(rows: list[dict], answers: dict, review: dict) -> dict:
             "documentation_differs": sum(1 for v in reviewed if v.get("documentation") == "differs")}
 
 
-def markdown(rows: list[dict], summ: dict, answers: dict, review: dict, rev: str) -> str:
+def markdown(rows: list[dict], summ: dict, answers: dict, review: dict, rev: str,
+             unknown: list[dict]) -> str:
     lines = ["# Register facts read from the documentation, checked against the description", "",
              f"OpenTitan revision `{rev}`. Model: {answers['model']} "
              f"(llama-cpp-python {answers['llama_cpp_python']}, temperature 0).", "",
@@ -250,9 +290,21 @@ def markdown(rows: list[dict], summ: dict, answers: dict, review: dict, rev: str
         lines.append(f"- Reviewed: {summ['reviewed']} of {summ['claims']} claims; the model read "
                      f"the sentence correctly in {summ['read_correctly']}; documentation that "
                      f"differs from the description: {summ['documentation_differs']}")
-    lines += ["", "| Claim | Sentence | Stated | Description | Outcome | Hardware | Review |",
+    lines += ["", "## Field names not in the description", "",
+              "Every `REGISTER.FIELD` written in the sentences, looked up without the model.", ""]
+    if unknown:
+        lines += ["| Where | Written | Fields the register has |", "|---|---|---|"]
+        for u in unknown:
+            lines.append(f"| [{u['ip']}/{Path(u['path']).name}:{u['line']}]"
+                         f"({BLOB}/{rev}/{u['path']}#L{u['line']}) | `{u['written']}` | "
+                         f"{', '.join(u['fields'])} |")
+    else:
+        lines.append("None.")
+    lines += ["", "## Claims", "",
+              "| Claim | Sentence | Stated | Description | Outcome | Hardware | Review |",
               "|---|---|---|---|---|---|---|"]
     order = {o: i for i, o in enumerate(["disagrees", "not in description", "quote not in sentence",
+                                         "quote does not state the property",
                                          "register not named in sentence", "unknown value",
                                          "not checkable", "agrees"])}
     for r in sorted(rows, key=lambda r: (order[r["outcome"]], r["claim"])):
@@ -288,13 +340,17 @@ def main(argv: list[str] | None = None) -> int:
     review = (json.loads(args.review.read_text(encoding="utf-8"))["claims"]
               if args.review.exists() else {})
     ips = json.loads(args.ips.read_text(encoding="utf-8"))["ips"]
-    rows = check_all(sentences, answers, args.opentitan, ips, args.csr_results)
+    models = load_models(args.opentitan, ips)
+    rows = check_all(sentences, answers, models, ips, args.csr_results)
+    unknown = unknown_fields(sentences, models)
     summ = summary(rows, answers, review)
+    summ["unknown_field_names"] = len(unknown)
     rev = sentences["opentitan_revision"]
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(markdown(rows, summ, answers, review, rev), encoding="utf-8")
+    args.out.write_text(markdown(rows, summ, answers, review, rev, unknown), encoding="utf-8")
     args.out.with_suffix(".json").write_text(
-        json.dumps({"summary": summ, "claims": rows}, indent=1) + "\n", encoding="utf-8")
+        json.dumps({"summary": summ, "unknown_field_names": unknown, "claims": rows},
+                   indent=1) + "\n", encoding="utf-8")
     print(json.dumps(summ, indent=1))
     return 0
 

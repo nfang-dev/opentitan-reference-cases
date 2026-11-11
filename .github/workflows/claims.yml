@@ -61,7 +61,7 @@ jobs:
           python claims/extract.py --sentences out/sentences.json \
             --model "models/${MODEL_FILE}-00001-of-00002.gguf" \
             --model-name "${MODEL_REPO} (${MODEL_FILE})" \
-            --limit "${{ inputs.limit || 25 }}" --out out/answers.json
+            --limit "${{ inputs.limit || 0 }}" --out out/answers.json
       - name: Check the claims against the register description and the register tests
         run: python claims/check.py --opentitan opentitan --sentences out/sentences.json --answers out/answers.json --out out/check.md
       - name: Compare with the committed answers

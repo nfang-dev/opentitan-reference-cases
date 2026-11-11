@@ -1,0 +1,413 @@
+{
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "model": "Qwen/Qwen2.5-7B-Instruct-GGUF (qwen2.5-7b-instruct-q4_k_m)",
+ "model_files": {
+  "qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf": "dfce12e3862a5283ccfb88221b48480e58745165de856439950d0f22590580db",
+  "qwen2.5-7b-instruct-q4_k_m-00002-of-00002.gguf": "539cf93f78e887edea1c04e2d7d8cdaca9d01dae9c9025bcb8accbe29df3d72a"
+ },
+ "llama_cpp_python": "0.3.16",
+ "prompt_sha256": "8df11a44e6cf1710b1216d90ba23b918baf5e54788f2aee0ff587f93fb82ba17",
+ "temperature": 0,
+ "answers": [
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:48",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "WDATA",
+     "field": "",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "A write to `WDATA` enqueues a data byte into the 32-byte write FIFO"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"WDATA\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"A write to `WDATA` enqueues a data byte into the 32-byte write FIFO\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:64",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "RDATA",
+     "field": "",
+     "property": "software_access",
+     "value": "read-only",
+     "quote": "The data can be read out by reading the `RDATA` register."
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"RDATA\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"read-only\", \"quote\": \"The data can be read out by reading the `RDATA` register.\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:97",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "NCO",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "The baud rate is set by writing to the `CTRL.NCO` register field"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"NCO\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"The baud rate is set by writing to the `CTRL.NCO` register field\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:134",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:136",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:154",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:159",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:160",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "STATUS",
+     "field": "BREAK",
+     "property": "software_access",
+     "value": "read-only",
+     "quote": "If STATUS.BREAK is set but `INTR_STATE.BREAK` is clear then the line break has already caused an interrupt that has been cleared but the line break is still going on."
+    },
+    {
+     "register": "INTR_STATE",
+     "field": "BREAK",
+     "property": "software_access",
+     "value": "read-only",
+     "quote": "If STATUS.BREAK is set but `INTR_STATE.BREAK` is clear then the line break has already caused an interrupt that has been cleared but the line break is still going on."
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"STATUS\", \"field\": \"BREAK\", \"property\": \"software_access\", \"value\": \"read-only\", \"quote\": \"If STATUS.BREAK is set but `INTR_STATE.BREAK` is clear then the line break has already caused an interrupt that has been cleared but the line break is still going on.\"}, {\"register\": \"INTR_STATE\", \"field\": \"BREAK\", \"property\": \"software_access\", \"value\": \"read-only\", \"quote\": \"If STATUS.BREAK is set but `INTR_STATE.BREAK` is clear then the line break has already caused an interrupt that has been cleared but the line break is still going on.\"}] }"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:161",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:209",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:219",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:8",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "",
+     "property": "reset_value",
+     "value": "0x0",
+     "quote": "writing `0x0` to the `CTRL` register"
+    },
+    {
+     "register": "FIFO_CTRL",
+     "field": "RXRST",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "writing `0x1` to `FIFO_CTRL.RXRST`"
+    },
+    {
+     "register": "FIFO_CTRL",
+     "field": "TXRST",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "writing `0x1` to `FIFO_CTRL.TXRST`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0x0\", \"quote\": \"writing `0x0` to the `CTRL` register\"}, {\"register\": \"FIFO_CTRL\", \"field\": \"RXRST\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"writing `0x1` to `FIFO_CTRL.RXRST`\"}, {\"register\": \"FIFO_CTRL\", \"field\": \"TXRST\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"writing `0x1` to `FIFO_CTRL.TXRST`\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:9",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "OVRD",
+     "field": "",
+     "property": "reset_value",
+     "value": "0x0",
+     "quote": "write `0x0` to the `OVRD`"
+    },
+    {
+     "register": "TIMEOUT_CTRL",
+     "field": "",
+     "property": "reset_value",
+     "value": "0x0",
+     "quote": "write `0x0` to the `TIMEOUT_CTRL`"
+    },
+    {
+     "register": "INTR_ENABLE",
+     "field": "",
+     "property": "reset_value",
+     "value": "0x0",
+     "quote": "write `0x0` to the `INTR_ENABLE`"
+    },
+    {
+     "register": "INTR_STATE",
+     "field": "",
+     "property": "reset_value",
+     "value": "0xffff_ffff",
+     "quote": "clear any existing interrupts by writing `0xffff_ffff` to `INTR_STATE`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"OVRD\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0x0\", \"quote\": \"write `0x0` to the `OVRD`\"}, {\"register\": \"TIMEOUT_CTRL\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0x0\", \"quote\": \"write `0x0` to the `TIMEOUT_CTRL`\"}, {\"register\": \"INTR_ENABLE\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0x0\", \"quote\": \"write `0x0` to the `INTR_ENABLE`\"}, {\"register\": \"INTR_STATE\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0xffff_ffff\", \"quote\": \"clear any existing interrupts by writing `0xffff_ffff` to `INTR_STATE`\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:13",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:22",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "NCO",
+     "property": "width_bits",
+     "value": "16",
+     "quote": "The `CTRL.NCO` field is 16 bits"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"NCO\", \"property\": \"width_bits\", \"value\": \"16\", \"quote\": \"The `CTRL.NCO` field is 16 bits\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:26",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "NCO",
+     "property": "width_bits",
+     "value": "integer",
+     "quote": "the `CTRL.NCO` field only accepts integer values"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"NCO\", \"property\": \"width_bits\", \"value\": \"integer\", \"quote\": \"the `CTRL.NCO` field only accepts integer values\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:48",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "TX",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "writing `0x1` to `CTRL.TX`"
+    },
+    {
+     "register": "CTRL",
+     "field": "RX",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "writing `0x1` to `CTRL.RX`"
+    },
+    {
+     "register": "CTRL",
+     "field": "NCO",
+     "property": "software_access",
+     "value": "write-only",
+     "quote": "Write the `CTRL` register with the calculated `CTRL.NCO` value"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"TX\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"writing `0x1` to `CTRL.TX`\"}, {\"register\": \"CTRL\", \"field\": \"RX\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"writing `0x1` to `CTRL.RX`\"}, {\"register\": \"CTRL\", \"field\": \"NCO\", \"property\": \"software_access\", \"value\": \"write-only\", \"quote\": \"Write the `CTRL` register with the calculated `CTRL.NCO` value\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:49",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "CTRL",
+     "field": "PARITY_EN",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Parity can be optionally enabled by writing `0x1` to the `CTRL.PARITY_EN` field"
+    },
+    {
+     "register": "CTRL",
+     "field": "PARITY_ODD",
+     "property": "reset_value",
+     "value": "0x0",
+     "quote": "Parity can be optionally enabled by writing `0x1` to the `CTRL.PARITY_EN` field"
+    },
+    {
+     "register": "CTRL",
+     "field": "PARITY_ODD",
+     "property": "software_access",
+     "value": "write-1-to-set",
+     "quote": "whereas `CTRL.PARITY_ODD` configures the type of parity (`0x0` is even, `0x1` is odd)"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"CTRL\", \"field\": \"PARITY_EN\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Parity can be optionally enabled by writing `0x1` to the `CTRL.PARITY_EN` field\"}, {\"register\": \"CTRL\", \"field\": \"PARITY_ODD\", \"property\": \"reset_value\", \"value\": \"0x0\", \"quote\": \"Parity can be optionally enabled by writing `0x1` to the `CTRL.PARITY_EN` field\"}, {\"register\": \"CTRL\", \"field\": \"PARITY_ODD\", \"property\": \"software_access\", \"value\": \"write-1-to-set\", \"quote\": \"whereas `CTRL.PARITY_ODD` configures the type of parity (`0x0` is even, `0x1` is odd)\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:51",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:54",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "INTR_ENABLE",
+     "field": "",
+     "property": "reset_value",
+     "value": "0x1",
+     "quote": "Optionally write `0x1` to the fields of the `INTR_ENABLE` register to configure any interrupts that you would like to enable."
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"INTR_ENABLE\", \"field\": \"\", \"property\": \"reset_value\", \"value\": \"0x1\", \"quote\": \"Optionally write `0x1` to the fields of the `INTR_ENABLE` register to configure any interrupts that you would like to enable.\"}]}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:135",
+   "ip": "uart",
+   "claims": [],
+   "error": null,
+   "raw": "{\"claims\": []}"
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:140",
+   "ip": "uart",
+   "claims": [
+    {
+     "register": "TIMEOUT_CTRL",
+     "field": "",
+     "property": "software_access",
+     "value": "read-write",
+     "quote": "The `TIMEOUT_CTRL` register can be used to enable and configure this timeout value"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"TIMEOUT_CTRL\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"read-write\", \"quote\": \"The `TIMEOUT_CTRL` register can be used to enable and configure this timeout value\"}]}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:19",
+   "ip": "gpio",
+   "claims": [
+    {
+     "register": "DIRECT_OUT",
+     "field": "",
+     "property": "software_access",
+     "value": "read-write",
+     "quote": "Direct write access uses `DIRECT_OUT`"
+    },
+    {
+     "register": "MASKED_OUT_UPPER",
+     "field": "",
+     "property": "software_access",
+     "value": "read-write",
+     "quote": "masked access uses `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER`"
+    },
+    {
+     "register": "MASKED_OUT_LOWER",
+     "field": "",
+     "property": "software_access",
+     "value": "read-write",
+     "quote": "masked access uses `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER`"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"DIRECT_OUT\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"read-write\", \"quote\": \"Direct write access uses `DIRECT_OUT`\"}, {\"register\": \"MASKED_OUT_UPPER\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"read-write\", \"quote\": \"masked access uses `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER`\"}, {\"register\": \"MASKED_OUT_LOWER\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"read-write\", \"quote\": \"masked access uses `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER`\"}]}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:24",
+   "ip": "gpio",
+   "claims": [
+    {
+     "register": "MASKED_OUT_UPPER",
+     "field": "",
+     "property": "width_bits",
+     "value": "32",
+     "quote": "the upper 16 bits of the `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER` register write"
+    },
+    {
+     "register": "MASKED_OUT_UPPER",
+     "field": "",
+     "property": "width_bits",
+     "value": "16",
+     "quote": "the upper 16 bits of the `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER` register write"
+    },
+    {
+     "register": "MASKED_OUT_LOWER",
+     "field": "",
+     "property": "width_bits",
+     "value": "32",
+     "quote": "the upper 16 bits of the `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER` register write"
+    },
+    {
+     "register": "MASKED_OUT_LOWER",
+     "field": "",
+     "property": "width_bits",
+     "value": "16",
+     "quote": "the upper 16 bits of the `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER` register write"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"MASKED_OUT_UPPER\", \"field\": \"\", \"property\": \"width_bits\", \"value\": \"32\", \"quote\": \"the upper 16 bits of the `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER` register write\"}, {\"register\": \"MASKED_OUT_UPPER\", \"field\": \"\", \"property\": \"width_bits\", \"value\": \"16\", \"quote\": \"the upper 16 bits of the `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER` register write\"}, {\"register\": \"MASKED_OUT_LOWER\", \"field\": \"\", \"property\": \"width_bits\", \"value\": \"32\", \"quote\": \"the upper 16 bits of the `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER` register write\"}, {\"register\": \"MASKED_OUT_LOWER\", \"field\": \"\", \"property\": \"width_bits\", \"value\": \"16\", \"quote\": \"the upper 16 bits of the `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER` register write\"}]}"
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:32",
+   "ip": "gpio",
+   "claims": [
+    {
+     "register": "DATA_IN",
+     "field": "",
+     "property": "software_access",
+     "value": "read-only",
+     "quote": "software should read the `DATA_IN` register"
+    }
+   ],
+   "error": null,
+   "raw": "{\"claims\": [{\"register\": \"DATA_IN\", \"field\": \"\", \"property\": \"software_access\", \"value\": \"read-only\", \"quote\": \"software should read the `DATA_IN` register\"}]}"
+  }
+ ]
+}

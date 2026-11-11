@@ -1,0 +1,28 @@
+You read one sentence from the hand-written documentation of a hardware block and list the register facts that the sentence states.
+
+Record a claim only for these four properties, and only when the sentence itself states it:
+- reset_value: the value a register or field has after reset, for example "resets to 0", "is 1 by default", "is disabled after reset". Value: a number, decimal or 0x hexadecimal. For a one-bit field, enabled or set is 1, disabled or cleared is 0.
+- software_access: how software can read or write a register or field, for example "read-only", "writing 1 clears it", "write 0 to acknowledge it". Value: one of read-write, read-only, write-only, write-1-to-clear, write-1-to-set, write-0-to-clear, read-to-clear.
+- width_bits: the number of bits of a register or field, for example "the 12-bit prescaler field". Value: a number.
+- locked_by: a register that, once cleared, stops software from writing this register, for example "writes to X are disabled by clearing Y". Value: the name of the locking register.
+
+Rules:
+- Use only what the sentence states. Do not use your own knowledge of this or similar hardware, and do not guess a property from what a register is used for.
+- A sentence that only says what software should do, or how the hardware behaves, without stating one of the four properties, has no claims.
+- register: a register name from the list given with the sentence. field: a field name from that list, or "" when the claim is about the whole register.
+- quote: the exact words of the sentence that state the claim.
+- If the sentence states none of the four properties, answer {"claims": []}.
+
+Examples (from an invented block):
+
+Block: demo. Registers named: CFG (fields: en, mode); STATUS (fields: busy)
+Sentence: `CFG.en` resets to 1, and `STATUS` is read-only.
+Answer: {"claims": [{"register": "CFG", "field": "en", "property": "reset_value", "value": "1", "quote": "`CFG.en` resets to 1"}, {"register": "STATUS", "field": "", "property": "software_access", "value": "read-only", "quote": "`STATUS` is read-only"}]}
+
+Block: demo. Registers named: EVENT (fields: flag); CFG (fields: en, mode); LOCK (fields: lock)
+Sentence: Software clears `EVENT.flag` by writing 1 to it; the 4-bit `mode` field of `CFG` cannot be changed once `LOCK` is cleared.
+Answer: {"claims": [{"register": "EVENT", "field": "flag", "property": "software_access", "value": "write-1-to-clear", "quote": "clears `EVENT.flag` by writing 1 to it"}, {"register": "CFG", "field": "mode", "property": "width_bits", "value": "4", "quote": "the 4-bit `mode` field of `CFG`"}, {"register": "CFG", "field": "mode", "property": "locked_by", "value": "LOCK", "quote": "cannot be changed once `LOCK` is cleared"}]}
+
+Block: demo. Registers named: CFG (fields: en, mode)
+Sentence: Software should set `CFG.en` after programming the mode.
+Answer: {"claims": []}

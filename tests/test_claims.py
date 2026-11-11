@@ -87,8 +87,11 @@ class CheckTest(unittest.TestCase):
             (claim("CTRL", "locked_by", "`REGWEN`", "locked by `REGWEN`"), "agrees"),
             (claim("CTRL", "reset_value", "0", "resets to 0"), "agrees"),
             (claim("CTRL", "width_bits", "13", "12-bit"), "not checkable"),
-            (claim("CTRL", "software_access", "read-write", "is locked"), "agrees"),
-            (claim("CTRL", "software_access", "sometimes", "is locked"), "unknown value"),
+            (claim("CTRL", "software_access", "read-write", "is locked"),
+             "quote does not state the property"),
+            (claim("CTRL", "reset_value", "0", "12-bit"), "quote does not state the property"),
+            (claim("CTRL", "locked_by", "REGWEN", "resets to 0"),
+             "quote does not state the property"),
             (claim("CTRL", "reset_value", "0", "not in the text"), "quote not in sentence"),
             (claim("CTRL", "reset_value", "0", "resets to 0", "missing"), "not in description"),
             (claim("NOPE", "reset_value", "0", "resets to 0"), "not in description"),
@@ -99,15 +102,20 @@ class CheckTest(unittest.TestCase):
                 self.assertEqual(self.run_claim(c, s, named)["outcome"], want)
 
     def test_access_and_reset(self):
-        r = self.run_claim(claim("CAUSE", "software_access", "write-0-to-clear", "writing 0"),
+        r = self.run_claim(claim("CAUSE", "software_access", "write-0-to-clear",
+                                 "Clear it by writing 0"),
                            "Clear it by writing 0 to `CAUSE`.", ["CAUSE"])
         self.assertEqual((r["outcome"], r["described"]), ("agrees", "write-0-to-clear"))
-        r = self.run_claim(claim("STATE", "software_access", "write-1-to-clear", "w1c"),
+        r = self.run_claim(claim("STATE", "software_access", "write-1-to-clear", "is w1c"),
                            "`STATE` is w1c.", ["STATE"])
         self.assertEqual(r["outcome"], "not checkable")
-        r = self.run_claim(claim("TEST", "reset_value", "0", "is 0"), "`TEST` is 0.", ["TEST"])
+        r = self.run_claim(claim("STATE", "software_access", "sometimes", "is w1c"),
+                           "`STATE` is w1c.", ["STATE"])
+        self.assertEqual(r["outcome"], "unknown value")
+        r = self.run_claim(claim("TEST", "reset_value", "0", "is 0 after reset"),
+                           "`TEST` is 0 after reset.", ["TEST"])
         self.assertEqual(r["outcome"], "not checkable")
-        r = self.run_claim(claim("CTRL", "reset_value", "enabled", "enabled", "en"),
+        r = self.run_claim(claim("CTRL", "reset_value", "enabled", "enabled after reset", "en"),
                            "`CTRL.en` is enabled after reset.", ["CTRL"])
         self.assertEqual((r["outcome"], r["described"]), ("disagrees", "0"))
 
@@ -136,6 +144,17 @@ class CheckTest(unittest.TestCase):
         self.assertEqual(check.hardware(results, "CTRL", f[1], "software_access"), "not checked")
         self.assertEqual(check.hardware(results, "CTRL", f[1], "width_bits"), "not applicable")
         self.assertEqual(check.hardware(None, "CTRL", None, "reset_value"), "IP not simulated")
+
+
+class UnknownFieldTest(unittest.TestCase):
+    def test_unknown_fields(self):
+        s = {"sentences": [
+            {"ip": "x", "path": "d.md", "line": 3, "written": ["CTRL.en", "CTRL.speed", "EN.en", "CAUSE"],
+             "registers": {"CTRL": [], "EN0": [], "EN1": [], "CAUSE": []}},
+        ]}
+        got = check.unknown_fields(s, {"x": MODEL})
+        self.assertEqual([(u["written"], u["fields"]) for u in got],
+                         [("CTRL.speed", ["en", "prescaler"])])
 
 
 class CompareTest(unittest.TestCase):

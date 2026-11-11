@@ -56,29 +56,37 @@ SCHEMA = {
     "required": ["claims"],
 }
 
+PROMPT_VERSION = 2
+
 SYSTEM = f"""You read one sentence from the hand-written documentation of a hardware block and \
 list the register facts that the sentence states.
 
 Record a claim only for these four properties, and only when the sentence itself states it:
-- reset_value: the value a register or field has after reset, for example "resets to 0", \
-"is 1 by default", "is disabled after reset". Value: a number, decimal or 0x hexadecimal. For \
-a one-bit field, enabled or set is 1, disabled or cleared is 0.
-- software_access: how software can read or write a register or field, for example \
-"read-only", "writing 1 clears it", "write 0 to acknowledge it". Value: one of \
-{", ".join(ACCESS_WORDS)}.
-- width_bits: the number of bits of a register or field, for example "the 12-bit prescaler \
-field". Value: a number.
+- reset_value: the value a register or field has after reset. The sentence must say so with \
+words such as "reset", "default", "initial" or "power-on", for example "resets to 0", "is 1 \
+by default", "is disabled after reset". Value: a number, decimal or 0x hexadecimal. For a \
+one-bit field, enabled or set is 1, disabled or cleared is 0.
+- software_access: the access type of a register or field. The sentence must name the type \
+("read-only", "write-only", "read/write") or say what a software write does to the register's \
+own value ("writing 1 clears it", "write 0 to acknowledge it", "writes are ignored"). Value: \
+one of {", ".join(ACCESS_WORDS)}.
+- width_bits: the number of bits of the register or field itself, for example "the 12-bit \
+prescaler field". Value: a number.
 - locked_by: a register that, once cleared, stops software from writing this register, for \
 example "writes to X are disabled by clearing Y". Value: the name of the locking register.
 
 Rules:
 - Use only what the sentence states. Do not use your own knowledge of this or similar \
 hardware, and do not guess a property from what a register is used for.
-- A sentence that only says what software should do, or how the hardware behaves, without \
-stating one of the four properties, has no claims.
+- A value that software writes as a step of a procedure ("write 0x1 to X to enable it") is \
+not a reset value.
+- Saying that software reads or writes a register does not state its access type.
+- The width of data, of a part of a write, or of a value range is not the width of a field.
+- A sentence that only says what software should do, or how the hardware behaves, has no \
+claims. Most sentences have none.
 - register: a register name from the list given with the sentence. field: a field name from \
 that list, or "" when the claim is about the whole register.
-- quote: the exact words of the sentence that state the claim.
+- quote: the shortest exact words of the sentence that state the claim.
 - If the sentence states none of the four properties, answer {{"claims": []}}.
 
 Examples (from an invented block):
@@ -95,11 +103,15 @@ cannot be changed once `LOCK` is cleared.
 Answer: {{"claims": [{{"register": "EVENT", "field": "flag", "property": "software_access", \
 "value": "write-1-to-clear", "quote": "clears `EVENT.flag` by writing 1 to it"}}, \
 {{"register": "CFG", "field": "mode", "property": "width_bits", "value": "4", \
-"quote": "the 4-bit `mode` field of `CFG`"}}, {{"register": "CFG", "field": "mode", \
+"quote": "the 4-bit `mode` field"}}, {{"register": "CFG", "field": "mode", \
 "property": "locked_by", "value": "LOCK", "quote": "cannot be changed once `LOCK` is cleared"}}]}}
 
-Block: demo. Registers named: CFG (fields: en, mode)
-Sentence: Software should set `CFG.en` after programming the mode.
+Block: demo. Registers named: CFG (fields: en, mode); STATUS (fields: busy)
+Sentence: Write `0x1` to `CFG.en` to start, then read `STATUS` until it is 0.
+Answer: {{"claims": []}}
+
+Block: demo. Registers named: DATA (fields: data)
+Sentence: The upper 8 bits of a `DATA` write select which of the lower 8 bits change.
 Answer: {{"claims": []}}
 """
 
@@ -164,6 +176,7 @@ def main(argv: list[str] | None = None) -> int:
         "model": args.model_name,
         "model_files": {p.name: file_sha256(p) for p in model_files},
         "llama_cpp_python": llama_cpp.__version__,
+        "prompt_version": PROMPT_VERSION,
         "prompt_sha256": prompt_sha256(),
         "temperature": 0,
     }
