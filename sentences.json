@@ -1,0 +1,4329 @@
+{
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "sentences": [
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:48",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/theory_of_operation.md",
+   "line": 48,
+   "end_line": 48,
+   "heading": "Theory of Operation > Design Details > Transmission",
+   "text": "A write to `WDATA` enqueues a data byte into the 32-byte write FIFO, which triggers the transmit module to start UART TX serial data transfer.",
+   "written": [
+    "WDATA"
+   ],
+   "registers": {
+    "WDATA": [
+     "WDATA"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:64",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/theory_of_operation.md",
+   "line": 64,
+   "end_line": 64,
+   "heading": "Theory of Operation > Design Details > Reception",
+   "text": "The data can be read out by reading the `RDATA` register.",
+   "written": [
+    "RDATA"
+   ],
+   "registers": {
+    "RDATA": [
+     "RDATA"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:97",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/theory_of_operation.md",
+   "line": 97,
+   "end_line": 97,
+   "heading": "Theory of Operation > Design Details > Setting the baud rate",
+   "text": "The baud rate is set by writing to the `CTRL.NCO` register field.",
+   "written": [
+    "CTRL.NCO"
+   ],
+   "registers": {
+    "CTRL": [
+     "TX",
+     "RX",
+     "NF",
+     "SLPBK",
+     "LLPBK",
+     "PARITY_EN",
+     "PARITY_ODD",
+     "RXBLVL",
+     "NCO"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:134",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/theory_of_operation.md",
+   "line": 134,
+   "end_line": 134,
+   "heading": "Theory of Operation > Design Details > Interrupts > tx_watermark / tx_empty / rx_watermark",
+   "text": "If the TX FIFO level becomes smaller than the TX water mark level (configurable via `FIFO_CTRL.TXILVL`), the `tx_watermark` interrupt is raised to inform SW.",
+   "written": [
+    "FIFO_CTRL.TXILVL"
+   ],
+   "registers": {
+    "FIFO_CTRL": [
+     "RXRST",
+     "TXRST",
+     "RXILVL",
+     "TXILVL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:136",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/theory_of_operation.md",
+   "line": 136,
+   "end_line": 136,
+   "heading": "Theory of Operation > Design Details > Interrupts > tx_watermark / tx_empty / rx_watermark",
+   "text": "If the RX FIFO level becomes greater than or equal to RX water mark level (configurable via `FIFO_CTRL.RXILVL`), the `rx_watermark` interrupt is raised to inform SW.",
+   "written": [
+    "FIFO_CTRL.RXILVL"
+   ],
+   "registers": {
+    "FIFO_CTRL": [
+     "RXRST",
+     "TXRST",
+     "RXILVL",
+     "TXILVL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:154",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/theory_of_operation.md",
+   "line": 154,
+   "end_line": 154,
+   "heading": "Theory of Operation > Design Details > Interrupts > rx_break_err",
+   "text": "A break condition is defined as the RX pin being continuously low for more than a programmable number of character-times (via `CTRL.RXBLVL`, either 2, 4, 8, or 16).",
+   "written": [
+    "CTRL.RXBLVL"
+   ],
+   "registers": {
+    "CTRL": [
+     "TX",
+     "RX",
+     "NF",
+     "SLPBK",
+     "LLPBK",
+     "PARITY_EN",
+     "PARITY_ODD",
+     "RXBLVL",
+     "NCO"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:159",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/theory_of_operation.md",
+   "line": 159,
+   "end_line": 159,
+   "heading": "Theory of Operation > Design Details > Interrupts > rx_break_err",
+   "text": "The current break status can be read from the `STATUS.BREAK` bit.",
+   "written": [
+    "STATUS.BREAK"
+   ],
+   "registers": {
+    "STATUS": [
+     "TXFULL",
+     "RXFULL",
+     "TXEMPTY",
+     "TXIDLE",
+     "RXIDLE",
+     "RXEMPTY"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:160",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/theory_of_operation.md",
+   "line": 160,
+   "end_line": 160,
+   "heading": "Theory of Operation > Design Details > Interrupts > rx_break_err",
+   "text": "If STATUS.BREAK is set but `INTR_STATE.BREAK` is clear then the line break has already caused an interrupt that has been cleared but the line break is still going on.",
+   "written": [
+    "STATUS.BREAK",
+    "INTR_STATE.BREAK"
+   ],
+   "registers": {
+    "STATUS": [
+     "TXFULL",
+     "RXFULL",
+     "TXEMPTY",
+     "TXIDLE",
+     "RXIDLE",
+     "RXEMPTY"
+    ],
+    "INTR_STATE": [
+     "tx_watermark",
+     "rx_watermark",
+     "tx_done",
+     "rx_overflow",
+     "rx_frame_err",
+     "rx_break_err",
+     "rx_timeout",
+     "rx_parity_err",
+     "tx_empty"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:161",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/theory_of_operation.md",
+   "line": 161,
+   "end_line": 161,
+   "heading": "Theory of Operation > Design Details > Interrupts > rx_break_err",
+   "text": "If `STATUS.BREAK` is clear but `INTR_STATE.BREAK` is set then there has been a line break for which software has not cleared the interrupt but the line is now back to normal.",
+   "written": [
+    "STATUS.BREAK",
+    "INTR_STATE.BREAK"
+   ],
+   "registers": {
+    "STATUS": [
+     "TXFULL",
+     "RXFULL",
+     "TXEMPTY",
+     "TXIDLE",
+     "RXIDLE",
+     "RXEMPTY"
+    ],
+    "INTR_STATE": [
+     "tx_watermark",
+     "rx_watermark",
+     "tx_done",
+     "rx_overflow",
+     "rx_frame_err",
+     "rx_break_err",
+     "rx_timeout",
+     "rx_parity_err",
+     "tx_empty"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:209",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/theory_of_operation.md",
+   "line": 209,
+   "end_line": 209,
+   "heading": "Theory of Operation > Design Details > Interrupts > rx_timeout",
+   "text": "The `rx_timeout` interrupt is triggered when the RX FIFO has data sitting in it without software reading it for a programmable number of bit times (using the baud rate clock as reference, programmable via `TIMEOUT_CTRL`).",
+   "written": [
+    "TIMEOUT_CTRL"
+   ],
+   "registers": {
+    "TIMEOUT_CTRL": [
+     "VAL",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/theory_of_operation.md:219",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/theory_of_operation.md",
+   "line": 219,
+   "end_line": 219,
+   "heading": "Theory of Operation > Design Details > Interrupts > rx_parity_err",
+   "text": "The `rx_parity_err` interrupt is triggered if parity is enabled and the RX parity bit does not match the expected polarity as programmed in `CTRL.PARITY_ODD`.",
+   "written": [
+    "CTRL.PARITY_ODD"
+   ],
+   "registers": {
+    "CTRL": [
+     "TX",
+     "RX",
+     "NF",
+     "SLPBK",
+     "LLPBK",
+     "PARITY_EN",
+     "PARITY_ODD",
+     "RXBLVL",
+     "NCO"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:8",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/programmers_guide.md",
+   "line": 8,
+   "end_line": 8,
+   "heading": "Programmer's Guide > Initialization > Reset",
+   "text": "You can do this by writing `0x0` to the `CTRL` register, and then writing `0x1` to `FIFO_CTRL.RXRST` and `FIFO_CTRL.TXRST`, which will clear the UART's FIFOs.",
+   "written": [
+    "CTRL",
+    "FIFO_CTRL.RXRST",
+    "FIFO_CTRL.TXRST"
+   ],
+   "registers": {
+    "CTRL": [
+     "TX",
+     "RX",
+     "NF",
+     "SLPBK",
+     "LLPBK",
+     "PARITY_EN",
+     "PARITY_ODD",
+     "RXBLVL",
+     "NCO"
+    ],
+    "FIFO_CTRL": [
+     "RXRST",
+     "TXRST",
+     "RXILVL",
+     "TXILVL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:9",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/programmers_guide.md",
+   "line": 9,
+   "end_line": 9,
+   "heading": "Programmer's Guide > Initialization > Reset",
+   "text": "It may also be advisable to write `0x0` to the `OVRD`, `TIMEOUT_CTRL`, and `INTR_ENABLE` registers to clear any previous configuration, and clear any existing interrupts by writing `0xffff_ffff` to `INTR_STATE`.",
+   "written": [
+    "OVRD",
+    "TIMEOUT_CTRL",
+    "INTR_ENABLE",
+    "INTR_STATE"
+   ],
+   "registers": {
+    "OVRD": [
+     "TXEN",
+     "TXVAL"
+    ],
+    "TIMEOUT_CTRL": [
+     "VAL",
+     "EN"
+    ],
+    "INTR_ENABLE": [
+     "tx_watermark",
+     "rx_watermark",
+     "tx_done",
+     "rx_overflow",
+     "rx_frame_err",
+     "rx_break_err",
+     "rx_timeout",
+     "rx_parity_err",
+     "tx_empty"
+    ],
+    "INTR_STATE": [
+     "tx_watermark",
+     "rx_watermark",
+     "tx_done",
+     "rx_overflow",
+     "rx_frame_err",
+     "rx_break_err",
+     "rx_timeout",
+     "rx_parity_err",
+     "tx_empty"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:13",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/programmers_guide.md",
+   "line": 13,
+   "end_line": 13,
+   "heading": "Programmer's Guide > Initialization > Configuration",
+   "text": "To program the baud rate of the UART, the clock rate of the Numerically Controlled Oscillator (`CTRL.NCO`) can be configured.",
+   "written": [
+    "CTRL.NCO"
+   ],
+   "registers": {
+    "CTRL": [
+     "TX",
+     "RX",
+     "NF",
+     "SLPBK",
+     "LLPBK",
+     "PARITY_EN",
+     "PARITY_ODD",
+     "RXBLVL",
+     "NCO"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:22",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/programmers_guide.md",
+   "line": 22,
+   "end_line": 22,
+   "heading": "Programmer's Guide > Initialization > Configuration",
+   "text": "The `CTRL.NCO` field is 16 bits, meaning that you can use a simplified calculation:",
+   "written": [
+    "CTRL.NCO"
+   ],
+   "registers": {
+    "CTRL": [
+     "TX",
+     "RX",
+     "NF",
+     "SLPBK",
+     "LLPBK",
+     "PARITY_EN",
+     "PARITY_ODD",
+     "RXBLVL",
+     "NCO"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:26",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/programmers_guide.md",
+   "line": 26,
+   "end_line": 26,
+   "heading": "Programmer's Guide > Initialization > Configuration",
+   "text": "Note that the result of the above formulae can be some non-integer value, whilst the `CTRL.NCO` field only accepts integer values.",
+   "written": [
+    "CTRL.NCO"
+   ],
+   "registers": {
+    "CTRL": [
+     "TX",
+     "RX",
+     "NF",
+     "SLPBK",
+     "LLPBK",
+     "PARITY_EN",
+     "PARITY_ODD",
+     "RXBLVL",
+     "NCO"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:48",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/programmers_guide.md",
+   "line": 48,
+   "end_line": 48,
+   "heading": "Programmer's Guide > Initialization > Configuration",
+   "text": "Write the `CTRL` register with the calculated `CTRL.NCO` value, also writing `0x1` to `CTRL.TX` and `CTRL.RX` fields to enable UART transmission and reception respectively.",
+   "written": [
+    "CTRL",
+    "CTRL.NCO",
+    "CTRL.TX",
+    "CTRL.RX"
+   ],
+   "registers": {
+    "CTRL": [
+     "TX",
+     "RX",
+     "NF",
+     "SLPBK",
+     "LLPBK",
+     "PARITY_EN",
+     "PARITY_ODD",
+     "RXBLVL",
+     "NCO"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:49",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/programmers_guide.md",
+   "line": 49,
+   "end_line": 49,
+   "heading": "Programmer's Guide > Initialization > Configuration",
+   "text": "Parity can be optionally enabled by writing `0x1` to the `CTRL.PARITY_EN` field, whereas `CTRL.PARITY_ODD` configures the type of parity (`0x0` is even, `0x1` is odd).",
+   "written": [
+    "CTRL.PARITY_EN",
+    "CTRL.PARITY_ODD"
+   ],
+   "registers": {
+    "CTRL": [
+     "TX",
+     "RX",
+     "NF",
+     "SLPBK",
+     "LLPBK",
+     "PARITY_EN",
+     "PARITY_ODD",
+     "RXBLVL",
+     "NCO"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:51",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/programmers_guide.md",
+   "line": 51,
+   "end_line": 51,
+   "heading": "Programmer's Guide > Initialization > Configuration",
+   "text": "Optionally write FIFO watermark interrupt thresholds to the `FIFO_CTRL.TXILVL` and `FIFO_CTRL.RXILVL` fields.",
+   "written": [
+    "FIFO_CTRL.TXILVL",
+    "FIFO_CTRL.RXILVL"
+   ],
+   "registers": {
+    "FIFO_CTRL": [
+     "RXRST",
+     "TXRST",
+     "RXILVL",
+     "TXILVL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:54",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/programmers_guide.md",
+   "line": 54,
+   "end_line": 54,
+   "heading": "Programmer's Guide > Initialization > Configuration",
+   "text": "Optionally write `0x1` to the fields of the `INTR_ENABLE` register to configure any interrupts that you would like to enable.",
+   "written": [
+    "INTR_ENABLE"
+   ],
+   "registers": {
+    "INTR_ENABLE": [
+     "tx_watermark",
+     "rx_watermark",
+     "tx_done",
+     "rx_overflow",
+     "rx_frame_err",
+     "rx_break_err",
+     "rx_timeout",
+     "rx_parity_err",
+     "tx_empty"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:135",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/programmers_guide.md",
+   "line": 135,
+   "end_line": 135,
+   "heading": "Programmer's Guide > Interrupt Handling",
+   "text": "One potential use of the `INTR_STATE.RX_TIMEOUT` interrupt is for when the `FIFO_CTRL.RXILVL` field is configured for some watermark value **greater than one**.",
+   "written": [
+    "INTR_STATE.RX_TIMEOUT",
+    "FIFO_CTRL.RXILVL"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "tx_watermark",
+     "rx_watermark",
+     "tx_done",
+     "rx_overflow",
+     "rx_frame_err",
+     "rx_break_err",
+     "rx_timeout",
+     "rx_parity_err",
+     "tx_empty"
+    ],
+    "FIFO_CTRL": [
+     "RXRST",
+     "TXRST",
+     "RXILVL",
+     "TXILVL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/uart/doc/programmers_guide.md:140",
+   "ip": "uart",
+   "path": "hw/ip/uart/doc/programmers_guide.md",
+   "line": 140,
+   "end_line": 140,
+   "heading": "Programmer's Guide > Interrupt Handling",
+   "text": "The `TIMEOUT_CTRL` register can be used to enable and configure this timeout value.",
+   "written": [
+    "TIMEOUT_CTRL"
+   ],
+   "registers": {
+    "TIMEOUT_CTRL": [
+     "VAL",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:19",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 19,
+   "end_line": 21,
+   "heading": "Theory of Operation > Design Details > GPIO Output logic",
+   "text": "Direct write access uses `DIRECT_OUT`, and masked access uses `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER`.",
+   "written": [
+    "DIRECT_OUT",
+    "MASKED_OUT_UPPER",
+    "MASKED_OUT_LOWER"
+   ],
+   "registers": {
+    "DIRECT_OUT": [
+     "DIRECT_OUT"
+    ],
+    "MASKED_OUT_UPPER": [
+     "data",
+     "mask"
+    ],
+    "MASKED_OUT_LOWER": [
+     "data",
+     "mask"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:24",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 24,
+   "end_line": 27,
+   "heading": "Theory of Operation > Design Details > GPIO Output logic",
+   "text": "For masked access the bits to modify are given as a mask in the upper 16 bits of the `MASKED_OUT_UPPER` and `MASKED_OUT_LOWER` register write, while the data to write is provided in the lower 16 bits of the register write.",
+   "written": [
+    "MASKED_OUT_UPPER",
+    "MASKED_OUT_LOWER"
+   ],
+   "registers": {
+    "MASKED_OUT_UPPER": [
+     "data",
+     "mask"
+    ],
+    "MASKED_OUT_LOWER": [
+     "data",
+     "mask"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:32",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 32,
+   "end_line": 33,
+   "heading": "Theory of Operation > Design Details > GPIO Output logic",
+   "text": "To read what is on the pins, software should read the `DATA_IN` register.",
+   "written": [
+    "DATA_IN"
+   ],
+   "registers": {
+    "DATA_IN": [
+     "DATA_IN"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:37",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 37,
+   "end_line": 38,
+   "heading": "Theory of Operation > Design Details > GPIO Output logic",
+   "text": "Direct access uses `DIRECT_OE`, and masked access is available using `MASKED_OE_UPPER` and `MASKED_OE_LOWER`.",
+   "written": [
+    "DIRECT_OE",
+    "MASKED_OE_UPPER",
+    "MASKED_OE_LOWER"
+   ],
+   "registers": {
+    "DIRECT_OE": [
+     "DIRECT_OE"
+    ],
+    "MASKED_OE_UPPER": [
+     "data",
+     "mask"
+    ],
+    "MASKED_OE_LOWER": [
+     "data",
+     "mask"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:59",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 59,
+   "end_line": 59,
+   "heading": "Theory of Operation > Design Details > Per-Pin Register View",
+   "text": "- `PER_PIN_IO` holds one register per GPIO with bit i of `DATA_OUT` and of `DATA_IN`.",
+   "written": [
+    "PER_PIN_IO",
+    "DATA_IN"
+   ],
+   "registers": {
+    "PER_PIN_IO_0": [
+     "data_out_0",
+     "data_in_0"
+    ],
+    "PER_PIN_IO_1": [
+     "data_out_1",
+     "data_in_1"
+    ],
+    "PER_PIN_IO_2": [
+     "data_out_2",
+     "data_in_2"
+    ],
+    "PER_PIN_IO_3": [
+     "data_out_3",
+     "data_in_3"
+    ],
+    "PER_PIN_IO_4": [
+     "data_out_4",
+     "data_in_4"
+    ],
+    "PER_PIN_IO_5": [
+     "data_out_5",
+     "data_in_5"
+    ],
+    "PER_PIN_IO_6": [
+     "data_out_6",
+     "data_in_6"
+    ],
+    "PER_PIN_IO_7": [
+     "data_out_7",
+     "data_in_7"
+    ],
+    "PER_PIN_IO_8": [
+     "data_out_8",
+     "data_in_8"
+    ],
+    "PER_PIN_IO_9": [
+     "data_out_9",
+     "data_in_9"
+    ],
+    "PER_PIN_IO_10": [
+     "data_out_10",
+     "data_in_10"
+    ],
+    "PER_PIN_IO_11": [
+     "data_out_11",
+     "data_in_11"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:60",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 60,
+   "end_line": 60,
+   "heading": "Theory of Operation > Design Details > Per-Pin Register View",
+   "text": "- The configuration range holds two registers per GPIO, which directly follow one another: `PER_PIN_OE_0` with bit 0 of `DATA_OE`, `PER_PIN_INTR_CTRL_0` with bit 0 of the interrupt control and input filter registers, then `PER_PIN_OE_1`, `PER_PIN_INTR_CTRL_1`, and so on.",
+   "written": [
+    "PER_PIN_OE_0",
+    "PER_PIN_INTR_CTRL_0",
+    "PER_PIN_OE_1",
+    "PER_PIN_INTR_CTRL_1"
+   ],
+   "registers": {
+    "PER_PIN_OE_0": [
+     "oe"
+    ],
+    "PER_PIN_INTR_CTRL_0": [
+     "intr_ctrl_en_rising",
+     "intr_ctrl_en_falling",
+     "intr_ctrl_en_lvlhigh",
+     "intr_ctrl_en_lvllow",
+     "ctrl_en_input_filter"
+    ],
+    "PER_PIN_OE_1": [
+     "oe"
+    ],
+    "PER_PIN_INTR_CTRL_1": [
+     "intr_ctrl_en_rising",
+     "intr_ctrl_en_falling",
+     "intr_ctrl_en_lvlhigh",
+     "intr_ctrl_en_lvllow",
+     "ctrl_en_input_filter"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:65",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 65,
+   "end_line": 65,
+   "heading": "Theory of Operation > Design Details > Per-Pin Register View",
+   "text": "The interrupt registers `INTR_STATE`, `INTR_ENABLE` and `INTR_TEST` have no per-pin view.",
+   "written": [
+    "INTR_STATE",
+    "INTR_ENABLE",
+    "INTR_TEST"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "gpio"
+    ],
+    "INTR_ENABLE": [
+     "gpio"
+    ],
+    "INTR_TEST": [
+     "gpio"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:70",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 70,
+   "end_line": 71,
+   "heading": "Theory of Operation > Design Details > GPIO Input",
+   "text": "The `DATA_IN` register returns the contents as seen on the peripheral input, typically from the pads connected to those inputs.",
+   "written": [
+    "DATA_IN"
+   ],
+   "registers": {
+    "DATA_IN": [
+     "DATA_IN"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:76",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 76,
+   "end_line": 76,
+   "heading": "Theory of Operation > Design Details > GPIO Input",
+   "text": "Each input can be independently enabled with the `CTRL_EN_INPUT_FILTER` (one bit per input).",
+   "written": [
+    "CTRL_EN_INPUT_FILTER"
+   ],
+   "registers": {
+    "CTRL_EN_INPUT_FILTER": [
+     "CTRL_EN_INPUT_FILTER"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:77",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 77,
+   "end_line": 77,
+   "heading": "Theory of Operation > Design Details > GPIO Input",
+   "text": "This 16-cycle filter is applied to both the `DATA_IN` register and the interrupt detection logic.",
+   "written": [
+    "DATA_IN"
+   ],
+   "registers": {
+    "DATA_IN": [
+     "DATA_IN"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:78",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 78,
+   "end_line": 78,
+   "heading": "Theory of Operation > Design Details > GPIO Input",
+   "text": "The timing for `DATA_IN` is still not instantaneous if `CTRL_EN_INPUT_FILTER` is false as there is still both top-level routing delay and input CDC synchronizer delay involved.",
+   "written": [
+    "DATA_IN",
+    "CTRL_EN_INPUT_FILTER"
+   ],
+   "registers": {
+    "DATA_IN": [
+     "DATA_IN"
+    ],
+    "CTRL_EN_INPUT_FILTER": [
+     "CTRL_EN_INPUT_FILTER"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:80",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 80,
+   "end_line": 80,
+   "heading": "Theory of Operation > Design Details > GPIO Input",
+   "text": "The input synchronizer adds two flops between the chip input and the `DATA_IN` register, though the added delay may vary by up to one GPIO clock cycle depending on when cycle each external input transition arrives relative to the GPIO clock.",
+   "written": [
+    "DATA_IN"
+   ],
+   "registers": {
+    "DATA_IN": [
+     "DATA_IN"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:82",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 82,
+   "end_line": 82,
+   "heading": "Theory of Operation > Design Details > GPIO Input",
+   "text": "The contents of `DATA_IN` are always readable and reflect the value seen at the chip input pad regardless of the output enable setting from DATA_OE.",
+   "written": [
+    "DATA_IN"
+   ],
+   "registers": {
+    "DATA_IN": [
+     "DATA_IN"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:83",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 83,
+   "end_line": 83,
+   "heading": "Theory of Operation > Design Details > GPIO Input",
+   "text": "If the output enable is true (and the GPIO is connected to a chip-level pad), the value read from `DATA_IN` includes the effect of the peripheral's driven output and will only differ from DATA_OUT if the output driver is unable to switch the pin or during the delay imposed by the input synchronizer and noise filter (if enabled).",
+   "written": [
+    "DATA_IN"
+   ],
+   "registers": {
+    "DATA_IN": [
+     "DATA_IN"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:89",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 89,
+   "end_line": 89,
+   "heading": "Theory of Operation > Design Details > GPIO Input > GPIO Inputs as HW Straps",
+   "text": "One clock cycle later, it samples the GPIO input values and stores them in the `HW_STRAPS_DATA_IN` register.",
+   "written": [
+    "HW_STRAPS_DATA_IN"
+   ],
+   "registers": {
+    "HW_STRAPS_DATA_IN": [
+     "HW_STRAPS_DATA_IN"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:99",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 99,
+   "end_line": 102,
+   "heading": "Theory of Operation > Design Details > Interrupts",
+   "text": "Following the standard interrupt guidelines in the [Comportability Specification](../../../../../doc/contributing/hw/comportability/README.md), the 32 bits of the `INTR_ENABLE` register determines whether the associated inputs are configured to detect interrupt events.",
+   "written": [
+    "INTR_ENABLE"
+   ],
+   "registers": {
+    "INTR_ENABLE": [
+     "gpio"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:102",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 102,
+   "end_line": 104,
+   "heading": "Theory of Operation > Design Details > Interrupts",
+   "text": "If enabled via the various `INTR_CTRL_EN` registers, their current state can be read in the `INTR_STATE` register.",
+   "written": [
+    "INTR_STATE"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "gpio"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:104",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 104,
+   "end_line": 105,
+   "heading": "Theory of Operation > Design Details > Interrupts",
+   "text": "Clearing is done by writing a `1` into the associated `INTR_STATE` bit field.",
+   "written": [
+    "INTR_STATE"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "gpio"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:108",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 108,
+   "end_line": 109,
+   "heading": "Theory of Operation > Design Details > Interrupts",
+   "text": "`INTR_CTRL_EN_RISING` configures the associated input for rising-edge detection.",
+   "written": [
+    "INTR_CTRL_EN_RISING"
+   ],
+   "registers": {
+    "INTR_CTRL_EN_RISING": [
+     "INTR_CTRL_EN_RISING"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:110",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 110,
+   "end_line": 110,
+   "heading": "Theory of Operation > Design Details > Interrupts",
+   "text": "Similarly, `INTR_CTRL_EN_FALLING` detects falling edge inputs.",
+   "written": [
+    "INTR_CTRL_EN_FALLING"
+   ],
+   "registers": {
+    "INTR_CTRL_EN_FALLING": [
+     "INTR_CTRL_EN_FALLING"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md:111",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/theory_of_operation.md",
+   "line": 111,
+   "end_line": 112,
+   "heading": "Theory of Operation > Design Details > Interrupts",
+   "text": "`INTR_CTRL_EN_LVLHIGH` and `INTR_CTRL_EN_LVLLOW` allow the input to be level sensitive interrupts.",
+   "written": [
+    "INTR_CTRL_EN_LVLHIGH",
+    "INTR_CTRL_EN_LVLLOW"
+   ],
+   "registers": {
+    "INTR_CTRL_EN_LVLHIGH": [
+     "INTR_CTRL_EN_LVLHIGH"
+    ],
+    "INTR_CTRL_EN_LVLLOW": [
+     "INTR_CTRL_EN_LVLLOW"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/programmers_guide.md:127",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/programmers_guide.md",
+   "line": 127,
+   "end_line": 127,
+   "heading": "Programmer's Guide > Per-Pin Register View",
+   "text": "- `PER_PIN_IO_i` at offset `0x100 + 4 * i`: `data_out` in bit 0 and the read-only `data_in` in bit 8.",
+   "written": [
+    "DATA_IN"
+   ],
+   "registers": {
+    "DATA_IN": [
+     "DATA_IN"
+    ]
+   }
+  },
+  {
+   "id": "hw/top_earlgrey/ip_autogen/gpio/doc/programmers_guide.md:135",
+   "ip": "gpio",
+   "path": "hw/top_earlgrey/ip_autogen/gpio/doc/programmers_guide.md",
+   "line": 135,
+   "end_line": 135,
+   "heading": "Programmer's Guide > Per-Pin Register View",
+   "text": "The interrupt registers `INTR_STATE`, `INTR_ENABLE` and `INTR_TEST` have no per-pin view.",
+   "written": [
+    "INTR_STATE",
+    "INTR_ENABLE",
+    "INTR_TEST"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "gpio"
+    ],
+    "INTR_ENABLE": [
+     "gpio"
+    ],
+    "INTR_TEST": [
+     "gpio"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/theory_of_operation.md:8",
+   "ip": "rv_timer",
+   "path": "hw/ip/rv_timer/doc/theory_of_operation.md",
+   "line": 8,
+   "end_line": 9,
+   "heading": "Theory of Operation > Block Diagram",
+   "text": "A tick generator creates a tick every time its internal counter hits the `CFG0.prescaler` value.",
+   "written": [
+    "CFG0.prescaler"
+   ],
+   "registers": {
+    "CFG0": [
+     "prescale",
+     "step"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/theory_of_operation.md:9",
+   "ip": "rv_timer",
+   "path": "hw/ip/rv_timer/doc/theory_of_operation.md",
+   "line": 9,
+   "end_line": 10,
+   "heading": "Theory of Operation > Block Diagram",
+   "text": "The tick is used to increment `mtime` by the `CFG0.step` value.",
+   "written": [
+    "CFG0.step"
+   ],
+   "registers": {
+    "CFG0": [
+     "prescale",
+     "step"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/theory_of_operation.md:20",
+   "ip": "rv_timer",
+   "path": "hw/ip/rv_timer/doc/theory_of_operation.md",
+   "line": 20,
+   "end_line": 22,
+   "heading": "Theory of Operation > Design Details > Tick Generator",
+   "text": "The firmware just needs to adjust the `CFG0.prescaler` value and the actual timer interrupt handling routine does not need a variable clock period to update `mtimecmp`.",
+   "written": [
+    "CFG0.prescaler"
+   ],
+   "registers": {
+    "CFG0": [
+     "prescale",
+     "step"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/theory_of_operation.md:26",
+   "ip": "rv_timer",
+   "path": "hw/ip/rv_timer/doc/theory_of_operation.md",
+   "line": 26,
+   "end_line": 27,
+   "heading": "Theory of Operation > Design Details > Tick Generator",
+   "text": "In this version, the timer only supports a single fixed clock, so the firmware should change `CFG0.prescaler` appropriately.",
+   "written": [
+    "CFG0.prescaler"
+   ],
+   "registers": {
+    "CFG0": [
+     "prescale",
+     "step"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/programmers_guide.md:97",
+   "ip": "rv_timer",
+   "path": "hw/ip/rv_timer/doc/programmers_guide.md",
+   "line": 97,
+   "end_line": 97,
+   "heading": "Programmer's Guide > Interrupt Handling",
+   "text": "Clearing the interrupt can be done by writing 1 into the Interrupt Status register `INTR_STATE0`.",
+   "written": [
+    "INTR_STATE0"
+   ],
+   "registers": {
+    "INTR_STATE0": [
+     "IS_0"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/rv_timer/doc/programmers_guide.md:99",
+   "ip": "rv_timer",
+   "path": "hw/ip/rv_timer/doc/programmers_guide.md",
+   "line": 99,
+   "end_line": 99,
+   "heading": "Programmer's Guide > Interrupt Handling",
+   "text": "In this case both `COMPARE_LOWER0_0` and `COMPARE_UPPER0_0` can clear the interrupt source.",
+   "written": [
+    "COMPARE_LOWER0_0",
+    "COMPARE_UPPER0_0"
+   ],
+   "registers": {
+    "COMPARE_LOWER0_0": [
+     "v"
+    ],
+    "COMPARE_UPPER0_0": [
+     "v"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:30",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 30,
+   "end_line": 30,
+   "heading": "AON Timer Technical Specification > Wakeup timer",
+   "text": "Its current value is visible through `WKUP_COUNT_HI` and `WKUP_COUNT_LO`.",
+   "written": [
+    "WKUP_COUNT_HI",
+    "WKUP_COUNT_LO"
+   ],
+   "registers": {
+    "WKUP_COUNT_HI": [
+     "count_hi"
+    ],
+    "WKUP_COUNT_LO": [
+     "count_lo"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:32",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 32,
+   "end_line": 32,
+   "heading": "AON Timer Technical Specification > Wakeup timer",
+   "text": "The number of cycles per tick is one more than the 12-bit `WKUP_CTRL.prescaler` field.",
+   "written": [
+    "WKUP_CTRL.prescaler"
+   ],
+   "registers": {
+    "WKUP_CTRL": [
+     "enable",
+     "prescaler"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:34",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 34,
+   "end_line": 34,
+   "heading": "AON Timer Technical Specification > Wakeup timer",
+   "text": "The threshold for this timer is split across `WKUP_THOLD_HI` and `WKUP_THOLD_LO`.",
+   "written": [
+    "WKUP_THOLD_HI",
+    "WKUP_THOLD_LO"
+   ],
+   "registers": {
+    "WKUP_THOLD_HI": [
+     "threshold_hi"
+    ],
+    "WKUP_THOLD_LO": [
+     "threshold_lo"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:41",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 41,
+   "end_line": 41,
+   "heading": "AON Timer Technical Specification > Wakeup timer",
+   "text": "The wakeup signal (`wkup_req_o`) stays high until software explicitly acknowledges it by software writing 0 to `WKUP_CAUSE`.",
+   "written": [
+    "WKUP_CAUSE"
+   ],
+   "registers": {
+    "WKUP_CAUSE": [
+     "cause"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:43",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 43,
+   "end_line": 43,
+   "heading": "AON Timer Technical Specification > Wakeup timer",
+   "text": "To clear the level interrupt (`intr_wkup_timer_expired_o`), write 1 to the field `INTR_STATE.wkup_timer_expired`.",
+   "written": [
+    "INTR_STATE.wkup_timer_expired"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "wkup_timer_expired",
+     "wdog_timer_bark"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:51",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 51,
+   "end_line": 51,
+   "heading": "AON Timer Technical Specification > Watchdog timer",
+   "text": "Its current value is visible through `WDOG_COUNT`.",
+   "written": [
+    "WDOG_COUNT"
+   ],
+   "registers": {
+    "WDOG_COUNT": [
+     "count"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:55",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 55,
+   "end_line": 55,
+   "heading": "AON Timer Technical Specification > Watchdog timer",
+   "text": "If the timer is enabled, there is a \"bark\" on every AON clock tick when the count is at least `WDOG_BARK_THOLD`.",
+   "written": [
+    "WDOG_BARK_THOLD"
+   ],
+   "registers": {
+    "WDOG_BARK_THOLD": [
+     "threshold"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:56",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 56,
+   "end_line": 56,
+   "heading": "AON Timer Technical Specification > Watchdog timer",
+   "text": "If the timer is enabled, there is also a \"bite\" on every AON clock tick when the count is at least `WDOG_BITE_THOLD`.",
+   "written": [
+    "WDOG_BITE_THOLD"
+   ],
+   "registers": {
+    "WDOG_BITE_THOLD": [
+     "threshold"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:60",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 60,
+   "end_line": 60,
+   "heading": "AON Timer Technical Specification > Watchdog timer",
+   "text": "If `WDOG_CTRL.pause_in_sleep` has been set, the timer pauses when `sleep_mode_i` is asserted.",
+   "written": [
+    "WDOG_CTRL.pause_in_sleep"
+   ],
+   "registers": {
+    "WDOG_CTRL": [
+     "enable",
+     "pause_in_sleep"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:64",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 64,
+   "end_line": 64,
+   "heading": "AON Timer Technical Specification > Watchdog timer",
+   "text": "Writes to watchdog configuration can be disabled by `WDOG_REGWEN`.",
+   "written": [
+    "WDOG_REGWEN"
+   ],
+   "registers": {
+    "WDOG_REGWEN": [
+     "regwen"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:75",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 75,
+   "end_line": 75,
+   "heading": "AON Timer Technical Specification > Watchdog timer > Watchdog bark",
+   "text": "The level wakeup signal (`wkup_req_o`) stays high until software explicitly acknowledges it by software writing 0 to `WKUP_CAUSE`.",
+   "written": [
+    "WKUP_CAUSE"
+   ],
+   "registers": {
+    "WKUP_CAUSE": [
+     "cause"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/README.md:77",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/README.md",
+   "line": 77,
+   "end_line": 77,
+   "heading": "AON Timer Technical Specification > Watchdog timer > Watchdog bark",
+   "text": "To clear the level interrupt (`intr_wdog_timer_bark_o`) write 1 to the field `INTR_STATE.wdog_timer_bark`.",
+   "written": [
+    "INTR_STATE.wdog_timer_bark"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "wkup_timer_expired",
+     "wdog_timer_bark"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/theory_of_operation.md:4",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/theory_of_operation.md",
+   "line": 4,
+   "end_line": 4,
+   "heading": "Theory of Operation",
+   "text": "Each timer increases its count as long as its enable signal (`wdog_ctrl.enable` for WDOG and `wkup_ctrl.enable` for WKUP) is set.",
+   "written": [
+    "WDOG_CTRL.enable",
+    "WKUP_CTRL.enable"
+   ],
+   "registers": {
+    "WDOG_CTRL": [
+     "enable",
+     "pause_in_sleep"
+    ],
+    "WKUP_CTRL": [
+     "enable",
+     "prescaler"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/theory_of_operation.md:31",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/theory_of_operation.md",
+   "line": 31,
+   "end_line": 31,
+   "heading": "Theory of Operation > Design Details",
+   "text": "Bits[63:32] in registers `WKUP_COUNT_HI` and `WKUP_THOLD_HI`.",
+   "written": [
+    "WKUP_COUNT_HI",
+    "WKUP_THOLD_HI"
+   ],
+   "registers": {
+    "WKUP_COUNT_HI": [
+     "count_hi"
+    ],
+    "WKUP_THOLD_HI": [
+     "threshold_hi"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/theory_of_operation.md:32",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/theory_of_operation.md",
+   "line": 32,
+   "end_line": 32,
+   "heading": "Theory of Operation > Design Details",
+   "text": "Bits[31:0] in registers `WKUP_COUNT_LO` and `WKUP_THOLD_HI`.",
+   "written": [
+    "WKUP_COUNT_LO",
+    "WKUP_THOLD_HI"
+   ],
+   "registers": {
+    "WKUP_COUNT_LO": [
+     "count_lo"
+    ],
+    "WKUP_THOLD_HI": [
+     "threshold_hi"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:5",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 5,
+   "end_line": 5,
+   "heading": "Programmer's Guide > Initialization",
+   "text": "Set the timer values `WKUP_COUNT_LO`, `WKUP_COUNT_HI` and `WDOG_COUNT` to zero.",
+   "written": [
+    "WKUP_COUNT_LO",
+    "WKUP_COUNT_HI",
+    "WDOG_COUNT"
+   ],
+   "registers": {
+    "WKUP_COUNT_LO": [
+     "count_lo"
+    ],
+    "WKUP_COUNT_HI": [
+     "count_hi"
+    ],
+    "WDOG_COUNT": [
+     "count"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:6",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 6,
+   "end_line": 6,
+   "heading": "Programmer's Guide > Initialization",
+   "text": "Program the desired wakeup pre-scaler value in `WKUP_CTRL`.",
+   "written": [
+    "WKUP_CTRL"
+   ],
+   "registers": {
+    "WKUP_CTRL": [
+     "enable",
+     "prescaler"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:7",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 7,
+   "end_line": 7,
+   "heading": "Programmer's Guide > Initialization",
+   "text": "Program the desired thresholds in `WKUP_THOLD_LO`, `WKUP_THOLD_HI`, `WDOG_BARK_THOLD` and `WDOG_BITE_THOLD`.",
+   "written": [
+    "WKUP_THOLD_LO",
+    "WKUP_THOLD_HI",
+    "WDOG_BARK_THOLD",
+    "WDOG_BITE_THOLD"
+   ],
+   "registers": {
+    "WKUP_THOLD_LO": [
+     "threshold_lo"
+    ],
+    "WKUP_THOLD_HI": [
+     "threshold_hi"
+    ],
+    "WDOG_BARK_THOLD": [
+     "threshold"
+    ],
+    "WDOG_BITE_THOLD": [
+     "threshold"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:8",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 8,
+   "end_line": 8,
+   "heading": "Programmer's Guide > Initialization",
+   "text": "Set the enable bit to 1 in the `WKUP_CTRL` / `WDOG_CTRL` registers.",
+   "written": [
+    "WKUP_CTRL",
+    "WDOG_CTRL"
+   ],
+   "registers": {
+    "WKUP_CTRL": [
+     "enable",
+     "prescaler"
+    ],
+    "WDOG_CTRL": [
+     "enable",
+     "pause_in_sleep"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:9",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 9,
+   "end_line": 9,
+   "heading": "Programmer's Guide > Initialization",
+   "text": "If desired, lock the watchdog configuration by writing 0 to the `regwen` bit in `WDOG_REGWEN`.",
+   "written": [
+    "WDOG_REGWEN"
+   ],
+   "registers": {
+    "WDOG_REGWEN": [
+     "regwen"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:13",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 13,
+   "end_line": 13,
+   "heading": "Programmer's Guide > Watchdog pet",
+   "text": "Pet the watchdog by writing zero to the `WDOG_COUNT` register.",
+   "written": [
+    "WDOG_COUNT"
+   ],
+   "registers": {
+    "WDOG_COUNT": [
+     "count"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:24",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 24,
+   "end_line": 24,
+   "heading": "Programmer's Guide > Wakeup count and threshold access > Reading the counter",
+   "text": "The counter might increment between the read of `WKUP_COUNT_HI` and the read of `WKUP_COUNT_LO`.",
+   "written": [
+    "WKUP_COUNT_HI",
+    "WKUP_COUNT_LO"
+   ],
+   "registers": {
+    "WKUP_COUNT_HI": [
+     "count_hi"
+    ],
+    "WKUP_COUNT_LO": [
+     "count_lo"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:25",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 25,
+   "end_line": 25,
+   "heading": "Programmer's Guide > Wakeup count and threshold access > Reading the counter",
+   "text": "If the `WKUP_COUNT_LO` value overflows between the two register reads the combined 64-bit value may be incorrect.",
+   "written": [
+    "WKUP_COUNT_LO"
+   ],
+   "registers": {
+    "WKUP_COUNT_LO": [
+     "count_lo"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:27",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 27,
+   "end_line": 27,
+   "heading": "Programmer's Guide > Wakeup count and threshold access > Reading the counter",
+   "text": "A read of the `WKUP_COUNT_HI` value gives `0x1`.",
+   "written": [
+    "WKUP_COUNT_HI"
+   ],
+   "registers": {
+    "WKUP_COUNT_HI": [
+     "count_hi"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:28",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 28,
+   "end_line": 28,
+   "heading": "Programmer's Guide > Wakeup count and threshold access > Reading the counter",
+   "text": "If the counter then increments to `0x2_0000_0000` then a read of `WKUP_COUNT_LO` gives `0x0000_00000`.",
+   "written": [
+    "WKUP_COUNT_LO"
+   ],
+   "registers": {
+    "WKUP_COUNT_LO": [
+     "count_lo"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:50",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 50,
+   "end_line": 50,
+   "heading": "Programmer's Guide > Wakeup count and threshold access > Writing the counter",
+   "text": "The counter might increment between writes to the two count registers (`WKUP_COUNT_HI` and `WKUP_COUNT_LO`).",
+   "written": [
+    "WKUP_COUNT_HI",
+    "WKUP_COUNT_LO"
+   ],
+   "registers": {
+    "WKUP_COUNT_HI": [
+     "count_hi"
+    ],
+    "WKUP_COUNT_LO": [
+     "count_lo"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:52",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 52,
+   "end_line": 52,
+   "heading": "Programmer's Guide > Wakeup count and threshold access > Writing the counter",
+   "text": "- Write `WKUP_COUNT_LO`.",
+   "written": [
+    "WKUP_COUNT_LO"
+   ],
+   "registers": {
+    "WKUP_COUNT_LO": [
+     "count_lo"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:53",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 53,
+   "end_line": 53,
+   "heading": "Programmer's Guide > Wakeup count and threshold access > Writing the counter",
+   "text": "- Write `WKUP_COUNT_HI`.",
+   "written": [
+    "WKUP_COUNT_HI"
+   ],
+   "registers": {
+    "WKUP_COUNT_HI": [
+     "count_hi"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:56",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 56,
+   "end_line": 56,
+   "heading": "Programmer's Guide > Wakeup count and threshold access > Writing the counter",
+   "text": "For such values, disable the timer with `WKUP_CTRL` while writing the counter.",
+   "written": [
+    "WKUP_CTRL"
+   ],
+   "registers": {
+    "WKUP_CTRL": [
+     "enable",
+     "prescaler"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:60",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 60,
+   "end_line": 60,
+   "heading": "Programmer's Guide > Wakeup count and threshold access > Reading the threshold",
+   "text": "The hardware does not alter `WKUP_THOLD_LO` and `WKUP_THOLD_HI`, so there are no race conditions in reading them.",
+   "written": [
+    "WKUP_THOLD_LO",
+    "WKUP_THOLD_HI"
+   ],
+   "registers": {
+    "WKUP_THOLD_LO": [
+     "threshold_lo"
+    ],
+    "WKUP_THOLD_HI": [
+     "threshold_hi"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:64",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 64,
+   "end_line": 64,
+   "heading": "Programmer's Guide > Wakeup count and threshold access > Writing the threshold",
+   "text": "The threshold is written by setting two registers (`WKUP_THOLD_LO` and `WKUP_THOLD_HI`).",
+   "written": [
+    "WKUP_THOLD_LO",
+    "WKUP_THOLD_HI"
+   ],
+   "registers": {
+    "WKUP_THOLD_LO": [
+     "threshold_lo"
+    ],
+    "WKUP_THOLD_HI": [
+     "threshold_hi"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:87",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 87,
+   "end_line": 87,
+   "heading": "Programmer's Guide > Interrupt Handling",
+   "text": "Disable the wakeup timer by clearing the enable bit in `WKUP_CTRL`.",
+   "written": [
+    "WKUP_CTRL"
+   ],
+   "registers": {
+    "WKUP_CTRL": [
+     "enable",
+     "prescaler"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:88",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 88,
+   "end_line": 88,
+   "heading": "Programmer's Guide > Interrupt Handling",
+   "text": "Reset the timer if desired by clearing `WKUP_COUNT_HI` and `WKUP_COUNT_LO` and renable by setting the enable bit in `WKUP_CTRL`.",
+   "written": [
+    "WKUP_COUNT_HI",
+    "WKUP_COUNT_LO",
+    "WKUP_CTRL"
+   ],
+   "registers": {
+    "WKUP_COUNT_HI": [
+     "count_hi"
+    ],
+    "WKUP_COUNT_LO": [
+     "count_lo"
+    ],
+    "WKUP_CTRL": [
+     "enable",
+     "prescaler"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:89",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 89,
+   "end_line": 89,
+   "heading": "Programmer's Guide > Interrupt Handling",
+   "text": "Clear the interrupt by writing 1 into the Interrupt Status Register `INTR_STATE`.",
+   "written": [
+    "INTR_STATE"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "wkup_timer_expired",
+     "wdog_timer_bark"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:91",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 91,
+   "end_line": 91,
+   "heading": "Programmer's Guide > Interrupt Handling",
+   "text": "If the timer has caused a wakeup event (`WKUP_CAUSE` is set) then clear the wakeup request by writing 0 to `WKUP_CAUSE`.",
+   "written": [
+    "WKUP_CAUSE"
+   ],
+   "registers": {
+    "WKUP_CAUSE": [
+     "cause"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/aon_timer/doc/programmers_guide.md:93",
+   "ip": "aon_timer",
+   "path": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 93,
+   "end_line": 93,
+   "heading": "Programmer's Guide > Interrupt Handling",
+   "text": "If {`WKUP_COUNT_HI`, `WKUP_COUNT_LO`} remains above the threshold after clearing the interrupt or wakeup event and the timer remains enabled, the interrupt and wakeup event will trigger again at the next clock tick.",
+   "written": [
+    "WKUP_COUNT_HI",
+    "WKUP_COUNT_LO"
+   ],
+   "registers": {
+    "WKUP_COUNT_HI": [
+     "count_hi"
+    ],
+    "WKUP_COUNT_LO": [
+     "count_lo"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:10",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 10,
+   "end_line": 10,
+   "heading": "Theory of Operation > Functional Description",
+   "text": "These functional modules are enabled at runtime by setting the register fields `CTRL.ENABLEHOST` and `CTRL.ENABLETARGET`.",
+   "written": [
+    "CTRL.ENABLEHOST",
+    "CTRL.ENABLETARGET"
+   ],
+   "registers": {
+    "CTRL": [
+     "ENABLEHOST",
+     "ENABLETARGET",
+     "LLPBK",
+     "NACK_ADDR_AFTER_TIMEOUT",
+     "ACK_CTRL_EN",
+     "MULTI_CONTROLLER_MONITOR_EN",
+     "TX_STRETCH_CTRL_EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:11",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 11,
+   "end_line": 11,
+   "heading": "Theory of Operation > Functional Description",
+   "text": "If the Controller Module is to be used in a multi-controller environment, `CTRL.MULTI_CONTROLLER_MONITOR_EN` would also need to be set.",
+   "written": [
+    "CTRL.MULTI_CONTROLLER_MONITOR_EN"
+   ],
+   "registers": {
+    "CTRL": [
+     "ENABLEHOST",
+     "ENABLETARGET",
+     "LLPBK",
+     "NACK_ADDR_AFTER_TIMEOUT",
+     "ACK_CTRL_EN",
+     "MULTI_CONTROLLER_MONITOR_EN",
+     "TX_STRETCH_CTRL_EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:20",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 20,
+   "end_line": 20,
+   "heading": "Theory of Operation > Functional Description",
+   "text": "`InputDelayCycles` can exclude the rise time that would be captured by `TIMING1.T_R`.",
+   "written": [
+    "TIMING1.T_R"
+   ],
+   "registers": {
+    "TIMING1": [
+     "T_R",
+     "T_F"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:31",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 31,
+   "end_line": 31,
+   "heading": "Theory of Operation > Functional Description > Bus Monitor",
+   "text": "For signaling when the bus is free, the behavior depends on whether `CTRL.MULTI_CONTROLLER_MONITOR_EN` is enabled.",
+   "written": [
+    "CTRL.MULTI_CONTROLLER_MONITOR_EN"
+   ],
+   "registers": {
+    "CTRL": [
+     "ENABLEHOST",
+     "ENABLETARGET",
+     "LLPBK",
+     "NACK_ADDR_AFTER_TIMEOUT",
+     "ACK_CTRL_EN",
+     "MULTI_CONTROLLER_MONITOR_EN",
+     "TX_STRETCH_CTRL_EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:35",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 35,
+   "end_line": 35,
+   "heading": "Theory of Operation > Functional Description > Bus Monitor",
+   "text": "The bus can also become free after the `HOST_TIMEOUT_CTRL` duration expires, if the bus was left in the idle state, or it can become free in the case of a bus timeout (if enabled in `TIMEOUT_CTRL`).",
+   "written": [
+    "HOST_TIMEOUT_CTRL",
+    "TIMEOUT_CTRL"
+   ],
+   "registers": {
+    "HOST_TIMEOUT_CTRL": [
+     "HOST_TIMEOUT_CTRL"
+    ],
+    "TIMEOUT_CTRL": [
+     "VAL",
+     "MODE",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:38",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 38,
+   "end_line": 38,
+   "heading": "Theory of Operation > Functional Description > Bus Monitor",
+   "text": "To make this happen, `HOST_TIMEOUT_CTRL` should be programmed before enabling the bus monitor in `CTRL`, and `CTRL.MULTI_CONTROLLER_MONITOR_EN` should be set either before or at the same time as enabling the Controller Module with `CTRL.ENABLEHOST`.",
+   "written": [
+    "HOST_TIMEOUT_CTRL",
+    "CTRL",
+    "CTRL.MULTI_CONTROLLER_MONITOR_EN",
+    "CTRL.ENABLEHOST"
+   ],
+   "registers": {
+    "HOST_TIMEOUT_CTRL": [
+     "HOST_TIMEOUT_CTRL"
+    ],
+    "CTRL": [
+     "ENABLEHOST",
+     "ENABLETARGET",
+     "LLPBK",
+     "NACK_ADDR_AFTER_TIMEOUT",
+     "ACK_CTRL_EN",
+     "MULTI_CONTROLLER_MONITOR_EN",
+     "TX_STRETCH_CTRL_EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:55",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 55,
+   "end_line": 55,
+   "heading": "Theory of Operation > Functional Description > Controller Module",
+   "text": "That is of one single format byte (entered into the format FIFO through `FDATA.FBYTE`), and five 1-bit flags (entered into the format FIFO through registers `FDATA.READB`, `FDATA.RCONT`, `FDATA.START`, `FDATA.STOP` and `FDATA.NAKOK`)",
+   "written": [
+    "FDATA.FBYTE",
+    "FDATA.READB",
+    "FDATA.RCONT",
+    "FDATA.START",
+    "FDATA.STOP",
+    "FDATA.NAKOK"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:61",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 61,
+   "end_line": 62,
+   "heading": "Theory of Operation > Functional Description > Controller Module",
+   "text": "- READB (corresponds to `FDATA.READB`): Signifies the format byte (`FDATA.FBYTE`) should be treated as an unsigned number, R, and prompts the state machine to read R bytes from the target device.",
+   "written": [
+    "FDATA.READB",
+    "FDATA.FBYTE"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:66",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 66,
+   "end_line": 66,
+   "heading": "Theory of Operation > Functional Description > Controller Module",
+   "text": "- RCONT (corresponds to FIFO inputs `FDATA.RCONT`, only used with READB):",
+   "written": [
+    "FDATA.RCONT"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:70",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 70,
+   "end_line": 71,
+   "heading": "Theory of Operation > Functional Description > Controller Module",
+   "text": "- START (corresponds to `FDATA.START`, Ignored when used with READB): Issue a START condition before transmitting the format byte on the bus.",
+   "written": [
+    "FDATA.START"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:73",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 73,
+   "end_line": 74,
+   "heading": "Theory of Operation > Functional Description > Controller Module",
+   "text": "- STOP (corresponds to `FDATA.STOP`): Issue a STOP signal after processing this current entry in the FMT FIFO.",
+   "written": [
+    "FDATA.STOP"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:76",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 76,
+   "end_line": 77,
+   "heading": "Theory of Operation > Functional Description > Controller Module",
+   "text": "- NAKOK (corresponds to `FDATA.NAKOK`, Not compatible with READB): Typically every byte transmitted must also receive an ACK signal, and the IP will raise an exception if no ACK is received.",
+   "written": [
+    "FDATA.NAKOK"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:90",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 90,
+   "end_line": 90,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Controller NACK Handling",
+   "text": "If the Controller Module transmits a byte and the 9th bit is a NACK from the Target/Bus, the `controller_halt` interrupt is usually asserted (modulo the effect of `FDATA.NAKOK`).",
+   "written": [
+    "FDATA.NAKOK"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:91",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 91,
+   "end_line": 91,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Controller NACK Handling",
+   "text": "If the `controller_halt` interrupt is asserted, the Controller FSM will halt until the interrupt condition has been cleared in the `CONTROLLER_EVENTS.NACK` register.",
+   "written": [
+    "CONTROLLER_EVENTS.NACK"
+   ],
+   "registers": {
+    "CONTROLLER_EVENTS": [
+     "NACK",
+     "UNHANDLED_NACK_TIMEOUT",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:93",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 93,
+   "end_line": 93,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Controller NACK Handling",
+   "text": "End the current transaction by setting `CTRL.ENABLEHOST` to `1'b0`, and clear the FIFOs to be ready to begin a new transaction.",
+   "written": [
+    "CTRL.ENABLEHOST"
+   ],
+   "registers": {
+    "CTRL": [
+     "ENABLEHOST",
+     "ENABLETARGET",
+     "LLPBK",
+     "NACK_ADDR_AFTER_TIMEOUT",
+     "ACK_CTRL_EN",
+     "MULTI_CONTROLLER_MONITOR_EN",
+     "TX_STRETCH_CTRL_EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:94",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 94,
+   "end_line": 94,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Controller NACK Handling",
+   "text": "Clear the FIFOs, then begin a new transfer without ending the transaction by adding new FDATA indicators to the FMTFIFO.",
+   "written": [
+    "FDATA"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:95",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 95,
+   "end_line": 95,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Controller NACK Handling",
+   "text": "In this case, the first entry written to the FMTFIFO should have `FDATA.START` set to `1'b1` to create a repeated start condition.",
+   "written": [
+    "FDATA.START"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:97",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 97,
+   "end_line": 97,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Controller NACK Handling",
+   "text": "Software should then clear the `CONTROLLER_EVENTS.NACK` to proceed with the next operation.",
+   "written": [
+    "CONTROLLER_EVENTS.NACK"
+   ],
+   "registers": {
+    "CONTROLLER_EVENTS": [
+     "NACK",
+     "UNHANDLED_NACK_TIMEOUT",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:98",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 98,
+   "end_line": 98,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Controller NACK Handling",
+   "text": "The `controller_halt` interrupt is a CIP status type, so it doesn't clear by writing to the `INTR_STATE.CONTROLLER_HALT` bit.",
+   "written": [
+    "INTR_STATE.CONTROLLER_HALT"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "fmt_threshold",
+     "rx_threshold",
+     "acq_threshold",
+     "rx_overflow",
+     "controller_halt",
+     "scl_interference",
+     "sda_interference",
+     "stretch_timeout",
+     "sda_unstable",
+     "cmd_complete",
+     "tx_stretch",
+     "tx_threshold",
+     "acq_stretch",
+     "unexp_stop",
+     "host_timeout"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:99",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 99,
+   "end_line": 99,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Controller NACK Handling",
+   "text": "Instead, the `CONTROLLER_EVENTS` CSR tracks the contributing events, and all must be cleared for the interrupt to de-assert.",
+   "written": [
+    "CONTROLLER_EVENTS"
+   ],
+   "registers": {
+    "CONTROLLER_EVENTS": [
+     "NACK",
+     "UNHANDLED_NACK_TIMEOUT",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:102",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 102,
+   "end_line": 102,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Controller NACK Handling",
+   "text": "This is configured using the `HOST_NACK_HANDLER_TIMEOUT` CSR, which allows software to configure the delay before hardware will terminate the transaction.",
+   "written": [
+    "HOST_NACK_HANDLER_TIMEOUT"
+   ],
+   "registers": {
+    "HOST_NACK_HANDLER_TIMEOUT": [
+     "VAL",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:103",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 103,
+   "end_line": 103,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Controller NACK Handling",
+   "text": "When the timeout occurs, the [`CONTROLLER_EVENTS.UNHANDLED_NACK_TIMEOUT`] bit will set, and this condition will also cause the `controller_halt` interrupt to assert (or remain asserted).",
+   "written": [
+    "CONTROLLER_EVENTS.UNHANDLED_NACK_TIMEOUT"
+   ],
+   "registers": {
+    "CONTROLLER_EVENTS": [
+     "NACK",
+     "UNHANDLED_NACK_TIMEOUT",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:109",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 109,
+   "end_line": 109,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Controller NACK Handling",
+   "text": "If a NACK handling timeout occurs or [`CTRL.ENABLEHOST`] is cleared, then the FSM will halt again after the STOP condition is sent.",
+   "written": [
+    "CTRL.ENABLEHOST"
+   ],
+   "registers": {
+    "CTRL": [
+     "ENABLEHOST",
+     "ENABLETARGET",
+     "LLPBK",
+     "NACK_ADDR_AFTER_TIMEOUT",
+     "ACK_CTRL_EN",
+     "MULTI_CONTROLLER_MONITOR_EN",
+     "TX_STRETCH_CTRL_EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:117",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 117,
+   "end_line": 117,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Bus Arbitration",
+   "text": "The `CONTROLLER_EVENTS.ARBITRATION_LOST` bit will be set, and the `controller_halt` interrupt state will reflect that the module is halted.",
+   "written": [
+    "CONTROLLER_EVENTS.ARBITRATION_LOST"
+   ],
+   "registers": {
+    "CONTROLLER_EVENTS": [
+     "NACK",
+     "UNHANDLED_NACK_TIMEOUT",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:122",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 122,
+   "end_line": 122,
+   "heading": "Theory of Operation > Functional Description > Controller Module > Bus Arbitration",
+   "text": "All bits in `CONTROLLER_EVENTS` must be cleared for the Controller Module to release from the halted state.",
+   "written": [
+    "CONTROLLER_EVENTS"
+   ],
+   "registers": {
+    "CONTROLLER_EVENTS": [
+     "NACK",
+     "UNHANDLED_NACK_TIMEOUT",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:147",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 147,
+   "end_line": 147,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target Address Registers",
+   "text": "The assigned address and mask pairs are set in registers `TARGET_ID.ADDRESS0`, `TARGET_ID.MASK0`, `TARGET_ID.ADDRESS1`, and `TARGET_ID.MASK1`.",
+   "written": [
+    "TARGET_ID.ADDRESS0",
+    "TARGET_ID.MASK0",
+    "TARGET_ID.ADDRESS1",
+    "TARGET_ID.MASK1"
+   ],
+   "registers": {
+    "TARGET_ID": [
+     "ADDRESS0",
+     "MASK0",
+     "ADDRESS1",
+     "MASK1"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:152",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 152,
+   "end_line": 152,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target Transfers",
+   "text": "`ACQDATA` represents the ACQ FIFO output.",
+   "written": [
+    "ACQDATA"
+   ],
+   "registers": {
+    "ACQDATA": [
+     "ABYTE",
+     "SIGNAL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:173",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 173,
+   "end_line": 173,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target Transfers",
+   "text": "- `TARGET_EVENTS` holding at least one unhandled event",
+   "written": [
+    "TARGET_EVENTS"
+   ],
+   "registers": {
+    "TARGET_EVENTS": [
+     "TX_PENDING",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:176",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 176,
+   "end_line": 176,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target Transfers",
+   "text": "Note that data for TX FIFO is pushed through the register `TXDATA`.",
+   "written": [
+    "TXDATA"
+   ],
+   "registers": {
+    "TXDATA": [
+     "TXDATA"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:179",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 179,
+   "end_line": 179,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target Transfers",
+   "text": "The ACK/NACK signal is represented in the MSB of `ACQDATA.SIGNAL`, in the same entry as the STOP or repeated START signal.",
+   "written": [
+    "ACQDATA.SIGNAL"
+   ],
+   "registers": {
+    "ACQDATA": [
+     "ABYTE",
+     "SIGNAL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:190",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 190,
+   "end_line": 191,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target Clock Stretching",
+   "text": "- After the ACK bit is sent by the controller-transmitter during a read transfer <!-- Technically, `CTRL.NACK_ADDR_AFTER_TIMEOUT` makes it possible to stretch immediately *before* the ACK bit of the address, but this feature has not received sufficient DV, so it is left mostly undocumented. -->",
+   "written": [
+    "CTRL.NACK_ADDR_AFTER_TIMEOUT"
+   ],
+   "registers": {
+    "CTRL": [
+     "ENABLEHOST",
+     "ENABLETARGET",
+     "LLPBK",
+     "NACK_ADDR_AFTER_TIMEOUT",
+     "ACK_CTRL_EN",
+     "MULTI_CONTROLLER_MONITOR_EN",
+     "TX_STRETCH_CTRL_EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:210",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 210,
+   "end_line": 210,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target Clock Stretching > Stretching during read",
+   "text": "- If there is an unhandled event in `TARGET_EVENTS`.",
+   "written": [
+    "TARGET_EVENTS"
+   ],
+   "registers": {
+    "TARGET_EVENTS": [
+     "TX_PENDING",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:220",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 220,
+   "end_line": 220,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target NACKs",
+   "text": "Assuming `CTRL.NACK_ADDR_AFTER_TIMEOUT` is 0, a matching address will always elicit an ACK response, which is required by SMBus.",
+   "written": [
+    "CTRL.NACK_ADDR_AFTER_TIMEOUT"
+   ],
+   "registers": {
+    "CTRL": [
+     "ENABLEHOST",
+     "ENABLETARGET",
+     "LLPBK",
+     "NACK_ADDR_AFTER_TIMEOUT",
+     "ACK_CTRL_EN",
+     "MULTI_CONTROLLER_MONITOR_EN",
+     "TX_STRETCH_CTRL_EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:232",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 232,
+   "end_line": 232,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target NACKs",
+   "text": "- If enabled by `TARGET_TIMEOUT_CTRL`",
+   "written": [
+    "TARGET_TIMEOUT_CTRL"
+   ],
+   "registers": {
+    "TARGET_TIMEOUT_CTRL": [
+     "VAL",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:241",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 241,
+   "end_line": 241,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target ACK Control Mode",
+   "text": "When ACK Control Mode is disabled in `CTRL.ACK_CTRL_EN`, the Target module will automatically ACK any incoming data byte, so long as there is sufficient space in the ACQ FIFO.",
+   "written": [
+    "CTRL.ACK_CTRL_EN"
+   ],
+   "registers": {
+    "CTRL": [
+     "ENABLEHOST",
+     "ENABLETARGET",
+     "LLPBK",
+     "NACK_ADDR_AFTER_TIMEOUT",
+     "ACK_CTRL_EN",
+     "MULTI_CONTROLLER_MONITOR_EN",
+     "TX_STRETCH_CTRL_EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:243",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 243,
+   "end_line": 243,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target ACK Control Mode",
+   "text": "However, if ACK Control Mode is enabled, the `TARGET_ACK_CTRL` CSR can also cause the Target module to stretch the clock at the (N)ACK phase.",
+   "written": [
+    "TARGET_ACK_CTRL"
+   ],
+   "registers": {
+    "TARGET_ACK_CTRL": [
+     "NBYTES",
+     "NACK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:248",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 248,
+   "end_line": 248,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target ACK Control Mode",
+   "text": "When a transfer reaches the (N)ACK phase and the `TARGET_ACK_CTRL.NBYTES` CSR is 0, the Target module stretches the clock and awaits instructions from software, up to the stretch timeout.",
+   "written": [
+    "TARGET_ACK_CTRL.NBYTES"
+   ],
+   "registers": {
+    "TARGET_ACK_CTRL": [
+     "NBYTES",
+     "NACK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:254",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 254,
+   "end_line": 254,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target ACK Control Mode",
+   "text": "Otherwise, software can explicitly NACK that byte and the rest of the transaction by writing a 1 to `TARGET_ACK_CTRL.NACK`.",
+   "written": [
+    "TARGET_ACK_CTRL.NACK"
+   ],
+   "registers": {
+    "TARGET_ACK_CTRL": [
+     "NBYTES",
+     "NACK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:255",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 255,
+   "end_line": 255,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target ACK Control Mode",
+   "text": "If the Target module is not stretching the clock, writes to `TARGET_ACK_CTRL` are ignored.",
+   "written": [
+    "TARGET_ACK_CTRL"
+   ],
+   "registers": {
+    "TARGET_ACK_CTRL": [
+     "NBYTES",
+     "NACK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:258",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 258,
+   "end_line": 258,
+   "heading": "Theory of Operation > Functional Description > Target Module > Target ACK Control Mode",
+   "text": "Instead, software can read the `ACQ_FIFO_NEXT_DATA` CSR to decide what to do.",
+   "written": [
+    "ACQ_FIFO_NEXT_DATA"
+   ],
+   "registers": {
+    "ACQ_FIFO_NEXT_DATA": [
+     "ACQ_FIFO_NEXT_DATA"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:273",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 273,
+   "end_line": 273,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "- t<sub>LOW</sub>: set in register `TIMING0.TLOW`.",
+   "written": [
+    "TIMING0.TLOW"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:274",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 274,
+   "end_line": 274,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "- t<sub>HIGH</sub>: set in register `TIMING0.THIGH`.",
+   "written": [
+    "TIMING0.THIGH"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:275",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 275,
+   "end_line": 275,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "- t<sub>r</sub>: set in register `TIMING1.T_R`.",
+   "written": [
+    "TIMING1.T_R"
+   ],
+   "registers": {
+    "TIMING1": [
+     "T_R",
+     "T_F"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:278",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 278,
+   "end_line": 278,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "- t<sub>f</sub>: set in register `TIMING1.T_F`.",
+   "written": [
+    "TIMING1.T_F"
+   ],
+   "registers": {
+    "TIMING1": [
+     "T_R",
+     "T_F"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:284",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 284,
+   "end_line": 284,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "- t<sub>SU,STA</sub>: set in register `TIMING2.TSU_STA`",
+   "written": [
+    "TIMING2.TSU_STA"
+   ],
+   "registers": {
+    "TIMING2": [
+     "TSU_STA",
+     "THD_STA"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:285",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 285,
+   "end_line": 285,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "- t<sub>HD,STA</sub>: set in register `TIMING2.THD_STA`",
+   "written": [
+    "TIMING2.THD_STA"
+   ],
+   "registers": {
+    "TIMING2": [
+     "TSU_STA",
+     "THD_STA"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:286",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 286,
+   "end_line": 286,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "- t<sub>SU,DAT</sub>: set in register `TIMING3.TSU_DAT`.",
+   "written": [
+    "TIMING3.TSU_DAT"
+   ],
+   "registers": {
+    "TIMING3": [
+     "TSU_DAT",
+     "THD_DAT"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:288",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 288,
+   "end_line": 288,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "- t<sub>HD,DAT</sub>: set in register `TIMING3.THD_DAT`.",
+   "written": [
+    "TIMING3.THD_DAT"
+   ],
+   "registers": {
+    "TIMING3": [
+     "TSU_DAT",
+     "THD_DAT"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:293",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 293,
+   "end_line": 293,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "- t<sub>SU,STO</sub>: set in register `TIMING4.TSU_STO`.",
+   "written": [
+    "TIMING4.TSU_STO"
+   ],
+   "registers": {
+    "TIMING4": [
+     "TSU_STO",
+     "T_BUF"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:294",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 294,
+   "end_line": 294,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "- t<sub>BUF</sub>: set in register `TIMING4.T_BUF`",
+   "written": [
+    "TIMING4.T_BUF"
+   ],
+   "registers": {
+    "TIMING4": [
+     "TSU_STO",
+     "T_BUF"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:296",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 296,
+   "end_line": 296,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "The values programmed into the registers `TIMING0` through `TIMING4` are to be expressed in units of the input clock period.",
+   "written": [
+    "TIMING0",
+    "TIMING4"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ],
+    "TIMING4": [
+     "TSU_STO",
+     "T_BUF"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:304",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 304,
+   "end_line": 304,
+   "heading": "Theory of Operation > Functional Description > Timing Control Registers",
+   "text": "Note that the IP also has minimum values for `TIMING0.TLOW`, `TIMING0.THIGH`, `TIMING2.THD_STA`, and `TIMING3.THD_DAT`.",
+   "written": [
+    "TIMING0.TLOW",
+    "TIMING0.THIGH",
+    "TIMING2.THD_STA",
+    "TIMING3.THD_DAT"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ],
+    "TIMING2": [
+     "TSU_STA",
+     "THD_STA"
+    ],
+    "TIMING3": [
+     "TSU_DAT",
+     "THD_DAT"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:319",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 319,
+   "end_line": 319,
+   "heading": "Theory of Operation > Functional Description > Timeout Controls > Bus Timeout or Stretch Timeout",
+   "text": "For these reasons, `TIMEOUT_CTRL` provides a timeout mechanism for determining one of two variants of an SCL low timeout.",
+   "written": [
+    "TIMEOUT_CTRL"
+   ],
+   "registers": {
+    "TIMEOUT_CTRL": [
+     "VAL",
+     "MODE",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:321",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 321,
+   "end_line": 321,
+   "heading": "Theory of Operation > Functional Description > Timeout Controls > Bus Timeout or Stretch Timeout",
+   "text": "Enabling a timeout at all requires setting `TIMEOUT_CTRL.EN` and configuring `TIMEOUT_CTRL.VAL` with the desired number of cycles to count before timing out.",
+   "written": [
+    "TIMEOUT_CTRL.EN",
+    "TIMEOUT_CTRL.VAL"
+   ],
+   "registers": {
+    "TIMEOUT_CTRL": [
+     "VAL",
+     "MODE",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:322",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 322,
+   "end_line": 322,
+   "heading": "Theory of Operation > Functional Description > Timeout Controls > Bus Timeout or Stretch Timeout",
+   "text": "With the configuration of `TIMEOUT_CTRL.MODE`, one of two types of timeouts can be selected.",
+   "written": [
+    "TIMEOUT_CTRL.MODE"
+   ],
+   "registers": {
+    "TIMEOUT_CTRL": [
+     "VAL",
+     "MODE",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:324",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 324,
+   "end_line": 324,
+   "heading": "Theory of Operation > Functional Description > Timeout Controls > Bus Timeout or Stretch Timeout",
+   "text": "If a `STRETCH_TIMEOUT` is selected, the Controller Module detects when some other device holds SCL low for more cycles than than `TIMEOUT_CTRL.VAL` clock ticks.",
+   "written": [
+    "TIMEOUT_CTRL.VAL"
+   ],
+   "registers": {
+    "TIMEOUT_CTRL": [
+     "VAL",
+     "MODE",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:329",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 329,
+   "end_line": 330,
+   "heading": "Theory of Operation > Functional Description > Timeout Controls > Bus Timeout or Stretch Timeout",
+   "text": "If a bus timeout occurs while the Controller Module is active, the corresponding `CONTROLLER_EVENTS.BUS_TIMEOUT` bit is set, halting the Controller Module and requiring handling from software before the next command will process. <!-- TODO: Bus timeouts to the target aren't qualified by whether the particular transaction addressed our target, leading to ACQ FIFO usage.",
+   "written": [
+    "CONTROLLER_EVENTS.BUS_TIMEOUT"
+   ],
+   "registers": {
+    "CONTROLLER_EVENTS": [
+     "NACK",
+     "UNHANDLED_NACK_TIMEOUT",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:332",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 332,
+   "end_line": 332,
+   "heading": "Theory of Operation > Functional Description > Timeout Controls > Bus Timeout or Stretch Timeout",
+   "text": "In addition, if the last command byte addressing the module issued a read operation, `TARGET_EVENTS.BUS_TIMEOUT` will be set, causing the Target Module to stretch the clock on read operations until software handles the event.",
+   "written": [
+    "TARGET_EVENTS.BUS_TIMEOUT"
+   ],
+   "registers": {
+    "TARGET_EVENTS": [
+     "TX_PENDING",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:339",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 339,
+   "end_line": 339,
+   "heading": "Theory of Operation > Functional Description > Timeout Controls > SCL Idle Timeout",
+   "text": "`HOST_TIMEOUT_CTRL` is optionally enabled, determined by whether the register value is nonzero.",
+   "written": [
+    "HOST_TIMEOUT_CTRL"
+   ],
+   "registers": {
+    "HOST_TIMEOUT_CTRL": [
+     "HOST_TIMEOUT_CTRL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:354",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 354,
+   "end_line": 354,
+   "heading": "Theory of Operation > Functional Description > Timeout Controls > Target Module Stretch Timeout",
+   "text": "If enabled with `TARGET_TIMEOUT_CTRL.EN`, the Target Module will automatically NACK transactions if it stretches the clock for more cycles than `TARGET_TIMEOUT_CTRL.VAL`.",
+   "written": [
+    "TARGET_TIMEOUT_CTRL.EN",
+    "TARGET_TIMEOUT_CTRL.VAL"
+   ],
+   "registers": {
+    "TARGET_TIMEOUT_CTRL": [
+     "VAL",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:362",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 362,
+   "end_line": 362,
+   "heading": "Theory of Operation > Functional Description > Interrupts > Controller Module",
+   "text": "Firmware can configure the threshold value via the register `HOST_FIFO_CONFIG.RX_THRESH`.",
+   "written": [
+    "HOST_FIFO_CONFIG.RX_THRESH"
+   ],
+   "registers": {
+    "HOST_FIFO_CONFIG": [
+     "RX_THRESH",
+     "FMT_THRESH"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:365",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 365,
+   "end_line": 365,
+   "heading": "Theory of Operation > Functional Description > Interrupts > Controller Module",
+   "text": "Firmware can configure the threshold value via the register `HOST_FIFO_CONFIG.FMT_THRESH`.",
+   "written": [
+    "HOST_FIFO_CONFIG.FMT_THRESH"
+   ],
+   "registers": {
+    "HOST_FIFO_CONFIG": [
+     "RX_THRESH",
+     "FMT_THRESH"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:369",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 369,
+   "end_line": 369,
+   "heading": "Theory of Operation > Functional Description > Interrupts > Controller Module",
+   "text": "If the module transmits a byte and the 9th bit is a NACK from the Target/Bus, the `controller_halt` interrupt is usually asserted (modulo the effect of `FDATA.NAKOK`).",
+   "written": [
+    "FDATA.NAKOK"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:399",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 399,
+   "end_line": 399,
+   "heading": "Theory of Operation > Functional Description > Interrupts > Controller Module",
+   "text": "Though normal clock stretching does not count as SCL interference, if the module detects that a target device has held SCL low and stretched any given SCL cycle for more than `TIMEOUT_CTRL.VAL` clock ticks this will cause the stretch timeout interrupt to be asserted.",
+   "written": [
+    "TIMEOUT_CTRL.VAL"
+   ],
+   "registers": {
+    "TIMEOUT_CTRL": [
+     "VAL",
+     "MODE",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:400",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 400,
+   "end_line": 400,
+   "heading": "Theory of Operation > Functional Description > Interrupts > Controller Module",
+   "text": "This interrupt is suppressed, however, if `TIMEOUT_CTRL.EN` is deasserted low or if the bus timeout is selected for `TIMEOUT_CTRL.MODE`.",
+   "written": [
+    "TIMEOUT_CTRL.EN",
+    "TIMEOUT_CTRL.MODE"
+   ],
+   "registers": {
+    "TIMEOUT_CTRL": [
+     "VAL",
+     "MODE",
+     "EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:429",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 429,
+   "end_line": 429,
+   "heading": "Theory of Operation > Functional Description > Interrupts > Target Module",
+   "text": "If software sets the bit `CTRL.TX_STRETCH_CTRL_EN`, the Target Module will require software to confirm release of the TX FIFO at the beginning of every read transfer addressed to it.",
+   "written": [
+    "CTRL.TX_STRETCH_CTRL_EN"
+   ],
+   "registers": {
+    "CTRL": [
+     "ENABLEHOST",
+     "ENABLETARGET",
+     "LLPBK",
+     "NACK_ADDR_AFTER_TIMEOUT",
+     "ACK_CTRL_EN",
+     "MULTI_CONTROLLER_MONITOR_EN",
+     "TX_STRETCH_CTRL_EN"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:430",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 430,
+   "end_line": 430,
+   "heading": "Theory of Operation > Functional Description > Interrupts > Target Module",
+   "text": "This behaviour may be useful to software, as any remaining data in the TX FIFO after a Sr/P condition may no longer apply to the next transfer, so it may have to be cleared out via `FIFO_CTRL.TXRST`.",
+   "written": [
+    "FIFO_CTRL.TXRST"
+   ],
+   "registers": {
+    "FIFO_CTRL": [
+     "RXRST",
+     "FMTRST",
+     "ACQRST",
+     "TXRST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:439",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 439,
+   "end_line": 439,
+   "heading": "Theory of Operation > Functional Description > Interrupts > Target Module",
+   "text": "Firmware can configure the threshold value via the register `TARGET_FIFO_CONFIG.ACQ_THRESH`.",
+   "written": [
+    "TARGET_FIFO_CONFIG.ACQ_THRESH"
+   ],
+   "registers": {
+    "TARGET_FIFO_CONFIG": [
+     "TX_THRESH",
+     "ACQ_THRESH"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:442",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 442,
+   "end_line": 442,
+   "heading": "Theory of Operation > Functional Description > Interrupts > Target Module",
+   "text": "Firmware can configure the threshold value via the register `TARGET_FIFO_CONFIG.TX_THRESH`.",
+   "written": [
+    "TARGET_FIFO_CONFIG.TX_THRESH"
+   ],
+   "registers": {
+    "TARGET_FIFO_CONFIG": [
+     "TX_THRESH",
+     "ACQ_THRESH"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:446",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 446,
+   "end_line": 446,
+   "heading": "Theory of Operation > Functional Description > Interrupts > Target Module",
+   "text": "If ACK Control Mode is enabled, check the relevant bits in `STATUS` to determine the reason(s).",
+   "written": [
+    "STATUS"
+   ],
+   "registers": {
+    "STATUS": [
+     "FMTFULL",
+     "RXFULL",
+     "FMTEMPTY",
+     "HOSTIDLE",
+     "TARGETIDLE",
+     "RXEMPTY",
+     "TXFULL",
+     "ACQFULL",
+     "TXEMPTY",
+     "ACQEMPTY",
+     "ACK_CTRL_STRETCH"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:452",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 452,
+   "end_line": 452,
+   "heading": "Theory of Operation > Functional Description > Interrupts > Target Module",
+   "text": "Firmware can configure the timeout value via the register `HOST_TIMEOUT_CTRL`.",
+   "written": [
+    "HOST_TIMEOUT_CTRL"
+   ],
+   "registers": {
+    "HOST_TIMEOUT_CTRL": [
+     "HOST_TIMEOUT_CTRL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:577",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 577,
+   "end_line": 577,
+   "heading": "Theory of Operation > Application Notes > Override Mode for Direct Pin Access",
+   "text": "To enter override mode, the register field `OVRD.TXOVRDEN` is asserted by software.",
+   "written": [
+    "OVRD.TXOVRDEN"
+   ],
+   "registers": {
+    "OVRD": [
+     "TXOVRDEN",
+     "SCLVAL",
+     "SDAVAL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:578",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 578,
+   "end_line": 578,
+   "heading": "Theory of Operation > Application Notes > Override Mode for Direct Pin Access",
+   "text": "In this state the output drivers `scl_tx_o` and `sda_tx_o` are controlled directly by the register fields `OVRD.SCLVAL` and `OVRD.SDAVAL`.",
+   "written": [
+    "OVRD.SCLVAL",
+    "OVRD.SDAVAL"
+   ],
+   "registers": {
+    "OVRD": [
+     "TXOVRDEN",
+     "SCLVAL",
+     "SDAVAL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:579",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 579,
+   "end_line": 579,
+   "heading": "Theory of Operation > Application Notes > Override Mode for Direct Pin Access",
+   "text": "When `OVRD.SCLVAL` and `OVRD.SDAVAL` are set high, the virtual open drain configuration will leave the output resistively pulled high, and controllable by remote targets.",
+   "written": [
+    "OVRD.SCLVAL",
+    "OVRD.SDAVAL"
+   ],
+   "registers": {
+    "OVRD": [
+     "TXOVRDEN",
+     "SCLVAL",
+     "SDAVAL"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/theory_of_operation.md:580",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 580,
+   "end_line": 580,
+   "heading": "Theory of Operation > Application Notes > Override Mode for Direct Pin Access",
+   "text": "In this state, with SCL or SDA asserted high, the register fields `VAL.SCL_RX` and `VAL.SDA_RX` can be used to receive inputs (including remote acknowledgments) from target devices.",
+   "written": [
+    "VAL.SCL_RX",
+    "VAL.SDA_RX"
+   ],
+   "registers": {
+    "VAL": [
+     "SCL_RX",
+     "SDA_RX"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:56",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 56,
+   "end_line": 56,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm",
+   "text": "Input the integer timing parameters, THD_STA_MIN, TSU_STA_MIN, THD_DAT_MIN, TSU_DAT_MIN, T_BUF_MIN and T_STO_MIN into their corresponding registers (`TIMING2.THD_STA`, `TIMING2.TSU_STA`, `TIMING3.THD_DAT`, `TIMING3.TSU_DAT`, `TIMING4.T_BUF`, `TIMING4.T_STO`)",
+   "written": [
+    "TIMING2.THD_STA",
+    "TIMING2.TSU_STA",
+    "TIMING3.THD_DAT",
+    "TIMING3.TSU_DAT",
+    "TIMING4.T_BUF",
+    "TIMING4.T_STO"
+   ],
+   "registers": {
+    "TIMING2": [
+     "TSU_STA",
+     "THD_STA"
+    ],
+    "TIMING3": [
+     "TSU_DAT",
+     "THD_DAT"
+    ],
+    "TIMING4": [
+     "TSU_STO",
+     "T_BUF"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:58",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 58,
+   "end_line": 58,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm",
+   "text": "- The registers `TIMING0.THIGH` and `TIMING0.TLOW` will be taken care of in a later step.",
+   "written": [
+    "TIMING0.THIGH",
+    "TIMING0.TLOW"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:62",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 62,
+   "end_line": 62,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm",
+   "text": "Store T_R and T_F in their corresponding registers: `TIMING1.T_R` and `TIMING1.T_F`.",
+   "written": [
+    "TIMING1.T_R",
+    "TIMING1.T_F"
+   ],
+   "registers": {
+    "TIMING1": [
+     "T_R",
+     "T_F"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:75",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 75,
+   "end_line": 76,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm",
+   "text": "- It is, for instance, perfectly acceptable to simply set TLOW to the minimum possible value: $$ \\textrm{TIMING0.TLOW}=\\textrm{TLOW_MIN} $$",
+   "written": [
+    "TIMING0.TLOW"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:77",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 77,
+   "end_line": 78,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm",
+   "text": "THIGH is then set to satisfy both constraints in the desired SCL period and in the minimum permissible values for t<sub>HIGH</sub>: $$ \\textrm{TIMING0.THIGH}=\\max(\\textrm{PERIOD}-\\textrm{T_R} - \\textrm{TIMING0.TLOW} -\\textrm{T_F}, \\textrm{THIGH_MIN}) $$",
+   "written": [
+    "TIMING0.THIGH",
+    "TIMING0.TLOW"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:91",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 91,
+   "end_line": 91,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING0.THIGH   | 260              | 120        | 360            | Chosen to satisfy SCL Period Minimum          |",
+   "written": [
+    "TIMING0.THIGH"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:92",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 92,
+   "end_line": 92,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING0.TLOW    | 500              | 167        | 501            | Spec. t<sub>LOW</sub> Minimum                 |",
+   "written": [
+    "TIMING0.TLOW"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:93",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 93,
+   "end_line": 93,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING1.T_F     | 20ns * (VDD/5.5V)| 7          | 21             | Signal slew-rate should be controlled         |",
+   "written": [
+    "TIMING1.T_F"
+   ],
+   "registers": {
+    "TIMING1": [
+     "T_R",
+     "T_F"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:94",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 94,
+   "end_line": 94,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING1.T_R     | 0                | 40         | 120            | Based on pull-up resistance, line capacitance |",
+   "written": [
+    "TIMING1.T_R"
+   ],
+   "registers": {
+    "TIMING1": [
+     "T_R",
+     "T_F"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:96",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 96,
+   "end_line": 96,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING2.THD_STA | 260              | 87         | 261            | Spec.",
+   "written": [
+    "TIMING2.THD_STA"
+   ],
+   "registers": {
+    "TIMING2": [
+     "TSU_STA",
+     "THD_STA"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:97",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 97,
+   "end_line": 97,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING2.TSU_STA | 260              | 87         | 261            | Spec.",
+   "written": [
+    "TIMING2.TSU_STA"
+   ],
+   "registers": {
+    "TIMING2": [
+     "TSU_STA",
+     "THD_STA"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:98",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 98,
+   "end_line": 98,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING3.THD_DAT | 0                | 0          | 0              | Spec.",
+   "written": [
+    "TIMING3.THD_DAT"
+   ],
+   "registers": {
+    "TIMING3": [
+     "TSU_DAT",
+     "THD_DAT"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:99",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 99,
+   "end_line": 99,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING3.TSU_DAT | 260              | 87         | 261            | Spec.",
+   "written": [
+    "TIMING3.TSU_DAT"
+   ],
+   "registers": {
+    "TIMING3": [
+     "TSU_DAT",
+     "THD_DAT"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:100",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 100,
+   "end_line": 100,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING4.T_BUF   | 500              | 167        | 501            | Spec.",
+   "written": [
+    "TIMING4.T_BUF"
+   ],
+   "registers": {
+    "TIMING4": [
+     "TSU_STO",
+     "T_BUF"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:101",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 101,
+   "end_line": 101,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING4.T_STO   | 260              | 87         | 161            | Spec.",
+   "written": [
+    "TIMING4.T_STO"
+   ],
+   "registers": {
+    "TIMING4": [
+     "TSU_STO",
+     "T_BUF"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:103",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 103,
+   "end_line": 103,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "This next example shows how the first SCL timing registers: `TIMING0` and `TIMING1` are altered in a high-capacitance Fast-mode Plus bus, where the physical value of t<sub>r</sub> driven to an atypical value of 400ns.",
+   "written": [
+    "TIMING0",
+    "TIMING1"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ],
+    "TIMING1": [
+     "T_R",
+     "T_F"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:105",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 105,
+   "end_line": 105,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "All other parameters in registers `TIMING2`, `TIMING3`, `TIMING4` are unchanged from the previous example.",
+   "written": [
+    "TIMING2",
+    "TIMING3",
+    "TIMING4"
+   ],
+   "registers": {
+    "TIMING2": [
+     "TSU_STA",
+     "THD_STA"
+    ],
+    "TIMING3": [
+     "TSU_DAT",
+     "THD_DAT"
+    ],
+    "TIMING4": [
+     "TSU_STO",
+     "T_BUF"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:109",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 109,
+   "end_line": 109,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING0.THIGH   | 260              | 87         | 261            | Spec. t<sub>HIGH</sub> Minimum                |",
+   "written": [
+    "TIMING0.THIGH"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:110",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 110,
+   "end_line": 110,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING0.TLOW    | 500              | 167        | 501            | Spec. t<sub>LOW</sub> Minimum                 |",
+   "written": [
+    "TIMING0.TLOW"
+   ],
+   "registers": {
+    "TIMING0": [
+     "THIGH",
+     "TLOW"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:111",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 111,
+   "end_line": 111,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING1.T_F     | 20ns * (VDD/5.5V)| 7          | 21             | Signal slew-rate should be controlled         |",
+   "written": [
+    "TIMING1.T_F"
+   ],
+   "registers": {
+    "TIMING1": [
+     "T_R",
+     "T_F"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:112",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 112,
+   "end_line": 112,
+   "heading": "Programmer's Guide > Initialization > Timing Parameter Tuning Algorithm > Timing parameter examples",
+   "text": "| TIMING1.T_R     | 0                | 134        | 402            | Atypically high line capacitance             |",
+   "written": [
+    "TIMING1.T_R"
+   ],
+   "registers": {
+    "TIMING1": [
+     "T_R",
+     "T_F"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:118",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 118,
+   "end_line": 118,
+   "heading": "Programmer's Guide > Controller Module Operations > Writing `n` bytes to a device:",
+   "text": "- `FDATA.START` = 1;",
+   "written": [
+    "FDATA.START"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:119",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 119,
+   "end_line": 119,
+   "heading": "Programmer's Guide > Controller Module Operations > Writing `n` bytes to a device:",
+   "text": "- `FDATA.FBYTE` = < 7-bit address + write bit >.",
+   "written": [
+    "FDATA.FBYTE"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:120",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 120,
+   "end_line": 120,
+   "heading": "Programmer's Guide > Controller Module Operations > Writing `n` bytes to a device:",
+   "text": "Fill the FMT FIFO by writing to `FDATA.FBYTE` `n`-1 times.",
+   "written": [
+    "FDATA.FBYTE"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:122",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 122,
+   "end_line": 122,
+   "heading": "Programmer's Guide > Controller Module Operations > Writing `n` bytes to a device:",
+   "text": "- `FDATA.STOP` = 1;",
+   "written": [
+    "FDATA.STOP"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:123",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 123,
+   "end_line": 123,
+   "heading": "Programmer's Guide > Controller Module Operations > Writing `n` bytes to a device:",
+   "text": "- `FDATA.FBYTE` = < last byte >.",
+   "written": [
+    "FDATA.FBYTE"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:125",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 125,
+   "end_line": 125,
+   "heading": "Programmer's Guide > Controller Module Operations > Writing `n` bytes to a device:",
+   "text": "- If `INTR_STATE.CONTROLLER_HALT` is 1, the transaction failed.",
+   "written": [
+    "INTR_STATE.CONTROLLER_HALT"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "fmt_threshold",
+     "rx_threshold",
+     "acq_threshold",
+     "rx_overflow",
+     "controller_halt",
+     "scl_interference",
+     "sda_interference",
+     "stretch_timeout",
+     "sda_unstable",
+     "cmd_complete",
+     "tx_stretch",
+     "tx_threshold",
+     "acq_stretch",
+     "unexp_stop",
+     "host_timeout"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:126",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 126,
+   "end_line": 126,
+   "heading": "Programmer's Guide > Controller Module Operations > Writing `n` bytes to a device:",
+   "text": "- Check `CONTROLLER_EVENTS` for the reason, reset the FMT FIFO with `FIFO_CTRL.FMTRST`, and clear the latched events.",
+   "written": [
+    "CONTROLLER_EVENTS",
+    "FIFO_CTRL.FMTRST"
+   ],
+   "registers": {
+    "CONTROLLER_EVENTS": [
+     "NACK",
+     "UNHANDLED_NACK_TIMEOUT",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ],
+    "FIFO_CTRL": [
+     "RXRST",
+     "FMTRST",
+     "ACQRST",
+     "TXRST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:127",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 127,
+   "end_line": 127,
+   "heading": "Programmer's Guide > Controller Module Operations > Writing `n` bytes to a device:",
+   "text": "- Otherwise, if `INTR_STATE.CMD_COMPLETE` is 1 and `STATUS.FMTEMPTY` is 1, the transaction succeeded.",
+   "written": [
+    "INTR_STATE.CMD_COMPLETE",
+    "STATUS.FMTEMPTY"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "fmt_threshold",
+     "rx_threshold",
+     "acq_threshold",
+     "rx_overflow",
+     "controller_halt",
+     "scl_interference",
+     "sda_interference",
+     "stretch_timeout",
+     "sda_unstable",
+     "cmd_complete",
+     "tx_stretch",
+     "tx_threshold",
+     "acq_stretch",
+     "unexp_stop",
+     "host_timeout"
+    ],
+    "STATUS": [
+     "FMTFULL",
+     "RXFULL",
+     "FMTEMPTY",
+     "HOSTIDLE",
+     "TARGETIDLE",
+     "RXEMPTY",
+     "TXFULL",
+     "ACQFULL",
+     "TXEMPTY",
+     "ACQEMPTY",
+     "ACK_CTRL_STRETCH"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:131",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 131,
+   "end_line": 131,
+   "heading": "Programmer's Guide > Controller Module Operations > Reading `n` bytes from a device:",
+   "text": "- `FDATA.START` = 1;",
+   "written": [
+    "FDATA.START"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:132",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 132,
+   "end_line": 132,
+   "heading": "Programmer's Guide > Controller Module Operations > Reading `n` bytes from a device:",
+   "text": "- `FDATA.FBYTE` = < 7-bit address + read bit >.",
+   "written": [
+    "FDATA.FBYTE"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:134",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 134,
+   "end_line": 134,
+   "heading": "Programmer's Guide > Controller Module Operations > Reading `n` bytes from a device:",
+   "text": "- `FDATA.READB` = 1;",
+   "written": [
+    "FDATA.READB"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:135",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 135,
+   "end_line": 135,
+   "heading": "Programmer's Guide > Controller Module Operations > Reading `n` bytes from a device:",
+   "text": "- `FDATA.STOP` = 1;",
+   "written": [
+    "FDATA.STOP"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:136",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 136,
+   "end_line": 136,
+   "heading": "Programmer's Guide > Controller Module Operations > Reading `n` bytes from a device:",
+   "text": "- `FDATA.FBYTE` = < `n` >.",
+   "written": [
+    "FDATA.FBYTE"
+   ],
+   "registers": {
+    "FDATA": [
+     "FBYTE",
+     "START",
+     "STOP",
+     "READB",
+     "RCONT",
+     "NAKOK"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:138",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 138,
+   "end_line": 138,
+   "heading": "Programmer's Guide > Controller Module Operations > Reading `n` bytes from a device:",
+   "text": "- If `STATUS.FMTEMPTY` bit is 1.",
+   "written": [
+    "STATUS.FMTEMPTY"
+   ],
+   "registers": {
+    "STATUS": [
+     "FMTFULL",
+     "RXFULL",
+     "FMTEMPTY",
+     "HOSTIDLE",
+     "TARGETIDLE",
+     "RXEMPTY",
+     "TXFULL",
+     "ACQFULL",
+     "TXEMPTY",
+     "ACQEMPTY",
+     "ACK_CTRL_STRETCH"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:139",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 139,
+   "end_line": 139,
+   "heading": "Programmer's Guide > Controller Module Operations > Reading `n` bytes from a device:",
+   "text": "- **Or** if `INTR_STATE.FMT_THRESHOLD` bit is 1 ( as long as `FIFO_CTRL.FMTILVL` is set to 1).",
+   "written": [
+    "INTR_STATE.FMT_THRESHOLD",
+    "FIFO_CTRL.FMTILVL"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "fmt_threshold",
+     "rx_threshold",
+     "acq_threshold",
+     "rx_overflow",
+     "controller_halt",
+     "scl_interference",
+     "sda_interference",
+     "stretch_timeout",
+     "sda_unstable",
+     "cmd_complete",
+     "tx_stretch",
+     "tx_threshold",
+     "acq_stretch",
+     "unexp_stop",
+     "host_timeout"
+    ],
+    "FIFO_CTRL": [
+     "RXRST",
+     "FMTRST",
+     "ACQRST",
+     "TXRST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:140",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 140,
+   "end_line": 140,
+   "heading": "Programmer's Guide > Controller Module Operations > Reading `n` bytes from a device:",
+   "text": "- If `INTR_STATE.CONTROLLER_HALT` is 1.",
+   "written": [
+    "INTR_STATE.CONTROLLER_HALT"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "fmt_threshold",
+     "rx_threshold",
+     "acq_threshold",
+     "rx_overflow",
+     "controller_halt",
+     "scl_interference",
+     "sda_interference",
+     "stretch_timeout",
+     "sda_unstable",
+     "cmd_complete",
+     "tx_stretch",
+     "tx_threshold",
+     "acq_stretch",
+     "unexp_stop",
+     "host_timeout"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:141",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 141,
+   "end_line": 141,
+   "heading": "Programmer's Guide > Controller Module Operations > Reading `n` bytes from a device:",
+   "text": "If the `INTR_STATE.CONTROLLER_HALT` bit is 1, then set `FIFO_CTRL.FMTRST` to reset the FMT FIFO, clear latched events in `CONTROLLER_EVENTS`, and go back to step 1.",
+   "written": [
+    "INTR_STATE.CONTROLLER_HALT",
+    "FIFO_CTRL.FMTRST",
+    "CONTROLLER_EVENTS"
+   ],
+   "registers": {
+    "INTR_STATE": [
+     "fmt_threshold",
+     "rx_threshold",
+     "acq_threshold",
+     "rx_overflow",
+     "controller_halt",
+     "scl_interference",
+     "sda_interference",
+     "stretch_timeout",
+     "sda_unstable",
+     "cmd_complete",
+     "tx_stretch",
+     "tx_threshold",
+     "acq_stretch",
+     "unexp_stop",
+     "host_timeout"
+    ],
+    "FIFO_CTRL": [
+     "RXRST",
+     "FMTRST",
+     "ACQRST",
+     "TXRST"
+    ],
+    "CONTROLLER_EVENTS": [
+     "NACK",
+     "UNHANDLED_NACK_TIMEOUT",
+     "BUS_TIMEOUT",
+     "ARBITRATION_LOST"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:142",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 142,
+   "end_line": 142,
+   "heading": "Programmer's Guide > Controller Module Operations > Reading `n` bytes from a device:",
+   "text": "If `STATUS.FMTEMPTY` is 1, the read transfer has completed.",
+   "written": [
+    "STATUS.FMTEMPTY"
+   ],
+   "registers": {
+    "STATUS": [
+     "FMTFULL",
+     "RXFULL",
+     "FMTEMPTY",
+     "HOSTIDLE",
+     "TARGETIDLE",
+     "RXEMPTY",
+     "TXFULL",
+     "ACQFULL",
+     "TXEMPTY",
+     "ACQEMPTY",
+     "ACK_CTRL_STRETCH"
+    ]
+   }
+  },
+  {
+   "id": "hw/ip/i2c/doc/programmers_guide.md:143",
+   "ip": "i2c",
+   "path": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 143,
+   "end_line": 143,
+   "heading": "Programmer's Guide > Controller Module Operations > Reading `n` bytes from a device:",
+   "text": "- Retrieve the data from the FIFO by reading `RDATA` `n` times.",
+   "written": [
+    "RDATA"
+   ],
+   "registers": {
+    "RDATA": [
+     "RDATA"
+    ]
+   }
+  }
+ ]
+}
