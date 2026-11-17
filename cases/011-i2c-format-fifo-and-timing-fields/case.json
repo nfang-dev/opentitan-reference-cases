@@ -1,0 +1,263 @@
+{
+ "schema": 2,
+ "id": "011",
+ "title": "i2c: format FIFO fields, the stop setup time and the format FIFO threshold",
+ "module": "i2c",
+ "opentitan_repository": "https://github.com/lowRISC/opentitan",
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "conditions": [
+  "Programming the I2C host: entering format FIFO entries (R1), setting the timing registers (R2, R3) and waiting for a transfer (R4, R5).",
+  "C2 records a width in bits; the other settings are encoded as 1 if the statement about the design holds and 0 if it does not."
+ ],
+ "requirements": [
+  {
+   "id": "R1",
+   "file": "hw/ip/i2c/doc/theory_of_operation.md",
+   "line": 55,
+   "text": "That is of one single format byte (entered into the format FIFO through [`FDATA.FBYTE`](registers.md#fdata)), and five 1-bit flags",
+   "note": "The five flags are FDATA.READB, RCONT, START, STOP and NAKOK, named on the same line."
+  },
+  {
+   "id": "R2",
+   "file": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 56,
+   "text": "`TIMING4.T_BUF`, `TIMING4.T_STO`)",
+   "note": "Step 1 of the timing parameter procedure: input T_STO_MIN into its register."
+  },
+  {
+   "id": "R3",
+   "file": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 101,
+   "text": "| TIMING4.T_STO   | 260              | 87         | 161            | Spec. Minimum                                 |",
+   "note": "Example timing table."
+  },
+  {
+   "id": "R4",
+   "file": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 139,
+   "text": "- **Or** if `INTR_STATE.FMT_THRESHOLD` bit is 1 ( as long as `FIFO_CTRL.FMTILVL` is set to 1).",
+   "note": "Waiting for a transfer to finish."
+  },
+  {
+   "id": "R5",
+   "file": "hw/ip/i2c/doc/programmers_guide.md",
+   "line": 141,
+   "text": "then set `FIFO_CTRL.FMTRST` to reset the FMT FIFO",
+   "note": "After a controller halt."
+  }
+ ],
+ "design": [
+  {
+   "id": "D1",
+   "kind": "line",
+   "file": "hw/ip/i2c/data/i2c.hjson",
+   "after": "{ name: \"FDATA\"",
+   "within": 50,
+   "line": 439,
+   "text": "{ bits: \"8\"",
+   "value": 1,
+   "note": "FDATA.START is bit 8."
+  },
+  {
+   "id": "D2",
+   "kind": "line",
+   "file": "hw/ip/i2c/data/i2c.hjson",
+   "after": "{ name: \"FDATA\"",
+   "within": 50,
+   "line": 443,
+   "text": "{ bits: \"9\"",
+   "value": 1,
+   "note": "FDATA.STOP is bit 9."
+  },
+  {
+   "id": "D3",
+   "kind": "line",
+   "file": "hw/ip/i2c/data/i2c.hjson",
+   "after": "{ name: \"FDATA\"",
+   "within": 50,
+   "line": 447,
+   "text": "{ bits: \"10\"",
+   "value": 1,
+   "note": "FDATA.READB is bit 10."
+  },
+  {
+   "id": "D4",
+   "kind": "line",
+   "file": "hw/ip/i2c/data/i2c.hjson",
+   "after": "{ name: \"FDATA\"",
+   "within": 50,
+   "line": 460,
+   "text": "{ bits: \"11\"",
+   "value": 1,
+   "note": "FDATA.RCONT is bit 11."
+  },
+  {
+   "id": "D5",
+   "kind": "line",
+   "file": "hw/ip/i2c/data/i2c.hjson",
+   "after": "{ name: \"FDATA\"",
+   "within": 50,
+   "line": 464,
+   "text": "{ bits: \"12\"",
+   "value": 1,
+   "note": "FDATA.NAKOK is bit 12."
+  },
+  {
+   "id": "D6",
+   "kind": "line",
+   "file": "hw/ip/i2c/data/i2c.hjson",
+   "after": "{ name: \"FDATA\"",
+   "within": 20,
+   "line": 429,
+   "text": "{ bits: \"7:0\"",
+   "value": 8,
+   "note": "FDATA.FBYTE is bits 7:0."
+  },
+  {
+   "id": "D7",
+   "kind": "absent",
+   "file": "hw/ip/i2c/data/i2c.hjson",
+   "pattern": "name: \"T_STO\"",
+   "value": 0,
+   "description": "no field named T_STO (TIMING4's fields are TSU_STO and T_BUF)"
+  },
+  {
+   "id": "D8",
+   "kind": "line",
+   "file": "hw/ip/i2c/data/i2c.hjson",
+   "after": "{ name: \"TIMING4\"",
+   "within": 20,
+   "line": 741,
+   "text": "Actual setup time for stop signals.",
+   "value": 1,
+   "note": "TIMING4.TSU_STO, bits 12:0."
+  },
+  {
+   "id": "D9",
+   "kind": "line",
+   "file": "hw/ip/i2c/rtl/i2c_core.sv",
+   "line": 296,
+   "text": "assign tsu_sto                      = reg2hw.timing4.tsu_sto.q;",
+   "value": 1,
+   "note": "The core takes the stop setup time from TIMING4.TSU_STO."
+  },
+  {
+   "id": "D10",
+   "kind": "absent",
+   "file": "hw/ip/i2c/data/i2c.hjson",
+   "pattern": "name: \"FMTILVL\"",
+   "value": 0,
+   "description": "no field named FMTILVL (FIFO_CTRL's fields are RXRST, FMTRST, ACQRST and TXRST; the format FIFO threshold is HOST_FIFO_CONFIG.FMT_THRESH, used in i2c_core.sv line 314)"
+  },
+  {
+   "id": "D11",
+   "kind": "line",
+   "file": "hw/ip/i2c/data/i2c.hjson",
+   "after": "{ name: \"FIFO_CTRL\"",
+   "within": 20,
+   "line": 489,
+   "text": "desc: \"FMT fifo reset. Write 1 to the register resets FMT_FIFO. Read returns 0\"",
+   "value": 1,
+   "note": "FIFO_CTRL.FMTRST, bit 1, write-only."
+  },
+  {
+   "id": "D12",
+   "kind": "line",
+   "file": "hw/ip/i2c/rtl/i2c_core.sv",
+   "line": 312,
+   "text": "assign i2c_fifo_fmtrst     = reg2hw.fifo_ctrl.fmtrst.q & reg2hw.fifo_ctrl.fmtrst.qe;",
+   "value": 1,
+   "note": "A write of 1 to FMTRST resets the format FIFO."
+  }
+ ],
+ "claims": [
+  {
+   "id": "C1",
+   "setting": "FDATA has 1-bit fields READB, RCONT, START, STOP and NAKOK (1 yes, 0 no)",
+   "requirements": [
+    "R1"
+   ],
+   "stated": 1,
+   "design": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C2",
+   "setting": "width of FDATA.FBYTE in bits",
+   "requirements": [
+    "R1"
+   ],
+   "stated": 8,
+   "design": [
+    "D6"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C3",
+   "setting": "TIMING4 has a field named T_STO (1 yes, 0 no)",
+   "requirements": [
+    "R2",
+    "R3"
+   ],
+   "stated": 1,
+   "design": [
+    "D7"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C4",
+   "setting": "the stop setup time is set in TIMING4 (1 yes, 0 no)",
+   "requirements": [
+    "R2"
+   ],
+   "stated": 1,
+   "design": [
+    "D8",
+    "D9"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C5",
+   "setting": "FIFO_CTRL has a field named FMTILVL (1 yes, 0 no)",
+   "requirements": [
+    "R4"
+   ],
+   "stated": 1,
+   "design": [
+    "D10"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C6",
+   "setting": "writing 1 to FIFO_CTRL.FMTRST resets the format FIFO (1 yes, 0 no)",
+   "requirements": [
+    "R5"
+   ],
+   "stated": 1,
+   "design": [
+    "D11",
+    "D12"
+   ],
+   "label": "agrees"
+  }
+ ],
+ "generated_from_same_input": "D1 to D8, D10 and D11 are in i2c.hjson, from which reggen generates the register RTL and registers.md; those generated files are not counted as further evidence. D9 and D12 are in the hand-written i2c_core.sv. R1 to R5 are hand-written.",
+ "finding": "The format FIFO entry, the timing register and the FIFO reset agree with the design. Two names do not: the stop setup time field is TIMING4.TSU_STO, not T_STO (R2, R3), and FIFO_CTRL has no FMTILVL field: the format FIFO threshold is HOST_FIFO_CONFIG.FMT_THRESH (R4).",
+ "missing_information": "This case reads the register description and the core's assignments; it does not simulate a transfer. R4's \"set to 1\" is not compared with HOST_FIFO_CONFIG.FMT_THRESH's encoding.",
+ "ambiguities": [
+  "T_STO is the name of the timing parameter (T_STO_MIN, line 52); R2 and R3 use it as a field name."
+ ],
+ "out_of_scope": [
+  "The other timing fields in R2 and the example values in R3."
+ ]
+}

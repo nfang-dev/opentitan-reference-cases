@@ -1,0 +1,308 @@
+{
+ "schema": 2,
+ "id": "009",
+ "title": "alert_handler: register and field names in the class configuration steps",
+ "module": "alert_handler",
+ "opentitan_repository": "https://github.com/lowRISC/opentitan",
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "conditions": [
+  "Configuring alert class A at startup, as the programmer's guide's initialization steps describe; the same holds for classes B to D.",
+  "C3 and C5 record a value after reset; the other settings are encoded as 1 if the statement about the design holds and 0 if it does not."
+ ],
+ "requirements": [
+  {
+   "id": "R1",
+   "file": "hw/ip_templates/alert_handler/doc/programmers_guide.md",
+   "line": 44,
+   "text": "Set [`CLASSA_ACCUM_THRESH`](../data/alert_handler.hjson#classa_accum_thresh) accordingly.",
+   "note": "Initialization step: the number of alerts accumulated before escalation."
+  },
+  {
+   "id": "R2",
+   "file": "hw/ip_templates/alert_handler/doc/programmers_guide.md",
+   "line": 50,
+   "text": "Determine length of each escalation phase by setting [`CLASSA_PHASE0_CYC`](../data/alert_handler.hjson#classa_phase0_cyc) accordingly",
+   "note": "For each escalation phase (0..3)."
+  },
+  {
+   "id": "R3",
+   "file": "hw/ip_templates/alert_handler/doc/programmers_guide.md",
+   "line": 53,
+   "text": "set the [`CLASSA_CTRL_SHADOWED.E0_EN`](../data/alert_handler.hjson#classa_ctrl_shadowed) bit accordingly (default is enabled).",
+   "note": "For each escalation signal (0..3)."
+  },
+  {
+   "id": "R4",
+   "file": "hw/ip_templates/alert_handler/doc/programmers_guide.md",
+   "line": 55,
+   "text": "program it via the [`CLASSA_CTRL_SHADOWED.E0_MAP`](../data/alert_handler.hjson#classa_ctrl_shadowed) values if it needs to be changed from the default mapping (0->0, 1->1, 2->2, 3->3).",
+   "note": "The phase to escalation signal mapping."
+  },
+  {
+   "id": "R5",
+   "file": "hw/ip_templates/alert_handler/doc/programmers_guide.md",
+   "line": 57,
+   "text": "Optionally lock the class configuration by writing 0 to [`CLASSA_CTRL_SHADOWED.REGWEN`](../data/alert_handler.hjson#classa_ctrl_shadowed).",
+   "note": "Last class configuration step."
+  },
+  {
+   "id": "R6",
+   "file": "hw/ip_templates/alert_handler/doc/programmers_guide.md",
+   "line": 59,
+   "text": "enable the ping timer mechanism by writing 1 to [`PING_TIMER_EN`](../data/alert_handler.hjson#ping_timer_en).",
+   "note": "Step 4, after initial configuration."
+  }
+ ],
+ "design": [
+  {
+   "id": "D1",
+   "kind": "absent",
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/data/alert_handler.hjson",
+   "pattern": "name:\\s*\"CLASSA_ACCUM_THRESH\"",
+   "value": 0,
+   "description": "no register named CLASSA_ACCUM_THRESH (the register is CLASSA_ACCUM_THRESH_SHADOWED, line 929)"
+  },
+  {
+   "id": "D2",
+   "kind": "absent",
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/data/alert_handler.hjson",
+   "pattern": "name:\\s*\"CLASSA_PHASE0_CYC\"",
+   "value": 0,
+   "description": "no register named CLASSA_PHASE0_CYC (the register is CLASSA_PHASE0_CYC_SHADOWED, line 986)"
+  },
+  {
+   "id": "D3",
+   "kind": "all_instances",
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/data/alert_handler.hjson",
+   "pattern": "name: \"EN_E0\",\\s*\\n\\s*resval: (\\d+)",
+   "expected_count": 4,
+   "value": 1,
+   "note": "EN_E0, \"Enable escalation signal 0\", has reset value 1 in each class's control register."
+  },
+  {
+   "id": "D4",
+   "kind": "line",
+   "file": "hw/ip_templates/alert_handler/rtl/alert_handler_reg_wrap.sv.tpl",
+   "line": 242,
+   "text": "reg2hw.classa_ctrl_shadowed.en_e0.q )",
+   "value": 1,
+   "note": "The hand-written register wrapper reads the field under the name en_e0."
+  },
+  {
+   "id": "D5",
+   "kind": "absent",
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/data/alert_handler.hjson",
+   "pattern": "name: \"E0_EN\"",
+   "value": 0,
+   "description": "no field named E0_EN"
+  },
+  {
+   "id": "D6",
+   "kind": "all_instances",
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/data/alert_handler.hjson",
+   "pattern": "name: \"MAP_E0\",\\s*\\n\\s*resval: (\\d+)",
+   "expected_count": 4,
+   "value": 0,
+   "note": "MAP_E0 resets to phase 0 in each class (MAP_E1 to MAP_E3 reset to 1, 2 and 3)."
+  },
+  {
+   "id": "D7",
+   "kind": "absent",
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/data/alert_handler.hjson",
+   "pattern": "name: \"E0_MAP\"",
+   "value": 0,
+   "description": "no field named E0_MAP"
+  },
+  {
+   "id": "D8",
+   "kind": "absent",
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/data/alert_handler.hjson",
+   "pattern": "name: \"REGWEN\"",
+   "value": 0,
+   "description": "no field named REGWEN in any register (CLASSA_CTRL_SHADOWED's fields are EN, LOCK, EN_E0 to EN_E3 and MAP_E0 to MAP_E3)"
+  },
+  {
+   "id": "D9",
+   "kind": "line",
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/data/alert_handler.hjson",
+   "after": "{ name:     \"CLASSA_REGWEN\",",
+   "within": 5,
+   "line": 798,
+   "text": "swaccess: \"rw0c\",",
+   "value": 1,
+   "note": "CLASSA_REGWEN, \"Lock bit for Class A configuration\", is cleared by writing 0."
+  },
+  {
+   "id": "D10",
+   "kind": "line",
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/data/alert_handler.hjson",
+   "after": "{ name:     \"CLASSA_CTRL_SHADOWED\",",
+   "within": 5,
+   "line": 815,
+   "text": "regwen:   \"CLASSA_REGWEN\",",
+   "value": 1,
+   "note": "CLASSA_CTRL_SHADOWED is locked by CLASSA_REGWEN, as are the class's other configuration registers."
+  },
+  {
+   "id": "D11",
+   "kind": "absent",
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/data/alert_handler.hjson",
+   "pattern": "name:\\s*\"PING_TIMER_EN\"",
+   "value": 0,
+   "description": "no register named PING_TIMER_EN (the register is PING_TIMER_EN_SHADOWED, line 577)"
+  },
+  {
+   "id": "D12",
+   "kind": "line",
+   "file": "hw/top_earlgrey/ip_autogen/alert_handler/data/alert_handler.hjson",
+   "line": 590,
+   "text": "Setting this to 1 enables the ping timer mechanism.",
+   "value": 1,
+   "note": "PING_TIMER_EN_SHADOWED (rw1s, reset value 0)."
+  },
+  {
+   "id": "D13",
+   "kind": "line",
+   "file": "hw/ip_templates/alert_handler/rtl/alert_handler_reg_wrap.sv.tpl",
+   "line": 201,
+   "text": "assign reg2hw_wrap.ping_enable = reg2hw.ping_timer_en_shadowed.q;",
+   "value": 1,
+   "note": "The register drives the ping enable."
+  }
+ ],
+ "claims": [
+  {
+   "id": "C1",
+   "setting": "a register named CLASSA_ACCUM_THRESH exists (1 yes, 0 no)",
+   "requirements": [
+    "R1"
+   ],
+   "stated": 1,
+   "design": [
+    "D1"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C2",
+   "setting": "a register named CLASSA_PHASE0_CYC exists (1 yes, 0 no)",
+   "requirements": [
+    "R2"
+   ],
+   "stated": 1,
+   "design": [
+    "D2"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C3",
+   "setting": "escalation signal 0 of a class is enabled after reset (1 yes, 0 no)",
+   "requirements": [
+    "R3"
+   ],
+   "stated": 1,
+   "design": [
+    "D3",
+    "D4"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C4",
+   "setting": "the control register has a field named E0_EN (1 yes, 0 no)",
+   "requirements": [
+    "R3"
+   ],
+   "stated": 1,
+   "design": [
+    "D5"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C5",
+   "setting": "escalation phase in which signal 0 is asserted, after reset",
+   "requirements": [
+    "R4"
+   ],
+   "stated": 0,
+   "design": [
+    "D6"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C6",
+   "setting": "the control register has a field named E0_MAP (1 yes, 0 no)",
+   "requirements": [
+    "R4"
+   ],
+   "stated": 1,
+   "design": [
+    "D7"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C7",
+   "setting": "the control register has a field named REGWEN (1 yes, 0 no)",
+   "requirements": [
+    "R5"
+   ],
+   "stated": 1,
+   "design": [
+    "D8"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C8",
+   "setting": "writing 0 to a lock bit locks the class configuration (1 yes, 0 no)",
+   "requirements": [
+    "R5"
+   ],
+   "stated": 1,
+   "design": [
+    "D9",
+    "D10"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C9",
+   "setting": "a register named PING_TIMER_EN exists (1 yes, 0 no)",
+   "requirements": [
+    "R6"
+   ],
+   "stated": 1,
+   "design": [
+    "D11"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C10",
+   "setting": "writing 1 to the ping timer enable register enables the ping timer (1 yes, 0 no)",
+   "requirements": [
+    "R6"
+   ],
+   "stated": 1,
+   "design": [
+    "D12",
+    "D13"
+   ],
+   "label": "agrees"
+  }
+ ],
+ "generated_from_same_input": "D1 to D3 and D5 to D12 are in Earl Grey's alert_handler.hjson, generated from hw/ip_templates/alert_handler/data/alert_handler.hjson.tpl, from which the register RTL and registers.md are also generated; those are not counted as further evidence. D4 and D13 are in the hand-written register wrapper template. R1 to R6 are in the hand-written template document; Earl Grey's generated copy has the same lines.",
+ "finding": "Every setting the steps describe agrees with the design: escalation signals are enabled after reset, the default mapping is 0->0, writing 0 to the class lock bit locks the configuration, and writing 1 enables the ping timer. But six names are wrong: four registers have been renamed with a _SHADOWED suffix (CLASSA_ACCUM_THRESH, CLASSA_PHASE0_CYC and PING_TIMER_EN here, CLASSA_CLR in the interrupt handling steps), E0_EN and E0_MAP are EN_E0 and MAP_E0, and the class lock is the register CLASSA_REGWEN, not a field of CLASSA_CTRL_SHADOWED.",
+ "missing_information": "This case reads the register description and the register wrapper; it does not simulate the alert handler.",
+ "ambiguities": [
+  "The names are close enough that a reader may find the right register; the links in R1, R2 and R6 point to anchors that registers.md does not have."
+ ],
+ "out_of_scope": [
+  "CLASSA_CLR in the interrupt handling steps (line 85), which has the same renaming.",
+  "Shadowed registers must be written twice; the documents say so elsewhere."
+ ]
+}

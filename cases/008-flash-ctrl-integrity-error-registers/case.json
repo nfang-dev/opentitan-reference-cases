@@ -1,0 +1,266 @@
+{
+ "schema": 2,
+ "id": "008",
+ "title": "flash_ctrl: where transmission integrity errors are recorded",
+ "module": "flash_ctrl",
+ "opentitan_repository": "https://github.com/lowRISC/opentitan",
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "conditions": [
+  "After a transmission integrity error: in program data written by software (R1, R2), in data read by the life cycle management interface (R3), or in program data written by that interface (R4).",
+  "Each setting is encoded as 1 if the statement about the design holds and 0 if it does not."
+ ],
+ "requirements": [
+  {
+   "id": "R1",
+   "file": "hw/ip_templates/flash_ctrl/doc/theory_of_operation.md",
+   "line": 189,
+   "text": "If the data integrity is incorrect, an in-band error response is returned to the initiating host and an error is registered in [`ERR_CODE.PROG_INTG_ERR`](registers.md#err_code).",
+   "note": "Section \"Host / Software Initiated Access to Flash Macro\", about program operations."
+  },
+  {
+   "id": "R2",
+   "file": "hw/ip_templates/flash_ctrl/doc/theory_of_operation.md",
+   "line": 190,
+   "text": "An error is also registered in [`STD_FAULT_STATUS.PROG_INTG_ERR`](registers.md#std_fault_status) to indicate that a fatal fault has occurred.",
+   "note": "Continues R1."
+  },
+  {
+   "id": "R3",
+   "file": "hw/ip_templates/flash_ctrl/doc/theory_of_operation.md",
+   "line": 200,
+   "text": "If an integrity error is seen, it is registered in [`FAULT_STATUS.LCMGR_INTG_ERR`](registers.md#fault_status).",
+   "note": "Section \"Life Cycle Management Interface / Hardware Initiated Access to Flash Macro\", about read operations."
+  },
+  {
+   "id": "R4",
+   "file": "hw/ip_templates/flash_ctrl/doc/theory_of_operation.md",
+   "line": 203,
+   "text": "If an integrity error is seen, an error is registered in [`FAULT_STATUS.PROG_INTG_ERR`](registers.md#fault_status).",
+   "note": "Same section, about program operations."
+  }
+ ],
+ "design": [
+  {
+   "id": "D1",
+   "kind": "line",
+   "file": "hw/ip_templates/flash_ctrl/data/flash_ctrl.hjson.tpl",
+   "after": "{ name: \"ERR_CODE\",",
+   "within": 50,
+   "line": 1426,
+   "text": "This could be a program integrity error, see !!STD_FAULT_STATUS.",
+   "value": 1,
+   "note": "ERR_CODE.prog_err (bit 3): \"Flash program has an error. This could be a program integrity error\"."
+  },
+  {
+   "id": "D2",
+   "kind": "line",
+   "file": "hw/ip_templates/flash_ctrl/rtl/flash_ctrl_prog.sv",
+   "line": 154,
+   "text": "op_err_d.prog_err = flash_prog_intg_err_i;",
+   "value": 1,
+   "note": "The program controller reports a program integrity error as its prog_err."
+  },
+  {
+   "id": "D3",
+   "kind": "line",
+   "file": "hw/ip_templates/flash_ctrl/rtl/flash_ctrl_arb.sv",
+   "line": 226,
+   "text": "sw_err_o = ctrl_err;",
+   "value": 1,
+   "note": "For an operation software started, the arbiter passes the controller's errors to sw_err_o (for a hardware-initiated one, to hw_err_o at line 212); for a program operation the errors come from the program controller (line 247)."
+  },
+  {
+   "id": "D4",
+   "kind": "line",
+   "file": "hw/ip_templates/flash_ctrl/rtl/flash_ctrl.sv.tpl",
+   "line": 1083,
+   "text": "assign hw2reg.err_code.prog_err.de        = sw_ctrl_err.prog_err;",
+   "value": 1,
+   "note": "Software-initiated errors set ERR_CODE.prog_err."
+  },
+  {
+   "id": "D5",
+   "kind": "absent",
+   "file": "hw/ip_templates/flash_ctrl/data/flash_ctrl.hjson.tpl",
+   "after": "{ name: \"ERR_CODE\",",
+   "within": 77,
+   "pattern": "name: \"\\w*intg\\w*\"",
+   "value": 0,
+   "description": "no field of ERR_CODE has \"intg\" in its name (its fields are op_err, mp_err, rd_err, prog_err, prog_win_err, prog_type_err, update_err and macro_err)"
+  },
+  {
+   "id": "D6",
+   "kind": "line",
+   "file": "hw/ip_templates/flash_ctrl/data/flash_ctrl.hjson.tpl",
+   "after": "{ name: \"STD_FAULT_STATUS\",",
+   "within": 30,
+   "line": 1479,
+   "text": "name: \"prog_intg_err\",",
+   "value": 1,
+   "note": "STD_FAULT_STATUS.prog_intg_err (bit 1): \"The flash controller encountered a program data transmission integrity error.\""
+  },
+  {
+   "id": "D7",
+   "kind": "line",
+   "file": "hw/ip_templates/flash_ctrl/rtl/flash_ctrl.sv.tpl",
+   "line": 1135,
+   "text": "assign hw2reg.std_fault_status.prog_intg_err.de  = flash_phy_rsp.prog_intg_err;",
+   "value": 1,
+   "note": "Set by the physical controller's program integrity check, whoever started the operation."
+  },
+  {
+   "id": "D8",
+   "kind": "absent",
+   "file": "hw/ip_templates/flash_ctrl/data/flash_ctrl.hjson.tpl",
+   "after": "{ name: \"FAULT_STATUS\",",
+   "within": 107,
+   "pattern": "name: \"\\w*intg\\w*\"",
+   "value": 0,
+   "description": "no field of FAULT_STATUS has \"intg\" in its name (its fields are op_err, mp_err, rd_err, prog_err, prog_win_err, prog_type_err, seed_err, phy_relbl_err, phy_storage_err, spurious_ack, arb_err and host_gnt_err)"
+  },
+  {
+   "id": "D9",
+   "kind": "line",
+   "file": "hw/ip_templates/flash_ctrl/data/flash_ctrl.hjson.tpl",
+   "after": "{ name: \"STD_FAULT_STATUS\",",
+   "within": 40,
+   "line": 1492,
+   "text": "name: \"lcmgr_intg_err\",",
+   "value": 1,
+   "note": "STD_FAULT_STATUS.lcmgr_intg_err (bit 3): \"an integrity error on the generated integrity during a life cycle management interface read\"."
+  },
+  {
+   "id": "D10",
+   "kind": "line",
+   "file": "hw/ip_templates/flash_ctrl/rtl/flash_ctrl.sv.tpl",
+   "line": 1137,
+   "text": "assign hw2reg.std_fault_status.lcmgr_intg_err.de = lcmgr_intg_err;",
+   "value": 1,
+   "note": "The interface's integrity error (flash_ctrl_lcmgr.sv line 918) reaches only this field: lcmgr_intg_err is used nowhere else in the top level."
+  },
+  {
+   "id": "D11",
+   "kind": "line",
+   "file": "hw/ip_templates/flash_ctrl/data/flash_ctrl.hjson.tpl",
+   "after": "{ name: \"FAULT_STATUS\",",
+   "within": 45,
+   "line": 1571,
+   "text": "The flash life cycle management interface encountered a program error.",
+   "value": 1,
+   "note": "FAULT_STATUS.prog_err (bit 3), which continues: \"This could be a program integrity error, see !!STD_FAULT_STATUS for more details.\""
+  },
+  {
+   "id": "D12",
+   "kind": "line",
+   "file": "hw/ip_templates/flash_ctrl/rtl/flash_ctrl.sv.tpl",
+   "line": 1113,
+   "text": "assign hw2reg.fault_status.prog_err.de        = hw_err.prog_err;",
+   "value": 1,
+   "note": "Hardware-initiated errors (hw_err, D3) set FAULT_STATUS.prog_err."
+  }
+ ],
+ "claims": [
+  {
+   "id": "C1",
+   "setting": "a program integrity error in an operation software started is recorded in ERR_CODE (1 yes, 0 no)",
+   "requirements": [
+    "R1"
+   ],
+   "stated": 1,
+   "design": [
+    "D1",
+    "D2",
+    "D3",
+    "D4"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C2",
+   "setting": "ERR_CODE has a field named PROG_INTG_ERR (1 yes, 0 no)",
+   "requirements": [
+    "R1"
+   ],
+   "stated": 1,
+   "design": [
+    "D5"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C3",
+   "setting": "STD_FAULT_STATUS.PROG_INTG_ERR records a program integrity error (1 yes, 0 no)",
+   "requirements": [
+    "R2"
+   ],
+   "stated": 1,
+   "design": [
+    "D6",
+    "D7"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C4",
+   "setting": "FAULT_STATUS has a field for a life cycle management read integrity error (1 yes, 0 no)",
+   "requirements": [
+    "R3"
+   ],
+   "stated": 1,
+   "design": [
+    "D8"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C5",
+   "setting": "a field named LCMGR_INTG_ERR records a life cycle management read integrity error (1 yes, 0 no)",
+   "requirements": [
+    "R3"
+   ],
+   "stated": 1,
+   "design": [
+    "D9",
+    "D10"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C6",
+   "setting": "a program integrity error in an operation the life cycle management interface started is recorded in FAULT_STATUS (1 yes, 0 no)",
+   "requirements": [
+    "R4"
+   ],
+   "stated": 1,
+   "design": [
+    "D2",
+    "D3",
+    "D11",
+    "D12"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C7",
+   "setting": "FAULT_STATUS has a field named PROG_INTG_ERR (1 yes, 0 no)",
+   "requirements": [
+    "R4"
+   ],
+   "stated": 1,
+   "design": [
+    "D8"
+   ],
+   "label": "disagrees"
+  }
+ ],
+ "generated_from_same_input": "D1, D5, D6, D8, D9 and D11 are in flash_ctrl.hjson.tpl, from which each top's register description, register RTL and registers.md are generated; those generated files are not counted as further evidence. D2, D3, D4, D7, D10 and D12 are in the hand-written RTL (flash_ctrl.sv.tpl is a template, written by hand). R1 to R4 are in the hand-written template document; each top's generated copy has the same lines.",
+ "finding": "Each error is recorded where the documents say only in part. A program integrity error in an operation software started is recorded in ERR_CODE and in STD_FAULT_STATUS.PROG_INTG_ERR, as R1 and R2 say, but ERR_CODE's field is PROG_ERR, not PROG_INTG_ERR. In an operation the life cycle management interface started, it is recorded in FAULT_STATUS, as R4 says, but again as PROG_ERR; FAULT_STATUS has no integrity field. A read integrity error of that interface is recorded in a field named LCMGR_INTG_ERR, as R3 says, but in STD_FAULT_STATUS, not FAULT_STATUS. Software that reads the fields R1, R3 or R4 name finds no such field in that register.",
+ "missing_information": "This case reads the register description and the RTL that sets the fields; it does not simulate an integrity error.",
+ "ambiguities": [
+  "R1 and R4 could be read as naming the error rather than a field. At this revision the program controller sets prog_err only for a program integrity error (D2), so the fields they would then mean are ERR_CODE.PROG_ERR and FAULT_STATUS.PROG_ERR; the field names written still do not exist."
+ ],
+ "out_of_scope": [
+  "Which alert each error raises.",
+  "The flash_ctrl of each top is generated from this template with top-specific parameters; the register fields compared here are the same in every top at this revision."
+ ]
+}

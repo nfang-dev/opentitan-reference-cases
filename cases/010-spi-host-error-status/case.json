@@ -1,0 +1,246 @@
+{
+ "schema": 2,
+ "id": "010",
+ "title": "spi_host: the error status bits for programming violations",
+ "module": "spi_host",
+ "opentitan_repository": "https://github.com/lowRISC/opentitan",
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "conditions": [
+  "After a violation of the programming model, as listed in the section \"Error Interrupt Conditions\".",
+  "Each setting is encoded as 1 if the statement about the design holds and 0 if it does not."
+ ],
+ "requirements": [
+  {
+   "id": "R1",
+   "file": "hw/ip/spi_host/doc/theory_of_operation.md",
+   "line": 590,
+   "text": "- If [`COMMAND`](registers.md#command) is written when [`STATUS.READY`](registers.md#status) is zero, the IP will assert [`ERROR_STATUS.CMDERR`](registers.md#error_status).",
+   "note": "First of the six error events."
+  },
+  {
+   "id": "R2",
+   "file": "hw/ip/spi_host/doc/theory_of_operation.md",
+   "line": 591,
+   "text": "- The IP asserts [`ERROR_STATUS.OVERFLOW`](registers.md#error_status)",
+   "note": "A write to TXDATA when the TX FIFO is full."
+  },
+  {
+   "id": "R3",
+   "file": "hw/ip/spi_host/doc/theory_of_operation.md",
+   "line": 592,
+   "text": "- The IP asserts [`ERROR_STATUS.UNDERFLOW`](registers.md#error_status)",
+   "note": "A read of RXDATA when the RX FIFO is empty."
+  },
+  {
+   "id": "R4",
+   "file": "hw/ip/spi_host/doc/theory_of_operation.md",
+   "line": 593,
+   "text": "will trigger a [`ERROR_STATUS.CMDINVAL`](registers.md#error_status) error event.",
+   "note": "A command segment with an invalid width or direction."
+  },
+  {
+   "id": "R5",
+   "file": "hw/ip/spi_host/doc/theory_of_operation.md",
+   "line": 594,
+   "text": "will trigger a [`ERROR_STATUS.CSIDINVAL`](registers.md#error_status) event.",
+   "note": "A command segment to an invalid CSID."
+  },
+  {
+   "id": "R6",
+   "file": "hw/ip/spi_host/doc/theory_of_operation.md",
+   "line": 595,
+   "text": "- [`ERROR_STATUS.ACCESSINVAL`](registers.md#error_status) is asserted",
+   "note": "A write to the TXDATA window with an unknown data type."
+  },
+  {
+   "id": "R7",
+   "file": "hw/ip/spi_host/doc/theory_of_operation.md",
+   "line": 599,
+   "text": "Whenever an error event occurs, the error must be acknowledged by clearing (write 1 to clear) the corresponding bit in [`ERROR_STATUS`](registers.md#error_status).",
+   "note": "End of the section."
+  }
+ ],
+ "design": [
+  {
+   "id": "D1",
+   "kind": "line",
+   "file": "hw/ip/spi_host/rtl/spi_host_command_queue.sv",
+   "line": 38,
+   "text": "assign error_busy_o   = command_valid_i & command_busy_o;",
+   "value": 1,
+   "note": "The command queue reports an error when a command is written while it is busy."
+  },
+  {
+   "id": "D2",
+   "kind": "line",
+   "file": "hw/ip/spi_host/rtl/spi_host.sv",
+   "line": 291,
+   "text": "assign hw2reg.status.ready.d    = ~command_busy;",
+   "value": 1,
+   "note": "STATUS.READY is the inverse of the same busy signal."
+  },
+  {
+   "id": "D3",
+   "kind": "line",
+   "file": "hw/ip/spi_host/rtl/spi_host.sv",
+   "line": 553,
+   "text": "assign hw2reg.error_status.cmdbusy.de     = error_busy;",
+   "value": 1,
+   "note": "The error sets ERROR_STATUS.CMDBUSY."
+  },
+  {
+   "id": "D4",
+   "kind": "line",
+   "file": "hw/ip/spi_host/data/spi_host.hjson",
+   "after": "{ name: \"ERROR_STATUS\",",
+   "within": 50,
+   "line": 629,
+   "text": "desc: '''Indicates a write to !!COMMAND when !!STATUS.READY = 0.",
+   "value": 1,
+   "note": "The description of ERROR_STATUS.CMDBUSY (bit 0)."
+  },
+  {
+   "id": "D5",
+   "kind": "absent",
+   "file": "hw/ip/spi_host/data/spi_host.hjson",
+   "pattern": "name: \"CMDERR\"",
+   "value": 0,
+   "description": "no field named CMDERR (ERROR_STATUS's fields are ACCESSINVAL, CSIDINVAL, CMDINVAL, UNDERFLOW, OVERFLOW and CMDBUSY)"
+  },
+  {
+   "id": "D6",
+   "kind": "line",
+   "file": "hw/ip/spi_host/data/spi_host.hjson",
+   "after": "{ name: \"ERROR_STATUS\",",
+   "within": 50,
+   "line": 621,
+   "text": "name: \"OVERFLOW\",",
+   "value": 1,
+   "note": "ERROR_STATUS.OVERFLOW (bit 1)."
+  },
+  {
+   "id": "D7",
+   "kind": "line",
+   "file": "hw/ip/spi_host/data/spi_host.hjson",
+   "after": "{ name: \"ERROR_STATUS\",",
+   "within": 50,
+   "line": 615,
+   "text": "name: \"UNDERFLOW\",",
+   "value": 1,
+   "note": "ERROR_STATUS.UNDERFLOW (bit 2)."
+  },
+  {
+   "id": "D8",
+   "kind": "line",
+   "file": "hw/ip/spi_host/data/spi_host.hjson",
+   "after": "{ name: \"ERROR_STATUS\",",
+   "within": 50,
+   "line": 608,
+   "text": "name: \"CMDINVAL\",",
+   "value": 1,
+   "note": "ERROR_STATUS.CMDINVAL (bit 3)."
+  },
+  {
+   "id": "D9",
+   "kind": "line",
+   "file": "hw/ip/spi_host/data/spi_host.hjson",
+   "after": "{ name: \"ERROR_STATUS\",",
+   "within": 50,
+   "line": 603,
+   "text": "name: \"CSIDINVAL\",",
+   "value": 1,
+   "note": "ERROR_STATUS.CSIDINVAL (bit 4)."
+  },
+  {
+   "id": "D10",
+   "kind": "line",
+   "file": "hw/ip/spi_host/data/spi_host.hjson",
+   "after": "{ name: \"ERROR_STATUS\",",
+   "within": 50,
+   "line": 595,
+   "text": "name: \"ACCESSINVAL\",",
+   "value": 1,
+   "note": "ERROR_STATUS.ACCESSINVAL (bit 5)."
+  },
+  {
+   "id": "D11",
+   "kind": "line",
+   "file": "hw/ip/spi_host/data/spi_host.hjson",
+   "after": "{ name: \"ERROR_STATUS\",",
+   "within": 10,
+   "line": 591,
+   "text": "swaccess: \"rw1c\",",
+   "value": 1,
+   "note": "All ERROR_STATUS fields are write-1-to-clear."
+  }
+ ],
+ "claims": [
+  {
+   "id": "C1",
+   "setting": "writing COMMAND while STATUS.READY is 0 sets an ERROR_STATUS bit (1 yes, 0 no)",
+   "requirements": [
+    "R1"
+   ],
+   "stated": 1,
+   "design": [
+    "D1",
+    "D2",
+    "D3",
+    "D4"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C2",
+   "setting": "ERROR_STATUS has a field named CMDERR (1 yes, 0 no)",
+   "requirements": [
+    "R1"
+   ],
+   "stated": 1,
+   "design": [
+    "D5"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C3",
+   "setting": "ERROR_STATUS has fields named OVERFLOW, UNDERFLOW, CMDINVAL, CSIDINVAL and ACCESSINVAL (1 yes, 0 no)",
+   "requirements": [
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6"
+   ],
+   "stated": 1,
+   "design": [
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C4",
+   "setting": "an ERROR_STATUS bit is cleared by writing 1 to it (1 yes, 0 no)",
+   "requirements": [
+    "R7"
+   ],
+   "stated": 1,
+   "design": [
+    "D11"
+   ],
+   "label": "agrees"
+  }
+ ],
+ "generated_from_same_input": "D4 to D11 are in spi_host.hjson, from which reggen generates the register RTL and registers.md; those generated files are not counted as further evidence. D1 to D3 are in the hand-written RTL. R1 to R7 are hand-written.",
+ "finding": "The six error events, the condition for the first one and the write-1-to-clear acknowledgement agree with the design. One name is wrong: writing COMMAND while STATUS.READY is 0 sets ERROR_STATUS.CMDBUSY; there is no CMDERR field.",
+ "missing_information": "This case reads the register description and the RTL; it does not simulate an error. The conditions in R2 to R6 are compared by name only.",
+ "ambiguities": [],
+ "out_of_scope": [
+  "That the IP halts until the error bit is cleared (line 598).",
+  "ERROR_ENABLE, which selects which errors raise the error interrupt."
+ ]
+}

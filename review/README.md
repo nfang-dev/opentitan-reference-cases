@@ -54,14 +54,14 @@ Five questions, in [`examples/`](examples):
 
 ### Against the labeled reference cases
 
-[`results/cases.md`](results/cases.md) compares the scan with the 23 labeled claims of cases 001 to 007:
+[`results/cases.md`](results/cases.md) compares the scan with the 56 labeled claims of cases 001 to 012:
 
 | Result | Claims |
 |---|---|
 | Same outcome as the label | 4 (001-C2 disagrees, 001-C3, 003-C1, 003-C2) |
-| Different outcome | 0 |
-| Not found by the tool | 4 (001-C1: "all MIO outputs are high-Z" gives no number; 002-C1 to C3: no register named) |
-| Outside the tool's scope | 15 (case 004 is about an operation; cases 005 to 007 about interrupts, commands and register names, not reset values) |
+| Different outcome | 1 (009-C3: the tool reports that the field name `E0_EN` is not in the design, which case 009 records as a separate claim, C4, instead of comparing the reset value, which agrees) |
+| Not found by the tool | 5 (001-C1: "all MIO outputs are high-Z" gives no number; 002-C1 to C3: no register named; 009-C5: "the default mapping (0->0, ...)" gives no value in a form the tool reads) |
+| Outside the tool's scope | 46 (operations, interrupts, commands, access types, widths and register names, not reset values) |
 
 ### Every statement in the documentation
 

@@ -24,6 +24,13 @@ The cases are meant to serve as labeled examples for evaluating later automated 
 | [005](cases/005-uart-break-status/README.md) | uart | Reading the current line-break status | 2 agree, 2 disagree |
 | [006](cases/006-otbn-start-command/README.md) | otbn | The value written to CMD to start an operation | 1 agrees, 3 disagree |
 | [007](cases/007-kmac-mode-and-squeeze/README.md) | kmac | The register that holds the hashing mode, and the squeeze status bit's name | 2 agree, 2 disagree |
+| [008](cases/008-flash-ctrl-integrity-error-registers/README.md) | flash_ctrl | Where transmission integrity errors are recorded | 4 agree, 3 disagree |
+| [009](cases/009-alert-handler-class-config-names/README.md) | alert_handler | Register and field names in the class configuration steps | 4 agree, 6 disagree |
+| [010](cases/010-spi-host-error-status/README.md) | spi_host | The error status bits for programming violations | 3 agree, 1 disagrees |
+| [011](cases/011-i2c-format-fifo-and-timing-fields/README.md) | i2c | Format FIFO fields, the stop setup time and the format FIFO threshold | 4 agree, 2 disagree |
+| [012](cases/012-aon-timer-register-facts/README.md) | aon_timer | Wake-up timer and watchdog register facts (control case) | 5 agree, 1 disagrees |
+
+12 cases in 11 modules, 56 claims: 33 agree, 22 disagree, 1 unresolved. Cases 001 to 004 came from reading the documentation; cases 005 to 012 were chosen from the findings of the name checks in [`claims/`](claims/README.md), so most of their disagreements are wrong names. Each case also records the statements around the finding that agree with the design.
 
 All cases use OpenTitan revision [`0ea5236fe749`](https://github.com/lowRISC/opentitan/tree/0ea5236fe749e70ba18f56ba19c4be982ef46da7) (2026-11-03).
 
@@ -70,7 +77,7 @@ CI runs both on every push.
 - Case 001: documentation fix proposed in [lowRISC/opentitan#32161](https://github.com/lowRISC/opentitan/pull/32161).
 - Case 002: no change proposed; the documentation may describe work in progress. On OpenTitan's master branch of 2026-11-16, the design has the `INT_STATE_WRITE_ENABLE` register the documentation describes, with reset value 0x7 (enabled for all instances).
 - Case 004: documentation fix proposed in [lowRISC/opentitan#32203](https://github.com/lowRISC/opentitan/pull/32203).
-- Cases 005 to 007: found by the name checks in [`claims/`](claims/README.md); still present on master as of 2026-11-16; not reported upstream.
+- Cases 005 to 012: found by the name checks in [`claims/`](claims/README.md); the statements that disagree are still present on master as of 2026-11-16; not reported upstream.
 
 ## Behavior check
 

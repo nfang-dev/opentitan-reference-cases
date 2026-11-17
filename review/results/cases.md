@@ -1,11 +1,11 @@
 # The review tool against the labeled reference cases
 
-Each labeled claim of cases 001 to 007 is compared with what `review.py scan` reports for the requirement lines the claim comes from.
+Each labeled claim of cases 001 to 012 is compared with what `review.py scan` reports for the requirement lines the claim comes from.
 
 - Same outcome as the label: 4
-- Different outcome: 0
-- Requirement not found by the tool: 4
-- Outside the tool's scope (not a reset value): 15
+- Different outcome: 1
+- Requirement not found by the tool: 5
+- Outside the tool's scope (not a reset value): 46
 
 | Claim | Setting | Label | Tool | Result |
 |---|---|---|---|---|
@@ -32,8 +32,41 @@ Each labeled claim of cases 001 to 007 is compared with what `review.py scan` re
 | 007-C2 | CFG_SHADOWED has a field named mode that sets the hashing mode (1 yes, 0 no) | agrees | - | outside scope |
 | 007-C3 | STATUS has a field named squeeze (1 yes, 0 no) | disagrees | - | outside scope |
 | 007-C4 | STATUS has a bit that is 1 once absorbing is complete (1 yes, 0 no) | agrees | - | outside scope |
+| 008-C1 | a program integrity error in an operation software started is recorded in ERR_CODE (1 yes, 0 no) | agrees | - | outside scope |
+| 008-C2 | ERR_CODE has a field named PROG_INTG_ERR (1 yes, 0 no) | disagrees | - | outside scope |
+| 008-C3 | STD_FAULT_STATUS.PROG_INTG_ERR records a program integrity error (1 yes, 0 no) | agrees | - | outside scope |
+| 008-C4 | FAULT_STATUS has a field for a life cycle management read integrity error (1 yes, 0 no) | disagrees | - | outside scope |
+| 008-C5 | a field named LCMGR_INTG_ERR records a life cycle management read integrity error (1 yes, 0 no) | agrees | - | outside scope |
+| 008-C6 | a program integrity error in an operation the life cycle management interface started is recorded in FAULT_STATUS (1 yes, 0 no) | agrees | - | outside scope |
+| 008-C7 | FAULT_STATUS has a field named PROG_INTG_ERR (1 yes, 0 no) | disagrees | - | outside scope |
+| 009-C1 | a register named CLASSA_ACCUM_THRESH exists (1 yes, 0 no) | disagrees | - | outside scope |
+| 009-C2 | a register named CLASSA_PHASE0_CYC exists (1 yes, 0 no) | disagrees | - | outside scope |
+| 009-C3 | escalation signal 0 of a class is enabled after reset (1 yes, 0 no) | agrees | name not in design | different: name not in design |
+| 009-C4 | the control register has a field named E0_EN (1 yes, 0 no) | disagrees | name not in design | outside scope |
+| 009-C5 | escalation phase in which signal 0 is asserted, after reset | agrees | - | not found |
+| 009-C6 | the control register has a field named E0_MAP (1 yes, 0 no) | disagrees | - | outside scope |
+| 009-C7 | the control register has a field named REGWEN (1 yes, 0 no) | disagrees | - | outside scope |
+| 009-C8 | writing 0 to a lock bit locks the class configuration (1 yes, 0 no) | agrees | - | outside scope |
+| 009-C9 | a register named PING_TIMER_EN exists (1 yes, 0 no) | disagrees | - | outside scope |
+| 009-C10 | writing 1 to the ping timer enable register enables the ping timer (1 yes, 0 no) | agrees | - | outside scope |
+| 010-C1 | writing COMMAND while STATUS.READY is 0 sets an ERROR_STATUS bit (1 yes, 0 no) | agrees | - | outside scope |
+| 010-C2 | ERROR_STATUS has a field named CMDERR (1 yes, 0 no) | disagrees | - | outside scope |
+| 010-C3 | ERROR_STATUS has fields named OVERFLOW, UNDERFLOW, CMDINVAL, CSIDINVAL and ACCESSINVAL (1 yes, 0 no) | agrees | - | outside scope |
+| 010-C4 | an ERROR_STATUS bit is cleared by writing 1 to it (1 yes, 0 no) | agrees | - | outside scope |
+| 011-C1 | FDATA has 1-bit fields READB, RCONT, START, STOP and NAKOK (1 yes, 0 no) | agrees | - | outside scope |
+| 011-C2 | width of FDATA.FBYTE in bits | agrees | - | outside scope |
+| 011-C3 | TIMING4 has a field named T_STO (1 yes, 0 no) | disagrees | - | outside scope |
+| 011-C4 | the stop setup time is set in TIMING4 (1 yes, 0 no) | agrees | - | outside scope |
+| 011-C5 | FIFO_CTRL has a field named FMTILVL (1 yes, 0 no) | disagrees | - | outside scope |
+| 011-C6 | writing 1 to FIFO_CTRL.FMTRST resets the format FIFO (1 yes, 0 no) | agrees | - | outside scope |
+| 012-C1 | width of WKUP_CTRL.prescaler in bits | agrees | - | outside scope |
+| 012-C2 | writing 0 to WKUP_CAUSE clears the wake-up request (1 yes, 0 no) | agrees | - | outside scope |
+| 012-C3 | writing 1 to an INTR_STATE field clears the interrupt (1 yes, 0 no) | agrees | - | outside scope |
+| 012-C4 | WKUP_THOLD_HI holds bits 63:32 of the threshold (1 yes, 0 no) | agrees | - | outside scope |
+| 012-C5 | WKUP_THOLD_HI holds bits 31:0 of the threshold (1 yes, 0 no) | disagrees | - | outside scope |
+| 012-C6 | writing 0 to WDOG_REGWEN locks the watchdog configuration (1 yes, 0 no) | agrees | - | outside scope |
 
-## Statements the tool found outside the reference cases (8)
+## Statements the tool found outside the reference cases (7)
 
 - **agrees** — `hw/ip/edn/doc/theory_of_operation.md` line 86 (prose):
   > The reset value is `0`, which means no `generate` commands are issued.
@@ -50,12 +83,6 @@ Each labeled claim of cases 001 to 007 is compared with what `review.py scan` re
   - Register: `EVENT_ENABLE` (named on line 39 above).
   - Stated value: 0.
   - Design reset value: 0 (`hw/ip/spi_host/rtl/spi_host_reg_top.sv` line 1644).
-- **name not in design** — `hw/ip_templates/alert_handler/doc/programmers_guide.md` line 53 (prose):
-  > - Determine whether to enable the escalation signal, and set the `CLASSA_CTRL_SHADOWED.E0_EN` bit accordingly (default is enabled).
-  - Register: `CLASSA_CTRL_SHADOWED.E0_EN` (named in the sentence).
-  - Stated value: enabled.
-  - Not a design name. Closest design names: `classa_ctrl_shadowed.en_e0`.
-  - If `classa_ctrl_shadowed.en_e0` is meant: design reset value 1 (`hw/top_earlgrey/ip_autogen/alert_handler/rtl/alert_handler_reg_top.sv` line 13258), so the value agrees.
 - **name not in design** — `hw/ip_templates/pinmux/doc/programmers_guide.md` line 40 (table row):
   > 0                     | Constant zero (default)
   - Register: `periph_insel` (table header, line 38).

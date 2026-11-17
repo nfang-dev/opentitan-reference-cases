@@ -1,0 +1,245 @@
+{
+ "schema": 2,
+ "id": "012",
+ "title": "aon_timer: wake-up timer and watchdog register facts (control case)",
+ "module": "aon_timer",
+ "opentitan_repository": "https://github.com/lowRISC/opentitan",
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "conditions": [
+  "Programming the wake-up timer and the watchdog as the README, the theory of operation and the programmer's guide describe.",
+  "C1 records a width in bits; the other settings are encoded as 1 if the statement about the design holds and 0 if it does not."
+ ],
+ "requirements": [
+  {
+   "id": "R1",
+   "file": "hw/ip/aon_timer/README.md",
+   "line": 32,
+   "text": "The number of cycles per tick is one more than the 12-bit [`WKUP_CTRL.prescaler`](doc/registers.md#wkup_ctrl) field.",
+   "note": "Section on the wake-up timer."
+  },
+  {
+   "id": "R2",
+   "file": "hw/ip/aon_timer/README.md",
+   "line": 41,
+   "text": "The wakeup signal (`wkup_req_o`) stays high until software explicitly acknowledges it by software writing 0 to [`WKUP_CAUSE`](doc/registers.md#wkup_cause).",
+   "note": "Line 75 says the same for a watchdog bark."
+  },
+  {
+   "id": "R3",
+   "file": "hw/ip/aon_timer/README.md",
+   "line": 43,
+   "text": "To clear the level interrupt (`intr_wkup_timer_expired_o`), write 1 to the field [`INTR_STATE.wkup_timer_expired`](doc/registers.md#intr_state).",
+   "note": "Line 77 says the same for the watchdog bark interrupt."
+  },
+  {
+   "id": "R4",
+   "file": "hw/ip/aon_timer/doc/theory_of_operation.md",
+   "line": 31,
+   "text": "Bits[63:32] in registers [`WKUP_COUNT_HI`](registers.md#wkup_count_hi) and [`WKUP_THOLD_HI`](registers.md#wkup_thold_hi).",
+   "note": "Where the 64-bit wake-up count and threshold are held."
+  },
+  {
+   "id": "R5",
+   "file": "hw/ip/aon_timer/doc/theory_of_operation.md",
+   "line": 32,
+   "text": "Bits[31:0] in registers [`WKUP_COUNT_LO`](registers.md#wkup_count_lo) and [`WKUP_THOLD_HI`](registers.md#wkup_thold_lo).",
+   "note": "The link text says WKUP_THOLD_HI; the link goes to WKUP_THOLD_LO."
+  },
+  {
+   "id": "R6",
+   "file": "hw/ip/aon_timer/doc/programmers_guide.md",
+   "line": 9,
+   "text": "5. If desired, lock the watchdog configuration by writing 0 to the `regwen` bit in [`WDOG_REGWEN`](registers.md#wdog_regwen).",
+   "note": "Watchdog programming steps."
+  }
+ ],
+ "design": [
+  {
+   "id": "D1",
+   "kind": "line",
+   "file": "hw/ip/aon_timer/data/aon_timer.hjson",
+   "after": "{ name: \"WKUP_CTRL\",",
+   "within": 20,
+   "line": 193,
+   "text": "{ bits: \"12:1\",",
+   "value": 12,
+   "note": "WKUP_CTRL.prescaler is bits 12:1."
+  },
+  {
+   "id": "D2",
+   "kind": "line",
+   "file": "hw/ip/aon_timer/data/aon_timer.hjson",
+   "after": "{ name: \"WKUP_CAUSE\",",
+   "within": 5,
+   "line": 357,
+   "text": "swaccess: \"rw0c\",",
+   "value": 1,
+   "note": "WKUP_CAUSE is cleared by writing 0."
+  },
+  {
+   "id": "D3",
+   "kind": "line",
+   "file": "hw/ip/aon_timer/rtl/aon_timer.sv",
+   "line": 189,
+   "text": "assign wkup_req_o = reg2hw.wkup_cause.q;",
+   "value": 1,
+   "note": "The wake-up request output is WKUP_CAUSE itself, so clearing it drops the request."
+  },
+  {
+   "id": "D4",
+   "kind": "line",
+   "file": "hw/ip/aon_timer/data/aon_timer.hjson",
+   "after": "{ name: \"INTR_STATE\",",
+   "within": 5,
+   "line": 323,
+   "text": "swaccess: \"rw1c\",",
+   "value": 1,
+   "note": "INTR_STATE is write-1-to-clear."
+  },
+  {
+   "id": "D5",
+   "kind": "line",
+   "file": "hw/ip/aon_timer/data/aon_timer.hjson",
+   "line": 201,
+   "text": "desc: \"Wakeup Timer Threshold Register (bits 63 - 32)\",",
+   "value": 1,
+   "note": "WKUP_THOLD_HI holds bits 63:32."
+  },
+  {
+   "id": "D6",
+   "kind": "line",
+   "file": "hw/ip/aon_timer/rtl/aon_timer_core.sv",
+   "line": 57,
+   "text": "assign wkup_thold = {reg2hw_i.wkup_thold_hi.q, reg2hw_i.wkup_thold_lo.q};",
+   "value": 1,
+   "note": "The core forms the 64-bit threshold with WKUP_THOLD_HI as the upper half."
+  },
+  {
+   "id": "D7",
+   "kind": "line",
+   "file": "hw/ip/aon_timer/data/aon_timer.hjson",
+   "line": 213,
+   "text": "desc: \"Wakeup Timer Threshold Register (bits 31 - 0)\",",
+   "value": 0,
+   "note": "Bits 31:0 are held by WKUP_THOLD_LO, not WKUP_THOLD_HI."
+  },
+  {
+   "id": "D8",
+   "kind": "line",
+   "file": "hw/ip/aon_timer/rtl/aon_timer_core.sv",
+   "line": 57,
+   "text": "assign wkup_thold = {reg2hw_i.wkup_thold_hi.q, reg2hw_i.wkup_thold_lo.q};",
+   "value": 0,
+   "note": "The same line as D6: WKUP_THOLD_LO is the lower half, so WKUP_THOLD_HI does not hold bits 31:0."
+  },
+  {
+   "id": "D9",
+   "kind": "line",
+   "file": "hw/ip/aon_timer/data/aon_timer.hjson",
+   "after": "{ name: \"WDOG_REGWEN\",",
+   "within": 5,
+   "line": 254,
+   "text": "swaccess: \"rw0c\",",
+   "value": 1,
+   "note": "WDOG_REGWEN is cleared by writing 0."
+  },
+  {
+   "id": "D10",
+   "kind": "line",
+   "file": "hw/ip/aon_timer/data/aon_timer.hjson",
+   "after": "{ name: \"WDOG_CTRL\",",
+   "within": 8,
+   "line": 269,
+   "text": "regwen: \"WDOG_REGWEN\",",
+   "value": 1,
+   "note": "WDOG_CTRL is locked by WDOG_REGWEN, as are WDOG_BARK_THOLD and WDOG_BITE_THOLD (lines 286 and 299)."
+  }
+ ],
+ "claims": [
+  {
+   "id": "C1",
+   "setting": "width of WKUP_CTRL.prescaler in bits",
+   "requirements": [
+    "R1"
+   ],
+   "stated": 12,
+   "design": [
+    "D1"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C2",
+   "setting": "writing 0 to WKUP_CAUSE clears the wake-up request (1 yes, 0 no)",
+   "requirements": [
+    "R2"
+   ],
+   "stated": 1,
+   "design": [
+    "D2",
+    "D3"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C3",
+   "setting": "writing 1 to an INTR_STATE field clears the interrupt (1 yes, 0 no)",
+   "requirements": [
+    "R3"
+   ],
+   "stated": 1,
+   "design": [
+    "D4"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C4",
+   "setting": "WKUP_THOLD_HI holds bits 63:32 of the threshold (1 yes, 0 no)",
+   "requirements": [
+    "R4"
+   ],
+   "stated": 1,
+   "design": [
+    "D5",
+    "D6"
+   ],
+   "label": "agrees"
+  },
+  {
+   "id": "C5",
+   "setting": "WKUP_THOLD_HI holds bits 31:0 of the threshold (1 yes, 0 no)",
+   "requirements": [
+    "R5"
+   ],
+   "stated": 1,
+   "design": [
+    "D7",
+    "D8"
+   ],
+   "label": "disagrees"
+  },
+  {
+   "id": "C6",
+   "setting": "writing 0 to WDOG_REGWEN locks the watchdog configuration (1 yes, 0 no)",
+   "requirements": [
+    "R6"
+   ],
+   "stated": 1,
+   "design": [
+    "D9",
+    "D10"
+   ],
+   "label": "agrees"
+  }
+ ],
+ "generated_from_same_input": "D1, D2, D4, D5, D7, D9 and D10 are in aon_timer.hjson, from which reggen generates the register RTL and registers.md; those generated files are not counted as further evidence. D3, D6 and D8 are in the hand-written RTL (D6 and D8 are the same line). R1 to R6 are hand-written.",
+ "finding": "Five of the six statements agree with the design. R5's link text names WKUP_THOLD_HI for bits 31:0, which WKUP_THOLD_LO holds; the link itself goes to WKUP_THOLD_LO. The register tests in csr/ also observed C6 in simulation: once WDOG_REGWEN is cleared, WDOG_CTRL, WDOG_BARK_THOLD and WDOG_BITE_THOLD ignore writes.",
+ "missing_information": "This case reads the register description and the RTL. The register tests in csr/ simulate the lock (C6) but are not part of this case's evidence.",
+ "ambiguities": [
+  "R5's link goes to the right register, so a reader who follows the link finds WKUP_THOLD_LO; a reader who reads the text does not."
+ ],
+ "out_of_scope": [
+  "What the prescaler and thresholds do over time (the timer's counting), which is not checked here."
+ ]
+}
