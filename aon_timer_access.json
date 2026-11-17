@@ -1,0 +1,399 @@
+{
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "design": "WKUP_CTRL.enable made read-only",
+ "ip": "aon_timer",
+ "registers": 14,
+ "harness_ties": [
+  " alert_rx_i: {aon_timer_reg_pkg::NumAlerts{prim_alert_pkg::ALERT_RX_DEFAULT}}",
+  " racl_policies_i: '0",
+  " lc_escalate_en_i: lc_ctrl_pkg::Off",
+  " sleep_mode_i: '0"
+ ],
+ "seeds": {
+  "1": {
+   "tests": {
+    "hw_reset": "pass",
+    "rw": "fail",
+    "regwen_lock": "pass",
+    "alert_test_lock": "pass"
+   },
+   "observed": {
+    "hw_reset": {
+     "registers": [
+      {
+       "register": "ALERT_TEST",
+       "read": "0x80000000",
+       "expected": "0x80000000",
+       "mask": "0x80000001",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_CTRL",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1fff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_THOLD_HI",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_THOLD_LO",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_COUNT_HI",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_COUNT_LO",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_REGWEN",
+       "read": "0x1",
+       "expected": "0x1",
+       "mask": "0x1",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_CTRL",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x3",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_BARK_THOLD",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_BITE_THOLD",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_COUNT",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "INTR_STATE",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x3",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "INTR_TEST",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "WKUP_CAUSE",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "bus_error": 0,
+       "result": "pass"
+      }
+     ],
+     "failures": []
+    },
+    "rw": {
+     "registers": [
+      {
+       "register": "ALERT_TEST",
+       "result": "not tested"
+      },
+      {
+       "register": "WKUP_CTRL",
+       "round": 1,
+       "wrote": "0x2265b1f5",
+       "read": "0x11f4",
+       "expected": "0x11f5",
+       "mask": "0x1fff",
+       "result": "fail"
+      },
+      {
+       "register": "WKUP_THOLD_HI",
+       "round": 1,
+       "wrote": "0x91b7584a",
+       "read": "0x91b7584a",
+       "expected": "0x91b7584a",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_THOLD_LO",
+       "round": 1,
+       "wrote": "0xd8f16adf",
+       "read": "0xd8f16adf",
+       "expected": "0xd8f16adf",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_COUNT_HI",
+       "round": 1,
+       "wrote": "0xcd613e30",
+       "read": "0xcd613e30",
+       "expected": "0xcd613e30",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_COUNT_LO",
+       "round": 1,
+       "wrote": "0xc386bbc4",
+       "read": "0xc386bbc4",
+       "expected": "0xc386bbc4",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_REGWEN",
+       "result": "not tested"
+      },
+      {
+       "register": "WDOG_CTRL",
+       "round": 1,
+       "wrote": "0x1027c4d1",
+       "read": "0x1",
+       "expected": "0x1",
+       "mask": "0x3",
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_BARK_THOLD",
+       "round": 1,
+       "wrote": "0x414c343c",
+       "read": "0x414c343c",
+       "expected": "0x414c343c",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_BITE_THOLD",
+       "round": 1,
+       "wrote": "0x1e2feb89",
+       "read": "0x1e2feb89",
+       "expected": "0x1e2feb89",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_COUNT",
+       "round": 1,
+       "wrote": "0x7ed4d57b",
+       "read": "0x7ed4d57b",
+       "expected": "0x7ed4d57b",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_STATE",
+       "round": 1,
+       "wrote": "0xc2ce6f44",
+       "read": "0x2",
+       "expected": "0x2",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_TEST",
+       "result": "not tested"
+      },
+      {
+       "register": "WKUP_CAUSE",
+       "round": 1,
+       "wrote": "0x7311d8a3",
+       "read": "0x1",
+       "expected": "0x1",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_CTRL",
+       "round": 2,
+       "wrote": "0xdd9a4e0a",
+       "read": "0xe0a",
+       "expected": "0xe0a",
+       "mask": "0x1fff",
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_THOLD_HI",
+       "round": 2,
+       "wrote": "0x6e48a7b5",
+       "read": "0x6e48a7b5",
+       "expected": "0x6e48a7b5",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_THOLD_LO",
+       "round": 2,
+       "wrote": "0x270e9520",
+       "read": "0x270e9520",
+       "expected": "0x270e9520",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_COUNT_HI",
+       "round": 2,
+       "wrote": "0x329ec1cf",
+       "read": "0x329ec1cf",
+       "expected": "0x329ec1cf",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_COUNT_LO",
+       "round": 2,
+       "wrote": "0x3c79443b",
+       "read": "0x3c79443b",
+       "expected": "0x3c79443b",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_CTRL",
+       "round": 2,
+       "wrote": "0xefd83b2e",
+       "read": "0x2",
+       "expected": "0x2",
+       "mask": "0x3",
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_BARK_THOLD",
+       "round": 2,
+       "wrote": "0xbeb3cbc3",
+       "read": "0xbeb3cbc3",
+       "expected": "0xbeb3cbc3",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_BITE_THOLD",
+       "round": 2,
+       "wrote": "0xe1d01476",
+       "read": "0xe1d01476",
+       "expected": "0xe1d01476",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "WDOG_COUNT",
+       "round": 2,
+       "wrote": "0x812b2a84",
+       "read": "0x812b2a84",
+       "expected": "0x812b2a84",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_STATE",
+       "round": 2,
+       "wrote": "0x3d3190bb",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "WKUP_CAUSE",
+       "round": 2,
+       "wrote": "0x8cee275c",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "result": "pass"
+      }
+     ],
+     "failures": [
+      "WKUP_CTRL (round 1)"
+     ]
+    },
+    "regwen_lock": {
+     "registers": [
+      {
+       "lock": "WDOG_REGWEN",
+       "lock_read": "0x0",
+       "register": "WDOG_CTRL",
+       "before": "0x0",
+       "wrote": "0xffffffff",
+       "after": "0x0",
+       "mask": "0x3",
+       "result": "pass"
+      },
+      {
+       "lock": "WDOG_REGWEN",
+       "lock_read": "0x0",
+       "register": "WDOG_BARK_THOLD",
+       "before": "0x0",
+       "wrote": "0xffffffff",
+       "after": "0x0",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "lock": "WDOG_REGWEN",
+       "lock_read": "0x0",
+       "register": "WDOG_BITE_THOLD",
+       "before": "0x0",
+       "wrote": "0xffffffff",
+       "after": "0x0",
+       "mask": "0xffffffff",
+       "result": "pass"
+      }
+     ],
+     "failures": []
+    },
+    "alert_test_lock": {
+     "alert_before_write": 0,
+     "alert_after_write_unlocked": 1,
+     "alert_after_write_locked": 0,
+     "result": "pass"
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,1427 @@
+{
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "design": "ALERT_TEST writes no longer gated by its regwen field",
+ "ip": "gpio",
+ "registers": 114,
+ "harness_ties": [
+  " strap_en_i: '0",
+  " alert_rx_i: {gpio_reg_pkg::NumAlerts{prim_alert_pkg::ALERT_RX_DEFAULT}}",
+  " racl_policies_i: '0",
+  " cio_gpio_i: '0"
+ ],
+ "seeds": {
+  "1": {
+   "tests": {
+    "hw_reset": "pass",
+    "rw": "pass",
+    "regwen_lock": "pass",
+    "alert_test_lock": "fail"
+   },
+   "observed": {
+    "hw_reset": {
+     "registers": [
+      {
+       "register": "INTR_STATE",
+       "result": "excluded by OpenTitan"
+      },
+      {
+       "register": "INTR_ENABLE",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "INTR_TEST",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "ALERT_TEST",
+       "read": "0x80000000",
+       "expected": "0x80000000",
+       "mask": "0x80000001",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "DATA_IN",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "DIRECT_OUT",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "MASKED_OUT_LOWER",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "MASKED_OUT_UPPER",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "DIRECT_OE",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "MASKED_OE_LOWER",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "MASKED_OE_UPPER",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "INTR_CTRL_EN_RISING",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "INTR_CTRL_EN_FALLING",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "INTR_CTRL_EN_LVLHIGH",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "INTR_CTRL_EN_LVLLOW",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "CTRL_EN_INPUT_FILTER",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "HW_STRAPS_DATA_IN_VALID",
+       "result": "excluded by OpenTitan"
+      },
+      {
+       "register": "HW_STRAPS_DATA_IN",
+       "result": "excluded by OpenTitan"
+      },
+      {
+       "register": "PER_PIN_IO_0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_1",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_2",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_3",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_4",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_5",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_6",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_7",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_8",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_9",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_10",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_11",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_12",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_13",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_14",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_15",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_16",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_17",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_18",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_19",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_20",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_21",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_22",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_23",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_24",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_25",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_26",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_27",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_28",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_29",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_30",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_IO_31",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_1",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_1",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_2",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_2",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_3",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_3",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_4",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_4",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_5",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_5",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_6",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_6",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_7",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_7",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_8",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_8",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_9",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_9",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_10",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_10",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_11",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_11",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_12",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_12",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_13",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_13",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_14",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_14",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_15",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_15",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_16",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_16",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_17",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_17",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_18",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_18",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_19",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_19",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_20",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_20",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_21",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_21",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_22",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_22",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_23",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_23",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_24",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_24",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_25",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_25",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_26",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_26",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_27",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_27",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_28",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_28",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_29",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_29",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_30",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_30",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_OE_31",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_31",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      }
+     ],
+     "failures": []
+    },
+    "rw": {
+     "registers": [
+      {
+       "register": "INTR_STATE",
+       "result": "not tested"
+      },
+      {
+       "register": "INTR_ENABLE",
+       "round": 1,
+       "wrote": "0x2265b1f5",
+       "read": "0x2265b1f5",
+       "expected": "0x2265b1f5",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_TEST",
+       "result": "not tested"
+      },
+      {
+       "register": "ALERT_TEST",
+       "result": "not tested"
+      },
+      {
+       "register": "DATA_IN",
+       "round": 1,
+       "wrote": "0x91b7584a",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "DIRECT_OUT",
+       "result": "not tested"
+      },
+      {
+       "register": "MASKED_OUT_LOWER",
+       "result": "not tested"
+      },
+      {
+       "register": "MASKED_OUT_UPPER",
+       "result": "not tested"
+      },
+      {
+       "register": "DIRECT_OE",
+       "result": "not tested"
+      },
+      {
+       "register": "MASKED_OE_LOWER",
+       "result": "not tested"
+      },
+      {
+       "register": "MASKED_OE_UPPER",
+       "result": "not tested"
+      },
+      {
+       "register": "INTR_CTRL_EN_RISING",
+       "result": "not tested"
+      },
+      {
+       "register": "INTR_CTRL_EN_FALLING",
+       "result": "not tested"
+      },
+      {
+       "register": "INTR_CTRL_EN_LVLHIGH",
+       "result": "not tested"
+      },
+      {
+       "register": "INTR_CTRL_EN_LVLLOW",
+       "result": "not tested"
+      },
+      {
+       "register": "CTRL_EN_INPUT_FILTER",
+       "result": "not tested"
+      },
+      {
+       "register": "HW_STRAPS_DATA_IN_VALID",
+       "result": "not tested"
+      },
+      {
+       "register": "HW_STRAPS_DATA_IN",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_0",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_1",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_2",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_3",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_4",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_5",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_6",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_7",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_8",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_9",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_10",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_11",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_12",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_13",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_14",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_15",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_16",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_17",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_18",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_19",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_20",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_21",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_22",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_23",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_24",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_25",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_26",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_27",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_28",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_29",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_30",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_IO_31",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_0",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_0",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_1",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_1",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_2",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_2",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_3",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_3",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_4",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_4",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_5",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_5",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_6",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_6",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_7",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_7",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_8",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_8",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_9",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_9",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_10",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_10",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_11",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_11",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_12",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_12",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_13",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_13",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_14",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_14",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_15",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_15",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_16",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_16",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_17",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_17",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_18",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_18",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_19",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_19",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_20",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_20",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_21",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_21",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_22",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_22",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_23",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_23",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_24",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_24",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_25",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_25",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_26",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_26",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_27",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_27",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_28",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_28",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_29",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_29",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_30",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_30",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_OE_31",
+       "result": "not tested"
+      },
+      {
+       "register": "PER_PIN_INTR_CTRL_31",
+       "result": "not tested"
+      },
+      {
+       "register": "INTR_ENABLE",
+       "round": 2,
+       "wrote": "0xdd9a4e0a",
+       "read": "0xdd9a4e0a",
+       "expected": "0xdd9a4e0a",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "DATA_IN",
+       "round": 2,
+       "wrote": "0x6e48a7b5",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "result": "pass"
+      }
+     ],
+     "failures": []
+    },
+    "regwen_lock": {
+     "result": "not applicable: no register has a lock register"
+    },
+    "alert_test_lock": {
+     "alert_before_write": 0,
+     "alert_after_write_unlocked": 1,
+     "alert_after_write_locked": 1,
+     "result": "fail"
+    }
+   }
+  }
+ }
+}

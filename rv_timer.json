@@ -1,0 +1,534 @@
+{
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "design": "unchanged",
+ "ip": "rv_timer",
+ "registers": 10,
+ "harness_ties": [
+  " alert_rx_i: {rv_timer_reg_pkg::NumAlerts{prim_alert_pkg::ALERT_RX_DEFAULT}}",
+  " racl_policies_i: '0"
+ ],
+ "seeds": {
+  "1": {
+   "tests": {
+    "hw_reset": "pass",
+    "rw": "pass",
+    "regwen_lock": "pass",
+    "alert_test_lock": "pass"
+   },
+   "observed": {
+    "hw_reset": {
+     "registers": [
+      {
+       "register": "ALERT_TEST",
+       "read": "0x80000000",
+       "expected": "0x80000000",
+       "mask": "0x80000001",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "CTRL",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "INTR_ENABLE0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "INTR_STATE0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "INTR_TEST0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "CFG0",
+       "read": "0x10000",
+       "expected": "0x10000",
+       "mask": "0xff0fff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_LOWER0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_UPPER0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_LOWER0_0",
+       "read": "0xffffffff",
+       "expected": "0xffffffff",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_UPPER0_0",
+       "read": "0xffffffff",
+       "expected": "0xffffffff",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      }
+     ],
+     "failures": []
+    },
+    "rw": {
+     "registers": [
+      {
+       "register": "ALERT_TEST",
+       "result": "not tested"
+      },
+      {
+       "register": "CTRL",
+       "round": 1,
+       "wrote": "0x2265b1f4",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_ENABLE0",
+       "round": 1,
+       "wrote": "0x91b7584a",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_STATE0",
+       "round": 1,
+       "wrote": "0xd8f16adf",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_TEST0",
+       "result": "not tested"
+      },
+      {
+       "register": "CFG0",
+       "round": 1,
+       "wrote": "0xcd613e30",
+       "read": "0x610e30",
+       "expected": "0x610e30",
+       "mask": "0xff0fff",
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_LOWER0",
+       "round": 1,
+       "wrote": "0xc386bbc4",
+       "read": "0xc386bbc4",
+       "expected": "0xc386bbc4",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_UPPER0",
+       "round": 1,
+       "wrote": "0x1027c4d1",
+       "read": "0x1027c4d1",
+       "expected": "0x1027c4d1",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_LOWER0_0",
+       "round": 1,
+       "wrote": "0x414c343c",
+       "read": "0x414c343c",
+       "expected": "0x414c343c",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_UPPER0_0",
+       "round": 1,
+       "wrote": "0x1e2feb89",
+       "read": "0x1e2feb89",
+       "expected": "0x1e2feb89",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "CTRL",
+       "round": 2,
+       "wrote": "0xdd9a4e0a",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_ENABLE0",
+       "round": 2,
+       "wrote": "0x6e48a7b5",
+       "read": "0x1",
+       "expected": "0x1",
+       "mask": "0x1",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_STATE0",
+       "round": 2,
+       "wrote": "0x270e9520",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "CFG0",
+       "round": 2,
+       "wrote": "0x329ec1cf",
+       "read": "0x9e01cf",
+       "expected": "0x9e01cf",
+       "mask": "0xff0fff",
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_LOWER0",
+       "round": 2,
+       "wrote": "0x3c79443b",
+       "read": "0x3c79443b",
+       "expected": "0x3c79443b",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_UPPER0",
+       "round": 2,
+       "wrote": "0xefd83b2e",
+       "read": "0xefd83b2e",
+       "expected": "0xefd83b2e",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_LOWER0_0",
+       "round": 2,
+       "wrote": "0xbeb3cbc3",
+       "read": "0xbeb3cbc3",
+       "expected": "0xbeb3cbc3",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_UPPER0_0",
+       "round": 2,
+       "wrote": "0xe1d01476",
+       "read": "0xe1d01476",
+       "expected": "0xe1d01476",
+       "mask": "0xffffffff",
+       "result": "pass"
+      }
+     ],
+     "failures": []
+    },
+    "regwen_lock": {
+     "result": "not applicable: no register has a lock register"
+    },
+    "alert_test_lock": {
+     "alert_before_write": 0,
+     "alert_after_write_unlocked": 1,
+     "alert_after_write_locked": 0,
+     "result": "pass"
+    }
+   }
+  },
+  "2": {
+   "tests": {
+    "hw_reset": "pass",
+    "rw": "pass",
+    "regwen_lock": "pass",
+    "alert_test_lock": "pass"
+   },
+   "observed": {
+    "hw_reset": {
+     "registers": [
+      {
+       "register": "ALERT_TEST",
+       "read": "0x80000000",
+       "expected": "0x80000000",
+       "mask": "0x80000001",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "CTRL",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "INTR_ENABLE0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "INTR_STATE0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "INTR_TEST0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "bus_error": 0,
+       "result": "no reset value specified"
+      },
+      {
+       "register": "CFG0",
+       "read": "0x10000",
+       "expected": "0x10000",
+       "mask": "0xff0fff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_LOWER0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_UPPER0",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_LOWER0_0",
+       "read": "0xffffffff",
+       "expected": "0xffffffff",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_UPPER0_0",
+       "read": "0xffffffff",
+       "expected": "0xffffffff",
+       "mask": "0xffffffff",
+       "bus_error": 0,
+       "result": "pass"
+      }
+     ],
+     "failures": []
+    },
+    "rw": {
+     "registers": [
+      {
+       "register": "ALERT_TEST",
+       "result": "not tested"
+      },
+      {
+       "register": "CTRL",
+       "round": 1,
+       "wrote": "0xf4bea972",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_ENABLE0",
+       "round": 1,
+       "wrote": "0xdcf4bb99",
+       "read": "0x1",
+       "expected": "0x1",
+       "mask": "0x1",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_STATE0",
+       "round": 1,
+       "wrote": "0xf2a4d27b",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_TEST0",
+       "result": "not tested"
+      },
+      {
+       "register": "CFG0",
+       "round": 1,
+       "wrote": "0xd95bafc8",
+       "read": "0x5b0fc8",
+       "expected": "0x5b0fc8",
+       "mask": "0xff0fff",
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_LOWER0",
+       "round": 1,
+       "wrote": "0xe7a269f",
+       "read": "0xe7a269f",
+       "expected": "0xe7a269f",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_UPPER0",
+       "round": 1,
+       "wrote": "0x177219d3",
+       "read": "0x177219d3",
+       "expected": "0x177219d3",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_LOWER0_0",
+       "round": 1,
+       "wrote": "0x15ba2bdd",
+       "read": "0x15ba2bdd",
+       "expected": "0x15ba2bdd",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_UPPER0_0",
+       "round": 1,
+       "wrote": "0x5c6e4337",
+       "read": "0x5c6e4337",
+       "expected": "0x5c6e4337",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "CTRL",
+       "round": 2,
+       "wrote": "0xb41568c",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_ENABLE0",
+       "round": 2,
+       "wrote": "0x230b4466",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x1",
+       "result": "pass"
+      },
+      {
+       "register": "INTR_STATE0",
+       "round": 2,
+       "wrote": "0xd5b2d84",
+       "read": "0x0",
+       "expected": "0x0",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "CFG0",
+       "round": 2,
+       "wrote": "0x26a45037",
+       "read": "0xa40037",
+       "expected": "0xa40037",
+       "mask": "0xff0fff",
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_LOWER0",
+       "round": 2,
+       "wrote": "0xf185d960",
+       "read": "0xf185d960",
+       "expected": "0xf185d960",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "TIMER_V_UPPER0",
+       "round": 2,
+       "wrote": "0xe88de62c",
+       "read": "0xe88de62c",
+       "expected": "0xe88de62c",
+       "mask": "0x0",
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_LOWER0_0",
+       "round": 2,
+       "wrote": "0xea45d422",
+       "read": "0xea45d422",
+       "expected": "0xea45d422",
+       "mask": "0xffffffff",
+       "result": "pass"
+      },
+      {
+       "register": "COMPARE_UPPER0_0",
+       "round": 2,
+       "wrote": "0xa391bcc8",
+       "read": "0xa391bcc8",
+       "expected": "0xa391bcc8",
+       "mask": "0xffffffff",
+       "result": "pass"
+      }
+     ],
+     "failures": []
+    },
+    "regwen_lock": {
+     "result": "not applicable: no register has a lock register"
+    },
+    "alert_test_lock": {
+     "alert_before_write": 0,
+     "alert_after_write_unlocked": 1,
+     "alert_after_write_locked": 0,
+     "result": "pass"
+    }
+   }
+  }
+ }
+}
