@@ -80,7 +80,7 @@ Two checks on the same documents need no model at all, and run in the same repor
 - every field written as `REGISTER.FIELD` is looked up in the description;
 - every link to a register's entry in `registers.md` must go to the register its text names.
 
-They found six places where the documentation names something the description does not have. All six are still present on OpenTitan's master branch as of November 10, 2026.
+In the five IPs above, they found six places where the documentation names something the description does not have. All six are still present on OpenTitan's master branch as of November 16, 2026.
 
 | Where | Written | In the description |
 |---|---|---|
@@ -92,6 +92,29 @@ They found six places where the documentation names something the description do
 | aon_timer theory of operation, line 32 | a link with text `WKUP_THOLD_HI` for bits 31:0 | the link goes to `WKUP_THOLD_LO`, the register that holds bits 31:0 |
 
 The uart one matters most: it tells software to read a status bit that the hardware does not have.
+
+### On all 46 IPs
+
+[`names.py`](names.py) runs the same checks, plus a third, on the documents of every IP with a register description at the recorded revision ([`all_ips.json`](all_ips.json): 46 IPs, 1,496 sentences that name a register). The third check: every link into an IP's `registers.md` must go to an entry that exists there. Each finding was then classified by reading the sentence and the description ([`names_review.json`](names_review.json)), and the same checks were run on OpenTitan's master branch of November 16, 2026.
+
+| Kind | Findings | Still on master |
+|---|---|---|
+| The documentation names a register or field the description does not have | 37 | 32 |
+| It names a register that exists, but not the one it means | 1 | 1 |
+| The register exists, but the link's target is written in a form `registers.md` does not use | 18 | 18 |
+| A deliberate shorthand for one field per channel | 3 | 3 |
+| Not a register reference | 1 | 1 |
+
+Five of the 37 are corrected in my pull request [lowRISC/opentitan#32162](https://github.com/lowRISC/opentitan/pull/32162), which is not merged. Of the five no longer found on master, four are in csrng: its programmer's guide described registers for writing an instance's internal state that the description at the recorded revision did not have, and that the design on master now has, so there the documentation was ahead of the design.
+
+Some of the others would mislead software that follows them:
+
+- otbn: "when 1 is written to `CMD.start`". CMD has a single field, `cmd`, and an operation starts when the EXECUTE command (0xd8) is written.
+- kmac: software "should configure `CMD.mode`". The mode is `CFG_SHADOWED.mode`; CMD has no mode field.
+- flash_ctrl (template): integrity errors are said to be registered in `ERR_CODE.PROG_INTG_ERR` and `FAULT_STATUS.LCMGR_INTG_ERR`. Both fields are in `STD_FAULT_STATUS`.
+- alert_handler (template): four registers are named without the `_SHADOWED` their names now end in, and the class enable and mapping fields are written as `E0_EN` and `E0_MAP` instead of `EN_E0` and `MAP_E0`.
+
+The full list, with every place and a note for each, is in [`results/names_all/report.md`](results/names_all/report.md). CI re-runs the checks on every change and compares the report.
 
 ## Running
 

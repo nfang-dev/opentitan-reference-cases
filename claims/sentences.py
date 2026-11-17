@@ -40,7 +40,7 @@ DOCS = ("README.md", "doc/theory_of_operation.md", "doc/programmers_guide.md")
 SENTENCE_RE = re.compile(r"(?<=[.;!?])\s+(?=[A-Z`\[(])")
 LIST_ITEM_RE = re.compile(r"^\s*(?:[-*+]|\d+[.)])\s+")
 TICK_RE = re.compile(r"`([^`]+)`")
-WORD_RE = re.compile(r"(?<![\w.])([A-Z][A-Z0-9_]*[A-Z0-9])(?:\.(\w+))?(?![\w])")
+WORD_RE = re.compile(r"(?<![\w.])([A-Z][A-Z0-9_]*[A-Z0-9])(?:\.([A-Za-z]\w*))?(?![\w])")
 BASE_RE = re.compile(r"_?\d+$")
 
 
@@ -68,6 +68,8 @@ def mentions(sentence: str, table: dict[str, list[str]]) -> list[dict]:
     for m in TICK_RE.finditer(sentence):
         token = m.group(1).strip()
         name, _, field = token.partition(".")
+        # `CONTROL.OP = Rewrite` names the field OP.
+        field = (re.match(r"\w*", field).group(0) if field else "")
         # In lower case, only a complete register name counts: `en` is a field, not EN0/EN1.
         if name.upper() in table and (name.isupper() or table[name.upper()] == [name.upper()]):
             found.append((m.start(), name.upper(), field or None))
@@ -123,7 +125,7 @@ def sentences_of(rel: str, text: str):
 def select(root: Path, ips: list[dict]) -> list[dict]:
     out = []
     for ip in ips:
-        model = regmodel.load(root, ip["hjson"])
+        model = regmodel.load(root, ip["hjson"], all_interfaces=True)
         regs = {r["name"]: r for r in model["registers"]}
         table = name_table(model)
         for rel in doc_files(ip["hjson"]):

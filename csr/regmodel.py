@@ -36,33 +36,67 @@ def excluded(tags: list[str], test: str, kind: int) -> bool:
     return False
 
 
-def load(root: Path, hjson: str) -> dict:
+def resval(value):
+    if isinstance(value, bool):
+        return int(value)
+    return value if isinstance(value, int) else None
+
+
+def load(root: Path, hjson: str, all_interfaces: bool = False) -> dict:
+    """The registers of the IP's unnamed register interface (the one the register tests
+    drive), or with all_interfaces, the registers of every interface."""
     sys.path.insert(0, str(root / "util"))
     from reggen.ip_block import IpBlock  # noqa: E402
     block = IpBlock.from_path(str(root / hjson), [])
-    if None not in block.reg_blocks:
+    if all_interfaces:
+        interfaces = list(block.reg_blocks)
+    elif None in block.reg_blocks:
+        interfaces = [None]
+    else:
         raise ValueError(f"{hjson}: no unnamed register interface")
     regs = []
-    for r in block.reg_blocks[None].flat_regs:
-        regs.append({
-            "name": r.name,
-            "offset": r.offset,
-            "hwext": bool(r.hwext),
-            "shadowed": bool(r.shadowed),
-            "regwen": r.regwen,
-            "tags": list(r.tags),
-            "fields": [{
-                "name": f.name,
-                "lsb": f.bits.lsb,
-                "width": f.bits.width(),
-                "swaccess": f.swaccess.key,
-                "hwaccess": f.hwaccess.key,
-                "resval": f.resval if isinstance(f.resval, int) and not isinstance(f.resval, bool)
-                else (int(f.resval) if isinstance(f.resval, bool) else None),
-                "tags": list(getattr(f, "tags", []) or []),
-            } for f in r.fields],
-        })
-    return {"ip": block.name, "hjson": hjson, "registers": regs}
+    for interface in interfaces:
+        for r in block.reg_blocks[interface].flat_regs:
+            regs.append({
+                "name": r.name,
+                "offset": r.offset,
+                "hwext": bool(r.hwext),
+                "shadowed": bool(r.shadowed),
+                "regwen": r.regwen,
+                "tags": list(r.tags),
+                "fields": [{
+                    "name": f.name,
+                    "lsb": f.bits.lsb,
+                    "width": f.bits.width(),
+                    "swaccess": f.swaccess.key,
+                    "hwaccess": f.hwaccess.key,
+                    "resval": resval(f.resval),
+                    "tags": list(getattr(f, "tags", []) or []),
+                } for f in r.fields],
+            })
+    out = {"ip": block.name, "hjson": hjson, "registers": regs}
+    if all_interfaces:
+        out["anchors"] = sorted(anchors(block))
+    return out
+
+
+def anchors(block) -> set[str]:
+    """The anchors of the register entries in the IP's generated registers.md, as reggen's
+    gen_md.py makes them: a register's name, a non-compact multi-register's name, or each
+    register of a compact multi-register; in lower case."""
+    from reggen.gen_md import multireg_is_compact
+    from reggen.multi_register import MultiRegister
+    out = set()
+    for rb in block.reg_blocks.values():
+        for entry in rb.entries:
+            if isinstance(entry, MultiRegister):
+                if multireg_is_compact(entry, block.regwidth):
+                    out.update(r.name.lower() for r in entry.cregs)
+                else:
+                    out.add(entry.name.lower())
+            else:
+                out.add(entry.name.lower())
+    return out
 
 
 if __name__ == "__main__":

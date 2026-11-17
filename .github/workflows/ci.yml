@@ -107,9 +107,14 @@ jobs:
         run: |
           python claims/sentences.py --opentitan opentitan --out sentences.json
           diff -u claims/results/prompt3/sentences.json sentences.json
+      - name: Re-run the name checks on all IPs and compare with the committed report
+        run: |
+          python claims/names.py --opentitan opentitan --out names/report.md
+          diff -u claims/results/names_all/report.md names/report.md
+          diff -u claims/results/names_all/report.json names/report.json
       - name: Re-check every committed run's answers and compare with its committed report
         run: |
-          for d in claims/results/*/; do
+          for d in claims/results/prompt*/; do
             n=$(basename "$d")
             python claims/check.py --opentitan opentitan --sentences "$d/sentences.json" \
               --answers "$d/answers.json" --review "$d/review.json" --out "recheck/$n/check.md"

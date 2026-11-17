@@ -1,0 +1,807 @@
+{
+ "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+ "ips": 46,
+ "findings": [
+  {
+   "key": "alert_handler:field:CLASSA_CTRL_SHADOWED.E0_EN",
+   "check": "field",
+   "ip": "alert_handler",
+   "name": "CLASSA_CTRL_SHADOWED.E0_EN",
+   "detail": "fields: EN, EN_E0, EN_E1, EN_E2, EN_E3, LOCK, MAP_E0, MAP_E1, MAP_E2, MAP_E3",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:53"
+   ],
+   "kind": "not in description",
+   "note": "the field is EN_E0",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:field:CLASSA_CTRL_SHADOWED.E0_MAP",
+   "check": "field",
+   "ip": "alert_handler",
+   "name": "CLASSA_CTRL_SHADOWED.E0_MAP",
+   "detail": "fields: EN, EN_E0, EN_E1, EN_E2, EN_E3, LOCK, MAP_E0, MAP_E1, MAP_E2, MAP_E3",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md:410",
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:55"
+   ],
+   "kind": "not in description",
+   "note": "the field is MAP_E0",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:field:CLASSA_CTRL_SHADOWED.REGWEN",
+   "check": "field",
+   "ip": "alert_handler",
+   "name": "CLASSA_CTRL_SHADOWED.REGWEN",
+   "detail": "fields: EN, EN_E0, EN_E1, EN_E2, EN_E3, LOCK, MAP_E0, MAP_E1, MAP_E2, MAP_E3",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:57"
+   ],
+   "kind": "not in description",
+   "note": "CLASSA_CTRL_SHADOWED has no REGWEN field; the class lock is the CLASSA_REGWEN register",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:target:ALERT_CLASS_SHADOWED_0.CLASS_A_0",
+   "check": "target",
+   "ip": "alert_handler",
+   "name": "ALERT_CLASS_SHADOWED_0.CLASS_A_0",
+   "detail": "no entry #alert_class_shadowed_0",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:26"
+   ],
+   "kind": "link format",
+   "note": "the entry is #alert_class_shadowed",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:target:ALERT_EN_SHADOWED_0.EN_A_0",
+   "check": "target",
+   "ip": "alert_handler",
+   "name": "ALERT_EN_SHADOWED_0.EN_A_0",
+   "detail": "no entry #alert_en_shadowed_0",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:23"
+   ],
+   "kind": "link format",
+   "note": "the entry is #alert_en_shadowed",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:target:ALERT_REGWEN_0.EN_0",
+   "check": "target",
+   "ip": "alert_handler",
+   "name": "ALERT_REGWEN_0.EN_0",
+   "detail": "no entry #alert_regwen_0",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:28"
+   ],
+   "kind": "link format",
+   "note": "the entry is #alert_regwen",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:target:CLASSA_ACCUM_THRESH",
+   "check": "target",
+   "ip": "alert_handler",
+   "name": "CLASSA_ACCUM_THRESH",
+   "detail": "no entry #classa_accum_thresh",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:44"
+   ],
+   "kind": "not in description",
+   "note": "the register is CLASSA_ACCUM_THRESH_SHADOWED",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:target:CLASSA_CLR",
+   "check": "target",
+   "ip": "alert_handler",
+   "name": "CLASSA_CLR",
+   "detail": "no entry #classa_clr",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:85"
+   ],
+   "kind": "not in description",
+   "note": "the register is CLASSA_CLR_SHADOWED",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:target:CLASSA_PHASE0_CYC",
+   "check": "target",
+   "ip": "alert_handler",
+   "name": "CLASSA_PHASE0_CYC",
+   "detail": "no entry #classa_phase0_cyc",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/theory_of_operation.md:408",
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:50"
+   ],
+   "kind": "not in description",
+   "note": "the register is CLASSA_PHASE0_CYC_SHADOWED",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:target:LOC_ALERT_CLASS_SHADOWED_0.CLASS_LA_0",
+   "check": "target",
+   "ip": "alert_handler",
+   "name": "LOC_ALERT_CLASS_SHADOWED_0.CLASS_LA_0",
+   "detail": "no entry #loc_alert_class_shadowed_0",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:26"
+   ],
+   "kind": "link format",
+   "note": "the entry is #loc_alert_class_shadowed",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:target:LOC_ALERT_EN_SHADOWED_0.EN_LA_0",
+   "check": "target",
+   "ip": "alert_handler",
+   "name": "LOC_ALERT_EN_SHADOWED_0.EN_LA_0",
+   "detail": "no entry #loc_alert_en_shadowed_0",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:23"
+   ],
+   "kind": "link format",
+   "note": "the entry is #loc_alert_en_shadowed",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:target:LOC_ALERT_REGWEN_0.EN_0",
+   "check": "target",
+   "ip": "alert_handler",
+   "name": "LOC_ALERT_REGWEN_0.EN_0",
+   "detail": "no entry #loc_alert_regwen_0",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:28"
+   ],
+   "kind": "link format",
+   "note": "the entry is #loc_alert_regwen",
+   "on_master": "still there"
+  },
+  {
+   "key": "alert_handler:target:PING_TIMER_EN",
+   "check": "target",
+   "ip": "alert_handler",
+   "name": "PING_TIMER_EN",
+   "detail": "no entry #ping_timer_en",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/alert_handler/doc/programmers_guide.md:59"
+   ],
+   "kind": "not in description",
+   "note": "the register is PING_TIMER_EN_SHADOWED",
+   "on_master": "still there"
+  },
+  {
+   "key": "aon_timer:link:WKUP_THOLD_HI",
+   "check": "link",
+   "ip": "aon_timer",
+   "name": "WKUP_THOLD_HI",
+   "detail": "link goes to #wkup_thold_lo",
+   "places": [
+    "hw/ip/aon_timer/doc/theory_of_operation.md:32"
+   ],
+   "kind": "wrong register",
+   "note": "bits 31:0 are in WKUP_THOLD_LO, where the link goes; the text names WKUP_THOLD_HI",
+   "on_master": "still there"
+  },
+  {
+   "key": "ascon:field:OUTPUT_VALID.data_type",
+   "check": "field",
+   "ip": "ascon",
+   "name": "OUTPUT_VALID.data_type",
+   "detail": "fields: MSG_VALID, TAG_COMPARISON_VALID, TAG_VALID",
+   "places": [
+    "hw/ip/ascon/doc/programmers_guide.md:34",
+    "hw/ip/ascon/doc/programmers_guide.md:35",
+    "hw/ip/ascon/doc/programmers_guide.md:55"
+   ],
+   "kind": "not in description",
+   "note": "OUTPUT_VALID has MSG_VALID, TAG_VALID and TAG_COMPARISON_VALID; there is no data_type field",
+   "on_master": "still there"
+  },
+  {
+   "key": "ascon:field:STATUS.ason_error",
+   "check": "field",
+   "ip": "ascon",
+   "name": "STATUS.ason_error",
+   "detail": "fields: ALERT_FATAL_FAULT, ALERT_RECOV_CTRL_UPDATE_ERR, ASCON_ERROR, IDLE, STALL, WAIT_EDN",
+   "places": [
+    "hw/ip/ascon/doc/programmers_guide.md:71"
+   ],
+   "kind": "not in description",
+   "note": "spelling: the field is ASCON_ERROR",
+   "on_master": "still there"
+  },
+  {
+   "key": "clkmgr:target:IO_MEASURE_CTRL",
+   "check": "target",
+   "ip": "clkmgr",
+   "name": "IO_MEASURE_CTRL",
+   "detail": "no entry #io_measure_ctrl",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/clkmgr/doc/theory_of_operation.md:268"
+   ],
+   "kind": "not in description",
+   "note": "the registers are IO_MEAS_CTRL_EN and IO_MEAS_CTRL_SHADOWED; corrected in PR #32162",
+   "on_master": "still there"
+  },
+  {
+   "key": "csrng:field:CTRL.WRITE_INT_STATE",
+   "check": "field",
+   "ip": "csrng",
+   "name": "CTRL.WRITE_INT_STATE",
+   "detail": "fields: ENABLE, FIPS_FORCE_ENABLE, READ_INT_STATE, SW_APP_ENABLE",
+   "places": [
+    "hw/ip/csrng/doc/programmers_guide.md:150"
+   ],
+   "kind": "not in description",
+   "note": "not in the description at this revision; on master the design has it",
+   "on_master": "gone"
+  },
+  {
+   "key": "csrng:field:RECOV_ALERT_STS.INT_STATE_OVERWRITE_ALERT",
+   "check": "field",
+   "ip": "csrng",
+   "name": "RECOV_ALERT_STS.INT_STATE_OVERWRITE_ALERT",
+   "detail": "fields: ACMD_FLAG0_FIELD_ALERT, CMD_STAGE_INVALID_ACMD_ALERT, CMD_STAGE_INVALID_CMD_SEQ_ALERT, CMD_STAGE_INVALID_GEN_CMD_ALERT, CMD_STAGE_RESEED_CNT_ALERT, CS_BUS_CMP_ALERT, ENABLE_FIELD_ALERT, FIPS_FORCE_ENABLE_FIELD_ALERT, GEN_ABORT_FIELD_ALERT, GEN_ABORT_INVALID_ALERT, INT_STATE_HALT_FIELD_ALERT, READ_INT_STATE_FIELD_ALERT, SW_APP_ENABLE_FIELD_ALERT",
+   "places": [
+    "hw/ip/csrng/doc/programmers_guide.md:146"
+   ],
+   "kind": "not in description",
+   "note": "not in the description at this revision; on master the design has it",
+   "on_master": "gone"
+  },
+  {
+   "key": "csrng:target:INT_STATE_WRITE_ENABLE",
+   "check": "target",
+   "ip": "csrng",
+   "name": "INT_STATE_WRITE_ENABLE",
+   "detail": "no entry #int_state_write_enable",
+   "places": [
+    "hw/ip/csrng/doc/programmers_guide.md:150"
+   ],
+   "kind": "not in description",
+   "note": "not in the description at this revision; on master the design has it",
+   "on_master": "gone"
+  },
+  {
+   "key": "csrng:target:INT_STATE_WRITE_ENABLE_REGWEN",
+   "check": "target",
+   "ip": "csrng",
+   "name": "INT_STATE_WRITE_ENABLE_REGWEN",
+   "detail": "no entry #int_state_write_enable_regwen",
+   "places": [
+    "hw/ip/csrng/doc/programmers_guide.md:156"
+   ],
+   "kind": "not in description",
+   "note": "not in the description at this revision; on master the design has it",
+   "on_master": "gone"
+  },
+  {
+   "key": "edn:target:MAX_NUM_REQS_BETWEEN_RESEEDS",
+   "check": "target",
+   "ip": "edn",
+   "name": "MAX_NUM_REQS_BETWEEN_RESEEDS",
+   "detail": "no entry #max-num-reqs-between-reseeds",
+   "places": [
+    "hw/ip/edn/doc/theory_of_operation.md:85"
+   ],
+   "kind": "link format",
+   "note": "the entry is #max_num_reqs_between_reseeds (underscores, not hyphens)",
+   "on_master": "still there"
+  },
+  {
+   "key": "flash_ctrl:field:ERR_CODE.PROG_INTG_ERR",
+   "check": "field",
+   "ip": "flash_ctrl",
+   "name": "ERR_CODE.PROG_INTG_ERR",
+   "detail": "fields: macro_err, mp_err, op_err, prog_err, prog_type_err, prog_win_err, rd_err, update_err",
+   "places": [
+    "hw/top_englishbreakfast/ip_autogen/flash_ctrl/doc/theory_of_operation.md:189"
+   ],
+   "kind": "not in description",
+   "note": "ERR_CODE has no PROG_INTG_ERR; the field is in STD_FAULT_STATUS",
+   "on_master": "still there"
+  },
+  {
+   "key": "flash_ctrl:field:FAULT_STATUS.LCMGR_INTG_ERR",
+   "check": "field",
+   "ip": "flash_ctrl",
+   "name": "FAULT_STATUS.LCMGR_INTG_ERR",
+   "detail": "fields: arb_err, host_gnt_err, mp_err, op_err, phy_relbl_err, phy_storage_err, prog_err, prog_type_err, prog_win_err, rd_err, seed_err, spurious_ack",
+   "places": [
+    "hw/top_englishbreakfast/ip_autogen/flash_ctrl/doc/theory_of_operation.md:200"
+   ],
+   "kind": "not in description",
+   "note": "FAULT_STATUS has no LCMGR_INTG_ERR; the field is in STD_FAULT_STATUS",
+   "on_master": "still there"
+  },
+  {
+   "key": "flash_ctrl:field:FAULT_STATUS.PROG_INTG_ERR",
+   "check": "field",
+   "ip": "flash_ctrl",
+   "name": "FAULT_STATUS.PROG_INTG_ERR",
+   "detail": "fields: arb_err, host_gnt_err, mp_err, op_err, phy_relbl_err, phy_storage_err, prog_err, prog_type_err, prog_win_err, rd_err, seed_err, spurious_ack",
+   "places": [
+    "hw/top_englishbreakfast/ip_autogen/flash_ctrl/doc/theory_of_operation.md:203"
+   ],
+   "kind": "not in description",
+   "note": "FAULT_STATUS has no PROG_INTG_ERR; the field is in STD_FAULT_STATUS",
+   "on_master": "still there"
+  },
+  {
+   "key": "flash_ctrl:field:MP_REGION_CFG_0.HE",
+   "check": "field",
+   "ip": "flash_ctrl",
+   "name": "MP_REGION_CFG_0.HE",
+   "detail": "fields: ECC_EN_0, EN_0, ERASE_EN_0, HE_EN_0, PROG_EN_0, RD_EN_0, SCRAMBLE_EN_0",
+   "places": [
+    "hw/top_englishbreakfast/ip_autogen/flash_ctrl/doc/theory_of_operation.md:124"
+   ],
+   "kind": "not in description",
+   "note": "the field is HE_EN",
+   "on_master": "still there"
+  },
+  {
+   "key": "hmac:field:CMD.process",
+   "check": "field",
+   "ip": "hmac",
+   "name": "CMD.process",
+   "detail": "fields: hash_continue, hash_process, hash_start, hash_stop",
+   "places": [
+    "hw/ip/hmac/doc/programmers_guide.md:183"
+   ],
+   "kind": "not in description",
+   "note": "the field is hash_process",
+   "on_master": "gone"
+  },
+  {
+   "key": "hmac:field:CMD.start",
+   "check": "field",
+   "ip": "hmac",
+   "name": "CMD.start",
+   "detail": "fields: hash_continue, hash_process, hash_start, hash_stop",
+   "places": [
+    "hw/ip/hmac/doc/programmers_guide.md:180",
+    "hw/ip/hmac/doc/programmers_guide.md:182"
+   ],
+   "kind": "not in description",
+   "note": "the field is hash_start",
+   "on_master": "still there"
+  },
+  {
+   "key": "i2c:field:FIFO_CTRL.FMTILVL",
+   "check": "field",
+   "ip": "i2c",
+   "name": "FIFO_CTRL.FMTILVL",
+   "detail": "fields: ACQRST, FMTRST, RXRST, TXRST",
+   "places": [
+    "hw/ip/i2c/doc/programmers_guide.md:139"
+   ],
+   "kind": "not in description",
+   "note": "FIFO_CTRL has no FMTILVL; the format FIFO threshold is HOST_FIFO_CONFIG.FMT_THRESH",
+   "on_master": "still there"
+  },
+  {
+   "key": "i2c:field:TIMING4.T_STO",
+   "check": "field",
+   "ip": "i2c",
+   "name": "TIMING4.T_STO",
+   "detail": "fields: TSU_STO, T_BUF",
+   "places": [
+    "hw/ip/i2c/doc/programmers_guide.md:56",
+    "hw/ip/i2c/doc/programmers_guide.md:101"
+   ],
+   "kind": "not in description",
+   "note": "the field is TSU_STO",
+   "on_master": "still there"
+  },
+  {
+   "key": "keymgr_dpe:field:CONTROL_SHADOWED.DST_SEL",
+   "check": "field",
+   "ip": "keymgr_dpe",
+   "name": "CONTROL_SHADOWED.DST_SEL",
+   "detail": "fields: DEST_SEL, OPERATION, SLOT_DST_SEL, SLOT_SRC_SEL, SW_BINDING_ONLY",
+   "places": [
+    "hw/ip/keymgr_dpe/doc/theory_of_operation.md:202",
+    "hw/ip/keymgr_dpe/doc/programmers_guide.md:73"
+   ],
+   "kind": "not in description",
+   "note": "the field that selects AES, KMAC, OTBN or HMAC is DEST_SEL",
+   "on_master": "still there"
+  },
+  {
+   "key": "kmac:field:CMD.mode",
+   "check": "field",
+   "ip": "kmac",
+   "name": "CMD.mode",
+   "detail": "fields: cmd, entropy_req, err_processed, hash_cnt_clr",
+   "places": [
+    "hw/ip/kmac/doc/theory_of_operation.md:172"
+   ],
+   "kind": "not in description",
+   "note": "CMD has no mode field; the mode is CFG_SHADOWED.mode",
+   "on_master": "still there"
+  },
+  {
+   "key": "kmac:field:STATUS.squeeze",
+   "check": "field",
+   "ip": "kmac",
+   "name": "STATUS.squeeze",
+   "detail": "fields: ALERT_FATAL_FAULT, ALERT_RECOV_CTRL_UPDATE_ERR, entropy_ready, entropy_reseeding, fifo_depth, fifo_empty, fifo_full, sha3_absorb, sha3_idle, sha3_squeeze, sha3_stopped, state_write",
+   "places": [
+    "hw/ip/kmac/doc/programmers_guide.md:36",
+    "hw/ip/kmac/doc/programmers_guide.md:41"
+   ],
+   "kind": "not in description",
+   "note": "the field is sha3_squeeze",
+   "on_master": "still there"
+  },
+  {
+   "key": "lc_ctrl:field:TRANSITION_CTRL.EXT_CLK_EN",
+   "check": "field",
+   "ip": "lc_ctrl",
+   "name": "TRANSITION_CTRL.EXT_CLK_EN",
+   "detail": "fields: EXT_CLOCK_EN, VOLATILE_RAW_UNLOCK",
+   "places": [
+    "hw/ip/lc_ctrl/doc/programmers_guide.md:15",
+    "hw/ip/lc_ctrl/doc/programmers_guide.md:52"
+   ],
+   "kind": "not in description",
+   "note": "the field is EXT_CLOCK_EN (the link already goes to it)",
+   "on_master": "still there"
+  },
+  {
+   "key": "otbn:field:CMD.start",
+   "check": "field",
+   "ip": "otbn",
+   "name": "CMD.start",
+   "detail": "fields: cmd",
+   "places": [
+    "hw/ip/otbn/README.md:126",
+    "hw/ip/otbn/README.md:807"
+   ],
+   "kind": "not in description",
+   "note": "CMD has a single field, cmd; an operation starts when the EXECUTE command (0xd8) is written",
+   "on_master": "still there"
+  },
+  {
+   "key": "otp_ctrl:target:CREATOR_SW_CFG",
+   "check": "target",
+   "ip": "otp_ctrl",
+   "name": "CREATOR_SW_CFG",
+   "detail": "no entry #creator_sw_cfg",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/programmers_guide.md:263"
+   ],
+   "kind": "not in description",
+   "note": "an OTP partition, not a register; corrected in PR #32162",
+   "on_master": "still there"
+  },
+  {
+   "key": "otp_ctrl:target:HW_CFG_DIGEST_0",
+   "check": "target",
+   "ip": "otp_ctrl",
+   "name": "HW_CFG_DIGEST_0",
+   "detail": "no entry #hw_cfg_digest",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/programmers_guide.md:257"
+   ],
+   "kind": "not in description",
+   "note": "the registers are HW_CFG0_DIGEST_0 and HW_CFG1_DIGEST_0; corrected in PR #32162",
+   "on_master": "still there"
+  },
+  {
+   "key": "otp_ctrl:target:OWNER_SW_CFG",
+   "check": "target",
+   "ip": "otp_ctrl",
+   "name": "OWNER_SW_CFG",
+   "detail": "no entry #owner_sw_cfg",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/otp_ctrl/doc/programmers_guide.md:263"
+   ],
+   "kind": "not in description",
+   "note": "an OTP partition, not a register; corrected in PR #32162",
+   "on_master": "still there"
+  },
+  {
+   "key": "pattgen:field:CTRL.ENABLE",
+   "check": "field",
+   "ip": "pattgen",
+   "name": "CTRL.ENABLE",
+   "detail": "fields: ENABLE_CH0, ENABLE_CH1, INACTIVE_LEVEL_PCL_CH0, INACTIVE_LEVEL_PCL_CH1, INACTIVE_LEVEL_PDA_CH0, INACTIVE_LEVEL_PDA_CH1, POLARITY_CH0, POLARITY_CH1",
+   "places": [
+    "hw/ip/pattgen/doc/theory_of_operation.md:3"
+   ],
+   "kind": "shorthand",
+   "note": "one ENABLE_CHn field per channel; the sentence says \"for the desired channel\"",
+   "on_master": "still there"
+  },
+  {
+   "key": "pattgen:field:CTRL.INACTIVE_LEVEL_PCL",
+   "check": "field",
+   "ip": "pattgen",
+   "name": "CTRL.INACTIVE_LEVEL_PCL",
+   "detail": "fields: ENABLE_CH0, ENABLE_CH1, INACTIVE_LEVEL_PCL_CH0, INACTIVE_LEVEL_PCL_CH1, INACTIVE_LEVEL_PDA_CH0, INACTIVE_LEVEL_PDA_CH1, POLARITY_CH0, POLARITY_CH1",
+   "places": [
+    "hw/ip/pattgen/doc/programmers_guide.md:45"
+   ],
+   "kind": "shorthand",
+   "note": "one field per channel; the sentence says so",
+   "on_master": "still there"
+  },
+  {
+   "key": "pattgen:field:CTRL.INACTIVE_LEVEL_PDA",
+   "check": "field",
+   "ip": "pattgen",
+   "name": "CTRL.INACTIVE_LEVEL_PDA",
+   "detail": "fields: ENABLE_CH0, ENABLE_CH1, INACTIVE_LEVEL_PCL_CH0, INACTIVE_LEVEL_PCL_CH1, INACTIVE_LEVEL_PDA_CH0, INACTIVE_LEVEL_PDA_CH1, POLARITY_CH0, POLARITY_CH1",
+   "places": [
+    "hw/ip/pattgen/doc/programmers_guide.md:45"
+   ],
+   "kind": "shorthand",
+   "note": "one field per channel; the sentence says so",
+   "on_master": "still there"
+  },
+  {
+   "key": "pattgen:target:PREDIV_CH0",
+   "check": "target",
+   "ip": "pattgen",
+   "name": "PREDIV_CH0",
+   "detail": "no entry #prediv-ch0",
+   "places": [
+    "hw/ip/pattgen/README.md:67"
+   ],
+   "kind": "link format",
+   "note": "the entry is #prediv_ch0 (underscore, not hyphen)",
+   "on_master": "still there"
+  },
+  {
+   "key": "pattgen:target:PREDIV_CH1",
+   "check": "target",
+   "ip": "pattgen",
+   "name": "PREDIV_CH1",
+   "detail": "no entry #prediv-ch1",
+   "places": [
+    "hw/ip/pattgen/README.md:67"
+   ],
+   "kind": "link format",
+   "note": "the entry is #prediv_ch1 (underscore, not hyphen)",
+   "on_master": "still there"
+  },
+  {
+   "key": "pinmux:target:MIO_PAD_SLEEP_STATUS_0",
+   "check": "target",
+   "ip": "pinmux",
+   "name": "MIO_PAD_SLEEP_STATUS_0",
+   "detail": "no entry #mio_pad_sleep_status",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/pinmux/doc/programmers_guide.md:81"
+   ],
+   "kind": "link format",
+   "note": "the entry is #mio_pad_sleep_status_0",
+   "on_master": "still there"
+  },
+  {
+   "key": "pinmux:target:PERIPH_INSEL_0",
+   "check": "target",
+   "ip": "pinmux",
+   "name": "PERIPH_INSEL_0",
+   "detail": "no entry #periph_insel_0",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/pinmux/doc/programmers_guide.md:36"
+   ],
+   "kind": "not in description",
+   "note": "the register is MIO_PERIPH_INSEL_0; corrected in PR #32162",
+   "on_master": "still there"
+  },
+  {
+   "key": "rram_ctrl:field:EXEC.CONFIG",
+   "check": "field",
+   "ip": "rram_ctrl",
+   "name": "EXEC.CONFIG",
+   "detail": "fields: EN",
+   "places": [
+    "hw/ip/rram_ctrl/doc/programmers_guide.md:44"
+   ],
+   "kind": "not a register reference",
+   "note": "EXEC.CONFIG.REDUN names a security countermeasure, linked to interfaces.md",
+   "on_master": "still there"
+  },
+  {
+   "key": "rv_plic:target:IE0",
+   "check": "target",
+   "ip": "rv_plic",
+   "name": "IE0",
+   "detail": "no entry #ie0",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/rv_plic/doc/theory_of_operation.md:63",
+    "hw/top_earlgrey/ip_autogen/rv_plic/doc/theory_of_operation.md:64"
+   ],
+   "kind": "link format",
+   "note": "the registers are IE0_0, IE0_1, ...; the entries are #ie0_0, ...",
+   "on_master": "still there"
+  },
+  {
+   "key": "rv_plic:target:IP",
+   "check": "target",
+   "ip": "rv_plic",
+   "name": "IP",
+   "detail": "no entry #ip",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/rv_plic/doc/theory_of_operation.md:46",
+    "hw/top_earlgrey/ip_autogen/rv_plic/doc/theory_of_operation.md:47",
+    "hw/top_earlgrey/ip_autogen/rv_plic/doc/theory_of_operation.md:49",
+    "hw/top_earlgrey/ip_autogen/rv_plic/doc/theory_of_operation.md:51",
+    "hw/top_earlgrey/ip_autogen/rv_plic/doc/theory_of_operation.md:56",
+    "hw/top_earlgrey/ip_autogen/rv_plic/doc/theory_of_operation.md:84"
+   ],
+   "kind": "link format",
+   "note": "the registers are IP_0, IP_1, ...; the entries are #ip_0, ...",
+   "on_master": "still there"
+  },
+  {
+   "key": "rv_plic:target:PRIO0",
+   "check": "target",
+   "ip": "rv_plic",
+   "name": "PRIO0",
+   "detail": "no entry #prio_0",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/rv_plic/doc/programmers_guide.md:9"
+   ],
+   "kind": "link format",
+   "note": "the register is PRIO_0; the entry is #prio",
+   "on_master": "still there"
+  },
+  {
+   "key": "rv_plic:target:PRIO31",
+   "check": "target",
+   "ip": "rv_plic",
+   "name": "PRIO31",
+   "detail": "no entry #prio_1",
+   "places": [
+    "hw/top_earlgrey/ip_autogen/rv_plic/doc/programmers_guide.md:9"
+   ],
+   "kind": "link format",
+   "note": "the register is PRIO_31; the link goes to #prio_1, and the entry is #prio",
+   "on_master": "still there"
+  },
+  {
+   "key": "rv_timer:field:CFG0.prescaler",
+   "check": "field",
+   "ip": "rv_timer",
+   "name": "CFG0.prescaler",
+   "detail": "fields: prescale, step",
+   "places": [
+    "hw/ip/rv_timer/doc/theory_of_operation.md:8",
+    "hw/ip/rv_timer/doc/theory_of_operation.md:20",
+    "hw/ip/rv_timer/doc/theory_of_operation.md:26"
+   ],
+   "kind": "not in description",
+   "note": "the field is prescale",
+   "on_master": "still there"
+  },
+  {
+   "key": "spi_device:target:BUSY",
+   "check": "target",
+   "ip": "spi_device",
+   "name": "BUSY",
+   "detail": "no entry #flash_status_busy",
+   "places": [
+    "hw/ip/spi_device/doc/theory_of_operation.md:74"
+   ],
+   "kind": "link format",
+   "note": "FLASH_STATUS.busy exists; the entry is #flash_status--busy",
+   "on_master": "still there"
+  },
+  {
+   "key": "spi_device:target:FILTER",
+   "check": "target",
+   "ip": "spi_device",
+   "name": "FILTER",
+   "detail": "no entry #filter",
+   "places": [
+    "hw/ip/spi_device/README.md:60"
+   ],
+   "kind": "not in description",
+   "note": "there is no FILTER register; the command filter registers are CMD_FILTER_0, CMD_FILTER_1, ...",
+   "on_master": "still there"
+  },
+  {
+   "key": "spi_device:target:JEDEC_CC.cc",
+   "check": "target",
+   "ip": "spi_device",
+   "name": "JEDEC_CC.cc",
+   "detail": "no entry #jedec_cc_cc",
+   "places": [
+    "hw/ip/spi_device/doc/theory_of_operation.md:110"
+   ],
+   "kind": "link format",
+   "note": "the entry is #jedec_cc--cc",
+   "on_master": "still there"
+  },
+  {
+   "key": "spi_device:target:JEDEC_CC.num_cc",
+   "check": "target",
+   "ip": "spi_device",
+   "name": "JEDEC_CC.num_cc",
+   "detail": "no entry #jedec_cc_num_cc",
+   "places": [
+    "hw/ip/spi_device/doc/theory_of_operation.md:111"
+   ],
+   "kind": "link format",
+   "note": "the entry is #jedec_cc--num_cc",
+   "on_master": "still there"
+  },
+  {
+   "key": "spi_device:target:WEL",
+   "check": "target",
+   "ip": "spi_device",
+   "name": "WEL",
+   "detail": "no entry #flash_status_wel",
+   "places": [
+    "hw/ip/spi_device/doc/theory_of_operation.md:74"
+   ],
+   "kind": "link format",
+   "note": "FLASH_STATUS.wel exists; the entry is #flash_status--wel",
+   "on_master": "still there"
+  },
+  {
+   "key": "spi_host:field:ERROR_STATUS.CMDERR",
+   "check": "field",
+   "ip": "spi_host",
+   "name": "ERROR_STATUS.CMDERR",
+   "detail": "fields: ACCESSINVAL, CMDBUSY, CMDINVAL, CSIDINVAL, OVERFLOW, UNDERFLOW",
+   "places": [
+    "hw/ip/spi_host/doc/theory_of_operation.md:590"
+   ],
+   "kind": "not in description",
+   "note": "the field for a command written when not ready is CMDBUSY",
+   "on_master": "still there"
+  },
+  {
+   "key": "sysrst_ctrl:target:COM_DET_SEL_CTL_0",
+   "check": "target",
+   "ip": "sysrst_ctrl",
+   "name": "COM_DET_SEL_CTL_0",
+   "detail": "no entry #com_det_sel_ctl",
+   "places": [
+    "hw/ip/sysrst_ctrl/doc/theory_of_operation.md:40"
+   ],
+   "kind": "not in description",
+   "note": "there is no COM_DET_SEL_CTL_0; the pre-condition time is set in COM_PRE_DET_CTL_0",
+   "on_master": "still there"
+  },
+  {
+   "key": "uart:field:INTR_STATE.BREAK",
+   "check": "field",
+   "ip": "uart",
+   "name": "INTR_STATE.BREAK",
+   "detail": "fields: rx_break_err, rx_frame_err, rx_overflow, rx_parity_err, rx_timeout, rx_watermark, tx_done, tx_empty, tx_watermark",
+   "places": [
+    "hw/ip/uart/doc/theory_of_operation.md:160",
+    "hw/ip/uart/doc/theory_of_operation.md:161"
+   ],
+   "kind": "not in description",
+   "note": "the interrupt field is rx_break_err",
+   "on_master": "still there"
+  },
+  {
+   "key": "uart:field:STATUS.BREAK",
+   "check": "field",
+   "ip": "uart",
+   "name": "STATUS.BREAK",
+   "detail": "fields: RXEMPTY, RXFULL, RXIDLE, TXEMPTY, TXFULL, TXIDLE",
+   "places": [
+    "hw/ip/uart/doc/theory_of_operation.md:159",
+    "hw/ip/uart/doc/theory_of_operation.md:160",
+    "hw/ip/uart/doc/theory_of_operation.md:161"
+   ],
+   "kind": "not in description",
+   "note": "STATUS has no break bit: the documented way to read the current break status does not exist",
+   "on_master": "still there"
+  }
+ ]
+}

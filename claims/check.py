@@ -40,6 +40,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -98,8 +99,13 @@ def find_registers(model: dict, name: str) -> list[dict]:
 
 
 def find_field(reg: dict, name: str) -> dict | None:
+    """A field by name, in any case. A field of a multi-register can be named without its
+    index (`CMD_INFO.addr_mode` for addr_mode_3), as OpenTitan's documentation does."""
     key = name.strip().strip("`").lower()
-    return next((f for f in reg["fields"] if f["name"].lower() == key), None)
+    exact = next((f for f in reg["fields"] if f["name"].lower() == key), None)
+    if exact:
+        return exact
+    return next((f for f in reg["fields"] if BASE_RE.sub("", f["name"]).lower() == key), None)
 
 
 def described(reg: dict, field: dict | None, prop: str):
@@ -257,8 +263,47 @@ def link_mismatches(root: Path, ips: list[dict], models: dict) -> list[dict]:
     return out
 
 
+NAME_TEXT_RE = re.compile(r"`?[A-Za-z][\w.]*`?")
+TARGET_RE = re.compile(r"\[([^\]]+)\]\(([^)#\s]*?)(registers\.md|\w+\.hjson)#([\w-]+)\)")
+
+
+def missing_targets(root: Path, ips: list[dict], models: dict) -> list[dict]:
+    """Links into the IP's own registers.md (or its description) whose anchor is not a
+    register entry there, nor REGISTER--FIELD for a field of one."""
+    out = []
+    for ip in ips:
+        model = models[ip["ip"]]
+        valid = set(model["anchors"])
+        fields: dict[str, set[str]] = {}
+        for r in model["registers"]:
+            for a in (r["name"].lower(), BASE_RE.sub("", r["name"]).lower()):
+                fields.setdefault(a, set()).update(
+                    n for f in r["fields"] for n in (f["name"].lower(),
+                                                     BASE_RE.sub("", f["name"]).lower()))
+        ip_dir = Path(ip["hjson"]).parent.parent
+        for rel in sel.doc_files(ip["hjson"]):
+            path = root / rel
+            if not path.is_file():
+                continue
+            for no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+                for m in TARGET_RE.finditer(line):
+                    if not NAME_TEXT_RE.fullmatch(m.group(1)):
+                        continue        # "[Register Table](registers.md#registers)"
+                    where = Path(os.path.normpath(Path(rel).parent / m.group(2)))
+                    own = ip_dir / ("doc" if m.group(3) == "registers.md" else "data")
+                    if where != own:
+                        continue
+                    anchor = m.group(4).lower()
+                    reg, _, field = anchor.partition("--")
+                    if reg in valid and (not field or field in fields.get(reg, ())):
+                        continue
+                    out.append({"ip": ip["ip"], "path": rel, "line": no,
+                                "text": m.group(1).strip("`"), "target": m.group(4)})
+    return out
+
+
 def load_models(root: Path, ips: list[dict]) -> dict:
-    return {ip["ip"]: regmodel.load(root, ip["hjson"]) for ip in ips}
+    return {ip["ip"]: regmodel.load(root, ip["hjson"], all_interfaces=True) for ip in ips}
 
 
 def check_all(sentences: dict, answers: dict, models: dict, ips: list[dict],

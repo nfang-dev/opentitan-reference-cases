@@ -1,0 +1,305 @@
+{
+ "about": "Each name-check finding at the recorded OpenTitan revision, classified by reading the sentence and the register description. on_master: whether the same check still finds it on OpenTitan's master branch (commit 80db19f, November 16, 2026).",
+ "findings": {
+  "alert_handler:field:CLASSA_CTRL_SHADOWED.E0_EN": {
+   "kind": "not in description",
+   "note": "the field is EN_E0",
+   "on_master": "still there"
+  },
+  "alert_handler:field:CLASSA_CTRL_SHADOWED.E0_MAP": {
+   "kind": "not in description",
+   "note": "the field is MAP_E0",
+   "on_master": "still there"
+  },
+  "alert_handler:field:CLASSA_CTRL_SHADOWED.REGWEN": {
+   "kind": "not in description",
+   "note": "CLASSA_CTRL_SHADOWED has no REGWEN field; the class lock is the CLASSA_REGWEN register",
+   "on_master": "still there"
+  },
+  "alert_handler:target:ALERT_CLASS_SHADOWED_0.CLASS_A_0": {
+   "kind": "link format",
+   "note": "the entry is #alert_class_shadowed",
+   "on_master": "still there"
+  },
+  "alert_handler:target:ALERT_EN_SHADOWED_0.EN_A_0": {
+   "kind": "link format",
+   "note": "the entry is #alert_en_shadowed",
+   "on_master": "still there"
+  },
+  "alert_handler:target:ALERT_REGWEN_0.EN_0": {
+   "kind": "link format",
+   "note": "the entry is #alert_regwen",
+   "on_master": "still there"
+  },
+  "alert_handler:target:CLASSA_ACCUM_THRESH": {
+   "kind": "not in description",
+   "note": "the register is CLASSA_ACCUM_THRESH_SHADOWED",
+   "on_master": "still there"
+  },
+  "alert_handler:target:CLASSA_CLR": {
+   "kind": "not in description",
+   "note": "the register is CLASSA_CLR_SHADOWED",
+   "on_master": "still there"
+  },
+  "alert_handler:target:CLASSA_PHASE0_CYC": {
+   "kind": "not in description",
+   "note": "the register is CLASSA_PHASE0_CYC_SHADOWED",
+   "on_master": "still there"
+  },
+  "alert_handler:target:LOC_ALERT_CLASS_SHADOWED_0.CLASS_LA_0": {
+   "kind": "link format",
+   "note": "the entry is #loc_alert_class_shadowed",
+   "on_master": "still there"
+  },
+  "alert_handler:target:LOC_ALERT_EN_SHADOWED_0.EN_LA_0": {
+   "kind": "link format",
+   "note": "the entry is #loc_alert_en_shadowed",
+   "on_master": "still there"
+  },
+  "alert_handler:target:LOC_ALERT_REGWEN_0.EN_0": {
+   "kind": "link format",
+   "note": "the entry is #loc_alert_regwen",
+   "on_master": "still there"
+  },
+  "alert_handler:target:PING_TIMER_EN": {
+   "kind": "not in description",
+   "note": "the register is PING_TIMER_EN_SHADOWED",
+   "on_master": "still there"
+  },
+  "aon_timer:link:WKUP_THOLD_HI": {
+   "kind": "wrong register",
+   "note": "bits 31:0 are in WKUP_THOLD_LO, where the link goes; the text names WKUP_THOLD_HI",
+   "on_master": "still there"
+  },
+  "ascon:field:OUTPUT_VALID.data_type": {
+   "kind": "not in description",
+   "note": "OUTPUT_VALID has MSG_VALID, TAG_VALID and TAG_COMPARISON_VALID; there is no data_type field",
+   "on_master": "still there"
+  },
+  "ascon:field:STATUS.ason_error": {
+   "kind": "not in description",
+   "note": "spelling: the field is ASCON_ERROR",
+   "on_master": "still there"
+  },
+  "clkmgr:target:IO_MEASURE_CTRL": {
+   "kind": "not in description",
+   "note": "the registers are IO_MEAS_CTRL_EN and IO_MEAS_CTRL_SHADOWED; corrected in PR #32162",
+   "on_master": "still there"
+  },
+  "csrng:field:CTRL.WRITE_INT_STATE": {
+   "kind": "not in description",
+   "note": "not in the description at this revision; on master the design has it",
+   "on_master": "gone"
+  },
+  "csrng:field:RECOV_ALERT_STS.INT_STATE_OVERWRITE_ALERT": {
+   "kind": "not in description",
+   "note": "not in the description at this revision; on master the design has it",
+   "on_master": "gone"
+  },
+  "csrng:target:INT_STATE_WRITE_ENABLE": {
+   "kind": "not in description",
+   "note": "not in the description at this revision; on master the design has it",
+   "on_master": "gone"
+  },
+  "csrng:target:INT_STATE_WRITE_ENABLE_REGWEN": {
+   "kind": "not in description",
+   "note": "not in the description at this revision; on master the design has it",
+   "on_master": "gone"
+  },
+  "edn:target:MAX_NUM_REQS_BETWEEN_RESEEDS": {
+   "kind": "link format",
+   "note": "the entry is #max_num_reqs_between_reseeds (underscores, not hyphens)",
+   "on_master": "still there"
+  },
+  "flash_ctrl:field:ERR_CODE.PROG_INTG_ERR": {
+   "kind": "not in description",
+   "note": "ERR_CODE has no PROG_INTG_ERR; the field is in STD_FAULT_STATUS",
+   "on_master": "still there"
+  },
+  "flash_ctrl:field:FAULT_STATUS.LCMGR_INTG_ERR": {
+   "kind": "not in description",
+   "note": "FAULT_STATUS has no LCMGR_INTG_ERR; the field is in STD_FAULT_STATUS",
+   "on_master": "still there"
+  },
+  "flash_ctrl:field:FAULT_STATUS.PROG_INTG_ERR": {
+   "kind": "not in description",
+   "note": "FAULT_STATUS has no PROG_INTG_ERR; the field is in STD_FAULT_STATUS",
+   "on_master": "still there"
+  },
+  "flash_ctrl:field:MP_REGION_CFG_0.HE": {
+   "kind": "not in description",
+   "note": "the field is HE_EN",
+   "on_master": "still there"
+  },
+  "hmac:field:CMD.process": {
+   "kind": "not in description",
+   "note": "the field is hash_process",
+   "on_master": "gone"
+  },
+  "hmac:field:CMD.start": {
+   "kind": "not in description",
+   "note": "the field is hash_start",
+   "on_master": "still there"
+  },
+  "i2c:field:FIFO_CTRL.FMTILVL": {
+   "kind": "not in description",
+   "note": "FIFO_CTRL has no FMTILVL; the format FIFO threshold is HOST_FIFO_CONFIG.FMT_THRESH",
+   "on_master": "still there"
+  },
+  "i2c:field:TIMING4.T_STO": {
+   "kind": "not in description",
+   "note": "the field is TSU_STO",
+   "on_master": "still there"
+  },
+  "keymgr_dpe:field:CONTROL_SHADOWED.DST_SEL": {
+   "kind": "not in description",
+   "note": "the field that selects AES, KMAC, OTBN or HMAC is DEST_SEL",
+   "on_master": "still there"
+  },
+  "kmac:field:CMD.mode": {
+   "kind": "not in description",
+   "note": "CMD has no mode field; the mode is CFG_SHADOWED.mode",
+   "on_master": "still there"
+  },
+  "kmac:field:STATUS.squeeze": {
+   "kind": "not in description",
+   "note": "the field is sha3_squeeze",
+   "on_master": "still there"
+  },
+  "lc_ctrl:field:TRANSITION_CTRL.EXT_CLK_EN": {
+   "kind": "not in description",
+   "note": "the field is EXT_CLOCK_EN (the link already goes to it)",
+   "on_master": "still there"
+  },
+  "otbn:field:CMD.start": {
+   "kind": "not in description",
+   "note": "CMD has a single field, cmd; an operation starts when the EXECUTE command (0xd8) is written",
+   "on_master": "still there"
+  },
+  "otp_ctrl:target:CREATOR_SW_CFG": {
+   "kind": "not in description",
+   "note": "an OTP partition, not a register; corrected in PR #32162",
+   "on_master": "still there"
+  },
+  "otp_ctrl:target:HW_CFG_DIGEST_0": {
+   "kind": "not in description",
+   "note": "the registers are HW_CFG0_DIGEST_0 and HW_CFG1_DIGEST_0; corrected in PR #32162",
+   "on_master": "still there"
+  },
+  "otp_ctrl:target:OWNER_SW_CFG": {
+   "kind": "not in description",
+   "note": "an OTP partition, not a register; corrected in PR #32162",
+   "on_master": "still there"
+  },
+  "pattgen:field:CTRL.ENABLE": {
+   "kind": "shorthand",
+   "note": "one ENABLE_CHn field per channel; the sentence says \"for the desired channel\"",
+   "on_master": "still there"
+  },
+  "pattgen:field:CTRL.INACTIVE_LEVEL_PCL": {
+   "kind": "shorthand",
+   "note": "one field per channel; the sentence says so",
+   "on_master": "still there"
+  },
+  "pattgen:field:CTRL.INACTIVE_LEVEL_PDA": {
+   "kind": "shorthand",
+   "note": "one field per channel; the sentence says so",
+   "on_master": "still there"
+  },
+  "pattgen:target:PREDIV_CH0": {
+   "kind": "link format",
+   "note": "the entry is #prediv_ch0 (underscore, not hyphen)",
+   "on_master": "still there"
+  },
+  "pattgen:target:PREDIV_CH1": {
+   "kind": "link format",
+   "note": "the entry is #prediv_ch1 (underscore, not hyphen)",
+   "on_master": "still there"
+  },
+  "pinmux:target:MIO_PAD_SLEEP_STATUS_0": {
+   "kind": "link format",
+   "note": "the entry is #mio_pad_sleep_status_0",
+   "on_master": "still there"
+  },
+  "pinmux:target:PERIPH_INSEL_0": {
+   "kind": "not in description",
+   "note": "the register is MIO_PERIPH_INSEL_0; corrected in PR #32162",
+   "on_master": "still there"
+  },
+  "rram_ctrl:field:EXEC.CONFIG": {
+   "kind": "not a register reference",
+   "note": "EXEC.CONFIG.REDUN names a security countermeasure, linked to interfaces.md",
+   "on_master": "still there"
+  },
+  "rv_plic:target:IE0": {
+   "kind": "link format",
+   "note": "the registers are IE0_0, IE0_1, ...; the entries are #ie0_0, ...",
+   "on_master": "still there"
+  },
+  "rv_plic:target:IP": {
+   "kind": "link format",
+   "note": "the registers are IP_0, IP_1, ...; the entries are #ip_0, ...",
+   "on_master": "still there"
+  },
+  "rv_plic:target:PRIO0": {
+   "kind": "link format",
+   "note": "the register is PRIO_0; the entry is #prio",
+   "on_master": "still there"
+  },
+  "rv_plic:target:PRIO31": {
+   "kind": "link format",
+   "note": "the register is PRIO_31; the link goes to #prio_1, and the entry is #prio",
+   "on_master": "still there"
+  },
+  "rv_timer:field:CFG0.prescaler": {
+   "kind": "not in description",
+   "note": "the field is prescale",
+   "on_master": "still there"
+  },
+  "spi_device:target:BUSY": {
+   "kind": "link format",
+   "note": "FLASH_STATUS.busy exists; the entry is #flash_status--busy",
+   "on_master": "still there"
+  },
+  "spi_device:target:FILTER": {
+   "kind": "not in description",
+   "note": "there is no FILTER register; the command filter registers are CMD_FILTER_0, CMD_FILTER_1, ...",
+   "on_master": "still there"
+  },
+  "spi_device:target:JEDEC_CC.cc": {
+   "kind": "link format",
+   "note": "the entry is #jedec_cc--cc",
+   "on_master": "still there"
+  },
+  "spi_device:target:JEDEC_CC.num_cc": {
+   "kind": "link format",
+   "note": "the entry is #jedec_cc--num_cc",
+   "on_master": "still there"
+  },
+  "spi_device:target:WEL": {
+   "kind": "link format",
+   "note": "FLASH_STATUS.wel exists; the entry is #flash_status--wel",
+   "on_master": "still there"
+  },
+  "spi_host:field:ERROR_STATUS.CMDERR": {
+   "kind": "not in description",
+   "note": "the field for a command written when not ready is CMDBUSY",
+   "on_master": "still there"
+  },
+  "sysrst_ctrl:target:COM_DET_SEL_CTL_0": {
+   "kind": "not in description",
+   "note": "there is no COM_DET_SEL_CTL_0; the pre-condition time is set in COM_PRE_DET_CTL_0",
+   "on_master": "still there"
+  },
+  "uart:field:INTR_STATE.BREAK": {
+   "kind": "not in description",
+   "note": "the interrupt field is rx_break_err",
+   "on_master": "still there"
+  },
+  "uart:field:STATUS.BREAK": {
+   "kind": "not in description",
+   "note": "STATUS has no break bit: the documented way to read the current break status does not exist",
+   "on_master": "still there"
+  }
+ }
+}

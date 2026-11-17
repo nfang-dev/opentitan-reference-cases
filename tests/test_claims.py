@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT / "claims"))
 
 import check  # noqa: E402
 import compare  # noqa: E402
+import names  # noqa: E402
 import extract  # noqa: E402
 import sentences  # noqa: E402
 
@@ -167,6 +168,22 @@ class UnknownFieldTest(unittest.TestCase):
             got = check.link_mismatches(Path(d), [{"ip": "x", "hjson": "hw/ip/x/data/x.hjson"}],
                                         {"x": MODEL})
         self.assertEqual([(u["line"], u["text"], u["target"]) for u in got], [(2, "CAUSE", "ctrl")])
+
+
+class NamesReportTest(unittest.TestCase):
+    def test_report_groups_by_kind(self):
+        found = [{"key": "x:field:A.B", "check": "field", "ip": "x", "name": "A.B",
+                  "detail": "fields: c", "places": ["hw/ip/x/README.md:3"]},
+                 {"key": "x:target:D", "check": "target", "ip": "x", "name": "D",
+                  "detail": "no entry #d", "places": ["hw/ip/x/doc/a.md:1", "hw/ip/x/doc/a.md:9"]}]
+        review = {"x:field:A.B": {"kind": "not in description", "note": "the field is C",
+                                  "on_master": "still there"}}
+        md = names.markdown(found, review, "abc", 1)
+        self.assertIn("2 findings: not in description 1, not reviewed 1.", md)
+        self.assertIn("## Not in description (1)", md)
+        self.assertIn("| the field is C | still there |", md)
+        self.assertIn("## Not reviewed (1)", md)
+        self.assertIn("/abc/hw/ip/x/doc/a.md#L9", md)
 
 
 class CompareTest(unittest.TestCase):
