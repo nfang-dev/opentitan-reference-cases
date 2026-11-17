@@ -6,7 +6,9 @@ A case file (case.json) records:
 - requirements: quoted lines from hand-written documents, located by file and line;
 - design: evidence from the design, located by file and line, by a pattern that must
   match every instance of a register, or by a pattern that must NOT match (to show
-  that something a document names does not exist);
+  that something a document names does not exist). An absence with a "value" decides
+  a setting (for example, "the register has a break-status bit" is 0); without one,
+  it leaves the claim unresolved;
 - claims: what a requirement states about a setting, which design evidence decides
   it, and the recorded label (agrees, disagrees or unresolved).
 
@@ -186,15 +188,25 @@ def locate_all_instances(checkout: Path, item: dict) -> Located:
 
 
 def locate_absent(checkout: Path, item: dict) -> Located:
+    """Confirm that a pattern matches nowhere in a file, or, with "after", nowhere within
+    "within" lines after the single line containing the anchor text (for example, within
+    one register's definition)."""
     lines = _read_lines(checkout, item)
     if lines is None:
         return Located(item["id"], False, f"file not found: {item['file']}")
-    hits = [i + 1 for i, text in enumerate(lines) if re.search(item["pattern"], text)]
+    window = range(len(lines))
+    if "after" in item:
+        anchors = [i for i, text in enumerate(lines) if item["after"] in text]
+        if len(anchors) != 1:
+            return Located(item["id"], False,
+                           f"anchor {item['after']!r} found {len(anchors)} times in {item['file']}")
+        window = range(anchors[0] + 1, min(anchors[0] + 1 + item["within"], len(lines)))
+    hits = [i + 1 for i in window if re.search(item["pattern"], lines[i])]
     if hits:
         return Located(item["id"], False,
                        f"expected no match, but found one on lines {hits} of {item['file']}")
     return Located(item["id"], True, f"absent from {item['file']}: {item['description']}",
-                   absent=True)
+                   item.get("value"), absent="value" not in item)
 
 
 LOCATORS = {

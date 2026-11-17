@@ -1,11 +1,11 @@
 # The review tool against the labeled reference cases
 
-Each labeled claim of cases 001 to 004 is compared with what `review.py scan` reports for the requirement lines the claim comes from.
+Each labeled claim of cases 001 to 007 is compared with what `review.py scan` reports for the requirement lines the claim comes from.
 
 - Same outcome as the label: 4
 - Different outcome: 0
 - Requirement not found by the tool: 4
-- Outside the tool's scope (not a reset value): 3
+- Outside the tool's scope (not a reset value): 15
 
 | Claim | Setting | Label | Tool | Result |
 |---|---|---|---|---|
@@ -20,6 +20,18 @@ Each labeled claim of cases 001 to 004 is compared with what `review.py scan` re
 | 004-C1 | creator root key can be loaded again before the next reset (1 yes, 0 no) | disagrees | - | outside scope |
 | 004-C2 | creator root key can be loaded again before the next reset (1 yes, 0 no) | agrees | - | outside scope |
 | 004-C3 | creator root key can be loaded again before the next reset (1 yes, 0 no) | agrees | - | outside scope |
+| 005-C1 | a detected break raises an interrupt (1 yes, 0 no) | agrees | - | outside scope |
+| 005-C2 | after a break interrupt, no further one until the RX line has been high (1 yes, 0 no) | agrees | - | outside scope |
+| 005-C3 | software can read the current break status from a STATUS bit (1 yes, 0 no) | disagrees | - | outside scope |
+| 005-C4 | INTR_STATE has a field named BREAK (1 yes, 0 no) | disagrees | - | outside scope |
+| 006-C1 | value written to CMD to start an operation | disagrees | - | outside scope |
+| 006-C2 | value written to CMD to start an operation | disagrees | - | outside scope |
+| 006-C3 | value written to CMD to start an operation | agrees | - | outside scope |
+| 006-C4 | CMD has a field named start (1 yes, 0 no) | disagrees | - | outside scope |
+| 007-C1 | CMD has a field named mode (1 yes, 0 no) | disagrees | - | outside scope |
+| 007-C2 | CFG_SHADOWED has a field named mode that sets the hashing mode (1 yes, 0 no) | agrees | - | outside scope |
+| 007-C3 | STATUS has a field named squeeze (1 yes, 0 no) | disagrees | - | outside scope |
+| 007-C4 | STATUS has a bit that is 1 once absorbing is complete (1 yes, 0 no) | agrees | - | outside scope |
 
 ## Statements the tool found outside the reference cases (8)
 

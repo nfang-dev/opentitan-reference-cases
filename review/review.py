@@ -289,8 +289,10 @@ def cases_comparison(found: list[dict], cases_dir: Path) -> tuple[list[dict], li
 def cases_markdown(rows: list[dict], extra: list[dict]) -> str:
     n = {k: sum(1 for r in rows if r["result"] == k or r["result"].startswith(k))
          for k in ("same", "different", "not found", "outside scope")}
+    ids = sorted({r["claim"].split("-")[0] for r in rows})
+    span = f"cases {ids[0]} to {ids[-1]}" if ids else "the cases"
     L = ["# The review tool against the labeled reference cases", "",
-         "Each labeled claim of cases 001 to 004 is compared with what `review.py scan` reports for "
+         f"Each labeled claim of {span} is compared with what `review.py scan` reports for "
          "the requirement lines the claim comes from.", "",
          f"- Same outcome as the label: {n['same']}",
          f"- Different outcome: {n['different']}",

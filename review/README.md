@@ -54,14 +54,14 @@ Five questions, in [`examples/`](examples):
 
 ### Against the labeled reference cases
 
-[`results/cases.md`](results/cases.md) compares the scan with the 11 labeled claims of cases 001 to 004:
+[`results/cases.md`](results/cases.md) compares the scan with the 23 labeled claims of cases 001 to 007:
 
 | Result | Claims |
 |---|---|
 | Same outcome as the label | 4 (001-C2 disagrees, 001-C3, 003-C1, 003-C2) |
 | Different outcome | 0 |
 | Not found by the tool | 4 (001-C1: "all MIO outputs are high-Z" gives no number; 002-C1 to C3: no register named) |
-| Outside the tool's scope | 3 (case 004 is about an operation, not a reset value) |
+| Outside the tool's scope | 15 (case 004 is about an operation; cases 005 to 007 about interrupts, commands and register names, not reset values) |
 
 ### Every statement in the documentation
 

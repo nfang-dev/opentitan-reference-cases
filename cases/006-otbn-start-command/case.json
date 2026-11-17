@@ -1,0 +1,162 @@
+{
+  "schema": 2,
+  "id": "006",
+  "title": "otbn: the command that starts an operation",
+  "module": "otbn",
+  "opentitan_repository": "https://github.com/lowRISC/opentitan",
+  "opentitan_revision": "0ea5236fe749e70ba18f56ba19c4be982ef46da7",
+  "conditions": [
+    "OTBN is idle and host software wants it to start executing the program in its instruction memory.",
+    "C1 to C3 record the value software writes to the CMD register to start the operation (hexadecimal). C4 is encoded as 1 if CMD has a field named start and 0 if it does not."
+  ],
+  "requirements": [
+    {
+      "id": "R1",
+      "file": "hw/ip/otbn/README.md",
+      "line": 126,
+      "text": "All read-write (RW) CSRs are set to 0 when OTBN starts an operation (when 1 is written to [`CMD.start`](doc/registers.md#cmd))",
+      "note": "Section \"Control and Status Registers (CSRs)\" (heading at line 120)."
+    },
+    {
+      "id": "R2",
+      "file": "hw/ip/otbn/README.md",
+      "line": 807,
+      "text": "The `MOD` and `ACC` WSRs are set to 0 when OTBN starts an operation (when 1 is written to [`CMD.start`](doc/registers.md#cmd)).",
+      "note": "Section \"Wide Special Purpose Registers (WSRs)\" (heading at line 801)."
+    },
+    {
+      "id": "R3",
+      "file": "hw/ip/otbn/doc/theory_of_operation.md",
+      "line": 265,
+      "text": "The `EXECUTE` command starts the [execution of the application](#software-execution) contained in OTBN's instruction memory.",
+      "note": "Section \"Operations and Commands\"; line 263 says commands are issued by writing to the CMD register. The value of the EXECUTE command is defined in the register description (D1), so R3 implies 0xd8."
+    }
+  ],
+  "design": [
+    {
+      "id": "D1",
+      "kind": "line",
+      "file": "hw/ip/otbn/data/otbn.hjson",
+      "line": 507,
+      "text": "| 0xd8  | EXECUTE       | Starts the execution of the program stored in the instruction memory, starting at address zero. |",
+      "value": 216,
+      "note": "CMD has a single 8-bit field, cmd (line 500); this table lists its values."
+    },
+    {
+      "id": "D2",
+      "kind": "line",
+      "file": "hw/ip/otbn/rtl/otbn_pkg.sv",
+      "line": 99,
+      "text": "CmdExecute     = 8'hd8,",
+      "value": 216
+    },
+    {
+      "id": "D3",
+      "kind": "line",
+      "file": "hw/ip/otbn/rtl/otbn.sv",
+      "line": 895,
+      "text": "CmdExecute:     start_d       = 1'b1;",
+      "value": 216,
+      "note": "When CMD is written (reg2hw.cmd.qe, line 893), only the value CmdExecute starts an operation."
+    },
+    {
+      "id": "D4",
+      "kind": "line",
+      "file": "hw/ip/otbn/data/otbn.hjson",
+      "line": 492,
+      "text": "Unrecognized commands are ignored.",
+      "value": 216,
+      "note": "Writing 1, which is not one of the four command values, does nothing."
+    },
+    {
+      "id": "D5",
+      "kind": "absent",
+      "file": "hw/ip/otbn/data/otbn.hjson",
+      "pattern": "name:\\s*\"start\"",
+      "value": 0,
+      "description": "no field named start"
+    },
+    {
+      "id": "D6",
+      "kind": "line",
+      "file": "hw/ip/otbn/data/otbn.hjson",
+      "line": 500,
+      "text": "name: \"cmd\"",
+      "value": 0,
+      "note": "The only field of CMD (bits 7:0)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "setting": "value written to CMD to start an operation",
+      "radix": 16,
+      "requirements": [
+        "R1"
+      ],
+      "stated": 1,
+      "design": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "label": "disagrees"
+    },
+    {
+      "id": "C2",
+      "setting": "value written to CMD to start an operation",
+      "radix": 16,
+      "requirements": [
+        "R2"
+      ],
+      "stated": 1,
+      "design": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "label": "disagrees"
+    },
+    {
+      "id": "C3",
+      "setting": "value written to CMD to start an operation",
+      "radix": 16,
+      "requirements": [
+        "R3"
+      ],
+      "stated": 216,
+      "design": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "label": "agrees"
+    },
+    {
+      "id": "C4",
+      "setting": "CMD has a field named start (1 yes, 0 no)",
+      "requirements": [
+        "R1",
+        "R2"
+      ],
+      "stated": 1,
+      "design": [
+        "D5",
+        "D6"
+      ],
+      "label": "disagrees"
+    }
+  ],
+  "generated_from_same_input": "D1, D4, D5 and D6 are in otbn.hjson, from which reggen generates the register RTL and registers.md; those generated files are not counted as further evidence. D2 and D3 are hand-written RTL. R1 to R3 are hand-written.",
+  "finding": "The theory of operation (R3) says an operation starts when the EXECUTE command is written to CMD, and the design starts one only when CMD is written with 0xd8, EXECUTE's value (D1 to D3). Two sentences of the README (R1, R2) instead say an operation starts when 1 is written to CMD.start. CMD has no start field; its only field is the 8-bit cmd, and unrecognized values such as 1 are ignored (D4). Software written from R1 or R2 would not start OTBN.",
+  "missing_information": "This case reads the register description and the command decoding; it does not simulate a write to CMD. What R1 and R2 are mainly about (which registers are cleared when an operation starts) is not checked.",
+  "ambiguities": [
+    "R1 and R2 mention CMD.start only to say when the clearing happens. A reader who knows the CMD register may read them as \"when an operation starts\" and ignore the field name; a reader who does not would write 1."
+  ],
+  "out_of_scope": [
+    "The other commands (SEC_WIPE_DMEM, SEC_WIPE_IMEM, RESUME), which the documents describe consistently with the table in D1."
+  ]
+}

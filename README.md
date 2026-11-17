@@ -21,6 +21,9 @@ The cases are meant to serve as labeled examples for evaluating later automated 
 | [002](cases/002-csrng-int-state-enables-reset/README.md) | csrng | Internal-state read, write and halt enables after reset | 2 agree, 1 unresolved |
 | [003](cases/003-pinmux-pad-sleep-enable-reset/README.md) | pinmux | Pad sleep behavior enable after reset | 2 agree (control case) |
 | [004](cases/004-keymgr-dpe-root-key-reload/README.md) | keymgr_dpe | Loading the creator root key again before the next reset | 2 agree, 1 disagrees |
+| [005](cases/005-uart-break-status/README.md) | uart | Reading the current line-break status | 2 agree, 2 disagree |
+| [006](cases/006-otbn-start-command/README.md) | otbn | The value written to CMD to start an operation | 1 agrees, 3 disagree |
+| [007](cases/007-kmac-mode-and-squeeze/README.md) | kmac | The register that holds the hashing mode, and the squeeze status bit's name | 2 agree, 2 disagree |
 
 All cases use OpenTitan revision [`0ea5236fe749`](https://github.com/lowRISC/opentitan/tree/0ea5236fe749e70ba18f56ba19c4be982ef46da7) (2026-11-03).
 
@@ -65,8 +68,9 @@ CI runs both on every push.
 ## Upstream
 
 - Case 001: documentation fix proposed in [lowRISC/opentitan#32161](https://github.com/lowRISC/opentitan/pull/32161).
-- Case 002: no change proposed; the documentation may describe work in progress.
+- Case 002: no change proposed; the documentation may describe work in progress. On OpenTitan's master branch of 2026-11-16, the design has the `INT_STATE_WRITE_ENABLE` register the documentation describes, with reset value 0x7 (enabled for all instances).
 - Case 004: documentation fix proposed in [lowRISC/opentitan#32203](https://github.com/lowRISC/opentitan/pull/32203).
+- Cases 005 to 007: found by the name checks in [`claims/`](claims/README.md); still present on master as of 2026-11-16; not reported upstream.
 
 ## Behavior check
 

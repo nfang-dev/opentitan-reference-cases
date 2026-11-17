@@ -164,6 +164,25 @@ class FakeCheckoutTest(unittest.TestCase):
         report = self.run_check()
         self.assertFalse(report.evidence_ok)
 
+    def test_absence_with_a_value_decides_the_claim(self):
+        self.case["design"][2]["value"] = 0
+        self.case["claims"][2].pop("stated_text")
+        self.case["claims"][2]["stated"] = 1
+        self.case["claims"][2]["label"] = "disagrees"
+        report = self.run_check()
+        self.assertTrue(report.evidence_ok)
+        self.assertEqual(report.claims[2].outcome, "disagrees")
+        self.assertTrue(report.labels_ok)
+
+    def test_absence_within_a_window(self):
+        item = {"id": "D9", "kind": "absent", "file": "data/block.hjson", "after": 'name: "OUTSEL"',
+                "within": 3, "pattern": r"resval: 9", "value": 0, "description": "no 9"}
+        self.assertTrue(check_case.locate_absent(self.root, item).ok)
+        item["pattern"] = r"resval: 2"
+        self.assertFalse(check_case.locate_absent(self.root, item).ok)
+        item["after"] = "no such anchor"
+        self.assertFalse(check_case.locate_absent(self.root, item).ok)
+
     def test_label_change_is_detected(self):
         # The documentation is fixed: R2 now agrees, but the case still says "disagrees".
         self.write("doc/guide.md", GUIDE.replace("0     | Constant zero (default)", "0     | Constant zero"))
